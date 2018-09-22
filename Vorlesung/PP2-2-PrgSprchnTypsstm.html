@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Programmiersprachen &#x2013; Typsysteme</title>
+<meta name="author" content="(Johannes Brauer)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./mycss/myrevealstyle.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Programmiersprachen &#x2013; Typsysteme</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-09-21 Fri 19:40</p>
+</section>
+
+<section>
+<section id="org157320b">
+<h2 id="org157320b">Ziele</h2>
+<ul>
+<li>Klärung wichtiger Begriffe aus der Theorie der Programmiersprachen
+<ul>
+<li>Typ, Datentyp, Typsystem</li>
+
+</ul></li>
+<li>Funktionale Programmiersprachen
+<ul>
+<li>Clojure</li>
+<li>Standard ML</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="motivation">
+<h3 id="motivation"><a id="org23230d5"></a>Motivation</h3>
+<ul>
+<li>Die Verwendung der Begriffe <i>Klasse</i>, <i>Typ</i> und <i>Objekt</i> ist in der
+Softwaretechnik &#x2013; insbesondere im Kontext der objektorientierten
+Programmierung &#x2013; allgegenwärtig.</li>
+<li>Was ist der Typ eines Objekts?</li>
+<li>Was ist der Unterschied zwischen einem Typ und einer Klasse?</li>
+<li>Was ist ein abstrakter Datentyp?</li>
+<li>Haben o.g. Begriffe etwas zu tun mit Begriffen wie
+<i>Typkompatibilität</i>, <i>Unterklasse</i>, <i>Untertyp</i>, <i>Modul</i>,
+<i>Schnittstelle</i>, <i>Vererbung</i>, <i>Polymorphie</i> &#x2026; ?</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="was-ist-ein-datentyp">
+<h2 id="was-ist-ein-datentyp"><a id="orgd554988"></a>Was ist ein Datentyp?</h2>
+</section>
+<section id="org40df7a9">
+<h3 id="org40df7a9">Interpretation von Bitmustern</h3>
+<p>
+Ein 32 Bit langes Binärwort
+\[01110100011110010111000001100101\]
+</p>
+
+<p>
+Was bedeutet es?
+</p>
+<ul class="fragment roll-in">
+<li>Integer-Zahl mit dem Dezimalwert 1954115685,</li>
+
+</ul>
+<ul class="fragment roll-in">
+<li>Gleitkommazahl gemäß IEEE-Norm: \(7,90504\cdot 10^{31}\)</li>
+
+</ul>
+<ul class="fragment roll-in">
+<li>Folge von vier Zeichen (z.&nbsp;B. codiert in ASCII oder ISO
+8859-1): <code>type</code></li>
+
+</ul>
+<ul class="fragment roll-in">
+<li>Ein Maschinenbefehl bestehend aus
+<ul>
+<li>einem 8 Bit langen Befehlscode und</li>
+<li>einer 24 Bit langen Speicheradresse</li>
+
+</ul></li>
+
+</ul>
+
+<p class="fragment roll-in">
+<b>Woher „weiß“ die Maschine, was gemeint ist?</b>
+</p>
+
+<p class="fragment roll-in">
+<b>Gibt es einen Unterschied zwischen Programmen und Daten?</b>
+</p>
+</section>
+<section id="org55d3cb7">
+<h3 id="org55d3cb7">Rechner arbeiten typenlos</h3>
+<ul>
+<li>Für die Ausführung von Programmen sind Typinformationen nicht
+erforderlich.</li>
+<li>In einem Programm einen Ausdruck der Art <code>1954115685 + ’type’</code> zu
+verwenden, ist offensichtlich unsinnig, der Prozessor hätte „kein
+Problem“ damit.</li>
+<li>Für die bestimmungsgemäße Interpretation der Bitmuster muss der
+Programmierer selbst sorgen.</li>
+<li>Die Hardware ist ohne Weiteres in der Lage, eine Zeichenfolge mit
+einer Integer-Zahl zu addieren oder zu multiplizieren.</li>
+<li>Das wichtigste Ziel, das mit der Typisierung von Daten, d.&nbsp;h. mit der
+Bildung von <i>Datentypen</i>, verbunden ist, besteht nun genau darin,
+dass auf Bitmuster keine typfremden Operationen ausgeführt werden.
+Die Prozessor-Hardware ist dazu selbst nicht in der Lage. Das Problem
+muss also softwaretechnisch gelöst werden.</li>
+
+</ul>
+</section>
+<section id="org28c1f0d">
+<h3 id="org28c1f0d">Begriffsklärung</h3>
+<ul>
+<li>Ein und dasselbe Bitmuster verschiedene Arten von Daten
+repräsentieren.</li>
+<li>Wir sagen,
+<ul>
+<li>„ein Datum besitzt einen bestimmten Typ” oder</li>
+<li>„ist von einem Typ”.</li>
+
+</ul></li>
+<li>Der Begriff Datentyp bezeichnet mehr als eine bestimmte Art von
+Daten: Er stellt im Kontext der Programmiersprachen ein
+eigenständiges Konzept dar.</li>
+<li>Dies wird z.&nbsp;B. daran deutlich, dass auch Dinge, die gar keine Daten
+sind, einen Datentyp besitzen können, z.&nbsp;B. Variablen in
+Programmiersprachen wie C, Pascal oder Java.</li>
+<li>Obwohl der Begriff <i>Datentyp</i> der spezifischere ist, ist es durchaus
+üblich, den Begriff <i>Typ</i> als Synonym zu verwenden.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Auch Funktionen besitzen einen Typ. In diesem Zusammenhang von
+<i>Datentyp</i> zu sprechen, ist eher ungebräuchlich.</li>
+<li>Statt einer präzisen Definition des Begriffs <i>Datentyp</i> soll daher
+der Frage nachgegangen werden: Wozu dienen Datentypen?</li>
+
+</ul>
+</section>
+<section id="orgc75e53e">
+<h3 id="orgc75e53e">Das ungetypte Universum</h3>
+<ul>
+<li>Die Menge der Bitmuster in einem Arbeitsspeicher kann als „ungetyptes
+Universum” betrachtet werden. Man könnte auch sagen, es gibt nur
+einen einzigen Typ.</li>
+<li>Folge: Die Hardware kann unsinnige Operationen nicht verhindern.
+<ul>
+<li>Was ist das Ergebnis der Addition zweier Speicheradressen?</li>
+<li>Die Verwendung der Summe für den Zugriff auf den Arbeitsspeicher
+kann &#x2013; zu möglicherweise gefährlichen &#x2013; Fehlfunktionen des
+Programms führen.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Ein Beispiel für ein ungetyptes Universum aus dem Bereich der
+Programmiersprachen ist die Menge der <i>symbolischen Ausdrücke</i>
+(vgl. <a class='org-ref-reference' href="#McCarthy1960">McCarthy1960</a>)</li>
+<li><p>
+Eine Form von S-Ausdrücken sind Listen. Die Liste
+</p>
+<pre class="example">
+         (f 4 5)
+</pre>
+<p>
+kann in einem Kontext einfach eine Liste bestehend aus einem Symbol
+und zwei Zahlen sein. In einem anderen Kontext bedeutet die Liste die
+Anwendung einer Funktion <code>f</code> auf die Argumente 4 und 5.
+</p></li>
+
+</ul>
+</section>
+<section id="org4ae4ff9">
+<h3 id="org4ae4ff9">Zweck der Typisierung</h3>
+<ul>
+<li>Ordnung in das „Chaos” der ungetypten Universen bringen.</li>
+<li>Die Anwendung unsinniger, fehlerhafter Operationen vermeiden.</li>
+<li>Die Qualität von Software verbessern.</li>
+<li>Den Nachweis der Korrektheit von Software ermöglichen.</li>
+<li><b>Typkompatibilität</b>:
+<ul>
+<li>Ein Operator kann auf seine Operanden nur dann fehlerfrei
+angewendet werden, wenn diese den erwarteten Typ haben.</li>
+<li>Die Anwendung einer Funktion ist nur dann sinnvoll möglich, wenn
+ihre Argumente typkompatibel zu den in der Funktionsdefinition
+spezifizierten Parametern sind.</li>
+<li>Für den Wert einer Funktionsanwendung muss wiederum
+Typkompatibiliät im Kontext seiner Verwendung gelten.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="orge48e411">
+<h3 id="orge48e411">Syntaktische vs. semantische Typkompatibiliät</h3>
+<ul>
+<li>Auch die Verwendbarkeit von größeren Software-Bausteinen, wie
+Objekten, Komponenten, Web-Services etc. kann auf die
+Typkompatibilität der an der Schnittstelle dieser Bausteine
+angebotenen Dienste zurückgeführt werden.</li>
+<li>Der Nutzer (Klient) einer Komponente muss wissen, wie die Dienste in
+Anspruch genommen werden können und welches Ergebnis ein Dienst
+liefert.</li>
+<li>Die erste Frage bezieht sich auf die <i>syntaktische</i> Kompatibilität,
+d.&nbsp;h. welche Typbezeichner und Funktionssignaturen zur Verfügung
+stehen.</li>
+<li>Die zweite Frage betrifft die <i>semantische</i> Kompatibilität, d.&nbsp;h.
+liefern die Dienste auch die erwarteten Resultate, verhalten sich die
+Funktionen gemäß ihrer Spezifikation.</li>
+<li>In vielen Texten, die sich mit der Typkompatibilität befassen, wird
+nur der syntaktische Aspekt beleuchtet. Für die Gewährleistung der
+Korrektheit von Software ist die Herstellung semantischer
+Kompatibilität unerlässlich.</li>
+
+</ul>
+</section>
+<section >
+<p>
+Anthony Simons [<a class='org-ref-reference' href="#Simons1">Simons1</a>] beschreibt, wie syntaktische
+Inkompatibilität Ursache des Verlusts des Mars Climate Orbiter war,
+während die Ariane-5-Katastrophe auf die Nutzung einer alten,
+semantisch inkompatiblen Software-Komponente zurückzuführen war.
+</p>
+
+</section>
+<section id="org0ae423f">
+<h3 id="org0ae423f">Weitere Aufgaben von Datentypen</h3>
+<ul>
+<li>Programmiersprachen stellen dem Programmierer Typkonstruktoren zur
+Verfügung, mit der die Menge der Datentypen erweitert werden kann.</li>
+<li>Dieses Mittel dient in erster Linie der <i>Datenabstraktion</i>. Damit ist
+die Zusammensetzung von elementaren Datentypen zu komplexeren
+Strukturen gemeint, die dann mit einem neuen Typbezeichner versehen
+werden können. Kennen Sie Beispiele?</li>
+<li>Speicherplatzreservierung durch den Compiler ist ein möglicher Nutzen
+von statischen Typangaben bei der Deklaration von Variablen.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="typsysteme">
+<h2 id="typsysteme"><a id="org093c3f5"></a>Typsysteme</h2>
+</section>
+<section id="org6cfdf88">
+<h3 id="org6cfdf88">Prüfbare Redundanz</h3>
+<ul>
+<li>Da die „Bewohner“ eines ungetypten Universums die für die Prüfung der
+Typkompatibiliät nötigen Informationen nicht bereitstellen können,
+muss einem Programm, dessen Bestandteile auf typgemäße Verwendung hin
+überprüft werden sollen, prüfbare Redundanz hinzugefügt werden.</li>
+
+<li>Zwei Möglichkeiten:
+<ol>
+<li><p>
+Bei der Deklaration von Variablen ist eine Typangabe erforderlich:
+</p>
+<pre class="example">
+            int i, j (* in Java, C *) 
+            var i, j: integer (* in Pascal, Modula, Oberon *)
+</pre></li>
+
+</ol></li>
+
+</ul>
+</section>
+<section >
+<ol>
+<li><p>
+Der Typ von Programmobjekten kann aus ihrer Notation oder ihrer
+Verwendung abgeleitet werden (Typinferenz). Der Clojure-Ausdruck
+</p>
+<pre class="example">
+            (def pi 3.14159)
+</pre>
+<p>
+erlaubt es dem Clojure-Compiler, aus der Schreibweise der Zahl zu
+ermitteln, dass sie vom Typ <code>Float</code> ist und dem
+Variablenbezeichner <code>pi</code> ebenfalls diesen Typ zuzuordnen. Fortan
+kann geprüft werden, ob eine Verwendung von <code>pi</code> typgemäß erfolgt.
+</p></li>
+
+</ol>
+</section>
+<section id="orgd88be0e">
+<h3 id="orgd88be0e">Statische vs. dynamische Typisierung</h3>
+<ul>
+<li>Vereinfacht gesagt:
+<dl>
+<dt>statisch:</dt><dd>Typprüfung erfolgt zur Übersetzungszeit.</dd>
+<dt>dynamisch:</dt><dd>Typprüfung erfolgt während der Ausführung des
+Programms.</dd>
+
+</dl></li>
+<li>In der Industrie werden statische Sprachen (wie Java, C++ und C#)
+viel häufiger benutzt als dynamische (wie CLOS, Python, Self, Perl,
+Php oder Smalltalk).</li>
+<li>Andererseits haben gerade Java und C# gewisse typische dynamische
+Techniken adaptiert (Garbage-collection, Portabilität, Reflection).</li>
+<li>Weitere Konzepte dynamischer Sprachen gewinnen an Bedeutung:
+Metaprogrammierung, Mobilität, dynamische Rekonfigurierbarkeit und
+Verteilung.</li>
+
+</ul>
+</section>
+<section id="orgabe10c3">
+<h3 id="orgabe10c3">Präzisierung der Terminologie</h3>
+<ul>
+<li>Ein <i>strenges Typsystem</i> stellt jederzeit sicher, dass auf eine
+Variable bzw. Objekt nur der typgemäße Satz von Operationen
+angewendet werden kann.</li>
+<li>Ein <i>schwaches Typsystem</i> lässt auch typfremde Operationen
+gelegentlich zu. Typisches Beispiel: Pointerarithmetik in C.</li>
+<li>Die Unterscheidung ist für konkrete Programmiersprachen nicht immer
+eindeutig.</li>
+<li>Ein <i>statisches Typsystem</i> führt Typprüfung durch eine statische
+Analyse des Programmes durch. (Programm wird hierzu nicht
+ausgeführt.) Es weist alle Programme zurück, die einem bestimmten
+Satz von Typregeln nicht genügen.</li>
+<li>Ein <i>dynamisches Typsystem</i> prüft zur Laufzeit unmittelbar vor
+Anwendung die Zulässigkeit einer Operation.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Programmiersprachen mit einem strengen aber dynamischen Typsystem
+sind <b>nicht zu verwechseln</b> mit schwach getypten Sprachen. Erstere
+verursachen Ausnahmen bei fehlerhaften Operationen, letztere lassen
+unsinnige Operationen mit nicht vorhersagbaren Folgewirkungen zu.</li>
+<li>Auch wichtig: <i>statisch</i> ist nicht notwendig gleichbedeutend mit zur
+Übersetzungszeit. Gegenbeispiel: Eine Java Virtual Machine führt
+statische Typprüfungen am Byte-Code während des Ladens einer Klasse
+durch.</li>
+<li>Ein <i>explizites Typsystem</i> verlangt für jede Variable die Angabe
+eines Typs.</li>
+<li>Ein <i>implizites Typsystem</i> verlangt nur die Deklaration des Namens
+einer Variablen. Der Typ wird aus der Verwendung abgeleitet.
+Beispielsweise kann aus <code>(def x 12)</code> abgeleitet werden, dass <code>x</code> vom
+Typ Number oder Integer ist.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><b>Zusammenfassung der Typ-Terminologie:</b> Durch die Begriffe wird ein
+dreidimensionales, orthogonales Koordinatensystem aufgespannt mit den
+Skalen:
+<ul>
+<li>schwach &#x2013; streng</li>
+<li>statisch &#x2013; dynamisch</li>
+<li>explizit &#x2013; implizit</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="org6d9923e">
+<h3 id="org6d9923e">Einordnung von Programmiersprachen</h3>
+<ul>
+<li>Vorbemerkung: Die genannten Kategorien stellen Kontinua dar. So
+werden z.&nbsp;B. auch in Sprachen mit dynamischer Typprüfung statische
+Prüfungen vorgenommen und umgekehrt.</li>
+<li>C hat ein schwaches, statisches und explizites Typsystem.</li>
+<li>Java besitzt ein strenges, statisches und explizites Typsystem.</li>
+<li>Haskell und ML besitzen ein strenges, statisches und implizites
+Typsystem.</li>
+<li>Lisp, Clojure und Smalltalk haben ein strenges, dynamisches und
+implizites Typsystem.</li>
+
+</ul>
+
+</section>
+<section id="orgcb8d597">
+<h3 id="orgcb8d597">Sind strenge Typsysteme besser als schwache?</h3>
+<ul>
+<li>Die Attribute <i>streng</i> und <i>schwach</i> stellen keine Qualitätsmerkmale
+dar.</li>
+<li>Wichtig ist der Verwendungszweck einer Programmiersprache.</li>
+<li>Beispielsweise ist die Programmiersprache C für die
+Systemprogrammierung geschaffen worden. Arithmetische Operationen auf
+Speicheradressen sind in diesem Zusammenhang nichts Ungewöhnliches.</li>
+<li>Es ist indes durchaus fragwürdig, die Programmiersprache C für die
+gewöhnliche Anwendungsentwicklung einzusetzen und damit die Vorteile
+eines strengen Typsystems aufzugeben.</li>
+
+</ul>
+</section>
+<section id="org9ea8f26">
+<h3 id="org9ea8f26">Sind statische Typsysteme besser als dynamische?</h3>
+<ul>
+<li>Statische Typsysteme haben den Vorteil, dass bestimmte Fehler bereits
+vor Ablauf des Programms gefunden werden.</li>
+<li>Allerdings weist jedes bekannte statische, explizite Typsystem auch
+viele eigentlich korrekte Programme zurück.</li>
+<li><p>
+Beispiel: Das Programmfragment
+</p>
+
+<pre class="example">
+         ...  var i, j, h: integer; x, y: real; 
+         ...  h := i; i := j; j := h
+</pre>
+<p>
+vertauscht die Werte zweier Integer-Variablen unter Verwendung einer
+"Hilfsvariablen" <code>h</code>. Wollte man außerdem die Werte zweier
+Real-Variablen vertauschen, kann <code>h</code> nicht wieder verwendet werden,
+da die Zuweisung einer Real-Variablen an eine Integer-Variable
+</p>
+<pre class="example">
+         ...  h := x; ...
+</pre>
+<p>
+eine Typverletzung darstellt.
+</p></li>
+<li>Das Problem tritt in dieser Form nur in <i>monomorphen</i> Sprachen auf.</li>
+
+</ul>
+</section>
+<section id="org3158940">
+<h3 id="org3158940">Sind implizite Typsysteme besser als explizite?</h3>
+<ul>
+<li>Implizite Typsysteme befreien den Programmierer davon, redundante
+Typinformationen dem Programm hinzuzufügen.</li>
+<li>Implizite Typsysteme sind meist auch dynamisch (z.&nbsp;B. Smalltalk,
+Clojure).</li>
+<li>Es gibt aber auch Programmiersprachen, die ein statisches, implizites
+Typsystem besitzen (z.&nbsp;B. Haskell, ML).</li>
+<li>Explizite Typsysteme dokumentieren den Programmtext durch die
+Typangaben.</li>
+<li>Dieser Zusatznutzen wird jedoch wegen des erfoderlichen Zeitaufwands
+für den Programmierer infrage gestellt.</li>
+
+</ul>
+
+<p>
+Für eine eingehendere Betrachtung des Themas „Typsysteme“ vgl. Kapitel
+5 in <a class='org-ref-reference' href="#Bra09">Bra09</a>.
+</p>
+
+</section>
+</section>
+<section>
+<section id="org9e2c7b1">
+<h2 id="org9e2c7b1">Funktionale Programmiersprachen</h2>
+<div class="outline-text-2" id="text-org9e2c7b1">
+</div>
+</section>
+<section id="org2beabd5">
+<h3 id="org2beabd5">Clojure</h3>
+<div class="outline-text-3" id="text-org2beabd5">
+</div>
+</section>
+<section id="org8aef1dc">
+<h4 id="org8aef1dc">Eigenschaften von Clojure</h4>
+<p>
+Clojure &#x2026;
+</p>
+<ul>
+<li>ist &#x2013; wie Racket &#x2013; ein Lisp-Dialekt.</li>
+<li>läuft auf der Java Virtual Machine.</li>
+<li>besitzt ein strenges, dynamisches, implizites Typsystem.</li>
+<li>ermöglicht verschiedene Programmierstile (imperativ, <b>funktional</b>,
+objektorientiert, &#x2026;).</li>
+
+</ul>
+
+</section>
+<section id="org1cb943e">
+<h4 id="org1cb943e">Web-Seiten zu Clojure</h4>
+<ul>
+<li><a href="http://clojure.org">Hauptseite</a></li>
+<li><a href="http://clojure.org/features">Features</a></li>
+<li><a href="http://clojure.org/downloads">Download</a></li>
+<li>Dokumentation
+<ul>
+<li><a href="http://clojuredocs.org">clojuredocs</a></li>
+<li><a href="http://clojure-doc.org">clojure-doc</a></li>
+
+</ul></li>
+<li><a href="http://groups.google.com/group/clojure">Google Gruppe</a></li>
+<li>Tutorials
+<ul>
+<li><a href="http://dev.clojure.org/display/doc/Getting+Started">Getting Started</a></li>
+<li><a href="http://www.braveclojure.com">CLOJURE for the BRAVE and TRUE</a></li>
+<li><a href="http://www.moxleystratton.com/blog/2008/05/01/clojure-tutorial-for-the-non-lisp-programmer/">Clojure Tutorial For the Non-Lisp Programmer</a></li>
+<li><a href="http://java.ociweb.com/mark/clojure/article.html">Clojure - Functional Programming for the JVM</a></li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="org2d19b62">
+<h4 id="org2d19b62">Benutzung von Clojure</h4>
+<ul>
+<li><a href="http://try-clojure.org/">Try Clojure</a> (???)</li>
+<li>Command line tool: <code>clj</code></li>
+<li>Clooj - editor and IDE written entirely in Clojure itself
+<ul>
+<li><a href="https://github.com/arthuredelstein/clooj">clooj, a lightweight IDE for clojure</a></li>
+<li><a href="https://www.mediafire.com/?kxa2an0k0ings">Download</a></li>
+
+</ul></li>
+<li><a href="http://www.lighttable.com">LightTable</a> is a new interactive IDE &#x2026;</li>
+<li><a href="http://leiningen.org/index.html">Leiningen</a></li>
+<li><a href="http://dev.clojure.org/display/doc/Getting+Started+with+La+Clojure+and+IntelliJ+IDEA">La Clojure and IntelliJ IDEA</a></li>
+<li><a href="http://dev.clojure.org/display/doc/Getting+Started+with+Eclipse+and+Counterclockwise">Eclipse and Counterclockwise</a></li>
+<li><a href="http://clojure-doc.org/articles/tutorials/emacs.html">Clojure with Emacs</a></li>
+
+</ul>
+
+</section>
+<section id="org317b304">
+<h4 id="org317b304">Die Read-Eval-Print-Loop</h4>
+<p>
+Funktioniert wie in Racket (Interaktionsfenster in DrRacket)
+</p>
+<ul>
+<li>Read: lies einen Ausdruck</li>
+<li>Eval(uate): werte ihn aus</li>
+<li>Print: gib das Ergebnis aus</li>
+
+</ul>
+
+<div class="figure">
+<p><img src="./Abbildungen/ReadEvalPrint.png" alt="ReadEvalPrint.png" width="650px" />
+</p>
+</div>
+
+</section>
+<section id="org4d7c744">
+<h4 id="org4d7c744">Beispiele</h4>
+<p>
+Clojure
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">sum</span>
+      <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>lvz<span style="color: #909183;">]</span>
+        <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span>
+          <span style="color: #709870;">(</span><span style="color: #006FE0;">empty?</span> lvz<span style="color: #709870;">)</span> 0
+          <span style="color: #D0372D;">:else</span> <span style="color: #709870;">(</span>+ <span style="color: #907373;">(</span><span style="color: #006FE0;">first</span> lon<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>sum <span style="color: #6276BA;">(</span><span style="color: #006FE0;">rest</span> lon<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+<p>
+Racket
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">sum</span>
+         <span style="color: #7388D6;">(</span><span style="color: #0000FF;">lambda</span> <span style="color: #909183;">[</span>lvz<span style="color: #909183;">]</span>
+           <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span>
+             <span style="color: #709870;">[</span><span style="color: #907373;">(</span>empty? lvz<span style="color: #907373;">)</span> 0<span style="color: #709870;">]</span>
+             <span style="color: #709870;">[</span>else <span style="color: #907373;">(</span>+ <span style="color: #6276BA;">(</span>first lvz<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>sum <span style="color: #858580;">(</span>rest lvz<span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+</section>
+<section >
+<p>
+Clojure
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">filter</span> 
+      <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>praed? lst<span style="color: #909183;">]</span>
+        <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span> 
+          <span style="color: #709870;">(</span><span style="color: #006FE0;">empty?</span> lst<span style="color: #709870;">)</span> <span style="color: #709870;">()</span> 
+          <span style="color: #709870;">(</span>praed? <span style="color: #907373;">(</span><span style="color: #006FE0;">first</span> lst<span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+             <span style="color: #709870;">(</span><span style="color: #006FE0;">cons</span> <span style="color: #907373;">(</span><span style="color: #006FE0;">first</span> lst<span style="color: #907373;">)</span> <span style="color: #907373;">(</span><span style="color: #006FE0;">filter</span> praed? <span style="color: #6276BA;">(</span><span style="color: #006FE0;">rest</span> lst<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>
+          <span style="color: #D0372D;">:else</span> <span style="color: #709870;">(</span><span style="color: #006FE0;">filter</span> praed? <span style="color: #907373;">(</span><span style="color: #006FE0;">rest</span> lst<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>   
+</pre>
+</div>
+
+</div>
+<p>
+Racket
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">filter</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">lambda</span> <span style="color: #909183;">[</span>praed? lst<span style="color: #909183;">]</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span> 
+      <span style="color: #709870;">[</span><span style="color: #907373;">(</span>empty? lst<span style="color: #907373;">)</span> empty<span style="color: #709870;">]</span>
+      <span style="color: #709870;">[</span><span style="color: #907373;">(</span>praed? <span style="color: #6276BA;">(</span>first lst<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span> 
+         <span style="color: #907373;">(</span>cons <span style="color: #6276BA;">(</span>first lst<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>filter praed? <span style="color: #858580;">(</span>rest lst<span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
+      <span style="color: #709870;">[</span>else <span style="color: #907373;">(</span>filter praed? <span style="color: #6276BA;">(</span>rest lst<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> 
+</pre>
+</div>
+
+</div>
+
+</section>
+<section id="org0a24e83">
+<h3 id="org0a24e83">Standard ML</h3>
+<div class="outline-text-3" id="text-org0a24e83">
+</div>
+</section>
+<section id="org266911a">
+<h4 id="org266911a">Eigenschaften von ML</h4>
+<p>
+ML &#x2026;
+</p>
+<ul>
+<li>ist eine funktionale Programmiersprache.</li>
+<li>besitzt eigene native Compiler (für verschiedene Plattformen).</li>
+<li>besitzt ein strenges, statisches, implizites Typsystem.</li>
+<li>arbeitet mit Typinferenz.</li>
+<li>ermöglicht Mustervergleich (pattern matching) anstelle von
+expliziten Fallunterscheidungen.</li>
+<li>ist eigentlich eine Sprachfamilie, zu der u.&nbsp;a. <i>Standard ML</i>, <a href="https://ocaml.org">OCAml</a>, <a href="https://fsharp.org">F#</a> und <a href="http://elm-lang.org">Elm</a> gehören.</li>
+
+</ul>
+
+<p>
+Wird benutzen Standard ML.
+</p>
+</section>
+<section id="org432f140">
+<h4 id="org432f140">Web-Seiten zu ML (SML)</h4>
+<ul>
+<li><a href="http://sml-family.org">Standard ML Family GitHub Project</a></li>
+<li><a href="https://www.smlnj.org">Standard ML of New Jersey</a></li>
+<li>ordentliche Zusammenfassung auf <a href="https://de.wikipedia.org/wiki/Standard_ML">Wikipedia</a></li>
+<li>Bücher/Tutorials
+<ul>
+<li><a href="http://www.cs.cmu.edu/~rwh/isml/book.pdf">Programming in Standard ML</a></li>
+<li><a href="http://www.lfcs.inf.ed.ac.uk/reports/97/ECS-LFCS-97-364/ECS-LFCS-97-364.pdf">Programming in Standard ML ’97: A Tutorial Introduction</a></li>
+<li><a href="https://www.cs.cmu.edu/afs/cs/academic/class/15814-f03/www/sml-intro.pdf">Introduction to SML</a></li>
+<li><a href="http://www.cl.cam.ac.uk/~lp15/MLbook/pub-details.html">ML for the Working Programmer</a></li>
+<li>Gert Smolka: Programmierung – eine Einführung in die Informatik mit Standard ML (zweite Auflage)</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="orgced65ef">
+<h4 id="orgced65ef">Benutzung von SML</h4>
+<ul>
+<li>Online-Interpreter <a href="https://sosml.github.io">SOSML</a></li>
+<li><a href="https://courses.cs.washington.edu/courses/cse341/13wi/sml_emacs.pdf">Using SML and Emacs</a> oder <a href="https://cs.wellesley.edu/~cs251/spring18/tools/smlnj.html">SML/NJ and Emacs SML Mode</a></li>
+
+</ul>
+</section>
+<section id="orgaf2c0af">
+<h4 id="orgaf2c0af">Beispiele</h4>
+<p>
+SML
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum</span> <span style="color: #707183;">(</span>lvz : int list<span style="color: #707183;">)</span> =
+    <span style="color: #0000FF;">if</span> null lvz
+    <span style="color: #0000FF;">then</span> 0
+    <span style="color: #0000FF;">else</span> hd lvz + sum<span style="color: #707183;">(</span>tl lvz<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+<p>
+Racket
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">sum</span>
+         <span style="color: #7388D6;">(</span><span style="color: #0000FF;">lambda</span> <span style="color: #909183;">[</span>lvz<span style="color: #909183;">]</span>
+           <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span>
+             <span style="color: #709870;">[</span><span style="color: #907373;">(</span>empty? lvz<span style="color: #907373;">)</span> 0<span style="color: #709870;">]</span>
+             <span style="color: #709870;">[</span>else <span style="color: #907373;">(</span>+ <span style="color: #6276BA;">(</span>first lvz<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>sum <span style="color: #858580;">(</span>rest lvz<span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+</section>
+<section >
+<p>
+SML
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">filter</span> <span style="color: #707183;">(</span>praed, lst<span style="color: #707183;">)</span> =
+    <span style="color: #0000FF;">if</span> null lst
+    <span style="color: #0000FF;">then</span> <span style="color: #707183;">[]</span>
+    <span style="color: #0000FF;">else</span> <span style="color: #0000FF;">if</span> praed <span style="color: #707183;">(</span>hd lst<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">then</span> 
+        hd lst :: filter <span style="color: #707183;">(</span>praed, tl lst<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">else</span> filter <span style="color: #707183;">(</span>praed, tl lst<span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">Signatur von filter: fn : ('a -&gt; bool) * 'a list -&gt; 'a list </span><span style="color: #8D8D84;">*)</span>
+</pre>
+</div>
+
+</div>
+<p>
+Racket
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-scheme"><span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">filter</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">lambda</span> <span style="color: #909183;">[</span>praed? lst<span style="color: #909183;">]</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span> 
+      <span style="color: #709870;">[</span><span style="color: #907373;">(</span>empty? lst<span style="color: #907373;">)</span> empty<span style="color: #709870;">]</span>
+      <span style="color: #709870;">[</span><span style="color: #907373;">(</span>praed? <span style="color: #6276BA;">(</span>first lst<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span> 
+         <span style="color: #907373;">(</span>cons <span style="color: #6276BA;">(</span>first lst<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>filter praed? <span style="color: #858580;">(</span>rest lst<span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
+      <span style="color: #709870;">[</span>else <span style="color: #907373;">(</span>filter praed? <span style="color: #6276BA;">(</span>rest lst<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> 
+</pre>
+</div>
+
+</div>
+
+</section>
+<section id="org3384ef1">
+<h3 id="org3384ef1">SML &#x2013; Kurzanleitung</h3>
+<div class="outline-text-3" id="text-org3384ef1">
+</div>
+</section>
+<section id="org4443ec0">
+<h4 id="org4443ec0">Nutzung des Interpreters</h4>
+<p>
+Der SML/NJ-Interpreter wird von der Kommandozeile mit <code>sml</code> (oder
+besser: <code>rlwrap sml</code> )gestartet:
+</p>
+<pre class="example">
+Standard ML of New Jersey v110.82 [built: Tue Jan  9 20:54:24 2018]
+-
+
+</pre>
+<p>
+Das <code>-</code>-Zeichen ist die Eingabeaufforderung. Hier können ML-Ausdrücke
+eingegeben werden:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sh">- 3+4;
+val it = 7 : int
+- <span style="color: #008000;">"abc"</span>^<span style="color: #008000;">"xyz"</span>
+= ;
+val it = <span style="color: #008000;">"abcxyz"</span> : string
+- 
+</pre>
+</div>
+
+</div>
+
+</section>
+<section id="orgfece5e4">
+<h4 id="orgfece5e4">Einfache Deklarationen</h4>
+<ul>
+<li>Erzeugen einer Deklaration (Variablenbindung):</li>
+
+</ul>
+<pre class="example">
+- val x = 2*3+4;
+val x = 10 : int
+
+</pre>
+<ul>
+<li><code>x</code> steht ab jetzt für 10.</li>
+<li>Benutzung:</li>
+
+</ul>
+<pre class="example">
+- val y = x*2;
+val y = 20 : int
+
+</pre>
+<ul>
+<li>globale Umgebung <code>{x = 10, y = 20}</code></li>
+
+</ul>
+</section>
+<section id="orgf21ea0a">
+<h4 id="orgf21ea0a">Einfache Typen</h4>
+<p>
+• Neben ganzen Zahlen (<code>int</code>):
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-sml">- 1.0;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 1.0 : real
+- ~3.32E~7;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = ~3.32E~07 : real
+- <span style="color: #008000;">"abc"</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #008000;">"abc"</span> : string
+- #<span style="color: #008000;">"a"</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = #<span style="color: #008000;">"a"</span> : char
+- 2 = 2;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = true : bool
+- true;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = true : bool
+- false;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = false : bool
+</pre>
+</div>
+</section>
+<section id="orgbc3fdcf">
+<h5 id="orgbc3fdcf">Typen besitzen spezifische Operationen:</h5>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Typ</th>
+<th scope="col" class="org-left">Operationen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">int</td>
+<td class="org-left">~, +, *, -, div, mod, &lt;, &gt;, &lt;=,  &gt;=, =</td>
+</tr>
+
+<tr>
+<td class="org-left">real</td>
+<td class="org-left">~, +, *, -, /, &lt;, &gt;, &lt;=,  &gt;=</td>
+</tr>
+
+<tr>
+<td class="org-left">string</td>
+<td class="org-left">^</td>
+</tr>
+
+<tr>
+<td class="org-left">boolean</td>
+<td class="org-left">not, andalso, orelse, =</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>Auch wenn einige Operationen für <code>int</code> und <code>real</code> anwendbar sind,
+dürfen Werte dieser beiden Typen nicht direkt verknüpft
+werden. Vorher ist eine Typanpassung erforderlich:</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-sml">- 2 + 3.0;
+stdIn:1.2-17.1 Error: operator <span style="color: #0000FF;">and</span> <span style="color: #006699;">operand</span> don't agree <span style="color: #707183;">[</span><span style="color: #0000FF;">overload</span> conflict<span style="color: #707183;">]</span>
+  operator domain: <span style="color: #707183;">[</span>+ ty<span style="color: #707183;">]</span> * <span style="color: #707183;">[</span>+ ty<span style="color: #707183;">]</span>
+  operand:         <span style="color: #707183;">[</span>+ ty<span style="color: #707183;">]</span> * real
+  <span style="color: #0000FF;">in</span> expression:
+    2 + 3.0
+- real 2 + 3.0;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 5.0 : real
+</pre>
+</div>
+
+</section>
+<section id="org8bf9089">
+<h4 id="org8bf9089">Funktionen</h4>
+<ul>
+<li>Lambda-Ausdrücke:</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- <span style="color: #0000FF;">fn</span> x =&gt; x+1;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #0000FF;">fn</span> : int -&gt; int
+- <span style="color: #707183;">(</span><span style="color: #0000FF;">fn</span> x =&gt; x+1<span style="color: #707183;">)</span> 5;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 6 : int
+</pre>
+</div>
+
+</div>
+<ul>
+<li>Benennung von Funktionen</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">twice</span> = <span style="color: #707183;">(</span><span style="color: #0000FF;">fn</span> x =&gt; 2*x<span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">twice</span> = <span style="color: #0000FF;">fn</span> : int -&gt; int
+- twice y;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 40 : int
+</pre>
+</div>
+
+</div>
+<ul>
+<li>Was tun bei rekursiven Funktionen?</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Man verwendet <code>val rec</code>:</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- <span style="color: #0000FF;">val</span> <span style="color: #0000FF;">rec</span> <span style="color: #BA36A5;">fac</span> = <span style="color: #707183;">(</span><span style="color: #0000FF;">fn</span>  n =&gt; <span style="color: #0000FF;">if</span> <span style="color: #7388D6;">(</span>n=0<span style="color: #7388D6;">)</span> <span style="color: #0000FF;">then</span> 1 <span style="color: #0000FF;">else</span> n*<span style="color: #7388D6;">(</span>fac <span style="color: #909183;">(</span>n-1<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">fac</span> = <span style="color: #0000FF;">fn</span> : int -&gt; int
+
+- fac 5;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 120 : int
+</pre>
+</div>
+
+</div>
+<ul>
+<li>oder man verwendet die Funktionsdeklaration mit <code>fun</code>:</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- <span style="color: #0000FF;">fun</span> <span style="color: #006699;">fac</span> n = <span style="color: #0000FF;">if</span> <span style="color: #707183;">(</span>n=0<span style="color: #707183;">)</span> <span style="color: #0000FF;">then</span> 1 <span style="color: #0000FF;">else</span> n*<span style="color: #707183;">(</span>fac <span style="color: #7388D6;">(</span>n-1<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">fac</span> = <span style="color: #0000FF;">fn</span> : int -&gt; int
+</pre>
+</div>
+
+</div>
+<ul>
+<li>Das ist die gebräuchlichere Variante.</li>
+
+</ul>
+</section>
+<section id="org5822c86">
+<h5 id="org5822c86">Funktionen verallgemeinert (vorläufig)</h5>
+<ul>
+<li><p>
+Die vorläufige Syntax für eine Funktionsdeklaration:
+</p>
+<pre class="example">
+fun x0 (x1 : t1, ..., xn : tn) = e 
+
+</pre></li>
+<li>Bindung einer Funktion mit 
+<ul>
+<li>dem Namen <code>x0</code> und</li>
+<li>den Parametern <code>x1, ... xn</code>, deren
+<ul>
+<li>Typen <code>t1, ..., tn</code> sind, und</li>
+
+</ul></li>
+<li>einer Berechnungsvorschrift <code>e</code>.</li>
+
+</ul></li>
+<li>Die runden Klammer um die Parameter sind nur bei mehr als einem
+Parameter erforderlich.</li>
+<li><p>
+Die Syntax eines Funktionstyps (die Signatur einer Funktion):
+</p>
+<pre class="example">
+“parameter types” -&gt; “result type”
+
+</pre>
+<p>
+wobei die Parametertypen durch <code>*</code> voneinander getrennt werden.
+</p></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Beispiel:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">pow</span> <span style="color: #707183;">(</span>x:int, y:int<span style="color: #707183;">)</span> = <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">correct only for y &gt;= 0 </span><span style="color: #8D8D84;">*)</span>
+    <span style="color: #0000FF;">if</span> y=0
+    <span style="color: #0000FF;">then</span> 1
+    <span style="color: #0000FF;">else</span> x * pow<span style="color: #707183;">(</span>x,y-1<span style="color: #707183;">)</span>
+
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">pow</span> = <span style="color: #0000FF;">fn</span> : int * int -&gt; int
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section id="org73e92fd">
+<h5 id="org73e92fd">Funktionsaufrufe</h5>
+<ul>
+<li><p>
+Syntax
+</p>
+<pre class="example">
+e0 (e1,...,en)
+
+</pre>
+<p>
+Runde Klammern sind nur bei mehr als einem Argument erforderlich.
+</p></li>
+<li>Typregeln:
+<ul>
+<li><code>e0</code> muss einen Typ der Form <code>t1*...*tn-&gt;t</code> haben, wobei gilt:
+für alle 1 ≤ i ≤ n, ei hat Type ti.</li>
+<li>Der Aufruf selbst hat den Typ <code>t</code>.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Beispiel:</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">pow</span> <span style="color: #707183;">(</span>x:int, y:int<span style="color: #707183;">)</span> = <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">correct only for y &gt;= 0 </span><span style="color: #8D8D84;">*)</span>
+    <span style="color: #0000FF;">if</span> y=0
+    <span style="color: #0000FF;">then</span> 1
+    <span style="color: #0000FF;">else</span> x * pow<span style="color: #707183;">(</span>x,y-1<span style="color: #707183;">)</span>
+<span style="color: #0000FF;">fun</span> <span style="color: #006699;">cube</span> <span style="color: #707183;">(</span>x:int<span style="color: #707183;">)</span> =
+    pow<span style="color: #707183;">(</span>x,3<span style="color: #707183;">)</span>
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">ans</span> = cube<span style="color: #707183;">(</span>4<span style="color: #707183;">)</span>
+
+<span style="color: #8D8D84;">(*</span><span style="color: #8D8D84; font-style: italic;">Auswertung:</span><span style="color: #8D8D84;">*)</span>
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">pow</span> = <span style="color: #0000FF;">fn</span> : int * int -&gt; int
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">cube</span> = <span style="color: #0000FF;">fn</span> : int -&gt; int
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">ans</span> = 64 : int
+</pre>
+</div>
+
+</section>
+<section id="org4cfd88c">
+<h4 id="org4cfd88c">Lokale Definitionen</h4>
+<ul>
+<li><p>
+Syntax:
+</p>
+<pre class="example">
+let b1 b2 ... bn in e end
+
+</pre>
+<p>
+mit <code>bi</code> ist Bindung, <code>e</code> ist Ausdruck
+</p></li>
+<li><p>
+Beispiel:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">x</span> = 1
+<span style="color: #0000FF;">in</span>
+    <span style="color: #707183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">x</span> = 2 <span style="color: #0000FF;">in</span> x+1 <span style="color: #0000FF;">end</span><span style="color: #707183;">)</span> + <span style="color: #707183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">y</span> = x+2 <span style="color: #0000FF;">in</span> y+1 <span style="color: #0000FF;">end</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 7 : int
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section id="orgcbdad80">
+<h4 id="orgcbdad80">Optionale Werte (SML Options)</h4>
+<ul>
+<li>Unter optionalen Werten (Options) versteht man solche, die existieren können
+aber nicht müssen:
+<dl>
+<dt><code>NONE</code></dt><dd>ist ein <code>Option</code>-Wert, der „nichts enthält”.</dd>
+<dt><code>SOME e</code></dt><dd>ist ein <code>Option</code>-Wert, der den Wert von <code>e</code> enthält.</dd>
+
+</dl></li>
+<li><p>
+Die Funktion
+</p>
+<pre class="example">
+fun divide x y = if y == 0 then NONE else SOME (x / y)
+
+</pre>
+<p>
+erzeugt niemals eine Exception.
+</p></li>
+
+</ul>
+</section>
+<section id="orgd43f537">
+<h5 id="orgd43f537">Anwendungsbeispiel</h5>
+<ul>
+<li><p>
+Die folgende Funktion erzeugt eine Exception für leere Listen:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">max</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
+    <span style="color: #0000FF;">if</span> null <span style="color: #707183;">(</span>tl xs<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">then</span> hd xs
+    <span style="color: #0000FF;">else</span>
+        <span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">tl_ans</span> = max<span style="color: #707183;">(</span>tl xs<span style="color: #707183;">)</span>
+        <span style="color: #0000FF;">in</span>
+            <span style="color: #0000FF;">if</span> hd xs &gt; tl_ans
+            <span style="color: #0000FF;">then</span> hd xs
+            <span style="color: #0000FF;">else</span> tl_ans
+        <span style="color: #0000FF;">end</span>  
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+bessere Variante:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">better_max</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
+    <span style="color: #0000FF;">if</span> null xs
+    <span style="color: #0000FF;">then</span> NONE
+    <span style="color: #0000FF;">else</span> <span style="color: #0000FF;">let</span> <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">fine to assume argument nonempty because it is local </span><span style="color: #8D8D84;">*)</span>
+        <span style="color: #0000FF;">fun</span> <span style="color: #006699;">max_nonempty</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
+            <span style="color: #0000FF;">if</span> null <span style="color: #707183;">(</span>tl xs<span style="color: #707183;">)</span> <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">xs must not be [] </span><span style="color: #8D8D84;">*)</span>
+            <span style="color: #0000FF;">then</span> hd xs
+            <span style="color: #0000FF;">else</span> <span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">tl_ans</span> = max_nonempty<span style="color: #707183;">(</span>tl xs<span style="color: #707183;">)</span>
+                 <span style="color: #0000FF;">in</span>
+                     <span style="color: #0000FF;">if</span> hd xs &gt; tl_ans
+                     <span style="color: #0000FF;">then</span> hd xs
+                     <span style="color: #0000FF;">else</span> tl_ans
+                 <span style="color: #0000FF;">end</span>
+    <span style="color: #0000FF;">in</span>
+        SOME <span style="color: #707183;">(</span>max_nonempty xs<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">end</span>
+
+- better_max <span style="color: #707183;">[</span>3,5,6,1<span style="color: #707183;">]</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = SOME 6 : int option
+- better_max <span style="color: #707183;">[]</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = NONE : int option
+- isSome <span style="color: #707183;">(</span>better_max <span style="color: #7388D6;">[]</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = false : bool
+- isSome <span style="color: #707183;">(</span>better_max <span style="color: #7388D6;">[</span>3,4,5,1<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = true : bool
+- valOf <span style="color: #707183;">(</span>better_max <span style="color: #7388D6;">[</span>3,4,5,1<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 5 : int
+- valOf <span style="color: #707183;">(</span>better_max <span style="color: #7388D6;">[]</span><span style="color: #707183;">)</span>;
+uncaught <span style="color: #0000FF;">exception</span> Option
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section id="zusammengesetzte-typen-tupel">
+<h4 id="zusammengesetzte-typen-tupel"><a id="orgf10e0e2"></a>Zusammengesetzte Typen: Tupel</h4>
+<ul>
+<li>Paare und n-Tupel:</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">pair</span> = <span style="color: #707183;">(</span>1,<span style="color: #008000;">"abc"</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">pair</span> = <span style="color: #707183;">(</span>1,<span style="color: #008000;">"abc"</span><span style="color: #707183;">)</span> : int * string
+- <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">triple</span> = <span style="color: #707183;">(</span>1,true,1.0<span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">triple</span> = <span style="color: #707183;">(</span>1,true,1.0<span style="color: #707183;">)</span> : int * bool * real
+- <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">nested</span> = <span style="color: #707183;">(</span>7,<span style="color: #7388D6;">(</span>true,9<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">nested</span> = <span style="color: #707183;">(</span>7,<span style="color: #7388D6;">(</span>true,9<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> : int * <span style="color: #707183;">(</span>bool * int<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+<ul>
+<li>Komponentenzugriff:</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- #3<span style="color: #707183;">(</span>triple<span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 1.0 : real
+- <span style="color: #0000FF;">val</span> <span style="color: #707183;">(</span>x,y<span style="color: #707183;">)</span> = pair;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">x</span> = 1 : int
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">y</span> = <span style="color: #008000;">"abc"</span> : string
+- #2<span style="color: #707183;">(</span>nested<span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">(</span>true,9<span style="color: #707183;">)</span> : bool * int
+</pre>
+</div>
+
+</div>
+</section>
+<section id="org56beb01">
+<h4 id="org56beb01">Funktionen über Tupel</h4>
+<blockquote nil>
+<p>
+<b>Adhoc-Aufgabe:</b> Schreiben Sie ein Java-Programm mit einer Methode <code>div_mod</code>, die
+ein Paar von <code>int</code>-Zahlen akzeptiert und ein Paar mit dem Wert der
+ganzzahligen Division und dem Divisionsrest zurückgibt.
+</p>
+</blockquote>
+<ul class="fragment roll-in">
+<li><p>
+Die ML-Variante:
+</p>
+<pre class="example">
+fun div_mod (x : int, y : int) =  (x div y, x mod y)
+
+</pre></li>
+
+</ul>
+<ul class="fragment roll-in">
+<li><p>
+die Clojure-Variante
+</p>
+<pre class="example">
+(defn div_mod [[x y]] [(quot x y) (rem x y)])
+
+</pre></li>
+
+</ul>
+</section>
+<section id="orgf1b6c3f">
+<h4 id="orgf1b6c3f">Zusammengesetzte Typen: Listen</h4>
+<ul>
+<li>Listenkonstruktion:</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- 1::nil;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">[</span>1<span style="color: #707183;">]</span> : int list
+- <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">lst</span> = <span style="color: #707183;">[</span>1,2,3<span style="color: #707183;">]</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">lst</span> = <span style="color: #707183;">[</span>1,2,3<span style="color: #707183;">]</span> : int list
+- 0::lst;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">[</span>0,1,2,3<span style="color: #707183;">]</span> : int list
+- nil;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">[]</span> : 'a list
+</pre>
+</div>
+
+</div>
+<ul>
+<li>Zugriffsoperationen:</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- hd lst;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 1 : int
+- tl lst;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">[</span>2,3<span style="color: #707183;">]</span> : int list
+- tl<span style="color: #707183;">(</span>tl<span style="color: #7388D6;">(</span>tl lst<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">[]</span> : int list <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">[] steht f&#252;r die leere Liste </span><span style="color: #8D8D84;">*)</span>
+</pre>
+</div>
+
+</div>
+</section>
+<section id="org015a4a4">
+<h4 id="org015a4a4">Funktionen über Listen</h4>
+<ul>
+<li>Beispiele:</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_list</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
+    <span style="color: #0000FF;">if</span> null xs
+    <span style="color: #0000FF;">then</span> 0
+    <span style="color: #0000FF;">else</span> hd<span style="color: #707183;">(</span>xs<span style="color: #707183;">)</span> + sum_list<span style="color: #707183;">(</span>tl xs<span style="color: #707183;">)</span>
+
+<span style="color: #0000FF;">fun</span> <span style="color: #006699;">append</span> <span style="color: #707183;">(</span>xs : int list, ys : int list<span style="color: #707183;">)</span> =
+    <span style="color: #0000FF;">if</span> null xs
+    <span style="color: #0000FF;">then</span> ys
+    <span style="color: #0000FF;">else</span> <span style="color: #707183;">(</span>hd xs<span style="color: #707183;">)</span> :: append<span style="color: #707183;">(</span>tl xs, ys<span style="color: #707183;">)</span>
+
+<span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">Anwendungsbeispiele: </span><span style="color: #8D8D84;">*)</span>
+- sum_list <span style="color: #707183;">[</span>3, 4, 5<span style="color: #707183;">]</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 12 : int
+- append <span style="color: #707183;">(</span><span style="color: #7388D6;">[</span>1,2,3<span style="color: #7388D6;">]</span> <span style="color: #7388D6;">[</span>4,5,6<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">[</span>1,2,3,4,5,6<span style="color: #707183;">]</span> : int list
+</pre>
+</div>
+</section>
+<section id="zusammengesetzte-typen-verbuende">
+<h4 id="zusammengesetzte-typen-verbuende"><a id="orgaf0301b"></a>Zusammengesetzte Typen: Verbünde (Records)</h4>
+<ul>
+<li><p>
+Records haben die Form:
+</p>
+<pre class="example">
+{lab1=exp1,···,labn=expn}
+
+</pre></li>
+<li><p>
+Beispiel:
+</p>
+<pre class="example">
+{make = "Ford", built = 1904}
+
+</pre></li>
+<li>Records sind den Hashmaps von Clojure sehr ähnlich.</li>
+<li>Die Reihenfolge der Felder in den Records ist unerheblich.</li>
+<li><p>
+Zugriffsoperationen:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-sml">- <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">car</span> = <span style="color: #707183;">{</span>make = <span style="color: #008000;">"Ford"</span>, built = 1904<span style="color: #707183;">}</span>;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">car</span> = <span style="color: #707183;">{</span>built=1904,make=<span style="color: #008000;">"Ford"</span><span style="color: #707183;">}</span> : <span style="color: #707183;">{</span>built:int, make:string<span style="color: #707183;">}</span>
+- #make car;
+<span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #008000;">"Ford"</span> : string
+</pre>
+</div>
+
+</div></li>
+<li>Paare und n-Tupel sind spezielle Records mit den Labels 1, 2, etc.</li>
+
+</ul>
+</section>
+<section id="orgc7fff5c">
+<h4 id="orgc7fff5c">Der Typ <code>unit</code></h4>
+<ul>
+<li>Es gib einen eingebauten Typ <code>unit</code>.</li>
+<li>Es handelt sich um ein Alias für den Tuple-Typ <code>{}</code>.</li>
+<li>Der Typ besitzt nur ein Exemplar, das 0-Tupel <code>{}</code>, das auch so
+geschrieben wird: <code>()</code>.</li>
+<li>Dieser Wert wird häufig auch <code>unit</code> genannt.</li>
+<li><code>unit</code> wird z.&nbsp;B. als Resultattyp für Funktionen benutzt, die
+eigentlich keinen Wert zurückgeben, sondern nur einen Effekt haben.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="org673bdea">
+<h2 id="org673bdea"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="McCarthy1960">[McCarthy1960]</a> <a name="McCarthy1960"></a>McCarthy, Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I, <i>Commun. ACM</i>, <b>3(4)</b>, 184-195 (1960). <a href="http://doi.acm.org/10.1145/367177.367199">link</a>. <a href="http://dx.doi.org/10.1145/367177.367199">doi</a>.</li>
+<li><a id="Simons1">[Simons1]</a> <a name="Simons1"></a>Anthony Simons, The Theory of Classification, Part 1: Perspectives on Type Compatibility, <i>Journal of Object Technology</i>, <b>1(1)</b>, 55-61 (2002). <a href="http://www.jot.fm/issues/issue_2002_05/column5">link</a>.</li>
+<li><a id="Bra09">[Bra09]</a> <a name="Bra09"></a>Johannes Brauer, Typen, Objekte, Klassen - Teil 1: Grundlagen, NORDAKADEMIE Hochschule der Wirtschaft, (2009).</li>
+</ul></h2>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.05,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ]});
+</script>
+</body>
+</html>
