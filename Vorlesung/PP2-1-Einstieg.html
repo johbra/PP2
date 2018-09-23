@@ -1,304 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-<!-- 2018-07-22 Sun 16:57 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
 <title>Programmierparadigmen &#x2013; Einstieg</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="Johannes Brauer" />
+<meta name="author" content="(Johannes Brauer)"/>
 <style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+.underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
-<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
-<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./mycss/myrevealstyle.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
-<h1 class="title">Programmierparadigmen &#x2013; Einstieg</h1>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Programmierparadigmen &#x2013; Einstieg</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-09-23 Sun 16:32</p>
+</section>
 
-<div id="outline-container-org8bc88d3" class="outline-2">
-<h2 id="org8bc88d3">Beispiele</h2>
-<div class="outline-text-2" id="text-org8bc88d3">
+<section>
+<section id="org56e3b44">
+<h2 id="org56e3b44">Beispiele</h2>
 <p>
 Zur Wiedererweckung von Kenntnissen aus den vergangenen Semestern
 </p>
-</div>
-<div id="outline-container-orgdccef12" class="outline-3">
-<h3 id="orgdccef12">Interpretieren Sie diesen Programmcode:</h3>
-<div class="outline-text-3" id="text-orgdccef12">
+</section>
+<section id="orgb94761c">
+<h3 id="orgb94761c">Interpretieren Sie diesen Programmcode:</h3>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">power</span> <span style="color: #7388D6;">[</span>x y<span style="color: #7388D6;">]</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">power</span> <span style="color: #7388D6;">[</span>x y<span style="color: #7388D6;">]</span>
    <span style="color: #7388D6;">(</span><span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>= y 0<span style="color: #909183;">)</span> 1
        <span style="color: #909183;">(</span>* x <span style="color: #709870;">(</span>power x <span style="color: #907373;">(</span>- y 1<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org9304eb3" class="outline-3">
-<h3 id="org9304eb3">Aufgabe</h3>
-<div class="outline-text-3" id="text-org9304eb3">
+</section>
+<section id="org2b6fcda">
+<h3 id="org2b6fcda">Aufgabe</h3>
 <p>
 Schreiben Sie eine statische Java-Methode, die ein Array von doubles
 als Argument akzeptiert und den Durchschnitt der Zahlen liefert.
 </p>
-</div>
-</div>
 
-<div id="outline-container-org2936292" class="outline-3">
-<h3 id="org2936292">Lösung</h3>
-<div class="outline-text-3" id="text-org2936292">
+</section>
+<section id="orgbab694a">
+<h3 id="orgbab694a">Lösung</h3>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">double</span> <span style="color: #006699;">average</span> <span style="color: #707183;">(</span><span style="color: #6434A3;">double</span><span style="color: #7388D6;">[]</span> <span style="color: #BA36A5;">numbers</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+
+<pre  class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">double</span> <span style="color: #006699;">average</span> <span style="color: #707183;">(</span><span style="color: #6434A3;">double</span><span style="color: #7388D6;">[]</span> <span style="color: #BA36A5;">numbers</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
     <span style="color: #6434A3;">double</span> <span style="color: #BA36A5;">sum</span> = 0;
     <span style="color: #0000FF;">for</span> <span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; numbers.<span style="color: #6434A3;">length</span>; i++<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
       sum += numbers<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
@@ -316,21 +80,21 @@ versus
 
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-clojure"> <span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">average</span>
+
+<pre  class="src src-clojure"> <span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">average</span>
   <span style="color: #7388D6;">[</span>numbers<span style="color: #7388D6;">]</span>
   <span style="color: #7388D6;">(</span>/ <span style="color: #909183;">(</span><span style="color: #006FE0;">apply</span> + numbers<span style="color: #909183;">)</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">count</span> numbers<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
 </div>
-</div>
-</div>
 
-<div id="outline-container-orga83ac0f" class="outline-3">
-<h3 id="orga83ac0f">Frage: Was tut die Methode <code>isBlank</code>?</h3>
-<div class="outline-text-3" id="text-orga83ac0f">
+</section>
+<section id="orga3fce4a">
+<h3 id="orga3fce4a">Frage: Was tut die Methode <code>isBlank</code>?</h3>
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">StringUtils</span> <span style="color: #707183;">{</span>
+
+<pre  class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">StringUtils</span> <span style="color: #707183;">{</span>
    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">boolean</span> <span style="color: #006699;">isBlank</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">strng</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
       <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">strngLen</span>;
       <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>strng == <span style="color: #D0372D;">null</span> || <span style="color: #709870;">(</span>strngLen = strng.length<span style="color: #907373;">()</span><span style="color: #709870;">)</span> == 0<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
@@ -347,27 +111,30 @@ versus
 </pre>
 </div>
 
+</section>
+<section >
+
 <p>
 Zum Vergleich:
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">blank?</span> <span style="color: #7388D6;">[</span>strng<span style="color: #7388D6;">]</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">blank?</span> <span style="color: #7388D6;">[</span>strng<span style="color: #7388D6;">]</span>
    <span style="color: #7388D6;">(</span><span style="color: #006FE0;">every?</span> #<span style="color: #909183;">(</span><span style="color: #6434A3;">Character</span>/isWhitespace <span style="color: #BA36A5;">%</span><span style="color: #909183;">)</span> strng<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
-</div>
-</div>
 
 
-<div id="outline-container-org066765d" class="outline-3">
-<h3 id="org066765d">Aufgabe</h3>
-<div class="outline-text-3" id="text-org066765d">
+</section>
+<section id="org4c7a29a">
+<h3 id="org4c7a29a">Aufgabe</h3>
 <p>
 Gegeben ist eine Liste mit Preisen:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">BigDecimal</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">prices</span> = Arrays.asList<span style="color: #707183;">(</span>
+
+<pre  class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">BigDecimal</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">prices</span> = Arrays.asList<span style="color: #707183;">(</span>
   <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"10"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"30"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"17"</span><span style="color: #7388D6;">)</span>,
   <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"20"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"15"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"18"</span><span style="color: #7388D6;">)</span>,
   <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"45"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"12"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
@@ -378,18 +145,18 @@ Gegeben ist eine Liste mit Preisen:
 Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
 10%, aufsummiert.
 </p>
-</div>
-</div>
 
-<div id="outline-container-orga3432d5" class="outline-3">
-<h3 id="orga3432d5">Lösung</h3>
-<div class="outline-text-3" id="text-orga3432d5">
+</section>
+<section id="org1354311">
+<h3 id="org1354311">Lösung</h3>
+<div class="outline-text-3" id="text-org1354311">
 </div>
-<div id="outline-container-orgfae143e" class="outline-4">
-<h4 id="orgfae143e">Java &lt; 8</h4>
-<div class="outline-text-4" id="text-orgfae143e">
+</section>
+<section id="org54070ca">
+<h4 id="org54070ca">Java &lt; 8</h4>
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> = <span style="color: #D0372D;">BigDecimal</span>.ZERO;
+
+<pre  class="src src-java"><span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> = <span style="color: #D0372D;">BigDecimal</span>.ZERO;
 
 <span style="color: #0000FF;">for</span><span style="color: #707183;">(</span><span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">price</span> : prices<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
   <span style="color: #0000FF;">if</span><span style="color: #7388D6;">(</span>price.compareTo<span style="color: #909183;">(</span>BigDecimal.valueOf<span style="color: #709870;">(</span>20<span style="color: #709870;">)</span><span style="color: #909183;">)</span> &gt; 0<span style="color: #7388D6;">)</span>
@@ -398,27 +165,25 @@ Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
 <span style="color: #707183;">}</span>
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-orge77ac3e" class="outline-4">
-<h4 id="orge77ac3e">Java &gt; 8</h4>
-<div class="outline-text-4" id="text-orge77ac3e">
+</section>
+<section id="org59896c7">
+<h4 id="org59896c7">Java &gt; 8</h4>
 <div class="org-src-container">
-<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> =
+
+<pre  class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> =
   prices.stream<span style="color: #707183;">()</span>
         .filter<span style="color: #707183;">(</span>price -&gt; price.compareTo<span style="color: #7388D6;">(</span>BigDecimal.valueOf<span style="color: #909183;">(</span>20<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span> &gt; 0<span style="color: #707183;">)</span>
         .map<span style="color: #707183;">(</span>price -&gt; price.multiply<span style="color: #7388D6;">(</span>BigDecimal.valueOf<span style="color: #909183;">(</span>0.9<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
         .reduce<span style="color: #707183;">(</span><span style="color: #D0372D;">BigDecimal</span>.ZERO, BigDecimal::add<span style="color: #707183;">)</span>;
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org4920ff6" class="outline-4">
-<h4 id="org4920ff6">Clojure</h4>
-<div class="outline-text-4" id="text-org4920ff6">
+</section>
+<section id="org6c7c43a">
+<h4 id="org6c7c43a">Clojure</h4>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">prices</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">map</span> bigdec <span style="color: #909183;">[</span>10 30 17 20 15 18 45 12<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">prices</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">map</span> bigdec <span style="color: #909183;">[</span>10 30 17 20 15 18 45 12<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 
 <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span>
   <span style="color: #7388D6;">(</span><span style="color: #006FE0;">reduce</span> + 0
@@ -434,17 +199,10 @@ Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
        <span style="color: #909183;">(</span><span style="color: #006FE0;">reduce</span> + 0<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
-</div>
-</div>
-</div>
 
-<div id="outline-container-org0363785" class="outline-3">
-<h3 id="org0363785">Aufgabe: Mehr Geld bitte!</h3>
-<div class="outline-text-3" id="text-org0363785">
-<p>
-<a id="org4ad137e"></a>
-</p>
-
+</section>
+<section id="aufgabe1">
+<h3 id="aufgabe1"><a id="org185e869"></a>Aufgabe: Mehr Geld bitte!</h3>
 <p>
 Sie senden einen Brief an Ihre Eltern mit dem Inhalt:
 </p>
@@ -457,6 +215,8 @@ Sie senden einen Brief an Ihre Eltern mit dem Inhalt:
 <p>
 Wieviel Geld erhalten Sie?
 </p>
+</section>
+<section >
 <p>
 Die Aufgabe besteht darin, jedem Buchstaben aus \(\{S,E,N,D,M,O,R,Y\}\)
 eine unterschiedliche Ziffer aus \(\{0,...,9\}\) zuzuordnen, so dass die
@@ -469,31 +229,35 @@ erfüllt wird.
 <b>Aufgabe</b>: Lösen Sie das Problem in einer Programmiersprache Ihrer
 Wahl! Beachten Sie die Nebenbedingungen.
 </p>
-</div>
-</div>
 
-<div id="outline-container-org9cbe4f9" class="outline-3">
-<h3 id="org9cbe4f9">Lösungsansatz: „Rohe Gewalt“</h3>
-<div class="outline-text-3" id="text-org9cbe4f9">
-<ul class="org-ul">
+</section>
+<section id="orgdffca1e">
+<h3 id="orgdffca1e">Lösungsansatz: „Rohe Gewalt“</h3>
+<ul>
 <li>Alles durchprobieren!</li>
 <li>Man braucht 8 ineinander geschachtelte Schleifen.</li>
 <li>Achtung: Acht Variablen (<code>S,E,N,D,M,O,R,Y</code>) können zehn verschiedene
 Werte annehmen. Ergibt \(10^{8}\) Möglichkeiten.</li>
 <li>Allerdings verringern einschränkende Bedingungen die Zahl der Möglichkeiten:
-<ul class="org-ul">
+<ul>
 <li><code>S</code> und <code>M</code> dürfen nicht \(0\) sein.</li>
 <li>Da <code>M</code> als Übertrag entsteht, kann <code>M</code> nur \(1\) sein.</li>
 <li>Die Werte der Variablen müssen paarweise verschieden sein.</li>
+
 </ul></li>
 <li>Weitere Überlegungen über Zusammenhänge zwischen den
 Ziffern können das Verfahren beschleunigen (s.&nbsp;u.).</li>
+
 </ul>
-<ul class="org-ul">
+</section>
+<section >
+<ul>
 <li>Lösung z.&nbsp;B. in Clojure:</li>
+
 </ul>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">for</span> <span style="color: #7388D6;">[</span>s <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 1 10<span style="color: #909183;">)</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">for</span> <span style="color: #7388D6;">[</span>s <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 1 10<span style="color: #909183;">)</span>
       e <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
       n <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
       d <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
@@ -509,6 +273,8 @@ Ziffern können das Verfahren beschleunigen (s.&nbsp;u.).</li>
   z<span style="color: #707183;">)</span>
 </pre>
 </div>
+</section>
+<section >
 <p>
 Resultat:
 </p>
@@ -518,12 +284,10 @@ Resultat:
 ------
  10652
 </pre>
-</div>
-</div>
-<div id="outline-container-org0e49145" class="outline-3">
-<h3 id="org0e49145">Lösungsansatz: Constraint Satisfaction</h3>
-<div class="outline-text-3" id="text-org0e49145">
-<ul class="org-ul">
+</section>
+<section id="orge830d92">
+<h3 id="orge830d92">Lösungsansatz: Constraint Satisfaction</h3>
+<ul>
 <li>Einfaches Modell durch Spezifikation der folgenden Gleichung als Einschränkung:
 \[1000*S+100*E+10*N+D \]
 \[+ 1000*M+100*O+10*R+E \]
@@ -536,53 +300,59 @@ der Variablen \(S\) die Domäne \(\{1 \ldots 9\}\) und \(M\) die Domäne
 <li>Das Modell ist nicht effizient, weil alle Variablen bis auf eine
 schon belegt sein müssen, bevor die „Haupteinschränkung”
 geprüft werden kann.</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgb84b7ac" class="outline-3">
-<h3 id="orgb84b7ac">Verfeinertes CSP-Modell</h3>
-<div class="outline-text-3" id="text-orgb84b7ac">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org087923b">
+<h3 id="org087923b">Verfeinertes CSP-Modell</h3>
+<ul>
 <li><p>
 Nutzung der Überträge der Addition für die Zerlegung der „großen“
 Einschränkung in mehrere kleine:
 </p>
+<div>
  \begin{eqnarray*}
     E+D & = & Y+10*C1  \\
     C1+N+R & = & E+10*C2  \\
     C2+E+O & = & N+10*C3  \\
     C3+S+M & = & 10*M+O
-\end{eqnarray*}</li>
+\end{eqnarray*}
+
+</div></li>
 <li><p>
 Die Domänen der Variablen:
 </p>
+<div>
  \begin{eqnarray*}
     E,N,D,O,R,Y & := & \{0,\ldots,9\} \\
             S & := & \{1,\ldots,9\} \\
             M & := & \{1\} \\
        C1,C2,C3 & := & \{0,1\}   
-\end{eqnarray*}</li>
+\end{eqnarray*}
+
+</div></li>
 <li>Die „kleinen“ Einschränkungen werden während
 der Belegungsphase früher geprüft und damit inkonsistente Belegungen
 ausgesondert.</li>
-</ul>
-</div>
-</div>
-</div>
 
-<div id="outline-container-org34553a1" class="outline-2">
-<h2 id="org34553a1">Software-Technik &#x2013; eine unreife Technologie?</h2>
-<div class="outline-text-2" id="text-org34553a1">
+</ul>
+
+</section>
+</section>
+<section>
+<section id="org3b9b240">
+<h2 id="org3b9b240">Software-Technik &#x2013; eine unreife Technologie?</h2>
+<div class="outline-text-2" id="text-org3b9b240">
 </div>
-<div id="outline-container-org193f765" class="outline-3">
-<h3 id="org193f765">Hat die Software-Technik ein Problem?</h3>
-<div class="outline-text-3" id="text-org193f765">
+</section>
+<section id="org2870142">
+<h3 id="org2870142">Hat die Software-Technik ein Problem?</h3>
 <p>
 fragt <a class='org-ref-reference' href="#AmitRathore2012">AmitRathore2012</a>
 </p>
 
-<ul class="org-ul">
+<ul>
 <li>Warum ist kein Software-Projekt so einfach wie es scheint?</li>
 
 <li>Warum wird kein Software-Projekt rechtzeitig und unter Einhaltung des
@@ -601,18 +371,17 @@ wird daraus am Ende immer ein riesiger Haufen Morast?</li>
 
 <li>Die Software-Industrie reagiert mit Puffern für Zeit und Budget und
 der Akzeptanz mittelmäßiger Software!?</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-org19c6195" class="outline-3">
-<h3 id="org19c6195">Viele Software-Projekte werden durch falsche Annahmen von vornherein gefährdet.</h3>
-<div class="outline-text-3" id="text-org19c6195">
+</ul>
+
+</section>
+<section id="orga679c6f">
+<h3 id="orga679c6f">Viele Software-Projekte werden durch falsche Annahmen von vornherein gefährdet.</h3>
 <p>
 So ist es meistens falsch, anzunehmen, dass
 </p>
 
-<ul class="org-ul">
+<ul>
 <li>der Anwender bei Projektbeginn genau weiß, was er will,</li>
 
 <li>der Anwender das, wovon er weiß, dass er es will, vollständig
@@ -632,18 +401,17 @@ Beispielen noch leisten könnte,</li>
 
 <li>der Anwender also wüsste, welche Software möglich wäre, wenn der
 Entwickler besser über seine Bedürfnisse unterrichtet wäre.</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgfd99f21" class="outline-3">
-<h3 id="orgfd99f21">Ein „berühmtes” Beispiel</h3>
-<div class="outline-text-3" id="text-orgfd99f21">
+</ul>
+
+</section>
+<section id="org700a728">
+<h3 id="org700a728">Ein „berühmtes” Beispiel</h3>
 <p>
 <b>W. Gibbs in Scientific Armerican</b>:
 </p>
 
-<ul class="org-ul">
+<ul>
 <li>1994 sollte der Denver International Airport als gigantisches,
 technisches Wunderwerk mit einem vollautomatischen unterirdischen
 Gepäcktransportsystem eingeweiht werden.</li>
@@ -655,18 +423,17 @@ Software fehlte.</li>
 
 <li>Neun Monate später konnte der Software-Hersteller noch keine Prognose
 zum Fertigstellungstermin abgeben.</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-org7f8796e" class="outline-3">
-<h3 id="org7f8796e">Thomas C. Hales bemerkt in Formal Proof</h3>
-<div class="outline-text-3" id="text-org7f8796e">
+</ul>
+
+</section>
+<section id="orgb68d734">
+<h3 id="orgb68d734">Thomas C. Hales bemerkt in Formal Proof</h3>
 <p>
 <a class='org-ref-reference' href="#Hales2008">Hales2008</a>
 </p>
 
-<ul class="org-ul">
+<ul>
 <li>On average, a programmer introduces <b>1.5 bugs per line while typing</b>.
 Most are typing errors that are spotted at once.</li>
 
@@ -686,16 +453,16 @@ more serious one.“</li>
 <li>Corporations may keep critical bugs off the books to limit legal
 liability. Only those bugs should be corrected that affect profit.
 <b>The tools designed to root out bugs are themselves full of bugs.</b></li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orga80121e" class="outline-3">
-<h3 id="orga80121e">Software besteht aus Millionen Code-Zeilen</h3>
-<div class="outline-text-3" id="text-orga80121e">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org3f54086">
+<h3 id="org3f54086">Software besteht aus Millionen Code-Zeilen</h3>
+<ul>
 <li>die einzige Sicht: Programmtext</li>
 <li>Baumstruktur links zeigt nicht die Abhängigkeit der Komponenten.</li>
+
 </ul>
 
 
@@ -703,29 +470,27 @@ liability. Only those bugs should be corrected that affect profit.
 <p><img src="./Abbildungen/MillionLoc.png" alt="MillionLoc.png" width="600px" />
 </p>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org3518fd6" class="outline-3">
-<h3 id="org3518fd6">Software ist unsichtbar</h3>
-<div class="outline-text-3" id="text-org3518fd6">
+</section>
+<section id="org0800b55">
+<h3 id="org0800b55">Software ist unsichtbar</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/SwAuto.png" alt="SwAuto.png" width="600px" />
 </p>
 </div>
-</div>
-</div>
-</div>
 
-<div id="outline-container-orgdf3959d" class="outline-2">
-<h2 id="orgdf3959d">Beispiel zur Schärfung des Problembewusstseins</h2>
-<div class="outline-text-2" id="text-orgdf3959d">
-<ul class="org-ul">
+</section>
+</section>
+<section>
+<section id="org6ef6d33">
+<h2 id="org6ef6d33">Beispiel zur Schärfung des Problembewusstseins</h2>
+<ul>
 <li>Aufgabenstellung (in Anlehnung an <a class='org-ref-reference' href="#KlaerenSperber2007">KlaerenSperber2007</a>)</li>
+
 </ul>
 
-<blockquote>
+<blockquote nil>
 <p>
 Auf einem Parkplatz stehen Personenkraftwagen und Motorräder ohne
 Beiwagen. Zusammen seien es \(n\) Fahrzeuge mit insgesamt \(m\) Rädern.
@@ -733,7 +498,7 @@ Bestimme die Anzahl \(P\) der PKWs!
 </p>
 </blockquote>
 
-<ul class="org-ul">
+<ul>
 <li>Typische informelle Problemspezifikation.</li>
 
 <li>Gesucht ist eine Berechnungsvorschrift für die Funktion \(P(n, m)\).</li>
@@ -741,20 +506,24 @@ Bestimme die Anzahl \(P\) der PKWs!
 <li>Wie kann der Zusammenhang zwischen der Anzahl der PKWs \(P(n,m)\), der
 Anzahl der Motorräder \(M(n,m)\), der Anzahl der Räder \(m\) und der
 Anzahl der Fahrzeuge \(n\) formuliert werden?</li>
+
 </ul>
-<p>
+</section>
+<section >
+<p class="fragment roll-in">
 \[\begin{aligned}
            P + M = n \\  4P + 2M = m
          \end{aligned}\]
 </p>
-</div>
 
-<div id="outline-container-org6a7801d" class="outline-3">
-<h3 id="org6a7801d">Beispiel zur Schärfung des Problembewusstseins (2)</h3>
-<div class="outline-text-3" id="text-org6a7801d">
-<ul class="org-ul">
+</section>
+<section id="orge26d5ca">
+<h3 id="orge26d5ca">Beispiel zur Schärfung des Problembewusstseins (2)</h3>
+<ul>
 <li>Lösung des Gleichungssystems:</li>
+
 </ul>
+<div class="fragment roll-in">
 \begin{eqnarray*}
        M & = & n - P \\
      4P + 2(n-P) & = & m\\
@@ -763,105 +532,114 @@ Anzahl der Fahrzeuge \(n\) formuliert werden?</li>
      P & = & \frac{m-2n}{2}
       \end{eqnarray*}
 
-<ul class="org-ul">
+</div>
+
+<ul class="fragment roll-in">
 <li>Problem scheinbar gelöst. Formel könnte in ein Programm übersetzt
 werden. ABER: Was liefert die Formel für \(n=3\) und \(m=9\)?</li>
+
 </ul>
 
+<div class="fragment roll-in">
 \begin{aligned}
         P(3,9) = \frac{9-2\cdot 3}{2} = 1,5
       \end{aligned}
-<ul class="org-ul">
+
+</div>
+<ul class="fragment roll-in">
 <li>Anderthalb PKWs stehen auf dem Parkplatz!</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-org07634ea" class="outline-3">
-<h3 id="org07634ea">Beispiel zur Schärfung des Problembewusstseins (3)</h3>
-<div class="outline-text-3" id="text-org07634ea">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org265b761">
+<h3 id="org265b761">Beispiel zur Schärfung des Problembewusstseins (3)</h3>
+<ul class="fragment roll-in">
 <li>Schlussfolgerung: \(m\) muss gerade sein.</li>
+
 </ul>
 
-<ul class="org-ul">
+<ul class="fragment roll-in">
 <li>ABER: Was liefert die Formel für \(n=5\) und \(m=2\)?</li>
+
 </ul>
 
-<ul class="org-ul">
+<ul class="fragment roll-in">
 <li>\begin{aligned}
       P(5,2) = \frac{2-2\cdot 5}{2} = -4
 \end{aligned}
 Vier PKWs „fehlen“ auf dem Parkplatz!</li>
+
 </ul>
 
 
-<ul class="org-ul">
+<ul class="fragment roll-in">
 <li>Schlussfolgerung: Die Anzahl der Räder muss mindestens doppelt so
 groß sein wie die Anzahl der Fahrzeuge.</li>
+
 </ul>
 
-<ul class="org-ul">
+<ul class="fragment roll-in">
 <li>ABER: Was liefert die Formel für \(n=2\) und \(m=10\)?</li>
+
 </ul>
 
-<ul class="org-ul">
+<ul class="fragment roll-in">
 <li>\begin{aligned}
   P(2,10) = \frac{10-2\cdot 2}{2} = 3
 \end{aligned}</li>
+
 </ul>
 
-<ul class="org-ul">
+<ul class="fragment roll-in">
 <li>Problem: Unsinnigkeit des Ergebnisses nicht sofort erkennbar. (Wenn
 3 von 2 Fahrzeugen PKWs sind, muss es noch ein „negatives” Motorrad
 geben.)</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-org668d9df" class="outline-3">
-<h3 id="org668d9df">Beispiel zur Schärfung des Problembewusstseins (4)</h3>
-<div class="outline-text-3" id="text-org668d9df">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org1bb6ce1">
+<h3 id="org1bb6ce1">Beispiel zur Schärfung des Problembewusstseins (4)</h3>
+<ul>
 <li>Schlussfolgerung: Die Anzahl der Räder darf höchstens viermal so groß
 sein wie die Anzahl der Fahrzeuge.</li>
 
 <li>Fazit:
 
-<ul class="org-ul">
+<ul>
 <li>Die Problemspezifikation ist unvollständig. Das „Programm“
 liefert nur dann sinnvolle Ergebnisse, wenn folgende Bedingung
 gilt: \[m \mbox{ gerade und } 2n\leq m \leq4n\]</li>
 <li>Fehlerhafte Abstraktion: In der mathematischen Formel sind \(m\) und
 \(n\) irgendwelche Zahlen, auf dem Parkplatz aber nicht.</li>
-</ul></li>
-</ul>
-</div>
 
-<div id="outline-container-orga8a3ecc" class="outline-5">
-<h5 id="aufgabePkw"><a id="orga8a3ecc"></a>Aufgabe</h5>
-<div class="outline-text-5" id="text-aufgabePkw">
+</ul></li>
+
+</ul>
+
+</section>
+<section id="aufgabePkw">
+<h5 id="aufgabePkw"><a id="org6397d72"></a>Aufgabe</h5>
 <p>
 Begründen Sie, warum mit dieser Bedingung die Lösung
       des Gleichungssystems die folgenden Anforderungen erfüllt:
 </p>
 
-<ul class="org-ul">
+<ul>
 <li>\(P\) ist eine ganze Zahl.</li>
 
 <li>\(P\) wird nicht negativ.</li>
 
 <li>\(P\) wird nicht größer als \(n\).</li>
+
 </ul>
-</div>
-</div>
-</div>
-</div>
 
-
-<div id="outline-container-org731efea" class="outline-2">
-<h2 id="org731efea">Was ist ein Paradigma?</h2>
-<div class="outline-text-2" id="text-org731efea">
+</section>
+</section>
+<section>
+<section id="orgdb3fef3">
+<h2 id="orgdb3fef3">Was ist ein Paradigma?</h2>
 <p>
 Das Wort Paradigma leitet sich vom griechischen Wort παράδειγμα
 (parádeigma) ab, das (lt. Menge-Güthling) übersetzt <i>Beispiel</i> oder
@@ -877,16 +655,17 @@ Inkarnation, Prototyp; (bildungssprachlich veraltend) Exempel
 <p>
 Häufig wird das Wort im Sinne von <i>Denkmuster</i> gebraucht.
 </p>
-</div>
-</div>
 
-<div id="outline-container-orgfcfb4c2" class="outline-2">
-<h2 id="orgfcfb4c2">Was ist ein Programmierparadigma?</h2>
-<div class="outline-text-2" id="text-orgfcfb4c2">
+</section>
+</section>
+<section>
+<section id="orga607c6b">
+<h2 id="orga607c6b">Was ist ein Programmierparadigma?</h2>
+<div class="outline-text-2" id="text-orga607c6b">
 </div>
-<div id="outline-container-org71961d9" class="outline-3">
-<h3 id="org71961d9">Begriffsbestimmung</h3>
-<div class="outline-text-3" id="text-org71961d9">
+</section>
+<section id="orgd05bf5a">
+<h3 id="orgd05bf5a">Begriffsbestimmung</h3>
 <p>
 Antwort lt. <a href="https://de.wikipedia.org/wiki/Programmierparadigma">Wikipedia</a>: ein fundamentaler Programmierstil
 </p>
@@ -900,12 +679,10 @@ Antwort lt. <a href="https://de.wikipedia.org/wiki/Programmierstil">Wikipedia</a
 coding conventions, coding standards) ist in der Programmierung das
 Erstellen von Quellcode nach bestimmten vorgegebenen Regeln.“
 </p>
-</div>
-</div>
 
-<div id="outline-container-org57dc8d5" class="outline-3">
-<h3 id="org57dc8d5">übliche Klassifikationen</h3>
-<div class="outline-text-3" id="text-org57dc8d5">
+</section>
+<section id="org5ff2dc7">
+<h3 id="org5ff2dc7">übliche Klassifikationen</h3>
 <!-- This HTML table template is generated by emacs 25.1.1 -->
 <table border="1">
   <tr>
@@ -936,21 +713,20 @@ Erstellen von Quellcode nach bestimmten vorgegebenen Regeln.“
   </tr>
 </table>
 
-<ul class="org-ul">
+<ul>
 <li>Imperativ Programmieren heißt, zu beschreiben, <b>wie</b> die Lösung eines
 Problems zu erzielen ist.</li>
 <li>Deklarativ Programmieren heißt, zu beschreiben, <b>was</b> das zu lösende
 Problem ist.</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgac82f86" class="outline-3">
-<h3 id="orgac82f86">Die „klassischen” Programmierparadigmen</h3>
-<div class="outline-text-3" id="text-orgac82f86">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org39b0aee">
+<h3 id="org39b0aee">Die „klassischen” Programmierparadigmen</h3>
+<ul>
 <li>Imperative Programmierung
-<ul class="org-ul">
+<ul>
 <li>Grundkonzepte: Variablen, Wertzuweisungen</li>
 <li>Programm = Folge von Anweisungen, die eine Zustandsänderung
 bewirken</li>
@@ -958,10 +734,11 @@ bewirken</li>
 <li>Modulare Sprachen</li>
 <li>Objektorientierte Sprachen</li>
 <li>Hybride Sprachen</li>
+
 </ul></li>
 
 <li>Funktionale (applikative) Programmierung
-<ul class="org-ul">
+<ul>
 <li>Grundkonzept: Funktion i.S.d. Mathematik</li>
 <li><p>
 Programm = Ausdruck, der einen Wert als Ergebnis liefert
@@ -971,12 +748,16 @@ Programm = Ausdruck, der einen Wert als Ergebnis liefert
                      (if (= y 0) 1
                          (* x (power x (- y 1)))))
 </pre></li>
+
 </ul></li>
+
 </ul>
 
-<ul class="org-ul">
+</section>
+<section >
+<ul>
 <li>Logische (prädikative) Programmierung
-<ul class="org-ul">
+<ul>
 <li>Grundkonzept: Formale, mathematische Logik</li>
 <li><p>
 Beispiel: Sprache Prolog mit Fakten und Regeln
@@ -985,39 +766,48 @@ Beispiel: Sprache Prolog mit Fakten und Regeln
 <p>
 Fakten:
 </p>
-<ul class="org-ul">
+<ul>
 <li>Hans ist direkter Chef von Franz.</li>
 <li>Franz ist direkter Chef von Heinz.</li>
 <li><code>direkterChef(hans, franz).</code></li>
 <li><code>direkterChef(franz, heinz).</code></li>
+
 </ul>
 <p>
 Regeln:
 </p>
-<ul class="org-ul">
+<ul>
 <li>Eine Person X ist Vorgesetzter von Y, wenn X direkter Chef von
 Y ist oder wenn X direkter Chef von Z und Z Vorgesetzter von Y
 ist.</li>
 <li><code>vorgesetzter(X,Y):-direkterChef(X,Y).</code></li>
 <li><code>vorgesetzter(X,Y):-direkterChef(X,Z), vorgesetzter(Z,Y).</code></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgc2f793d" class="outline-3">
-<h3 id="orgc2f793d">Prozedurorientiertes vs. objektorientiertes Denken</h3>
-<div class="outline-text-3" id="text-orgc2f793d">
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="orga4a767b">
+<h4 id="orga4a767b">Eine detailliertere Übersicht</h4>
+<p>
+<a href="./Abbildungen/paradigmsDIAGRAMeng108.pdf">The principal programming paradigms</a>
+</p>
+</section>
+<section id="org7965ad1">
+<h3 id="org7965ad1">Prozedurorientiertes vs. objektorientiertes Denken</h3>
 <p>
 (Darstellung angelehnt an <a class='org-ref-reference' href="#Moessenboeck">Moessenboeck</a>)
 </p>
 
-<ul class="org-ul">
+<ul>
 <li>Prozedurorientiertes Denken: Algorithmen, Prozeduren stehen im
 Vordergrund, Daten sind „zweitrangig“.</li>
 
 <li>Beispiel: Flächenberechnung vom geometrischen Figuren:</li>
+
 </ul>
 
 <div class="figure">
@@ -1029,12 +819,11 @@ Vordergrund, Daten sind „zweitrangig“.</li>
           flaeche := kreisFlaeche(kreis);
           flaeche := rechteckFlaeche (rechteck);
 </pre>
-</div>
 
-<div id="outline-container-orgb7f4aa8" class="outline-4">
-<h4 id="orgb7f4aa8">Merkmale der prozeduralen Programmierung</h4>
-<div class="outline-text-4" id="text-orgb7f4aa8">
-<ul class="org-ul">
+</section>
+<section id="org216ad04">
+<h4 id="org216ad04">Merkmale der prozeduralen Programmierung</h4>
+<ul>
 <li>in konventionellen Sprachen für jede Figurart eigene Prozedur
 erforderlich</li>
 
@@ -1056,13 +845,12 @@ beliebige geometrische Figur:
 </pre></li>
 
 <li>Warum sind solche Fallunterscheidungen problematisch?</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orge7d0b22" class="outline-4">
-<h4 id="orge7d0b22">Objektorientiertes Denken &#x2026;</h4>
-<div class="outline-text-4" id="text-orge7d0b22">
+</ul>
+
+</section>
+<section id="orgccf07d7">
+<h4 id="orgccf07d7">Objektorientiertes Denken &#x2026;</h4>
 <p>
 &#x2026; stellt die Daten in den Mittelpunkt der Betrachtung:
 </p>
@@ -1077,47 +865,41 @@ beliebige geometrische Figur:
      flaeche := f flaechenInhalt
      flaeche = f.flaechenInhalt();
 </pre>
-</div>
-</div>
 
-<div id="outline-container-org6e85eaf" class="outline-4">
-<h4 id="org6e85eaf">Merkmale der Objektorientierten Programmierung:</h4>
-<div class="outline-text-4" id="text-org6e85eaf">
-<ul class="org-ul">
+</section>
+<section id="org405f033">
+<h4 id="org405f033">Merkmale der Objektorientierten Programmierung:</h4>
+<ul>
 <li>Ein Objekt antwortet auf den Empfang einer Frage (einer Nachricht).</li>
 
 <li>Das Figurobjekt „weiß selbst“ wie die Antwort (der Flächeninhalt) zu
 ermitteln ist.</li>
 
 <li>Fallunterscheidungen werden weitgehend überflüssig.</li>
+
 </ul>
-</div>
-</div>
-</div>
 
-
-<div id="outline-container-orgc10f3fe" class="outline-3">
-<h3 id="orgc10f3fe">Die Überbrückung der „Abstraktionslücke“</h3>
-<div class="outline-text-3" id="text-orgc10f3fe">
+</section>
+<section id="org147a798">
+<h3 id="org147a798">Die Überbrückung der „Abstraktionslücke“</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/Abstraktionsluecke.png" alt="Abstraktionsluecke.png" width="650px" />
 </p>
 </div>
-</div>
-</div>
 
-<div id="outline-container-orge698758" class="outline-3">
-<h3 id="orge698758">Bedeutung der Abstraktion in der Software-Technik</h3>
-<div class="outline-text-3" id="text-orge698758">
-<ul class="org-ul">
+</section>
+<section id="org25e1162">
+<h3 id="org25e1162">Bedeutung der Abstraktion in der Software-Technik</h3>
+<ul>
 <li>Komplexität von Softwaresystemen überfordert
 
-<ul class="org-ul">
+<ul>
 <li>die Fähigkeit von Menschen, sie in Gänze zu erfassen,</li>
 
 <li>die Fähigkeit der Entwickler, sie so zu bauen, dass sie den
 Anforderungen in korrekter Weise entspricht.</li>
+
 </ul></li>
 
 <li>Wenn ein Entwickler für eine Aufgabe sechs Monate benötigt, wie lange
@@ -1134,18 +916,18 @@ Programmiersprache).</li>
 <li>Daher ist das Abstraktionsniveau der von einer Programmiersprache
 bereitgestellten Ausdrucksmittel entscheidend
 
-<ul class="org-ul">
+<ul>
 <li>für die Beherrschung von Komplexität und</li>
 
 <li>die Produktivität der Programmierer.</li>
-</ul></li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgd9f3575" class="outline-3">
-<h3 id="orgd9f3575">Eine Bezahl-App</h3>
-<div class="outline-text-3" id="text-orgd9f3575">
+</ul></li>
+
+</ul>
+
+</section>
+<section id="orgef5f6b4">
+<h3 id="orgef5f6b4">Eine Bezahl-App</h3>
 <p>
 Entwicklung beschrieben durch Wille Faler in
 <a href="http://agile.dzone.com/news/one-night-clojure-makes-scala">http://agile.dzone.com/news/one-night-clojure-makes-scala</a>
@@ -1155,31 +937,66 @@ Entwicklung beschrieben durch Wille Faler in
 „A simple metric generated with cloc“:
 </p>
 
-<ul class="org-ul">
+<ul>
 <li>Java version: 755 lines of code (LOC)</li>
 
 <li>Scala version: 200 LOC's</li>
 
 <li>Clojure version: 57 LOC's</li>
+
 </ul>
-</div>
-</div>
-</div>
 
 
-<div id="outline-container-orga9c3bc5" class="outline-2">
-<h2 id="orga9c3bc5"><h2>Literaturverzeichnis</h2>
+
+</section>
+</section>
+<section>
+<section id="orgdc2cd29">
+<h2 id="orgdc2cd29"><h2>Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="AmitRathore2012">[AmitRathore2012]</a> <a name="AmitRathore2012"></a>Amit Rathore, Clojure in Action, Manning Publications Co. (2012).</li>
 <li><a id="Hales2008">[Hales2008]</a> <a name="Hales2008"></a>Thomas Hales, Formal Proof, <i>Notices of the AMS</i>, <b>55(11)</b>, (2008).</li>
 <li><a id="KlaerenSperber2007">[KlaerenSperber2007]</a> <a name="KlaerenSperber2007"></a>Herbert Klaeren & Michael Sperber, Die Macht der Abstraktion, B. G. Teubner (2007).</li>
-<li><a id="Moessenboeck">[Moessenboeck]</a> <a name="Moessenboeck"></a>Hanspeter M\"ossenb\"ock, Objektorientierte Programmierung in Oberon-2, Springer-Verlag GmbH (1994).</li>
+<li><a id="Moessenboeck">[Moessenboeck]</a> <a name="Moessenboeck"></a>Hanspeter Mössenböck, Objektorientierte Programmierung in Oberon-2, Springer-Verlag GmbH (1994).</li>
 </ul></h2>
+</section>
+</section>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-07-22 Sun 16:57</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.05,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ]});
+</script>
 </body>
 </html>
