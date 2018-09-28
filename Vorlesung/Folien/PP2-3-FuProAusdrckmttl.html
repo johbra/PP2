@@ -1,285 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-<!-- 2018-09-28 Fri 22:23 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
 <title>Ausdrucksmittel funktionaler Programmiersprachen</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="Johannes Brauer" />
+<meta name="author" content="(Johannes Brauer)"/>
 <style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+.underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
-<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
-<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./mycss/myrevealstyle.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
-<h1 class="title">Ausdrucksmittel funktionaler Programmiersprachen
-<br />
-<span class="subtitle">Programmierparadigmen</span>
-</h1>
-<div id="outline-container-orgea18869" class="outline-2">
-<h2 id="orgea18869">Ziele</h2>
-<div class="outline-text-2" id="text-orgea18869">
-<ul class="org-ul">
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Ausdrucksmittel funktionaler Programmiersprachen</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-09-28 Fri 22:26</p>
+</section>
+<section>
+<section id="orga0f08b3">
+<h2 id="orga0f08b3">Ziele</h2>
+<ul>
 <li>Vertiefung der Kenntnisse über funktionale Kapitel aus <i>Einführung
 in die Programmierung</i></li>
 <li>Abgrenzung der funktionalen und der objektorientierte Programmierung</li>
 <li>Möglichkeiten verschiedener funktionaler Sprachen:
-<ul class="org-ul">
+<ul>
 <li>Pattern matching in <i>SML</i></li>
 <li>Typinferenz in <i>SML</i></li>
 <li>Destructuring in <i>Clojure</i></li>
+
 </ul></li>
+
 </ul>
 
 <p>
@@ -289,25 +55,25 @@ in die Programmierung</i></li>
 <p>
 Hier ein paar <a href="https://arsnova.eu/mobile/#id/21188265">Testfragen</a> zu dem Thema!
 </p>
-</div>
-</div>
 
-<div id="outline-container-org4fa9d2f" class="outline-2">
-<h2 id="org4fa9d2f">Mustervergleich (pattern matching)</h2>
-<div class="outline-text-2" id="text-org4fa9d2f">
+</section>
+</section>
+<section>
+<section id="orgb8a99e8">
+<h2 id="orgb8a99e8">Mustervergleich (pattern matching)</h2>
+<div class="outline-text-2" id="text-orgb8a99e8">
 </div>
-<div id="outline-container-orgefc910a" class="outline-3">
-<h3 id="orgefc910a">Algebraische Datentypen</h3>
-<div class="outline-text-3" id="text-orgefc910a">
+</section>
+<section id="orgefd9c95">
+<h3 id="orgefd9c95">Algebraische Datentypen</h3>
 <p>
 Im Modul <i>Einführung in die Programmierung</i> wurden algebraische
  Datentypen behandelt: Produkttypen und Summentypen.
 </p>
-</div>
-<div id="outline-container-org805f9ec" class="outline-4">
-<h4 id="org805f9ec">Produkttypen</h4>
-<div class="outline-text-4" id="text-org805f9ec">
-<ul class="org-ul">
+</section>
+<section id="org5ec9bc4">
+<h4 id="org5ec9bc4">Produkttypen</h4>
+<ul>
 <li>auch Verbünde, records genannt</li>
 <li><p>
 Die Menge aller Exemplare der Strukturdefinition
@@ -320,20 +86,21 @@ Die Menge aller Exemplare der Strukturdefinition
 kann als Teilmenge des kartesischen Produkts 
 \[number \times number\] angesehen werden.
 </p></li>
+
 </ul>
-</div>
-</div>
-<div id="outline-container-orge225b1b" class="outline-4">
-<h4 id="orge225b1b">Produkttypen in SML</h4>
-<div class="outline-text-4" id="text-orge225b1b">
-<ul class="org-ul">
+</section>
+<section id="orgc22a5a1">
+<h4 id="orgc22a5a1">Produkttypen in SML</h4>
+<ul>
 <li>Tupel (vgl. <a href="./PP2-2-PrgSprchnTypsstm.html#zusammengesetzte-typen-tupel">Zusammengesetzte Typen: Tupel</a>)
-<ul class="org-ul">
+<ul>
 <li>Komponentenzugriff über Indizes (by position)</li>
+
 </ul></li>
 <li>Verbünde (vgl. <a href="./PP2-2-PrgSprchnTypsstm.html#zusammengesetzte-typen-verbuende">Zusammengesetzte Typen: Verbünde</a>)
-<ul class="org-ul">
+<ul>
 <li>Komponentenzugriff über Feldbezeichner (by name)</li>
+
 </ul></li>
 <li><p>
 Ein Punkt-Exemplar als Verbund:
@@ -354,7 +121,8 @@ type point = { x : int, y: int }
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml">- <span style="color: #0000FF;">type</span> <span style="font-weight: bold;">point</span> = <span style="color: #707183;">{</span> x : int, y: int <span style="color: #707183;">}</span>;
+
+<pre  class="src src-sml">- <span style="color: #0000FF;">type</span> <span style="font-weight: bold;">point</span> = <span style="color: #707183;">{</span> x : int, y: int <span style="color: #707183;">}</span>;
 <span style="color: #0000FF;">type</span> <span style="font-weight: bold;">point</span> = <span style="color: #707183;">{</span>x:int, y:int<span style="color: #707183;">}</span>
 - <span style="color: #707183;">{</span>x=12, y=9<span style="color: #707183;">}</span>;
 <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = <span style="color: #707183;">{</span>x=12,y=9<span style="color: #707183;">}</span> : <span style="color: #707183;">{</span>x:int, y:int<span style="color: #707183;">}</span>
@@ -362,13 +130,12 @@ type point = { x : int, y: int }
 </div>
 
 </div></li>
+
 </ul>
-</div>
-</div>
-<div id="outline-container-org25b0e7a" class="outline-4">
-<h4 id="org25b0e7a">Summentypen</h4>
-<div class="outline-text-4" id="text-org25b0e7a">
-<ul class="org-ul">
+</section>
+<section id="org58835db">
+<h4 id="org58835db">Summentypen</h4>
+<ul>
 <li>in <i>Einführung in die Programmierung</i> als <i>gemischte Daten</i>
 bezeichnet</li>
 <li>Racket kennt keine Syntax für Summentypen.</li>
@@ -376,7 +143,8 @@ bezeichnet</li>
 Beispiel aus EidP: Flächeninhalt von Figuren
 </p>
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Eine Figur ist entweder</span>
+
+<pre  class="src src-scheme"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Eine Figur ist entweder</span>
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">- ein Rechteck oder</span>
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">- ein Kreis</span>
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Name: shape</span>
@@ -391,19 +159,19 @@ Beispiel aus EidP: Flächeninhalt von Figuren
       <span style="color: #709870;">[</span><span style="color: #907373;">(</span>rectangle? s<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>rect-area s<span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div></li>
+
 </ul>
-</div>
-</div>
-<div id="outline-container-org1159184" class="outline-4">
-<h4 id="org1159184">Summentypen in SML</h4>
-<div class="outline-text-4" id="text-org1159184">
-<ul class="org-ul">
+</section>
+<section id="org77ec2d6">
+<h4 id="org77ec2d6">Summentypen in SML</h4>
+<ul>
 <li><p>
 Beispiel:
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">mytype</span> = TwoInts <span style="color: #0000FF;">of</span> int * int
+
+<pre  class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">mytype</span> = TwoInts <span style="color: #0000FF;">of</span> int * int
                 | Str <span style="color: #0000FF;">of</span> string
                 | Pizza
 </pre>
@@ -413,26 +181,28 @@ Beispiel:
 <li>Datentyp <code>mytype</code> für „gemischte Daten“ mit drei Varianten</li>
 <li>Drei Konstruktoren: <code>TwoInts</code>, <code>Str</code>, <code>Pizza</code></li>
 <li>Konstruktoren dienen zwei Zwecken:
-<ol class="org-ol">
+<ol>
 <li>Er ist entweder eine Funktion für die Erzeugung von Werten des
 neuen Typs, wenn die Variante eine Komponente besitzt (erkennbar
 am Schlüsselwort <code>of</code> oder er repräsentiert selbst einen Wert
 dieses Typs (im Beispiel oben: <code>Pizza</code>).</li>
 <li>Konstuktoren dienen für Fallunterscheidungen in
 sog. <i>case-expressions</i>, d.&nbsp;h. für Mustervergleiche.</li>
+
 </ol></li>
+
 </ul>
-</div>
-<div id="outline-container-orgc3a4cac" class="outline-5">
-<h5 id="orgc3a4cac">Zugriff auf <code>datatype</code>-Werte</h5>
-<div class="outline-text-5" id="text-orgc3a4cac">
-<ul class="org-ul">
+</section>
+<section id="orgc4c009a">
+<h5 id="orgc4c009a">Zugriff auf <code>datatype</code>-Werte</h5>
+<ul>
 <li><p>
 ausschließlich durch Mustervergleich:
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">f</span> x = <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">f has type mytype-&gt;int </span><span style="color: #8D8D84;">*)</span> 
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">f</span> x = <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">f has type mytype-&gt;int </span><span style="color: #8D8D84;">*)</span> 
     <span style="color: #0000FF;">case</span> x <span style="color: #0000FF;">of</span>
         Pizza =&gt; 3
       | TwoInts<span style="color: #707183;">(</span>i1,i2<span style="color: #707183;">)</span> =&gt; i1 + i2
@@ -444,17 +214,22 @@ ausschließlich durch Mustervergleich:
 <li><code>case</code>-Ausdrücke stellen ausdrucksmächtigere Fallunterscheidungen
 dar (verglichen mit <code>if-then-else</code> oder <code>cond</code>).</li>
 <li>Zwei Teilausdrücke werden ausgewertet:
-<ol class="org-ol">
+<ol>
 <li>der Ausdruck zwischen <code>case</code> und <code>of</code> (hier: <code>x</code>)</li>
 <li>der erste Ausdruck hinter <code>of</code>, dessen Muster (der Teil vor <code>=&gt;</code>)
 zu dem Wert von <code>x</code> passt.
 Beispiel: Wenn <code>TwoInts(7,9)</code> an <code>f</code> übergeben wird, wird der
 zweite Zweig ausgewählt. <code>f</code> liefert in diesem Fall 16.</li>
+
 </ol></li>
+
 </ul>
+</section>
+<section >
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">f</span> x = <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">f has type mytype-&gt;int </span><span style="color: #8D8D84;">*)</span> 
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">f</span> x = <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">f has type mytype-&gt;int </span><span style="color: #8D8D84;">*)</span> 
     <span style="color: #0000FF;">case</span> x <span style="color: #0000FF;">of</span>
         Pizza =&gt; 3
       | TwoInts<span style="color: #707183;">(</span>i1,i2<span style="color: #707183;">)</span> =&gt; i1 + i2
@@ -463,7 +238,7 @@ zweite Zweig ausgewählt. <code>f</code> liefert in diesem Fall 16.</li>
 </div>
 
 </div>
-<ul class="org-ul">
+<ul>
 <li>Beachte: Da die Variante <code>TwoInts</code> aus zwei Integer-Werten besteht,
 muss (vorläufig) das Muster zwei Variablen (hier <code>i1, i2</code>)
 benutzen/deklarieren.</li>
@@ -471,14 +246,14 @@ benutzen/deklarieren.</li>
 <li>Jeder Zweig hat die Form <code>muster =&gt; ausdruck</code>.</li>
 <li>Die Zweige werden durch <code>|</code> voneinander getrennt.</li>
 <li>Jedes Muster benutzt einen anderen Konstruktor.</li>
+
 </ul>
-</div>
-</div>
-<div id="outline-container-orgdf79e78" class="outline-5">
-<h5 id="orgdf79e78">Übertragung des Figur-Beispiels aus Racket</h5>
-<div class="outline-text-5" id="text-orgdf79e78">
+</section>
+<section id="org23a5ad0">
+<h5 id="org23a5ad0">Übertragung des Figur-Beispiels aus Racket</h5>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">shape</span> =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">shape</span> =
          Rectangle <span style="color: #0000FF;">of</span> real * real
          | Circle <span style="color: #0000FF;">of</span> real
 
@@ -497,18 +272,17 @@ benutzen/deklarieren.</li>
 <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">ca</span> = 3.14159 : real
 </pre>
 </div>
+</section>
+<section id="org8752018">
+<h4 id="org8752018">Listen als rekursive algebraische Datentypen</h4>
+<div class="outline-text-4" id="text-org8752018">
 </div>
-</div>
-</div>
-<div id="outline-container-orgb673b44" class="outline-4">
-<h4 id="orgb673b44">Listen als rekursive algebraische Datentypen</h4>
-<div class="outline-text-4" id="text-orgb673b44">
-</div>
-<div id="outline-container-org84ff49d" class="outline-5">
-<h5 id="org84ff49d">in Racket</h5>
-<div class="outline-text-5" id="text-org84ff49d">
+</section>
+<section id="org0a31f91">
+<h5 id="org0a31f91">in Racket</h5>
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">Eine Liste ist</span>
+
+<pre  class="src src-scheme"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">Eine Liste ist</span>
 <span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">- die leere Liste oder</span>
 <span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">- ein Paar</span>
 <span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">Name: lst</span>
@@ -538,17 +312,17 @@ benutzen/deklarieren.</li>
 <span style="color: #707183;">(</span>= 11 <span style="color: #7388D6;">(</span>list-sum <span style="color: #909183;">(</span>cns 1 <span style="color: #709870;">(</span>cns 7 <span style="color: #907373;">(</span>cns 3 empt<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org49167ee" class="outline-5">
-<h5 id="org49167ee">in SML</h5>
-<div class="outline-text-5" id="text-org49167ee">
-<ul class="org-ul">
+</section>
+<section id="org9de2af2">
+<h5 id="org9de2af2">in SML</h5>
+<ul>
 <li><code>datatype</code>-Definitionen dürfen rekursiv sein.</li>
 <li>Man beachte die Nutzung des Mustervergleichs in den Funktionen.</li>
+
 </ul>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">my_int_list</span> = Empty
+
+<pre  class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">my_int_list</span> = Empty
                      | Cons <span style="color: #0000FF;">of</span> int * my_int_list
 
 <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">one_two_three</span> = Cons<span style="color: #707183;">(</span>1,Cons<span style="color: #7388D6;">(</span>2,Cons<span style="color: #909183;">(</span>3,Empty<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
@@ -559,19 +333,17 @@ benutzen/deklarieren.</li>
       | Cons<span style="color: #707183;">(</span>x,xs'<span style="color: #707183;">)</span> =&gt; Cons<span style="color: #707183;">(</span>x, append_mylist<span style="color: #7388D6;">(</span>xs',ys<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
-</div>
-</div>
-</div>
-<div id="outline-container-orgb710ea5" class="outline-4">
-<h4 id="orgb710ea5">Mustervergleich für in SML eingebaute Listen</h4>
-<div class="outline-text-4" id="text-orgb710ea5">
-<ul class="org-ul">
+</section>
+<section id="org94283fe">
+<h4 id="org94283fe">Mustervergleich für in SML eingebaute Listen</h4>
+<ul>
 <li><p>
 Statt
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_list</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_list</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
     <span style="color: #0000FF;">if</span> null xs
     <span style="color: #0000FF;">then</span> 0
     <span style="color: #0000FF;">else</span> hd<span style="color: #707183;">(</span>xs<span style="color: #707183;">)</span> + sum_list<span style="color: #707183;">(</span>tl xs<span style="color: #707183;">)</span>
@@ -584,7 +356,8 @@ besser
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_list</span> xs =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_list</span> xs =
     <span style="color: #0000FF;">case</span> xs <span style="color: #0000FF;">of</span>
         <span style="color: #707183;">[]</span> =&gt; 0
       | x::xs&#8217; =&gt; x + sum_list xs&#8217;
@@ -592,33 +365,31 @@ besser
 </div>
 
 </div></li>
+
 </ul>
-</div>
-</div>
-<div id="outline-container-org95f1c3d" class="outline-4">
-<h4 id="org95f1c3d">Vorteile des Mustervergleichs</h4>
-<div class="outline-text-4" id="text-org95f1c3d">
-<ul class="org-ul">
+</section>
+<section id="orgb4a77a2">
+<h4 id="orgb4a77a2">Vorteile des Mustervergleichs</h4>
+<ul>
 <li>Laufzeitfehler wie durch <code>hd []</code> werden vermieden.</li>
 <li>Wenn in einem <code>case</code>-Ausdruck eine Variante fehlt, erzeugt der
 Compiler eine Warnung. Zur Laufzeit erzeugte eine fehlende Variante
 einen Programmabbruch.</li>
 <li>Falls eine Variante mehr als einmal verwendet wird, gibt der
 Compiler ebenfalls eine Warnung.</li>
+
 </ul>
-</div>
-</div>
-</div>
-<div id="outline-container-orgf9347f3" class="outline-3">
-<h3 id="orgf9347f3">Polymorphe Datentypen</h3>
-<div class="outline-text-3" id="text-orgf9347f3">
-<ul class="org-ul">
+</section>
+<section id="org81038ff">
+<h3 id="org81038ff">Polymorphe Datentypen</h3>
+<ul>
 <li><p>
 die <code>append</code> Funktion für eingebaute Listen:
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">append</span> <span style="color: #707183;">(</span>xs,ys<span style="color: #707183;">)</span> =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">append</span> <span style="color: #707183;">(</span>xs,ys<span style="color: #707183;">)</span> =
     <span style="color: #0000FF;">case</span> xs <span style="color: #0000FF;">of</span>
         <span style="color: #707183;">[]</span> =&gt; ys
       | x :: xs' =&gt; x :: append<span style="color: #707183;">(</span>xs',ys<span style="color: #707183;">)</span>
@@ -633,13 +404,13 @@ die <code>append</code> Funktion für eingebaute Listen:
 <li>Polymorphe Datentypen erlauben generische Funktionen in statisch
 getypten Sprachen.</li>
 <li>Polymorph heißt <b>nicht</b> heterogen.</li>
-</ul>
-</div>
 
-<div id="outline-container-orgd850089" class="outline-4">
-<h4 id="orgd850089">Selbsdefinierte polymorphe Datentypen</h4>
-<div class="outline-text-4" id="text-orgd850089">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org4637fc6">
+<h4 id="org4637fc6">Selbsdefinierte polymorphe Datentypen</h4>
+<ul>
 <li><p>
 Beispiel: Binärbaum, dessen interne Knoten Daten vom Typ <code>’a</code> und
 dessen Blätter Daten vom Typ <code>’b</code> enthalten:
@@ -653,14 +424,12 @@ datatype (’a,’b) tree = Node of ’a * (’a,’b) tree * (’a,’b) tree
 <code>(string,bool) tree</code> möglich.</li>
 <li>Die Art der Verwendung von Konstruktoren und die Nutzung des
 Mustervergleichs ist dieselbe für polymorphe und regulären Datentypen.</li>
+
 </ul>
-</div>
-</div>
-</div>
-<div id="outline-container-orge9ff0cb" class="outline-3">
-<h3 id="orge9ff0cb">Mustervergleich für Summentypen und die Wahrheit über Funktionen</h3>
-<div class="outline-text-3" id="text-orge9ff0cb">
-<ul class="org-ul">
+</section>
+<section id="org12ba0a8">
+<h3 id="org12ba0a8">Mustervergleich für Summentypen und die Wahrheit über Funktionen</h3>
+<ul>
 <li>Grundsätzlich ist der Mustervergleich auch auf Summentypen anwendbar.</li>
 <li>Für ein Record der Form <code>{f1=v1,...,fn=vn}</code> werden durch das Muster
 <code>{f1=x1,...,fn=xn}</code> die Variablen <code>xi</code> an die Werte <code>vi</code> gebunden.</li>
@@ -673,21 +442,23 @@ summiert:
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_triple</span> <span style="color: #707183;">(</span>triple : int * int * int<span style="color: #707183;">)</span> =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_triple</span> <span style="color: #707183;">(</span>triple : int * int * int<span style="color: #707183;">)</span> =
     <span style="color: #0000FF;">case</span> triple <span style="color: #0000FF;">of</span>
         <span style="color: #707183;">(</span>x,y,z<span style="color: #707183;">)</span> =&gt; z + y + x
 </pre>
 </div>
 
 </div></li>
+
 </ul>
-</div>
-<div id="outline-container-org40ca661" class="outline-4">
-<h4 id="org40ca661">Andere (bessere) syntaktische Varianten</h4>
-<div class="outline-text-4" id="text-org40ca661">
+</section>
+<section id="orgc9f43cb">
+<h4 id="orgc9f43cb">Andere (bessere) syntaktische Varianten</h4>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_triple</span> <span style="color: #707183;">(</span>triple : int*int*int<span style="color: #707183;">)</span> =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sum_triple</span> <span style="color: #707183;">(</span>triple : int*int*int<span style="color: #707183;">)</span> =
     <span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #707183;">(</span>x,y,z<span style="color: #707183;">)</span> = triple
     <span style="color: #0000FF;">in</span> x+y+z <span style="color: #0000FF;">end</span>
 
@@ -696,26 +467,25 @@ summiert:
 </div>
 
 </div>
-<ul class="org-ul">
+<ul>
 <li>Die letzte Variante akzeptiert ein Tripel als Argument und bindet
 die Komponenten an die Variablen <code>x</code>, <code>y</code> und <code>z</code>.</li>
 <li>Diese Form unterscheidet sich nicht von der bisherigen Notation für
 Funktionen mit mehreren (hier drei) Parametern.</li>
 <li>Mit anderen Worten:</li>
+
 </ul>
-<blockquote>
+<blockquote nil>
 <p>
 Jede Funktion in ML besitzt nur <b>einen</b> Parameter.
 </p>
 </blockquote>
-</div>
-</div>
-</div>
-<div id="outline-container-org24a8916" class="outline-3">
-<h3 id="org24a8916">Geschachtelte Muster</h3>
-<div class="outline-text-3" id="text-org24a8916">
+</section>
+<section id="org86f4abc">
+<h3 id="org86f4abc">Geschachtelte Muster</h3>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">exception</span> BadTriple
+
+<pre  class="src src-sml"><span style="color: #0000FF;">exception</span> BadTriple
               
 <span style="color: #0000FF;">fun</span> <span style="color: #006699;">zip3</span> list_triple =
     <span style="color: #0000FF;">case</span> list_triple <span style="color: #0000FF;">of</span>
@@ -732,11 +502,9 @@ Jede Funktion in ML besitzt nur <b>einen</b> Parameter.
                        <span style="color: #0000FF;">end</span>
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-orgbbb9666" class="outline-3">
-<h3 id="orgbbb9666">Exkurs: Destructuring in Clojure</h3>
-<div class="outline-text-3" id="text-orgbbb9666">
+</section>
+<section id="org7c00381">
+<h3 id="org7c00381">Exkurs: Destructuring in Clojure</h3>
 <p>
 Unter <i>destructuring</i> versteht man eine Weise, Werte aus einer
 Datenstruktur zu extrahieren und dabei an Variablen zu binden. Dabei
@@ -748,12 +516,12 @@ und Zeichenketten möglich.
 <p>
 (vgl. <a href="https://clojure.org/guides/destructuring">Destructuring in Clojure</a>)
 </p>
-</div>
-<div id="outline-container-orga300f78" class="outline-4">
-<h4 id="orga300f78">Vektoren</h4>
-<div class="outline-text-4" id="text-orga300f78">
+</section>
+<section id="org272c512">
+<h4 id="org272c512">Vektoren</h4>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-vector</span> <span style="color: #7388D6;">[</span><span style="color: #D0372D;">:a</span> <span style="color: #D0372D;">:b</span> <span style="color: #D0372D;">:c</span> <span style="color: #D0372D;">:d</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-vector</span> <span style="color: #7388D6;">[</span><span style="color: #D0372D;">:a</span> <span style="color: #D0372D;">:b</span> <span style="color: #D0372D;">:c</span> <span style="color: #D0372D;">:d</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
 <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-nested-vector</span> <span style="color: #7388D6;">[</span><span style="color: #D0372D;">:a</span> <span style="color: #D0372D;">:b</span> <span style="color: #D0372D;">:c</span> <span style="color: #D0372D;">:d</span> <span style="color: #909183;">[</span><span style="color: #D0372D;">:x</span> <span style="color: #D0372D;">:y</span> <span style="color: #D0372D;">:z</span><span style="color: #909183;">]</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
 
 <span style="color: #707183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>a b c d<span style="color: #909183;">]</span> my-vector<span style="color: #7388D6;">]</span>
@@ -806,12 +574,12 @@ und Zeichenketten möglich.
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; :a :b (:c :d) [:a :b :c :d]</span>
 </pre>
 </div>
-</div>
-<div id="outline-container-org67c9cdc" class="outline-5">
-<h5 id="org67c9cdc">Beispiel ohne Destructuring &#x2026;</h5>
-<div class="outline-text-5" id="text-org67c9cdc">
+</section>
+<section id="org032fce1">
+<h5 id="org032fce1">Beispiel ohne Destructuring &#x2026;</h5>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-line</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>5 10<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>10 20<span style="color: #909183;">]</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-line</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>5 10<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>10 20<span style="color: #909183;">]</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
 
 <span style="color: #707183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #7388D6;">[</span>p1 <span style="color: #909183;">(</span><span style="color: #006FE0;">first</span> my-line<span style="color: #909183;">)</span>
       p2 <span style="color: #909183;">(</span><span style="color: #006FE0;">second</span> my-line<span style="color: #909183;">)</span>
@@ -823,13 +591,12 @@ und Zeichenketten möglich.
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; "Line from ( 5 , 10 ) to ( 10 , 20 )"</span>
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org3dd173a" class="outline-5">
-<h5 id="org3dd173a">&#x2026; und mit Destructuring</h5>
-<div class="outline-text-5" id="text-org3dd173a">
+</section>
+<section id="org8dff0f0">
+<h5 id="org8dff0f0">&#x2026; und mit Destructuring</h5>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-line</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>5 10<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>10 20<span style="color: #909183;">]</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-line</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>5 10<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>10 20<span style="color: #909183;">]</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
 
 <span style="color: #707183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>p1 p2<span style="color: #909183;">]</span> my-line
       <span style="color: #909183;">[</span>x1 y1<span style="color: #909183;">]</span> p1
@@ -839,14 +606,12 @@ und Zeichenketten möglich.
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; "Line from ( 5 , 10 ) to ( 10 , 20 )"</span>
 </pre>
 </div>
-</div>
-</div>
-</div>
-<div id="outline-container-org59ab8cf" class="outline-4">
-<h4 id="org59ab8cf">Maps</h4>
-<div class="outline-text-4" id="text-org59ab8cf">
+</section>
+<section id="orged9ff94">
+<h4 id="orged9ff94">Maps</h4>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-hashmap</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:a</span> <span style="color: #008000;">"A"</span> <span style="color: #D0372D;">:b</span> <span style="color: #008000;">"B"</span> <span style="color: #D0372D;">:c</span> <span style="color: #008000;">"C"</span> <span style="color: #D0372D;">:d</span> <span style="color: #008000;">"D"</span><span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-hashmap</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:a</span> <span style="color: #008000;">"A"</span> <span style="color: #D0372D;">:b</span> <span style="color: #008000;">"B"</span> <span style="color: #D0372D;">:c</span> <span style="color: #008000;">"C"</span> <span style="color: #D0372D;">:d</span> <span style="color: #008000;">"D"</span><span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
 <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-nested-hashmap</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:a</span> <span style="color: #008000;">"A"</span> <span style="color: #D0372D;">:b</span> <span style="color: #008000;">"B"</span> <span style="color: #D0372D;">:c</span> <span style="color: #008000;">"C"</span> <span style="color: #D0372D;">:d</span> <span style="color: #008000;">"D"</span> <span style="color: #D0372D;">:q</span> <span style="color: #909183;">{</span><span style="color: #D0372D;">:x</span> <span style="color: #008000;">"X"</span> <span style="color: #D0372D;">:y</span> <span style="color: #008000;">"Y"</span> <span style="color: #D0372D;">:z</span> <span style="color: #008000;">"Z"</span><span style="color: #909183;">}</span><span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
 
 <span style="color: #707183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">{</span>a <span style="color: #D0372D;">:a</span> d <span style="color: #D0372D;">:d</span><span style="color: #909183;">}</span> my-hashmap<span style="color: #7388D6;">]</span>
@@ -884,12 +649,12 @@ und Zeichenketten möglich.
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; A B :) {:a A :b B :c C :d D}</span>
 </pre>
 </div>
-</div>
-<div id="outline-container-orgf7ed0cb" class="outline-5">
-<h5 id="orgf7ed0cb">Beispiel</h5>
-<div class="outline-text-5" id="text-orgf7ed0cb">
+</section>
+<section id="orgeab2536">
+<h5 id="orgeab2536">Beispiel</h5>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">client</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:name</span> <span style="color: #008000;">"Super Co."</span>
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">client</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:name</span> <span style="color: #008000;">"Super Co."</span>
              <span style="color: #D0372D;">:location</span> <span style="color: #008000;">"Philadelphia"</span>
              <span style="color: #D0372D;">:description</span> <span style="color: #008000;">"The worldwide leader in plastic tableware."</span><span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
 
@@ -916,18 +681,17 @@ und Zeichenketten möglich.
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; Super Co. Philadelphia - The worldwide leader in plastic tableware.</span>
 </pre>
 </div>
-</div>
-</div>
-</div>
-<div id="outline-container-org382b1e4" class="outline-4">
-<h4 id="org382b1e4">Funktionsköpfe</h4>
-<div class="outline-text-4" id="text-org382b1e4">
-<ul class="org-ul">
+</section>
+<section id="orga7a177b">
+<h4 id="orga7a177b">Funktionsköpfe</h4>
+<ul>
 <li>Ein häufiger Anwendungszweck von Destructuring ist die Zerlegung von
 Argumenten, die an eine Funktion übergeben werden.</li>
+
 </ul>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #8D8D84;">;;; </span><span style="color: #8D8D84; font-style: italic;">"klassisch" ohne Destructuring</span>
+
+<pre  class="src src-clojure"><span style="color: #8D8D84;">;;; </span><span style="color: #8D8D84; font-style: italic;">"klassisch" ohne Destructuring</span>
 <span style="color: #8D8D84;">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 <span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">print-coordinates-1</span> <span style="color: #7388D6;">[</span>point<span style="color: #7388D6;">]</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">let</span> <span style="color: #909183;">[</span>x <span style="color: #709870;">(</span><span style="color: #006FE0;">first</span> point<span style="color: #709870;">)</span>
@@ -947,38 +711,37 @@ Argumenten, die an eine Funktion übergeben werden.</li>
   <span style="color: #7388D6;">(</span><span style="color: #006FE0;">println</span> <span style="color: #008000;">"x:"</span> x <span style="color: #008000;">", y:"</span> y <span style="color: #008000;">", z:"</span> z<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org0b78bfe" class="outline-2">
-<h2 id="org0b78bfe">Curryfizierung &#x2013; partielle Anwendung von Funktionen</h2>
-<div class="outline-text-2" id="text-org0b78bfe">
-<ul class="org-ul">
+</section>
+</section>
+<section>
+<section id="org96b45eb">
+<h2 id="org96b45eb">Curryfizierung &#x2013; partielle Anwendung von Funktionen</h2>
+<ul>
 <li>ML-Funktionen akzeptieren nur ein Argument.</li>
 <li>Wege, um die Übergabe mehrerer Argumente zu „simulieren“:
-<ul class="org-ul">
+<ul>
 <li>Verwendung von Tupeln (s. diverse Beispiele oben)</li>
 <li><p>
 Verwendung einer Funktion, die das erste Argument verarbeitet und
 mit einer Funktion antwortet, die dann das nächste Argument
 verarbeitet und so weiter
 </p>
-<blockquote>
+<blockquote nil>
 <p>
 Diese Technik wird nach dem Logiker <a href="https://de.wikipedia.org/wiki/Haskell_Brooks_Curry">Haskell Curry</a> als <i>Currying</i>
 bezeichnet. Das Verb (englisch) heißt <i>currify</i>, im Deutschen mit
 <i>curryfizieren</i> bezeichnet.
 </p>
 </blockquote></li>
-</ul></li>
-</ul>
-</div>
 
-<div id="outline-container-org49c95c0" class="outline-3">
-<h3 id="org49c95c0">Definition und Benutzung einer curryfizierten Funktion</h3>
-<div class="outline-text-3" id="text-org49c95c0">
-<ul class="org-ul">
+</ul></li>
+
+</ul>
+
+</section>
+<section id="org49a7062">
+<h3 id="org49a7062">Definition und Benutzung einer curryfizierten Funktion</h3>
+<ul>
 <li><p>
 Beispiel einer Funktion mit „drei Parametern”:
 </p>
@@ -995,8 +758,11 @@ Funktion, in deren lokaler Umgebung <code>x</code> und <code>y</code> definiert 
 <li>So kann der Ausdruck <code>((sorted3 4) 5) 6</code> nahezu wie der Aufruf einer
 Funktion mit drei Argumenten angesehen werden.</li>
 <li>Die Klammern sind optional: <code>sorted3 4 5 6</code>.</li>
+
 </ul>
-<ul class="org-ul">
+</section>
+<section >
+<ul>
 <li><p>
 Zum Vergleich die Tupel-Version
 </p>
@@ -1012,13 +778,13 @@ sorted3_tupled(4,5,6)
 
 </pre></li>
 <li>Der Ausdruck <code>e1 e2 e3 e4</code> ist äquivalent zu <code>(((e1 e2) e3) e4)</code>.</li>
-</ul>
-</div>
 
-<div id="outline-container-orge57817e" class="outline-4">
-<h4 id="orge57817e">Syntaktischer Zucker für die Definition von curryfizierten Funktionen</h4>
-<div class="outline-text-4" id="text-orge57817e">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="orgb0da62c">
+<h4 id="orgb0da62c">Syntaktischer Zucker für die Definition von curryfizierten Funktionen</h4>
+<ul>
 <li><p>
 Die Definition von curryfizierten Funktionen mithilfe geschachtelter
 Lambda-Ausdrücke wie in
@@ -1043,15 +809,13 @@ val sorted3_tupled = fn : int * int * int -&gt; bool
 val sorted3 = fn : int -&gt; int -&gt; int -&gt; bool
 
 </pre></li>
-</ul>
-</div>
-</div>
-</div>
 
-<div id="outline-container-org08edf38" class="outline-3">
-<h3 id="org08edf38">Partielle Anwendung von curryfizierten Funktionen</h3>
-<div class="outline-text-3" id="text-org08edf38">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org0cf4cc6">
+<h3 id="org0cf4cc6">Partielle Anwendung von curryfizierten Funktionen</h3>
+<ul>
 <li>In der Regel wird die Funktion <code>sorted3</code> wohl mit allen drei
 Argumenten aufgerufen werden.</li>
 <li>Ein Aufruf mit weniger Argumenten wird als <i>partielle Anwendung</i>
@@ -1059,12 +823,12 @@ bezeichnet.</li>
 <li>Ein (nicht besonders nützliches) Beispiel: <br />
 <code>sorted3 0 0</code> liefert eine Funktion, die <code>true</code> liefert, wenn ihr
 Argument nicht negativ ist.</li>
+
 </ul>
-</div>
-<div id="outline-container-org4c16234" class="outline-4">
-<h4 id="org4c16234">Partielle Anwendung und Funktionen höherer Ordnung</h4>
-<div class="outline-text-4" id="text-org4c16234">
-<ul class="org-ul">
+</section>
+<section id="orgedab692">
+<h4 id="orgedab692">Partielle Anwendung und Funktionen höherer Ordnung</h4>
+<ul>
 <li>Curryfizierung wird gerne im Zusammenhang mit den klassischen Funktionen
 höherer Ordnung benutzt.</li>
 <li><p>
@@ -1072,7 +836,8 @@ Beipiel: Ein curryfizierte Version der Funktion <code>fold</code> für Listen
 </p>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">fold</span> f acc xs =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">fold</span> f acc xs =
     <span style="color: #0000FF;">case</span> xs <span style="color: #0000FF;">of</span> <span style="color: #707183;">[]</span> =&gt; acc
              | x::xs&#8217; =&gt; fold f <span style="color: #707183;">(</span>f<span style="color: #7388D6;">(</span>acc,x<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> xs&#8217;
 </pre>
@@ -1094,13 +859,12 @@ unter Nutzung von partieller Anwendung so definiert werden:
 val sum2 = fold (fn (x,y) =&gt; x+y) 0
 
 </pre></li>
+
 </ul>
-</div>
-</div>
-<div id="outline-container-org5f308a3" class="outline-4">
-<h4 id="org5f308a3">Diverse Funktionen höherer Ordnung in ML nutzen Curryfizierung</h4>
-<div class="outline-text-4" id="text-org5f308a3">
-<ul class="org-ul">
+</section>
+<section id="orgc4a6c13">
+<h4 id="orgc4a6c13">Diverse Funktionen höherer Ordnung in ML nutzen Curryfizierung</h4>
+<ul>
 <li><p>
 Beispiele (aus dem Modul <code>List</code>):
 </p>
@@ -1117,28 +881,30 @@ einem Typfehler, weil <code>List.foldl</code> eine Funktion vom Typ <br />
 <code>List.foldl (fn (x,y) =&gt; x+y) 0 [3,4,5]</code><br />
 Er ruft <code>List.foldl</code> mit einer Funktion auf, die eine
 Funktion liefert und so weiter.</li>
+
 </ul>
-<ul class="org-ul">
+</section>
+<section >
+<ul>
 <li><p>
 Ein anderes Beispiel einer nützlichen curryfizierten Funktion ist
 <code>List.exists</code>, die wie folgt implementiert werden kann:
 </p>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">exists</span> predicate xs =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">exists</span> predicate xs =
     <span style="color: #0000FF;">case</span> xs <span style="color: #0000FF;">of</span>
         <span style="color: #707183;">[]</span> =&gt; false
       | x::xs&#8217; =&gt; predicate x <span style="color: #0000FF;">orelse</span> exists predicate xs&#8217;
 </pre>
 </div></li>
-</ul>
-</div>
-</div>
-</div>
 
-<div id="outline-container-org7a9bba9" class="outline-3">
-<h3 id="org7a9bba9">Curryfizierung im Allgemeinen</h3>
-<div class="outline-text-3" id="text-org7a9bba9">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org5899254">
+<h3 id="org5899254">Curryfizierung im Allgemeinen</h3>
+<ul>
 <li>Curryfizierung ist nicht nur im Zusammenhang von Funktionen höherer
 Ordnung von Bedeutung.</li>
 <li>Curryfizierung ist interessant für jede Funktion mit mehr als einem
@@ -1149,7 +915,8 @@ wendet <code>range</code> partiell an und <code>add_numbers</code> verwandelt di
 <code>[v1,v2,...,vn]</code> in <code>[(1,v1),(2,v2),...,(n,vn)]</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">zip</span> xs ys =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">zip</span> xs ys =
     <span style="color: #0000FF;">case</span> <span style="color: #707183;">(</span>xs,ys<span style="color: #707183;">)</span> <span style="color: #0000FF;">of</span>
         <span style="color: #707183;">(</span><span style="color: #7388D6;">[]</span>,<span style="color: #7388D6;">[]</span><span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">[]</span>
       | <span style="color: #707183;">(</span>x::xs&#8217;,y::ys&#8217;<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>x,y<span style="color: #707183;">)</span> :: <span style="color: #707183;">(</span>zip xs&#8217; ys&#8217;<span style="color: #707183;">)</span>
@@ -1160,30 +927,31 @@ wendet <code>range</code> partiell an und <code>add_numbers</code> verwandelt di
 <span style="color: #0000FF;">fun</span> <span style="color: #006699;">add_numbers</span> xs = zip <span style="color: #707183;">(</span>countup <span style="color: #7388D6;">(</span>length xs<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> xs
 </pre>
 </div></li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgdcdb1e6" class="outline-3">
-<h3 id="orgdcdb1e6">Curryfizierung in Lisp-Sprachen</h3>
-<div class="outline-text-3" id="text-orgdcdb1e6">
-<ul class="org-ul">
+</ul>
+
+</section>
+<section id="org14bff47">
+<h3 id="org14bff47">Curryfizierung in Lisp-Sprachen</h3>
+<ul>
 <li>in Lisp-Sprachen keine syntaktische Unterstützung</li>
 <li>gilt jedenfalls für Racket und Clojure</li>
 <li>Curryfizierung aber durch Nutzung von Funktionen höherer Ordnung
 möglich</li>
+
 </ul>
+</section>
+<section id="org6010408">
+<h4 id="org6010408">Beispiele in Clojure</h4>
+<div class="outline-text-4" id="text-org6010408">
 </div>
-<div id="outline-container-orgd2f2e8e" class="outline-4">
-<h4 id="orgd2f2e8e">Beispiele in Clojure</h4>
-<div class="outline-text-4" id="text-orgd2f2e8e">
-</div>
-<div id="outline-container-orgf6dc0e5" class="outline-5">
-<h5 id="orgf6dc0e5">Funktion, die eine Funktion erzeugt, die eine Konstante addiert</h5>
-<div class="outline-text-5" id="text-orgf6dc0e5">
+</section>
+<section id="orgfd0cd74">
+<h5 id="orgfd0cd74">Funktion, die eine Funktion erzeugt, die eine Konstante addiert</h5>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">make-add: number -&gt; (number -&gt; number)</span>
+
+<pre  class="src src-clojure">  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">make-add: number -&gt; (number -&gt; number)</span>
   <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">make-add</span>
     <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>a<span style="color: #909183;">]</span>
       <span style="color: #909183;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #709870;">[</span>b<span style="color: #709870;">]</span>
@@ -1192,12 +960,14 @@ möglich</li>
 </div>
 
 </div>
-<ul class="org-ul">
+<ul>
 <li>Anwendung</li>
+
 </ul>
 <div class="small">
 <div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">add-5</span> <span style="color: #7388D6;">(</span>make-add 5<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">add-5</span> <span style="color: #7388D6;">(</span>make-add 5<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
   <span style="color: #707183;">(</span>add-5 7<span style="color: #707183;">)</span> <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; 12</span>
 
   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">oder ohne Hilfsdefintion</span>
@@ -1206,18 +976,17 @@ möglich</li>
 </div>
 
 </div>
-<ul class="org-ul">
+<ul>
 <li>Im Gegensatz zur Standardfunktion <code>+</code> akzeptiert die Funktion
 <code>make-add</code> nicht beide Summanden als Argumente, sondern zunächst nur
 einen. Das Resultat der Anwendung ist dann eine Funktion, die
 wiederum einen (den zweiten) Summanden akzeptiert und auf den ersten addiert.</li>
+
 </ul>
-</div>
-</div>
-<div id="outline-container-org272b3bc" class="outline-5">
-<h5 id="org272b3bc">Funktion, die eine Funktion erzeugt, die an eine Liste ein Element vorn anhängt</h5>
-<div class="outline-text-5" id="text-org272b3bc">
-<pre class="example">
+</section>
+<section id="org353e673">
+<h5 id="org353e673">Funktion, die eine Funktion erzeugt, die an eine Liste ein Element vorn anhängt</h5>
+<pre  class="example">
 ;; make-prepend: X -&gt; ((list-of X) -&gt; (list-of X))
 
 (def make-prepend
@@ -1228,13 +997,12 @@ wiederum einen (den zweiten) Summanden akzeptiert und auf den ersten addiert.</l
 (= ((make-prepend 5) (list 1 2 3)) (list 5 1 2 3))
 (= ((make-prepend "A") (list "B" "C" "D")) (list "A" "B" "C" "D"))
 </pre>
-</div>
-</div>
-<div id="outline-container-org7e65b52" class="outline-5">
-<h5 id="org7e65b52">ein ML-Beispiel</h5>
-<div class="outline-text-5" id="text-org7e65b52">
+</section>
+<section id="orgf7751c9">
+<h5 id="orgf7751c9">ein ML-Beispiel</h5>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">make_mult</span> a =
+
+<pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">make_mult</span> a =
     <span style="color: #0000FF;">fn</span> b =&gt; a * b
 
 <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">make_mult</span> = <span style="color: #0000FF;">fn</span> : int -&gt; int -&gt; int
@@ -1246,27 +1014,25 @@ wiederum einen (den zweiten) Summanden akzeptiert und auf den ersten addiert.</l
 <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">it</span> = 15 : int
 </pre>
 </div>
-</div>
-</div>
-</div>
-<div id="outline-container-org74b63a8" class="outline-4">
-<h4 id="org74b63a8">Der Schönfinkel-Isomorphismus</h4>
-<div class="outline-text-4" id="text-org74b63a8">
-<ul class="org-ul">
+</section>
+<section id="org339ebbb">
+<h4 id="org339ebbb">Der Schönfinkel-Isomorphismus</h4>
+<ul>
 <li>Die oben gezeigten Funktionen folgen alle dem gleichen Muster.</li>
 <li>Kann dieses Muster verallgemeinert, d.&nbsp;h. in eine Funktion
 abstrahiert werden?</li>
 <li>Die Funktion <code>curry</code> akzeptiert eine Funktion mit zwei Argumenten
 und liefert eine curryfizierte Variante zurück.</li>
 <li>Die Funktion <code>uncurry</code> für die inverse Operation durch.</li>
-</ul>
-</div>
 
-<div id="outline-container-org33dfbc0" class="outline-5">
-<h5 id="org33dfbc0">Die Funktion <code>curry</code></h5>
-<div class="outline-text-5" id="text-org33dfbc0">
+</ul>
+
+</section>
+<section id="org7a7bf62">
+<h5 id="org7a7bf62">Die Funktion <code>curry</code></h5>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Prozedur mit zwei Parametern curryfizieren</span>
+
+<pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Prozedur mit zwei Parametern curryfizieren</span>
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">curry: (X Y -&gt; Z) -&gt; (X -&gt; (Y -&gt; Z))</span>
 
 <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">curry</span>
@@ -1284,14 +1050,13 @@ und liefert eine curryfizierte Variante zurück.</li>
 <span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>make-mult 3<span style="color: #7388D6;">)</span> 5<span style="color: #707183;">)</span> <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; 15</span>
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-orgb6b33c4" class="outline-5">
-<h5 id="orgb6b33c4">Die Funktion <code>uncurry</code></h5>
-<div class="outline-text-5" id="text-orgb6b33c4">
+</section>
+<section id="orgce2fae0">
+<h5 id="orgce2fae0">Die Funktion <code>uncurry</code></h5>
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">curryyfizierte Funktion entcurryfizieren</span>
+
+<pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">curryyfizierte Funktion entcurryfizieren</span>
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">uncurry (X -&gt; (Y -&gt; Z)) -&gt; (X Y -&gt; Z)</span>
 
 <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">uncurry</span> 
@@ -1303,18 +1068,17 @@ und liefert eine curryfizierte Variante zurück.</li>
 <span style="color: #707183;">(</span>= <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span>uncurry make-prepend<span style="color: #909183;">)</span> 5 <span style="color: #909183;">(</span><span style="color: #006FE0;">list</span> 1 2 3<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">list</span> 5 1 2 3<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org098d425" class="outline-5">
-<h5 id="org098d425">Der Isomorphismus</h5>
-<div class="outline-text-5" id="text-org098d425">
-<ul class="org-ul">
+</section>
+<section id="orgff8c491">
+<h5 id="orgff8c491">Der Isomorphismus</h5>
+<ul>
 <li>Es gilt folgende Gleichung für Funktionen \(f\) mit zwei Parametern:</li>
+
 </ul>
 <p>
 \[\texttt{(uncurry (curry }f\texttt{))} \equiv f\]
 </p>
-<ul class="org-ul">
+<ul>
 <li><p>
 Z.&nbsp;B. liefert der Ausdruck 
 </p>
@@ -1325,17 +1089,47 @@ Z.&nbsp;B. liefert der Ausdruck
 <p>
 <code>true</code>.
 </p></li>
+
 </ul>
+</section>
+</section>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div id="postamble" class="status">
-<p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-09-28 Fri 22:23</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.05,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ]});
+</script>
 </body>
 </html>
