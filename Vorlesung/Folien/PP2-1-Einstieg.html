@@ -29,18 +29,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Programmierparadigmen &#x2013; Einstieg</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-09-23 Sun 16:32</p>
+<section id="sec-title-slide"><h1 class="title">Programmierparadigmen &#x2013; Einstieg</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-10-02 Tue 19:37</p>
 </section>
 
 <section>
-<section id="org56e3b44">
-<h2 id="org56e3b44">Beispiele</h2>
+<section id="orga4d3b4b">
+<h2 id="orga4d3b4b">Beispiele</h2>
 <p>
 Zur Wiedererweckung von Kenntnissen aus den vergangenen Semestern
 </p>
 </section>
-<section id="orgb94761c">
-<h3 id="orgb94761c">Interpretieren Sie diesen Programmcode:</h3>
+<section id="orgf5f0d2a">
+<h3 id="orgf5f0d2a">Interpretieren Sie diesen Programmcode:</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">power</span> <span style="color: #7388D6;">[</span>x y<span style="color: #7388D6;">]</span>
@@ -49,16 +49,16 @@ Zur Wiedererweckung von Kenntnissen aus den vergangenen Semestern
 </pre>
 </div>
 </section>
-<section id="org2b6fcda">
-<h3 id="org2b6fcda">Aufgabe</h3>
+<section id="org7df862c">
+<h3 id="org7df862c">Aufgabe</h3>
 <p>
 Schreiben Sie eine statische Java-Methode, die ein Array von doubles
 als Argument akzeptiert und den Durchschnitt der Zahlen liefert.
 </p>
 
 </section>
-<section id="orgbab694a">
-<h3 id="orgbab694a">Lösung</h3>
+<section id="org77d6dca">
+<h3 id="org77d6dca">Lösung</h3>
 <div class="small">
 <div class="org-src-container">
 
@@ -90,8 +90,8 @@ versus
 </div>
 
 </section>
-<section id="orga3fce4a">
-<h3 id="orga3fce4a">Frage: Was tut die Methode <code>isBlank</code>?</h3>
+<section id="org53cab8c">
+<h3 id="org53cab8c">Frage: Was tut die Methode <code>isBlank</code>?</h3>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">StringUtils</span> <span style="color: #707183;">{</span>
@@ -126,8 +126,8 @@ Zum Vergleich:
 
 
 </section>
-<section id="org4c7a29a">
-<h3 id="org4c7a29a">Aufgabe</h3>
+<section id="org4a68d81">
+<h3 id="org4a68d81">Aufgabe</h3>
 <p>
 Gegeben ist eine Liste mit Preisen:
 </p>
@@ -147,13 +147,13 @@ Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
 </p>
 
 </section>
-<section id="org1354311">
-<h3 id="org1354311">Lösung</h3>
-<div class="outline-text-3" id="text-org1354311">
+<section id="org9dece5d">
+<h3 id="org9dece5d">Lösung</h3>
+<div class="outline-text-3" id="text-org9dece5d">
 </div>
 </section>
-<section id="org54070ca">
-<h4 id="org54070ca">Java &lt; 8</h4>
+<section id="org02943c7">
+<h4 id="org02943c7">Java &lt; 8</h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> = <span style="color: #D0372D;">BigDecimal</span>.ZERO;
@@ -166,8 +166,8 @@ Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
 </pre>
 </div>
 </section>
-<section id="org59896c7">
-<h4 id="org59896c7">Java &gt; 8</h4>
+<section id="org45dc9ec">
+<h4 id="org45dc9ec">Java &gt; 8</h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> =
@@ -179,8 +179,8 @@ Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
 </div>
 
 </section>
-<section id="org6c7c43a">
-<h4 id="org6c7c43a">Clojure</h4>
+<section id="org7aa80ee">
+<h4 id="org7aa80ee">Clojure</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">prices</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">map</span> bigdec <span style="color: #909183;">[</span>10 30 17 20 15 18 45 12<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
@@ -202,7 +202,7 @@ Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
 
 </section>
 <section id="aufgabe1">
-<h3 id="aufgabe1"><a id="org185e869"></a>Aufgabe: Mehr Geld bitte!</h3>
+<h3 id="aufgabe1"><a id="org75adddf"></a>Aufgabe: Mehr Geld bitte!</h3>
 <p>
 Sie senden einen Brief an Ihre Eltern mit dem Inhalt:
 </p>
@@ -231,8 +231,8 @@ Wahl! Beachten Sie die Nebenbedingungen.
 </p>
 
 </section>
-<section id="orgdffca1e">
-<h3 id="orgdffca1e">Lösungsansatz: „Rohe Gewalt“</h3>
+<section id="org54b297d">
+<h3 id="org54b297d">Lösungsansatz: „Rohe Gewalt“</h3>
 <ul>
 <li>Alles durchprobieren!</li>
 <li>Man braucht 8 ineinander geschachtelte Schleifen.</li>
@@ -285,8 +285,8 @@ Resultat:
  10652
 </pre>
 </section>
-<section id="orge830d92">
-<h3 id="orge830d92">Lösungsansatz: Constraint Satisfaction</h3>
+<section id="orga907b36">
+<h3 id="orga907b36">Lösungsansatz: Constraint Satisfaction</h3>
 <ul>
 <li>Einfaches Modell durch Spezifikation der folgenden Gleichung als Einschränkung:
 \[1000*S+100*E+10*N+D \]
@@ -304,8 +304,8 @@ geprüft werden kann.</li>
 </ul>
 
 </section>
-<section id="org087923b">
-<h3 id="org087923b">Verfeinertes CSP-Modell</h3>
+<section id="orgfb07b7b">
+<h3 id="orgfb07b7b">Verfeinertes CSP-Modell</h3>
 <ul>
 <li><p>
 Nutzung der Überträge der Addition für die Zerlegung der „großen“
@@ -341,13 +341,13 @@ ausgesondert.</li>
 </section>
 </section>
 <section>
-<section id="org3b9b240">
-<h2 id="org3b9b240">Software-Technik &#x2013; eine unreife Technologie?</h2>
-<div class="outline-text-2" id="text-org3b9b240">
+<section id="org3dc40d0">
+<h2 id="org3dc40d0">Software-Technik &#x2013; eine unreife Technologie?</h2>
+<div class="outline-text-2" id="text-org3dc40d0">
 </div>
 </section>
-<section id="org2870142">
-<h3 id="org2870142">Hat die Software-Technik ein Problem?</h3>
+<section id="org4b13cc3">
+<h3 id="org4b13cc3">Hat die Software-Technik ein Problem?</h3>
 <p>
 fragt <a class='org-ref-reference' href="#AmitRathore2012">AmitRathore2012</a>
 </p>
@@ -375,8 +375,8 @@ der Akzeptanz mittelmäßiger Software!?</li>
 </ul>
 
 </section>
-<section id="orga679c6f">
-<h3 id="orga679c6f">Viele Software-Projekte werden durch falsche Annahmen von vornherein gefährdet.</h3>
+<section id="orgd76dfaa">
+<h3 id="orgd76dfaa">Viele Software-Projekte werden durch falsche Annahmen von vornherein gefährdet.</h3>
 <p>
 So ist es meistens falsch, anzunehmen, dass
 </p>
@@ -405,8 +405,8 @@ Entwickler besser über seine Bedürfnisse unterrichtet wäre.</li>
 </ul>
 
 </section>
-<section id="org700a728">
-<h3 id="org700a728">Ein „berühmtes” Beispiel</h3>
+<section id="org424326c">
+<h3 id="org424326c">Ein „berühmtes” Beispiel</h3>
 <p>
 <b>W. Gibbs in Scientific Armerican</b>:
 </p>
@@ -427,8 +427,8 @@ zum Fertigstellungstermin abgeben.</li>
 </ul>
 
 </section>
-<section id="orgb68d734">
-<h3 id="orgb68d734">Thomas C. Hales bemerkt in Formal Proof</h3>
+<section id="org8d00967">
+<h3 id="org8d00967">Thomas C. Hales bemerkt in Formal Proof</h3>
 <p>
 <a class='org-ref-reference' href="#Hales2008">Hales2008</a>
 </p>
@@ -457,8 +457,8 @@ liability. Only those bugs should be corrected that affect profit.
 </ul>
 
 </section>
-<section id="org3f54086">
-<h3 id="org3f54086">Software besteht aus Millionen Code-Zeilen</h3>
+<section id="orgb8f9c9e">
+<h3 id="orgb8f9c9e">Software besteht aus Millionen Code-Zeilen</h3>
 <ul>
 <li>die einzige Sicht: Programmtext</li>
 <li>Baumstruktur links zeigt nicht die Abhängigkeit der Komponenten.</li>
@@ -472,8 +472,8 @@ liability. Only those bugs should be corrected that affect profit.
 </div>
 
 </section>
-<section id="org0800b55">
-<h3 id="org0800b55">Software ist unsichtbar</h3>
+<section id="org8d1a8a6">
+<h3 id="org8d1a8a6">Software ist unsichtbar</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/SwAuto.png" alt="SwAuto.png" width="600px" />
@@ -483,8 +483,8 @@ liability. Only those bugs should be corrected that affect profit.
 </section>
 </section>
 <section>
-<section id="org6ef6d33">
-<h2 id="org6ef6d33">Beispiel zur Schärfung des Problembewusstseins</h2>
+<section id="org30e04df">
+<h2 id="org30e04df">Beispiel zur Schärfung des Problembewusstseins</h2>
 <ul>
 <li>Aufgabenstellung (in Anlehnung an <a class='org-ref-reference' href="#KlaerenSperber2007">KlaerenSperber2007</a>)</li>
 
@@ -517,8 +517,8 @@ Anzahl der Fahrzeuge \(n\) formuliert werden?</li>
 </p>
 
 </section>
-<section id="orge26d5ca">
-<h3 id="orge26d5ca">Beispiel zur Schärfung des Problembewusstseins (2)</h3>
+<section id="org5991995">
+<h3 id="org5991995">Beispiel zur Schärfung des Problembewusstseins (2)</h3>
 <ul>
 <li>Lösung des Gleichungssystems:</li>
 
@@ -552,8 +552,8 @@ werden. ABER: Was liefert die Formel für \(n=3\) und \(m=9\)?</li>
 </ul>
 
 </section>
-<section id="org265b761">
-<h3 id="org265b761">Beispiel zur Schärfung des Problembewusstseins (3)</h3>
+<section id="org1da57ad">
+<h3 id="org1da57ad">Beispiel zur Schärfung des Problembewusstseins (3)</h3>
 <ul class="fragment roll-in">
 <li>Schlussfolgerung: \(m\) muss gerade sein.</li>
 
@@ -599,8 +599,8 @@ geben.)</li>
 </ul>
 
 </section>
-<section id="org1bb6ce1">
-<h3 id="org1bb6ce1">Beispiel zur Schärfung des Problembewusstseins (4)</h3>
+<section id="orge003eb0">
+<h3 id="orge003eb0">Beispiel zur Schärfung des Problembewusstseins (4)</h3>
 <ul>
 <li>Schlussfolgerung: Die Anzahl der Räder darf höchstens viermal so groß
 sein wie die Anzahl der Fahrzeuge.</li>
@@ -620,7 +620,7 @@ gilt: \[m \mbox{ gerade und } 2n\leq m \leq4n\]</li>
 
 </section>
 <section id="aufgabePkw">
-<h5 id="aufgabePkw"><a id="org6397d72"></a>Aufgabe</h5>
+<h5 id="aufgabePkw"><a id="orgd9f5457"></a>Aufgabe</h5>
 <p>
 Begründen Sie, warum mit dieser Bedingung die Lösung
       des Gleichungssystems die folgenden Anforderungen erfüllt:
@@ -638,8 +638,8 @@ Begründen Sie, warum mit dieser Bedingung die Lösung
 </section>
 </section>
 <section>
-<section id="orgdb3fef3">
-<h2 id="orgdb3fef3">Was ist ein Paradigma?</h2>
+<section id="org518fc0a">
+<h2 id="org518fc0a">Was ist ein Paradigma?</h2>
 <p>
 Das Wort Paradigma leitet sich vom griechischen Wort παράδειγμα
 (parádeigma) ab, das (lt. Menge-Güthling) übersetzt <i>Beispiel</i> oder
@@ -659,13 +659,13 @@ Häufig wird das Wort im Sinne von <i>Denkmuster</i> gebraucht.
 </section>
 </section>
 <section>
-<section id="orga607c6b">
-<h2 id="orga607c6b">Was ist ein Programmierparadigma?</h2>
-<div class="outline-text-2" id="text-orga607c6b">
+<section id="org7cebd9d">
+<h2 id="org7cebd9d">Was ist ein Programmierparadigma?</h2>
+<div class="outline-text-2" id="text-org7cebd9d">
 </div>
 </section>
-<section id="orgd05bf5a">
-<h3 id="orgd05bf5a">Begriffsbestimmung</h3>
+<section id="orgd187a2a">
+<h3 id="orgd187a2a">Begriffsbestimmung</h3>
 <p>
 Antwort lt. <a href="https://de.wikipedia.org/wiki/Programmierparadigma">Wikipedia</a>: ein fundamentaler Programmierstil
 </p>
@@ -681,8 +681,8 @@ Erstellen von Quellcode nach bestimmten vorgegebenen Regeln.“
 </p>
 
 </section>
-<section id="org5ff2dc7">
-<h3 id="org5ff2dc7">übliche Klassifikationen</h3>
+<section id="orga12a0e6">
+<h3 id="orga12a0e6">übliche Klassifikationen</h3>
 <!-- This HTML table template is generated by emacs 25.1.1 -->
 <table border="1">
   <tr>
@@ -722,8 +722,8 @@ Problem ist.</li>
 </ul>
 
 </section>
-<section id="org39b0aee">
-<h3 id="org39b0aee">Die „klassischen” Programmierparadigmen</h3>
+<section id="orgc0532c5">
+<h3 id="orgc0532c5">Die „klassischen” Programmierparadigmen</h3>
 <ul>
 <li>Imperative Programmierung
 <ul>
@@ -790,14 +790,14 @@ ist.</li>
 </ul>
 
 </section>
-<section id="orga4a767b">
-<h4 id="orga4a767b">Eine detailliertere Übersicht</h4>
+<section id="orga560c2e">
+<h4 id="orga560c2e">Eine detailliertere Übersicht</h4>
 <p>
 <a href="./Abbildungen/paradigmsDIAGRAMeng108.pdf">The principal programming paradigms</a>
 </p>
 </section>
-<section id="org7965ad1">
-<h3 id="org7965ad1">Prozedurorientiertes vs. objektorientiertes Denken</h3>
+<section id="org6997db9">
+<h3 id="org6997db9">Prozedurorientiertes vs. objektorientiertes Denken</h3>
 <p>
 (Darstellung angelehnt an <a class='org-ref-reference' href="#Moessenboeck">Moessenboeck</a>)
 </p>
@@ -821,8 +821,8 @@ Vordergrund, Daten sind „zweitrangig“.</li>
 </pre>
 
 </section>
-<section id="org216ad04">
-<h4 id="org216ad04">Merkmale der prozeduralen Programmierung</h4>
+<section id="org5f7ef21">
+<h4 id="org5f7ef21">Merkmale der prozeduralen Programmierung</h4>
 <ul>
 <li>in konventionellen Sprachen für jede Figurart eigene Prozedur
 erforderlich</li>
@@ -849,8 +849,8 @@ beliebige geometrische Figur:
 </ul>
 
 </section>
-<section id="orgccf07d7">
-<h4 id="orgccf07d7">Objektorientiertes Denken &#x2026;</h4>
+<section id="orga0384e7">
+<h4 id="orga0384e7">Objektorientiertes Denken &#x2026;</h4>
 <p>
 &#x2026; stellt die Daten in den Mittelpunkt der Betrachtung:
 </p>
@@ -867,8 +867,8 @@ beliebige geometrische Figur:
 </pre>
 
 </section>
-<section id="org405f033">
-<h4 id="org405f033">Merkmale der Objektorientierten Programmierung:</h4>
+<section id="org85aedc0">
+<h4 id="org85aedc0">Merkmale der Objektorientierten Programmierung:</h4>
 <ul>
 <li>Ein Objekt antwortet auf den Empfang einer Frage (einer Nachricht).</li>
 
@@ -880,8 +880,8 @@ ermitteln ist.</li>
 </ul>
 
 </section>
-<section id="org147a798">
-<h3 id="org147a798">Die Überbrückung der „Abstraktionslücke“</h3>
+<section id="org34f7897">
+<h3 id="org34f7897">Die Überbrückung der „Abstraktionslücke“</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/Abstraktionsluecke.png" alt="Abstraktionsluecke.png" width="650px" />
@@ -889,8 +889,8 @@ ermitteln ist.</li>
 </div>
 
 </section>
-<section id="org25e1162">
-<h3 id="org25e1162">Bedeutung der Abstraktion in der Software-Technik</h3>
+<section id="org9ea47f4">
+<h3 id="org9ea47f4">Bedeutung der Abstraktion in der Software-Technik</h3>
 <ul>
 <li>Komplexität von Softwaresystemen überfordert
 
@@ -926,8 +926,8 @@ bereitgestellten Ausdrucksmittel entscheidend
 </ul>
 
 </section>
-<section id="orgef5f6b4">
-<h3 id="orgef5f6b4">Eine Bezahl-App</h3>
+<section id="org4280220">
+<h3 id="org4280220">Eine Bezahl-App</h3>
 <p>
 Entwicklung beschrieben durch Wille Faler in
 <a href="http://agile.dzone.com/news/one-night-clojure-makes-scala">http://agile.dzone.com/news/one-night-clojure-makes-scala</a>
@@ -951,8 +951,8 @@ Entwicklung beschrieben durch Wille Faler in
 </section>
 </section>
 <section>
-<section id="orgdc2cd29">
-<h2 id="orgdc2cd29"><h2>Literaturverzeichnis</h2>
+<section id="orgd234617">
+<h2 id="orgd234617"><h2>Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="AmitRathore2012">[AmitRathore2012]</a> <a name="AmitRathore2012"></a>Amit Rathore, Clojure in Action, Manning Publications Co. (2012).</li>
 <li><a id="Hales2008">[Hales2008]</a> <a name="Hales2008"></a>Thomas Hales, Formal Proof, <i>Notices of the AMS</i>, <b>55(11)</b>, (2008).</li>
 <li><a id="KlaerenSperber2007">[KlaerenSperber2007]</a> <a name="KlaerenSperber2007"></a>Herbert Klaeren & Michael Sperber, Die Macht der Abstraktion, B. G. Teubner (2007).</li>
@@ -996,7 +996,7 @@ dependencies: [
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
-,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ]});
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
 </script>
 </body>
 </html>
