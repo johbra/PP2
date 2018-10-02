@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-09-23 Sun 16:20 -->
+<!-- 2018-10-02 Tue 19:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programmierparadigmen</title>
@@ -268,12 +268,12 @@ for the JavaScript code in this tag.
 <span class="subtitle">Aufgaben</span>
 </h1>
 
-<div id="outline-container-orgb30343b" class="outline-2">
-<h2 id="orgb30343b"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
+<div id="outline-container-orgb4cdff5" class="outline-2">
+<h2 id="orgb4cdff5"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org4989d88" class="outline-3">
-<h3 id="org4989d88"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
+<div id="outline-container-org4771341" class="outline-3">
+<h3 id="org4771341"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Lösen Sie das SEND-MORE-MONEY-Problem aus der Vorlesung 
@@ -283,8 +283,8 @@ Beachten Sie Nebenbedingungen.
 </div>
 </div>
 
-<div id="outline-container-org126ee50" class="outline-3">
-<h3 id="org126ee50"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
+<div id="outline-container-orgea7e23e" class="outline-3">
+<h3 id="orgea7e23e"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Führen Sie für das Pkw-Motorräder-Problem aus der <a href="../Vorlesung/PP2-1-Einstieg.html#aufgabePkw">Vorlesung</a> den dort
@@ -293,8 +293,8 @@ verlangten Beweis!
 </div>
 </div>
 
-<div id="outline-container-org8de327f" class="outline-3">
-<h3 id="org8de327f"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
+<div id="outline-container-orgc87859b" class="outline-3">
+<h3 id="orgc87859b"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li><p>
@@ -385,137 +385,220 @@ vorkommender Monat keinen Einfluss auf das Resultat hat.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org2b3a3a4" class="outline-3">
-<h3 id="org2b3a3a4"><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
-<div class="outline-text-3" id="text-1-4">
-<p>
-aus section2sum.pdf
+<div id="outline-container-orga5b9b0d" class="outline-3">
+<h3 id="aufgabemustervergleich"><a id="orga5b9b0d"></a><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
+<div class="outline-text-3" id="text-aufgabemustervergleich">
+<ol class="org-ol">
+<li><p>
+Gegeben sei die folgende Datendefintion für <b>arithmetische Ausdrücke</b>,
+bestehend aus <i>Konstanten</i>, <i>Negationen</i>, <i>Additionen</i> und <i>Multiplikationen</i>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">exp</span> = Constant <span style="color: #0000FF;">of</span> int
-             | Negate <span style="color: #0000FF;">of</span> exp
-             | Add <span style="color: #0000FF;">of</span> exp * exp
-             | Multiply <span style="color: #0000FF;">of</span> exp * exp
+<pre class="src src-sml">   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">exp</span> = Constant <span style="color: #0000FF;">of</span> int
+                | Negate <span style="color: #0000FF;">of</span> exp
+                | Add <span style="color: #0000FF;">of</span> exp * exp
+                | Multiply <span style="color: #0000FF;">of</span> exp * exp
 </pre>
 </div>
 <p>
-Thanks to the self-reference, what this data definition really
-describes is trees where the leaves are integers and the internal
-nodes are either negations with one child, additions with two children
-or multiplications with two children. We can write a function that
-takes an exp and evaluates it:
+Durch diese rekursive Datendefintion werden Bäume definiert, deren
+Blätter ganze Zahlen und deren interne Knoten entweder Negationen mit
+einem Kindknoten oder Additionen bzw. Multiplikationen mit je zwei
+Kindknoten sind.
 </p>
 
 <p>
-Lösung
+Die folgenden SML-Funktionen akzeptieren alle einen Wert vom Typ <code>exp</code>
+als Argument.
 </p>
-<div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">eval</span> e =
-    <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
-        Constant i =&gt; i
-      | Negate e2  =&gt; ~ <span style="color: #707183;">(</span>eval e2<span style="color: #707183;">)</span>
-      | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span> + <span style="color: #707183;">(</span>eval e2<span style="color: #707183;">)</span>
-      | Multiply<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span> * <span style="color: #707183;">(</span>eval e2<span style="color: #707183;">)</span>
-</pre>
-</div>
+
+<ol class="org-ol">
+<li><p>
+Schreiben Sie eine SML-Funktion <code>eval</code>, die den ganzzahligen Wert
+des Arguments berechnet.
+</p>
 
 <p>
-So this function call evaluates to 15:
+Z.&nbsp;B. liefert der Aufruf
 </p>
 <pre class="example">
 eval (Add (Constant 19, Negate (Constant 4)))
 
 </pre>
-
 <p>
-Weitere Teilaufgaben:
+den Wert 15.
+</p></li>
+
+<li>Schreiben Sie eine SML-Funktion <code>largest_constant</code>, die die größte
+Konstante des Ausdrucks ermittelt.</li>
+<li>Schreiben Sie eine SML-Funktion <code>list_of_constants</code>, die eine Liste
+mit alles Konstanten des Ausdrucks liefert.</li>
+<li>Schreiben Sie eine SML-Funktion <code>number_of_adds</code>, die Anzahl der
+Additionen im Ausdruck ermittelt.</li>
+</ol></li>
+
+<li><p>
+Funktionen für ein <b>frei erfundenes Kartenspiel</b> (Solitär)
 </p>
 
-<p>
-There are many functions we might write over values of type exp and
-most of them will use pattern-matching and recursion in a similar
-way. Here are other functions you could write that process an exp
-argument:
-</p>
 <ul class="org-ul">
-<li>The largest constant in an expression</li>
-<li>A list of all the constants in an expression (use list append)</li>
-<li>A bool indicating whether there is at least one multiplication in the expression + The number of addition expressions in an expression</li>
+<li>Das Spiel beinhaltet einen <i>Kartenstapel</i> und einen <i>Zielwert</i>.</li>
+<li>Die Spielerin besitzt eine Liste <i>gezogener Karten</i>, die zu Beginn des
+Spiels leer ist.</li>
+<li>Sie führt einen <i>Zug</i> aus, indem sie entweder
+<ul class="org-ul">
+<li>die oberste Karte vom Kartenstapel <i>zieht</i> und zur Liste gezogener
+Karten hinzufügt oder</li>
+<li>eine Karte aus Liste gezogener Karten <i>ablegt</i>, d.&nbsp;h. aus
+der Liste gezogener Karten entfernt.</li>
+</ul></li>
+<li>Das Spiel ist beendet, wenn entweder
+<ul class="org-ul">
+<li>die Spielerin entscheidet, keinen weiteren Zug auszuführen oder</li>
+<li>die Summe der Werte der gezogenen Karten den Zielwert überschreitet.</li>
+</ul></li>
+<li>Das Ziel des Spiels besteht darin, es mit einem möglichst niedrigen
+<i>Punktestand</i> (0 ist das Optimum.)zu beenden.</li>
+<li>Der Punktestand wird wie folgt ermittelt: Sei \(s\) die Summe der
+Kartenwerte der gezogenen Karten. Dann gilt:
+\[vorlaeufiger Punktestand = \begin{cases} s>Zielwert &
+     3\cdot(s-Zielwert)\\
+     s\leq Zielwert & Zielwert-s\end{cases}\] 
+Der Punktestand ist der \(vorlaeufiger Punktestand\), es sei denn, alle
+gezogenen Karte haben die gleiche Farbe. In diesem Fall ist der
+Punktestand gleich \(\frac{vorlaeufiger Punktestand}{2}\), wobei hier
+ganzzahlig dividiert wird (Operator <code>div</code> in ML).</li>
 </ul>
+
 <p>
-Here is the last one:
+Ihre Lösungen müssen Mustervergleich benutzen. Die Nutzung der
+Standard-Funktionen <code>null</code>, <code>hd</code>, <code>tl</code>, <code>isSome</code> und <code>valOf</code> ist
+nicht erlaubt. Auch ist nichts erlaubt, was das Zeichen # benutzt. 
 </p>
-<pre class="example">
-fun number_of_adds e =
-    case e of
-        =&gt;0
-        =&gt; number_of_adds e2
-        =&gt; 1 + number_of_adds e1 + number_of_adds e2
-                                                  Constant i
-      | Negate e2
-      | Add(e1,e2)
-      | Multiply(e1,e2) =&gt; number_of_adds e1 + number_of_adds e2
+
+<p>
+Benutzen Sie die folgenden Datentypen:  
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">   <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">Sie d&#252;rfen davon ausgehen, dass f&#252;r Zahl nur die Werte 2, 3, ..., 10</span>
+<span style="color: #8D8D84; font-style: italic;">      benutzt werden. </span><span style="color: #8D8D84;">*)</span>
+   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">sorte</span> = Kreuz | Pik | Herz | Karo
+   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">wert</span> = Bube | Dame | Koenig | Ass | Zahl <span style="color: #0000FF;">of</span> int 
+   <span style="color: #0000FF;">type</span> <span style="font-weight: bold;">karte</span> = sorte * wert
+
+   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">farbe</span> = Rot | Schwarz
+   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">zug</span> = Ablegen <span style="color: #0000FF;">of</span> karte | Ziehen 
+
+   <span style="color: #0000FF;">exception</span> IllegalerZug
 </pre>
 </div>
+<p>
+Weitere Typdefinitionen sind nicht erforderlich.
+</p>
+
+<p>
+Schreiben Sie nun die folgenden Funktionen:
+</p>
+<dl class="org-dl">
+<dt><code>kartenfarbe</code></dt><dd>nimmt ein Exemplar von <code>karte</code> und liefert seine
+Farbe (Karo und Herz sind rot, Pik und Kreuz sind
+schwarz)</dd>
+
+<dt><code>kartenwert</code></dt><dd>nimmt ein Exemplar von <code>karte</code> und liefert seinen
+Wert (nummerierte Karten haben die Zahl als Wert,
+Asse zählen 11, alle anderen 10)</dd>
+
+<dt><code>entferne_karte</code></dt><dd>nimmt eine Liste von Karten <code>kn</code>, eine
+Karte <code>k</code> sowie eine Exception <code>e</code> und liefert die Liste <code>kn</code>
+ohne <code>k</code>. Falls <code>k</code> mehrfach in <code>kn</code> vorkommt, wird nur das
+erste Exemplar entfernt. Wenn <code>k</code> in <code>kn</code> nicht vorkommt, soll
+die Exception <code>e</code> erzeugt werden. Karten können mit dem
+Operator <code>=</code> verglichen werden.</dd>
+
+<dt><code>alle_farben_gleich</code></dt><dd>nimmt eine Liste von Karten und
+liefert <code>true</code>, wenn alle Karten in der Liste die gleiche
+Farbe haben</dd>
+
+<dt><code>kartensumme</code></dt><dd>nimmt eine Liste von Karten und summiert ihre
+Werte. Benutzen Sie eine endrekursive
+Hilfsfunktion.</dd>
+
+<dt><code>punktestand</code></dt><dd>nimmt eine Liste von Karten (die gezogenen
+Karten) und berechnet den Punktestand nach oben
+angegebener Formel</dd>
+
+<dt><code>spielablauf</code></dt><dd>nimmt eine Liste von Karten (der Kartenstapel),
+eine Liste von Zügen, die die Spielerin der
+Reihe nach abarbeitet, sowie einen Zielwert und
+liefert den Punktestand am Ende des
+Spiels. Benutzen Sie eine lokal definierte
+Hilfsfunktion, deren Argumente den aktuellen
+Spielstand repräsentieren.</dd>
+</dl></li>
+</ol>
 </div>
-<div id="outline-container-orgc0199bc" class="outline-3">
-<h3 id="orgc0199bc"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
+</div>
+
+
+<div id="outline-container-org959cc84" class="outline-3">
+<h3 id="org959cc84"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
-&#x2026;
+Überlegen Sie, wie Kreise, die durch
+</p>
+<ul class="org-ul">
+<li>die Koordinaten des Mittelpunkts und</li>
+<li>den Radius</li>
+</ul>
+<p>
+und die Punkte durch Clojure-Maps dargestellt werden können.
+</p>
+
+<p>
+Schreiben Sie anschließend eine Funktion, die prüft, ob ein Punkt
+innerhalb eines Kreises liegt. Machen Sie dabei für die Argumente
+der Funktion (sowie etwaiger Hilfsfunktionen) von den Möglichkeiten
+des Destructurings Gebrauch.
 </p>
 </div>
 </div>
-<div id="outline-container-org36eead8" class="outline-3">
-<h3 id="org36eead8"><span class="section-number-3">1.6</span> Aufgabe (FHO in SML)</h3>
+<div id="outline-container-orgebcaf48" class="outline-3">
+<h3 id="orgebcaf48"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
-Because ML programs tend to use lists a lot, you might forget that
-higher-order functions are useful for more than lists. Some of our
-first examples just used integers. But higher-order functions also are
-great for our own data structures. Here we use an is<sub>even</sub> function to
-see if all the constants in an arithmetic expression are even. We
-could easily reuse true<sub>of</sub><sub>all</sub><sub>constants</sub> for any other property we
-wanted to check.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">exp</span> = Constant <span style="color: #0000FF;">of</span> int | Negate <span style="color: #0000FF;">of</span> exp | Add <span style="color: #0000FF;">of</span> exp * exp | Multiply <span style="color: #0000FF;">of</span> exp * exp
-<span style="color: #0000FF;">fun</span> <span style="color: #006699;">is_even</span> v =
-    <span style="color: #707183;">(</span>v mod 2 = 0<span style="color: #707183;">)</span>
-<span style="color: #0000FF;">fun</span> true_of_all_constants<span style="color: #707183;">(</span>f,e<span style="color: #707183;">)</span> =
-    <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
-        Constant i
-      | Negate e1
-      | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span>
-      | Multiply<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; true_of_all_constants<span style="color: #707183;">(</span>f,e1<span style="color: #707183;">)</span> <span style="color: #0000FF;">andalso</span> true_of_all_constants<span style="color: #707183;">(</span>f,e2<span style="color: #707183;">)</span>
-        =&gt; f i
-        =&gt; true_of_all_constants<span style="color: #707183;">(</span>f,e1<span style="color: #707183;">)</span>
-        =&gt; true_of_all_constants<span style="color: #707183;">(</span>f,e1<span style="color: #707183;">)</span> <span style="color: #0000FF;">andalso</span> true_of_all_constants<span style="color: #707183;">(</span>f,e2<span style="color: #707183;">)</span>
-<span style="color: #0000FF;">fun</span> <span style="color: #006699;">all_even</span> e = true_of_all_constants<span style="color: #707183;">(</span>is_even,e<span style="color: #707183;">)</span>
-
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgbd9a3bf" class="outline-3">
-<h3 id="orgbd9a3bf"><span class="section-number-3">1.7</span> Aufgaben zu Currying und partielle Anwendungen</h3>
-</div>
-<div id="outline-container-orgb825f49" class="outline-3">
-<h3 id="orgb825f49"><span class="section-number-3">1.8</span> Aufgabe (curry uncurry)</h3>
-<div class="outline-text-3" id="text-1-8">
-<p>
-aus section3sum.pdf:
-Combining Functions to Curry and Uncurry Other Functions
+Schreiben Sie für den Datentyp <code>exp</code> (vgl. <a href="#aufgabemustervergleich">Aufgabe (Mustervergleich)</a>)
+eine Funktion <code>all_odd</code>, die prüft, ob alle Konstanten eines
+Ausdrucks ungerade sind.
 </p>
 
 <p>
-Sometimes functions are curried but the arguments are not in the order
-you want for a partial application. Or sometimes a function is curried
-when you want it to use tuples or vice-versa. Fortunately our earlier
-idiom of combining functions can take functions using one approach and
-produce functions using another:
+Gehen Sie wie folgt vor:
+</p>
+<ul class="org-ul">
+<li>Schreiben Sie eine Funktion höherer Ordnung <code>true_for_all_constants</code>, die ein
+Prädikat (Funktion mit booleschem Resultat) <code>p</code> und einen Ausdruck
+<code>e</code> vom Typ <code>exp</code> als Argumente akzeptiert, und als Resultat 
+genau dann <code>true</code> liefert, wenn die Anwendung von <code>p</code> auf alle
+Konstanten von <code>e</code> <code>true</code> liefert.</li>
+<li>Schreiben Sie dann die Funktion <code>all_odd</code> unter Verwendung von
+<code>true_for_all_constants</code>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org24e66f2" class="outline-3">
+<h3 id="org24e66f2"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung und Entcurryfizierung)</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Gelegentlich liegen die Argumente curryfizierter Funktionen nicht in
+der gewünschten Reihenfolge vor. Manchmal liegt eine
+curryfizierte Funktion vor, die man lieber mit Tupel aufrufen möchte,
+und umgekehrt.
+</p>
+
+<p>
+Machen Sie sich klar, wie die folgenden Funktionen mit diesen
+Problemen umgehen.
 </p>
 
 <div class="org-src-container">
@@ -527,945 +610,32 @@ produce functions using another:
 </div>
 
 <p>
-Analysieren Sie obige Funktionen.
-</p>
-
-<p>
-Hinweis:
-Looking at the types of these functions can help you understand what
-they do. As an aside, the types are also fascinating because if you
-pronounce -&gt; as “implies” and * as “and”, the types of all these
-functions are logical tautologies.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org56fff8f" class="outline-3">
-<h3 id="org56fff8f"><span class="section-number-3">1.9</span> Aufgabe (alternative Listenimplementierung)</h3>
-<div class="outline-text-3" id="text-1-9">
-<p>
-Gegeben sind folgende Definitionen für <code>cns</code> und <code>fst</code>:
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">ns</span> <span style="color: #6434A3;">dataasproc</span><span style="color: #707183;">)</span>
-<span style="color: #707183;">(</span><span style="color: #006FE0;">use</span> 'clojure.test<span style="color: #707183;">)</span>
-
-<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">cns</span>
-  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>x y<span style="color: #909183;">]</span>
-    <span style="color: #909183;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #709870;">[</span>m<span style="color: #709870;">]</span> <span style="color: #709870;">(</span>m x y<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-
-<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">fst</span>
-  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>z<span style="color: #909183;">]</span> <span style="color: #909183;">(</span>z <span style="color: #709870;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #907373;">[</span>p q<span style="color: #907373;">]</span> p<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-<ol class="org-ol">
-<li>Verifizieren Sie, dass der Ausdruck <code>(fst (ons x y))</code> als
-Resultat <code>x</code> liefert.</li>
-<li>Fügen Sie die passende Definition von <code>rst</code> hinzu.</li>
-</ol>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org3a50e5c" class="outline-2">
-<h2 id="org3a50e5c"><span class="section-number-2">2</span> Teil 2 (6. Semester)</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgb9609a6" class="outline-3">
-<h3 id="orgb9609a6"><span class="section-number-3">2.1</span> Aufgabe (verzögerte Auswertung - Streams)</h3>
-<div class="outline-text-3" id="text-2-1">
-</div>
-<div id="outline-container-org6de4d77" class="outline-4">
-<h4 id="org6de4d77">Streams</h4>
-<div class="outline-text-4" id="text-org6de4d77">
-<p>
-Ein Stream ist eine unendliche Folge von Werten. Selbstverständlich
-kann ein solche Folge nicht tatsächlich erzeugt werden - dies
-beanspruchte unendlich viel Zeit. Es ist aber möglich, Code zu
-erzeugen, der weiß, wie die Folge zu erzeugen ist und anderen Code,
-der weiß, wieviel Elemente benötigt werden.
-</p>
-
-<p>
-Die UNIX pipe <code>(cmd1 | cmd2)</code> ist ein Stream; sie sorgt dafür, dass <code>cmd1</code>
-genau so viel Output erzeugt wie <code>cmd2</code> an Input verlangt.
-Web-Programme, die auf Klicks von Benutzern auf Web-Seiten reagieren,
-können die Benutzeraktivitäten als Stream betrachten &#x2013; ohne zu wissen,
-wann die nächste Aktivität kommt und wie viele es sein werden &#x2013; und
-entsprechend antworten.
-</p>
-
-<p>
-Allgemeiner gesprochen: Streams stellen eine Art Arbeitsteilung dar:
-Ein Teil der Software weiß, wie aufeinanderfolgende Werte der unendlichen
-Folge zu erzeugen sind, weiß aber nicht, wie viele benötigt werden und
-was mit ihnen passieren soll. Ein anderer Teil kann ermitteln, wie viele
-Werte benötigt werden und was mit ihnen geschehen soll, weiß aber nicht,
-wie sie zu erzeugen sind.
-</p>
-
-<p>
-Es gibt viele Möglichkeiten, Streams zu implementieren. Hier werden wir
-eine einfache Variante realisieren, die einen Stream als <i>thunk</i> repräsentiert,
-der, wenn er aufgerufen wird, einen zweielementigen Vektor erzeugt, dessen
-erstes Element den ersten Wert der unendlichen Folge enthält. Im zweiten
-Element wird ein thunk abgelegt, der den Stream für das zweite und die
-übrigen Elemente der unendlichen Folge repräsentiert.
-</p>
-
-<p>
-Aus „nostalgischen” Gründen werden hier zunächst zwei Funktionen für den
-Zugriff auf das erste (<code>car</code>) und das zweite (<code>cdr</code>) Element eines Vektors
-definiert:
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">car</span> <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>v<span style="color: #909183;">]</span> <span style="color: #909183;">(</span>v 0<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">(v 0) ist das Gleiche wie (get v 0), wenn v ein Vektor</span>
-<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">cdr</span> <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>v<span style="color: #909183;">]</span> <span style="color: #909183;">(</span>v 1<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-
-<p>
-Die Definition von thunks für die Repäsentation unendlicher Folgen erfolgt
-üblicherweise rekursiv.
-</p>
-
-<dl class="org-dl">
-<dt>1. Beispiel:</dt><dd><p>
-eine unendliche Folge von Einsen
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">ones</span> <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[]</span> <span style="color: #909183;">[</span>1 ones<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-<p>
-Machen Sie sich die Wirkung der folgenden Ausdrücke klar. Beachten
-Sie die Klammern!
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #707183;">(</span>ones<span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; [1 #function[user/ones]]</span>
-  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span>ones<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 1</span>
-  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span>cdr <span style="color: #709870;">(</span>ones<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 1</span>
-</pre>
-</div></dd>
-
-<dt>2. Beispiel:</dt><dd><p>
-die natürlichen Zahlen
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">nats</span>
-    <span style="color: #7388D6;">(</span><span style="color: #0000FF;">letfn</span> <span style="color: #909183;">[</span><span style="color: #709870;">(</span>f <span style="color: #907373;">[</span>x<span style="color: #907373;">]</span> <span style="color: #907373;">[</span>x <span style="color: #6276BA;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #858580;">[]</span> <span style="color: #858580;">(</span>f <span style="color: #80A880;">(</span>+ x 1<span style="color: #80A880;">)</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">]</span><span style="color: #709870;">)</span><span style="color: #909183;">]</span>
-      <span style="color: #909183;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #709870;">[]</span> <span style="color: #709870;">(</span>f 1<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-<p>
-Machen Sie sich die Wirkung der folgenden Ausdrücke klar. Beachten Sie die
-Klammern!
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span>nats<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 1</span>
-  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span>cdr <span style="color: #709870;">(</span>nats<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 2</span>
-  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span>cdr <span style="color: #709870;">(</span><span style="color: #907373;">(</span>cdr <span style="color: #6276BA;">(</span>nats<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>  <span style="color: #8D8D84; font-style: italic;">;=&gt; 3</span>
-</pre>
-</div></dd>
-
-<dt>3. Beispiel:</dt><dd><p>
-die Zweierpotenzen
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">powers-of-two</span>
-    <span style="color: #7388D6;">(</span><span style="color: #0000FF;">letfn</span> <span style="color: #909183;">[</span><span style="color: #709870;">(</span>f <span style="color: #907373;">[</span>x<span style="color: #907373;">]</span> <span style="color: #907373;">[</span>x <span style="color: #6276BA;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #858580;">[]</span> <span style="color: #858580;">(</span>f <span style="color: #80A880;">(</span>* x 2<span style="color: #80A880;">)</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">]</span><span style="color: #709870;">)</span><span style="color: #909183;">]</span>
-      <span style="color: #909183;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #709870;">[]</span> <span style="color: #709870;">(</span>f 2<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-<p>
-Machen Sie sich die Wirkung der folgenden Ausdrücke klar. Beachten Sie die
-Klammern!
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span>powers-of-two<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 2</span>
-  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span>cdr <span style="color: #709870;">(</span>powers-of-two<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 4</span>
-  <span style="color: #707183;">(</span>car <span style="color: #7388D6;">(</span><span style="color: #909183;">(</span>cdr <span style="color: #709870;">(</span><span style="color: #907373;">(</span>cdr <span style="color: #6276BA;">(</span>powers-of-two<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 8</span>
-</pre>
-</div></dd>
-</dl>
-
-<p>
-Man könnte eine Funktion höherer Ordnung schreiben, die einen Stream und
-ein Prädikat als Argumente akzeptiert und eine Zahl zurückgibt, die sagt,
-wieviele Elemente des Streams erzeugt werden müssen, bevor das Prädikat
-<code>true</code> liefert:
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">number-until</span>
-  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>stream tester<span style="color: #909183;">]</span>
-    <span style="color: #909183;">(</span><span style="color: #0000FF;">letfn</span> <span style="color: #709870;">[</span><span style="color: #907373;">(</span>f <span style="color: #6276BA;">[</span>stream answer<span style="color: #6276BA;">]</span>
-              <span style="color: #6276BA;">(</span><span style="color: #0000FF;">let</span> <span style="color: #858580;">[</span>pr <span style="color: #80A880;">(</span>stream<span style="color: #80A880;">)</span><span style="color: #858580;">]</span>
-                <span style="color: #858580;">(</span><span style="color: #0000FF;">if</span> <span style="color: #80A880;">(</span>tester <span style="color: #887070;">(</span>car pr<span style="color: #887070;">)</span><span style="color: #80A880;">)</span>
-                  answer
-                  <span style="color: #80A880;">(</span>f <span style="color: #887070;">(</span>cdr pr<span style="color: #887070;">)</span> <span style="color: #887070;">(</span>+ answer 1<span style="color: #887070;">)</span><span style="color: #80A880;">)</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
-      <span style="color: #709870;">(</span>f stream 1<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-<p>
-Beispielanwendung:
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #707183;">(</span>number-until powers-of-two <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>x<span style="color: #909183;">]</span> <span style="color: #909183;">(</span>&gt; x 16<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 5</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org5c4151c" class="outline-4">
-<h4 id="org5c4151c">Aufgaben</h4>
-<div class="outline-text-4" id="text-org5c4151c">
-<ol class="org-ol">
-<li><p>
-Schreiben Sie eine Funktion <code>stream-for-n-steps</code>, die einen Stream
-<code>s</code> und eine Zahl <code>n</code> nimmt. Sie gibt eine Liste mit den ersten <code>n</code>
-Elementen von <code>s</code> zurück. (Lösung erfordert ca. 4 Zeilen.)
-</p>
-<p>
-Beispielanwendung:
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">   <span style="color: #707183;">(</span>stream-for-n-steps powers-of-two 5<span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; (2 4 8 16 32)</span>
-</pre>
-</div></li>
-
-<li><p>
-Schreiben Sie einen Stream <code>funny-number-stream</code>, der dem für
-natürliche Zahlen ähnelt, nur sollen alle durch 5 teilbaren Zahlen
-negiert werden, z. B. \(1, 2, 3, 4, -5, 6, 7, 8, 9, -10, 11, \ldots\). 
-</p>
-
-<p>
-Testen Sie die Funktion mithilfe von <code>stream-for-n-steps</code>.
-</p></li>
-<li>Zusatzaufgabe (optional)
-Die Streams <code>ones</code>, <code>nats</code> und <code>powers-of-two</code> haben gemeinsam, dass für die
-Berechnung des nächsten Elements maximal das vorherige bekannt sein
-muss. Daher ist es nahe liegend, eine Funktion höherer Ordnung
-<code>stream-maker</code> zu schreiben, die aus dem ersten Element und einer
-Funktion zur Berechnung des nächsten einen Stream baut.</li>
-</ol>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgc483d28" class="outline-3">
-<h3 id="orgc483d28"><span class="section-number-3">2.2</span> Aufgabe (Umgebungsdiagramme)</h3>
-<div class="outline-text-3" id="text-2-2">
-<ol class="org-ol">
-<li><p>
-Grundlage:
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">nimmt einen Betrag als Startkapital eines Kontos</span>
-   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">und erzeugt eine "belaste-Funktion"</span>
-   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">erzeuge-konto: (number -&gt; (number -&gt; (mixed number symbol)))</span>
-   <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">erzeuge-konto</span>
-     <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>startwert<span style="color: #909183;">]</span>
-       <span style="color: #909183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #709870;">[</span>konto <span style="color: #907373;">(</span><span style="color: #006FE0;">atom</span> startwert<span style="color: #907373;">)</span><span style="color: #709870;">]</span>
-         <span style="color: #709870;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #907373;">[</span>betrag<span style="color: #907373;">]</span>
-           <span style="color: #907373;">(</span><span style="color: #0000FF;">cond</span>
-             <span style="color: #6276BA;">(</span>&gt;= @konto betrag<span style="color: #6276BA;">)</span>
-             <span style="color: #6276BA;">(</span><span style="color: #0000FF;">do</span>
-               <span style="color: #858580;">(</span><span style="color: #006FE0;">swap!</span> konto - betrag<span style="color: #858580;">)</span>
-               @konto<span style="color: #6276BA;">)</span>
-
-             <span style="color: #D0372D;">:else</span> 'konto-ueberzogen<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-
-<ol class="org-ol">
-<li><p>
-Wie sieht das Umgebungsdiagramm aus, wenn zwei Konten angelegt
-werden?
-</p>
-
-<p>
-<code>(def konto1 (erzeuge-konto 100))</code><br />
-<code>(def konto2 (erzeuge-konto 200))</code>
-</p></li>
-
-<li>Stellen Sie die Auswertung von <code>(konto2 120)</code> dar!</li>
-
-<li><p>
-Wie sieht das Umgebungsdiagramm aus für?
-</p>
-
-<p>
-<code>(def konto1 (erzeuge-konto 100))</code><br />
-<code>(def konto2 konto1)</code>
-</p></li>
-</ol></li>
-
-<li><p>
-Betrachten Sie die folgende Variante der Prozedur <code>erzeuge-konto</code>.
-Machen Sie sich ihre Wirkungsweise klar.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-clojure">   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">erzeuge-konto (number -&gt; (symbol -&gt; (number -&gt; (mixed number symbol))))</span>
-   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">nimmt einen Betrag als Startkapital und erzeugt ein "Konto-Object"</span>
-   <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">erzeuge-konto</span>
-     <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>startkapital<span style="color: #909183;">]</span>
-       <span style="color: #909183;">(</span><span style="color: #0000FF;">let</span>
-           <span style="color: #709870;">[</span><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Exemplarvariable</span>
-            konto <span style="color: #907373;">(</span><span style="color: #006FE0;">atom</span> startkapital<span style="color: #907373;">)</span>
-
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Exemplarmethoden:</span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">belaste: (number -&gt; (mixed number symbol))</span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Effekt: bucht vom konto betrag ab, liefert neuen </span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Kontostand als Resultat, falls Konto nicht ueberzogen</span>
-            belaste
-            <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #6276BA;">[</span>betrag<span style="color: #6276BA;">]</span>
-              <span style="color: #6276BA;">(</span><span style="color: #0000FF;">cond</span>
-                <span style="color: #858580;">(</span>&gt;= @konto betrag<span style="color: #858580;">)</span>
-                <span style="color: #858580;">(</span><span style="color: #0000FF;">do</span>
-                  <span style="color: #80A880;">(</span><span style="color: #006FE0;">swap!</span> konto - betrag<span style="color: #80A880;">)</span>
-                  @konto<span style="color: #858580;">)</span>
-                <span style="color: #D0372D;">:else</span> 'konto-ueberzogen<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">schreibegut: (number -&gt; number)</span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Effekt: schreibt konto betrag gut</span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">liefert neuen Kontostand als Resultat</span>
-            schreibegut
-            <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #6276BA;">[</span>betrag<span style="color: #6276BA;">]</span>
-              <span style="color: #6276BA;">(</span><span style="color: #0000FF;">do</span>
-                <span style="color: #858580;">(</span><span style="color: #006FE0;">swap!</span> konto + betrag<span style="color: #858580;">)</span>
-                @konto<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>
-
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">method dispatcher</span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">verteile: (number -&gt; (mixed number symbol))</span>
-            <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">verwaltet die von Konten verstandenen Nachrichten</span>
-            verteile
-            <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #6276BA;">[</span>nachricht<span style="color: #6276BA;">]</span>
-              <span style="color: #6276BA;">(</span><span style="color: #0000FF;">cond</span>
-                <span style="color: #858580;">(</span>= nachricht 'belaste<span style="color: #858580;">)</span> belaste
-                <span style="color: #858580;">(</span>= nachricht 'schreibegut<span style="color: #858580;">)</span> schreibegut
-                <span style="color: #D0372D;">:else</span> <span style="color: #858580;">(</span><span style="color: #0000FF;">throw</span> <span style="color: #80A880;">(</span>Exception. <span style="color: #008000;">"unbekannte Nachricht"</span><span style="color: #80A880;">)</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
-         verteile<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
-</pre>
-</div>
-<p>
-Wie sieht das Umgebungsdiagramm für die folgende Ausdruckssequenz
-aus:
-</p>
-
-<p>
-<code>(def konto (erzeuge-konto 200))</code>
-</p>
-<p>
-<code>((konto 'schreibegut) 60)</code><br />
-</p>
-<p>
-Nach der Auswertung des Ausdrucks verschwinden die Umgebungen E2 und E3
-wieder.
-</p>
-
-<p>
-<code>((konto 'belaste) 120)</code>
-</p></li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-orgd580bee" class="outline-3">
-<h3 id="orgd580bee"><span class="section-number-3">2.3</span> Aufgabe (Constraint Propagation)</h3>
-<div class="outline-text-3" id="text-2-3">
-<ol class="org-ol">
-<li>Unter Verwendung der aus der Vorlesung bekannten <i>primitive constraints</i>
-<code>multiplier</code>, <code>adder</code> und <code>constant</code> schreiben Sie eine Prozedur
-<code>averager</code>, die drei Konnektoren <code>a</code>, <code>b</code> und <code>c</code> als Eingänge
-benutzt und ein Constraint so implementiert, dass der Wert von <code>c</code>
-der Mittelwert der Werte an <code>a</code> und <code>b</code> ist.</li>
-
-<li><p>
-Schreiben Sie für die Zinseszins-Formel:
-</p>
-
-<p>
-\[\frac{K_{n}}{K_{0}}=(1+\frac{p}{100})^{n}\]
-</p>
-
-<p>
-eine Constraint-Programming-Spezifikation. Orientieren Sie sich dabei 
-an dem Celsius-Fahrenheit-Konverter aus der Vorlesung. Die
-Clojure-Implementierung finden Sie in moodle im TB <i>Beispiele</i> unter<br />
-<code>celsius-fahrenheit.clj</code>.<br />
-Am gleichen Ort unter<br />
-<code>sicp-cps.zip</code> <br />
-finden Sie ein Leiningen-Projekt mit der Implementierung des für den 
-Celsius-Fahrenheit-Konverter benutzten Constraint-Propagation-Systems
-aus der Vorlesung.
-</p>
-
-<p>
-Gehen Sie wie folgt vor:
-</p>
-<ol class="org-ol">
-<li>Erweitern Sie das Constraint-Programming-System um einen
-<code>exponentiator</code> (in Anlehnung an <code>adder</code> bzw. <code>multiplier</code>, der die
-Gleichung \(z = x^y\) löst!</li>
-<li>Zeichnen Sie ein \glqq Schaltbild\grqq{} für die 
-Zinseszins-Formel!</li>
-<li>Setzen Sie dann das Schaltbild in eine Clojure-Lösung nach dem
-Vorbild des Celsius-Fahrenheit-Konverters um!</li>
-<li>Testen Sie Ihre Lösung, indem Sie Werte für jeweils 3 von 4 Größen
-der Formel vorgeben.</li>
-</ol></li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-org4bc5718" class="outline-3">
-<h3 id="org4bc5718"><span class="section-number-3">2.4</span> Aufgabe (Prolog)</h3>
-<div class="outline-text-3" id="text-2-4">
-<ol class="org-ol">
-<li><p>
-Schreiben Sie ein Prolog-Programm, dass festhält:
-</p>
-<ul class="org-ul">
-<li>ein Löwe, ein Tiger und eine Kuh sind Lebewesen;</li>
-<li>Löwe und Tiger sind Fleichfresser.<br /></li>
-</ul>
-<p>
-Anschließend testen Sie Ihr Programm durch Eingabe der folgenden
-Zielausdrücke:
-</p>
-<ul class="org-ul">
-<li>Es gibt ein Lebewesen Tiger in der Datenbank.</li>
-<li>Eine Kuh und ein Tiger sind beide Lebewesen (Konjunktion zweier Ziele).</li>
-<li>Ein Löwe ist ein Lebewesen und Fleichfresser.</li>
-<li>Ein Kuh ist ein Lebewesen und Fleichfresser.</li>
-</ul></li>
-<li><p>
-Gegeben seien die folgenden biblischen Verwandtschaftsverhältnisse:
-</p>
-<div class="org-src-container">
-<pre class="src src-prolog">   father(abraham,isaac).
-   father(haran,lot).
-   father(haran,milcah).
-   father(haran,yiscah).
-   male(isaac).
-   male(lot).
-   female(milcah).
-   female(yiscah).
-   son(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), male(<span style="color: #BA36A5;">X</span>).
-   daughter(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), female(<span style="color: #BA36A5;">X</span>).
-</pre>
-</div>
-<p>
-Fügen Sie die Prädikate <code>sister/2</code>, <code>brother/2</code> und <code>siblings/2</code>
-hinzu.
-</p></li>
-
-<li><p>
-Gegeben sei die folgende Faktenbasis über Reisemöglichkeiten:
-</p>
-<div class="org-src-container">
-<pre class="src src-prolog">   byCar(auckland,hamilton).
-   byCar(hamilton,raglan).
-   byCar(valmont,saarbruecken).
-   byCar(valmont,metz).
-
-   byTrain(metz,frankfurt).
-   byTrain(saarbruecken,frankfurt).
-   byTrain(metz,paris).
-   byTrain(saarbruecken,paris).
-
-   byPlane(frankfurt,bangkok).
-   byPlane(frankfurt,singapore).
-   byPlane(paris,losAngeles).
-   byPlane(bangkok,auckland).
-   byPlane(losAngeles,auckland).
-</pre>
-</div>
-<ol class="org-ol">
-<li><p>
-Schreiben Sie ein Prädikat <code>travel/2</code>, das ermittelt, ob es
-möglich ist, von einem Ort zu einem anderen zu reisen, indem
-der Reiseweg aus den in der Faktenbasis gegebenen Direktverbindungen verkettet
-wird. Z. B. sollte die Frage
-<code>travel(valmont,raglan).</code> als Resultat <code>true</code> liefern. 
-</p>
-
-<p>
-<b>Hinweis</b>: Es könnte hilfreich sein, ein Prädikat <code>onestep/2</code> zu definieren,
-das die Möglichkeiten zusammenfasst, welche Direktverbindungen
-aufgrund der gegebenen Fakten existieren.
-</p></li>
-
-<li><p>
-Das Prädikat <code>travel/2</code> ermöglicht zu beweisen, dass es z. B. einen Reiseweg
-von Valmont nach Raglan gibt. Für eine detaillierte Reiseplanung
-wäre es aber wünschenswert, auch zu erfahren, über welche
-Zwischenstationen die Reise führt. Schreiben Sie dafür ein
-Prädikat <code>travel/3</code>, das dann z. B. auf die Frage<br />
-<code>travel(valmont,paris, go(valmont,metz,go(metz,paris)))</code><br />
-mit <code>true</code> und auf die Frage<br />
-<code>travel(valmont,losAngeles,X).</code> <br />
-mit<br />
-<code>X = go(valmont,metz,go(metz,paris,go(paris,losAngeles)))</code> <br />
-antwortet. Hier gibt es möglicherweise Alternativen.
-</p>
-
-<p>
-<b>Hinweis</b>: Jeder Zwischenschritt auf der Reise muss registriert
-werden. Betrachten Sie zuerst den Basisfall der Rekursion
-<code>(travel(X,Y) :- onestep(X,Y).)</code> und erweitern ihn so, dass
-<code>travel</code> in seinem dritten Argument speichert, dass ein Schritt
-von <code>X</code> nach <code>Y</code> zurückgelegt wurde.
-</p>
-
-<p>
-Betrachen Sie anschließend die rekursive Regel:
+Anmerkung: Wenn Sie die Typen dieser Funktionen betrachten
 </p>
 <pre class="example">
-travel(X,Y) :- onestep(X,Z), travel(Z,Y).
-
+val other_curry1 = fn : ('a -&gt; 'b -&gt; 'c) -&gt; 'b -&gt; 'a -&gt; 'c
+val other_curry2 = fn : ('a -&gt; 'b -&gt; 'c) -&gt; 'b -&gt; 'a -&gt; 'c
+val curry = fn : ('a * 'b -&gt; 'c) -&gt; 'a -&gt; 'b -&gt; 'c
+val uncurry = fn : ('a -&gt; 'b -&gt; 'c) -&gt; 'a * 'b -&gt; 'c
 </pre>
 <p>
-Diese Klausel sollte eine Struktur zurückgeben, die anzeigt, dass ein Schritt
-von <code>X</code> nach <code>Z</code> zurücklegt und welcher Weg von <code>Z</code> nach <code>Y</code>
-genommen werden muss.
-</p></li>
-
-<li><p>
-Erweitern Sie das Prädikat <code>travel/3</code> so, dass auch angezeigt wird,
-mit welchem Verkehrsmittel die jeweilige Teilstrecke
-zurückgelegt wird.
-</p>
-
-<p>
-<b>Hinweis</b>: Für jede Teilstrecke muss man sich merken, welches
-Verkehrsmittel benutzt wurde. Erweitern Sie dafür die
-<code>go</code>-Struktur aus der vorangegangenen Teilaufgabe um ein
-Argument <code>Transport</code>.
-</p></li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org55751dd" class="outline-3">
-<h3 id="org55751dd"><span class="section-number-3">2.5</span> Aufgabe (Prolog - Bauklötze)</h3>
-<div class="outline-text-3" id="text-2-5">
-<p>
-Gegeben ist eine Welt von Bauklötzen, wie sie in der folgenden
-Abbildung zusehen ist:
-</p>
-
-
-<div class="figure">
-<p><img src="./baukloetze.png" alt="baukloetze.png" />
-</p>
-</div>
-
-<p>
-Die folgenden Prädikate dienen zur Modellierung dieser Bauklotzwelt:
-</p>
-
-<dl class="org-dl">
-<dt><code>am_boden(K)</code></dt><dd>K liegt auf dem Boden.</dd>
-<dt><code>auf(K1, K2)</code></dt><dd>K1 liegt direkt auf K2.</dd>
-<dt><code>links_von(K1, K2)</code></dt><dd>K1 und K2 liegen auf dem Boden und K1 liegt
-direkt links von K2.</dd>
-</dl>
-
-<p>
-Bearbeiten Sie die folgenden Aufgaben:
-</p>
-<ol class="org-ol">
-<li>Formulieren Sie die Fakten, die die Bauklotzwelt aus der Abbildung
-modelliert.</li>
-<li><p>
-Unter ausschließlicher Verwendung dieser Fakten, schreiben Sie die
-folgenden Prädikate:
-</p>
-<dl class="org-dl">
-<dt><code>basis(K1, K2)</code></dt><dd>K2 ist die Basis des Turms, der K1
-enthält. Z. B. ist <i>j</i> die Basis von <i>h</i> in der Abbildung.</dd>
-<dt><code>basis_rechts(K1, K2)</code></dt><dd>K1 und K2 liegen beide auf dem Boden
-und K2 liegt rechts (nicht notwendig direkt benachbart) von K1.</dd>
-<dt><code>objekt_rechts(K1, K2)</code></dt><dd>K2 befindet sich in einem Turm auf der
-rechten Seite (nicht notwendig direkt benachbart) des Turms,
-der K1 enthält.</dd>
-</dl>
-<p>
-Die drei Prädikate müssen für jede Welt funktionieren, die mittels
-der Fakten <code>am_boden/1</code>, <code>auf/2</code> und <code>links_von/2</code>.
-</p></li>
-
-<li><p>
-Nun werden die „Bauklötze” verallgemeinert, indem verschiedene
-Arten eingeführt werden, die &#x2013; abhängig von ihrer äußeren Form &#x2013;
-aufeinander stapelbar sind oder nicht. Es gibt <i>Würfel</i>, <i>Kugeln</i>,
-<i>Pyramiden</i> und <i>Reifen</i>. Es soll ein Prädikat entwickelt werden,
-das die Frage beantwortet, ob ein Turm, gebaut aus diesen
-„Bauklötzen”, gemäß der folgenden Regeln stabil ist:
-</p>
-<ul class="org-ul">
-<li>Ein Reifen kann auf jeden Bauklotz gestapelt werden.</li>
-<li>Ein Reifen ist der einzige Bauklotz, der auf eine Pyramide
-gestapelt werden kann. In diesem Fall ragt die Spitze der
-Pyramide aber aus dem Reifen heraus, sodass auf diese
-„Konstruktion” nur ein weiterer Reifen gestapelt werden
-dürfte. Auf diesen zweiten Reifen könnte dann jedes beliebige
-Objekt gestapelt werden.</li>
-<li>Eine Kugel darf nur auf einen Reifen gestapelt werden, sie darf
-auch nicht auf dem Boden liegen.</li>
-</ul>
-
-<p>
-Bearbeiten Sie die folgenden Teilaufgaben:
-</p>
-<ol class="org-ol">
-<li value="1"><p>
-Schreiben Sie ein Prädikat, das jedem Bauklotz einen Typ gemäß
-der folgenden Tabelle zuordnet: 
-</p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Klotz</th>
-<th scope="col" class="org-left">Typ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">a</td>
-<td class="org-left">Pyramide</td>
-</tr>
-
-<tr>
-<td class="org-left">b</td>
-<td class="org-left">Reifen</td>
-</tr>
-
-<tr>
-<td class="org-left">c</td>
-<td class="org-left">Würfel</td>
-</tr>
-
-<tr>
-<td class="org-left">d</td>
-<td class="org-left">Kugel</td>
-</tr>
-
-<tr>
-<td class="org-left">e</td>
-<td class="org-left">Würfel</td>
-</tr>
-
-<tr>
-<td class="org-left">f</td>
-<td class="org-left">Reifen</td>
-</tr>
-
-<tr>
-<td class="org-left">g</td>
-<td class="org-left">Reifen</td>
-</tr>
-
-<tr>
-<td class="org-left">h</td>
-<td class="org-left">Kugel</td>
-</tr>
-
-<tr>
-<td class="org-left">i</td>
-<td class="org-left">Reifen</td>
-</tr>
-
-<tr>
-<td class="org-left">j</td>
-<td class="org-left">Pyramide</td>
-</tr>
-</tbody>
-</table></li>
-<li>Unter der Benutzung der Klotztypen und der Prädikate, die sich
-auf die Position der Klötze beziehen (s. o.) schreiben Sie das
-folgende Prädikat:
-<dl class="org-dl">
-<dt><code>instabil(K)</code></dt><dd>Das Objekt K kann nicht stabil auf seine
-Unterlage in der gegebenen Konfiguration
-gestapelt werden.</dd>
-</dl></li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-orga8d1e1b" class="outline-3">
-<h3 id="orga8d1e1b"><span class="section-number-3">2.6</span> Aufgabe (Arbeitsweise eines CLP-Systems)</h3>
-<div class="outline-text-3" id="text-2-6">
-<p>
-Wie löst ein Constraint-Logic-Programming-System Gleichungen? Das
-Verfahren unterscheidet sich grundsätzlich von denjenigen zur Lösung
-linearer Gleichungssysteme (z. B. Gauß-Elimination). In einem
-CLP-Programm werden Gleichungen nur aufgeschrieben und dann in einer
-speziell codierten Form an einen internen Gleichungslöser
-übergeben. Der versucht Werte für die Variablen zu finden, die die
-Gleichungen lösen.
-</p>
-
-<p>
-Um ein besseres Verständnis für die Arbeitsweise von CLP-Systemen zu
-erlangen, übernehmen Sie in der folgenden Aufgabe die Rolle eines
-Gleichungslösers.
-</p>
-</div>
-
-<div id="outline-container-orgab1262b" class="outline-4">
-<h4 id="orgab1262b">Modellierung des Problems</h4>
-<div class="outline-text-4" id="text-orgab1262b">
-<p>
-Gegeben sei der folgende Netzplan (vereinfacht) eines Projekts:
-<img src="./netzplan.png" alt="netzplan.png" />
-Die Aktivitäten sind durch Buchstaben und die Dauer deren Dauer durch
-ganze Zahlen dargestellt.
-</p>
-
-<p>
-Unter der Annahme, dass das Projekt nach spätestens 10 Zeiteinheiten
-beendet sein muss und wir je eine Variable (mit endlichem
-Wertebereich) zur Definition des Zeitpunkts, an dem die zugehörige
-Aktivität starten kann, verwenden, kann das Problem wie folgt
-modelliert werden:
-\[a, b, c, d, e, f, g \in \{0, \ldots , 10\} \\
-a \leq b, c, d \\
-b + 1 \leq e \\
-c + 2 \leq e \\
-c + 2 \leq f \\
-d + 3 \leq f \\
-e + 4 \leq g \\
-f + 1 \leq g \]
-</p>
-
-<p>
-Der Wert jeder Variablen &#x2013; eine Menge, initialisiert mit
-\(\{0,\ldots,10\}\) &#x2013; beschreibt die Zeitpunkt, zu denen die zugehörige
-Aktivität gestartet werden kann.
+und darin <code>-&gt;</code> als Implikation und <code>*</code> als Konjunktion interpretieren,
+werden Sie feststellen, dass die Typen der Funktionen allesamt
+Tautologien sind.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org8e7b732" class="outline-4">
-<h4 id="org8e7b732">Aufgabe 1</h4>
-<div class="outline-text-4" id="text-org8e7b732">
-<p>
-In der folgenden Tabelle werden die Wertebereiche der Variablen
-dargestellt. Diese Wertebereiche sind Schritt für Schritt durch
-Anwenden der obigen Ungleichungen zu verkleinern. Schritt 0 zeigt die
-Initialisierung der Variablen mit dem Wertebereich \(\{0, \ldots ,10\}\).
-</p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-right">Schritt</th>
-<th scope="col" class="org-right">a</th>
-<th scope="col" class="org-right">b</th>
-<th scope="col" class="org-right">c</th>
-<th scope="col" class="org-right">d</th>
-<th scope="col" class="org-right">e</th>
-<th scope="col" class="org-right">f</th>
-<th scope="col" class="org-right">g</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-right">0</td>
-<td class="org-right">0..10</td>
-<td class="org-right">0..10</td>
-<td class="org-right">0..10</td>
-<td class="org-right">0..10</td>
-<td class="org-right">0..10</td>
-<td class="org-right">0..10</td>
-<td class="org-right">0..10</td>
-</tr>
-
-<tr>
-<td class="org-right">1</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">0..9</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">1..10</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">2</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">0..8</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">2..10</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">3</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">4</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">5</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">6</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">7</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">8</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">9</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">10</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">11</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-<p>
-In Schritt 1 wurde die Ungleichung \(b + 1 \leq e\) angewendet. Da zuvor
-\(b \in \{0..10\}\) und  \(e \in \{0..10\}\) galt, kann leicht abgeleitet
-werden, dass \(b\) nun als höchsten Wert \(9\) und \(e\) als minimalen Wert
-\(1\) haben kann. Durch Anwenden der Ungleichung werden die Wertebereiche von
-\(b\) und \(e\) auf \(\{0..9\}\) bzw. \(\{1..10\}\) verkleinert. Schritt 2
-zeigt eine ähnliche Überlegung für die Ungleichung \(c + 2 \leq e\).
-</p>
-
-<p>
-Vervollständigen Sie die Tabelle, indem Sie weitere Ungleichungen
-anwenden, bis ein Fixpunkt, an dem keine weiteren Änderungen der
-Wertebereiche vorgenommen werden können, erreicht ist.
-</p>
-</div>
 </div>
 
-<div id="outline-container-orgbde08fa" class="outline-4">
-<h4 id="orgbde08fa">Aufgabe 2</h4>
-<div class="outline-text-4" id="text-orgbde08fa">
-<p>
-Lösen Sie das Problem für den Fall, dass das Projekt nach 6
-Zeiteinheiten beendet sein muss. Fügen Sie dazu das Constraint 
-\(g \in \{ 6 \}\) hinzu und ergänzen Sie obige Tabelle um weitere Schritte.
-</p>
-</div>
-</div>
+<div id="outline-container-org4cd96cb" class="outline-2">
+<h2 id="org4cd96cb"><span class="section-number-2">2</span> Teil 2 (6. Semester)</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-09-23 Sun 16:20</p>
+<p class="date">Created: 2018-10-02 Tue 19:15</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

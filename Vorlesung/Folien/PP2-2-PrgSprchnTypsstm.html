@@ -29,12 +29,12 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Programmiersprachen &#x2013; Typsysteme</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-09-21 Fri 19:40</p>
+<section id="sec-title-slide"><h1 class="title">Programmiersprachen &#x2013; Typsysteme</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-09-29 Sat 20:20</p>
 </section>
 
 <section>
-<section id="org157320b">
-<h2 id="org157320b">Ziele</h2>
+<section id="org96e7ae3">
+<h2 id="org96e7ae3">Ziele</h2>
 <ul>
 <li>Klärung wichtiger Begriffe aus der Theorie der Programmiersprachen
 <ul>
@@ -51,7 +51,7 @@
 </ul>
 </section>
 <section id="motivation">
-<h3 id="motivation"><a id="org23230d5"></a>Motivation</h3>
+<h3 id="motivation"><a id="orgdbc9634"></a>Motivation</h3>
 <ul>
 <li>Die Verwendung der Begriffe <i>Klasse</i>, <i>Typ</i> und <i>Objekt</i> ist in der
 Softwaretechnik &#x2013; insbesondere im Kontext der objektorientierten
@@ -69,10 +69,10 @@ Programmierung &#x2013; allgegenwärtig.</li>
 </section>
 <section>
 <section id="was-ist-ein-datentyp">
-<h2 id="was-ist-ein-datentyp"><a id="orgd554988"></a>Was ist ein Datentyp?</h2>
+<h2 id="was-ist-ein-datentyp"><a id="org58d88e4"></a>Was ist ein Datentyp?</h2>
 </section>
-<section id="org40df7a9">
-<h3 id="org40df7a9">Interpretation von Bitmustern</h3>
+<section id="org17f698f">
+<h3 id="org17f698f">Interpretation von Bitmustern</h3>
 <p>
 Ein 32 Bit langes Binärwort
 \[01110100011110010111000001100101\]
@@ -112,8 +112,8 @@ Was bedeutet es?
 <b>Gibt es einen Unterschied zwischen Programmen und Daten?</b>
 </p>
 </section>
-<section id="org55d3cb7">
-<h3 id="org55d3cb7">Rechner arbeiten typenlos</h3>
+<section id="org9aaa949">
+<h3 id="org9aaa949">Rechner arbeiten typenlos</h3>
 <ul>
 <li>Für die Ausführung von Programmen sind Typinformationen nicht
 erforderlich.</li>
@@ -132,8 +132,8 @@ muss also softwaretechnisch gelöst werden.</li>
 
 </ul>
 </section>
-<section id="org28c1f0d">
-<h3 id="org28c1f0d">Begriffsklärung</h3>
+<section id="orgaf3569c">
+<h3 id="orgaf3569c">Begriffsklärung</h3>
 <ul>
 <li>Ein und dasselbe Bitmuster verschiedene Arten von Daten
 repräsentieren.</li>
@@ -163,8 +163,8 @@ der Frage nachgegangen werden: Wozu dienen Datentypen?</li>
 
 </ul>
 </section>
-<section id="orgc75e53e">
-<h3 id="orgc75e53e">Das ungetypte Universum</h3>
+<section id="org08b6ba5">
+<h3 id="org08b6ba5">Das ungetypte Universum</h3>
 <ul>
 <li>Die Menge der Bitmuster in einem Arbeitsspeicher kann als „ungetyptes
 Universum” betrachtet werden. Man könnte auch sagen, es gibt nur
@@ -199,8 +199,8 @@ Anwendung einer Funktion <code>f</code> auf die Argumente 4 und 5.
 
 </ul>
 </section>
-<section id="org4ae4ff9">
-<h3 id="org4ae4ff9">Zweck der Typisierung</h3>
+<section id="org9321337">
+<h3 id="org9321337">Zweck der Typisierung</h3>
 <ul>
 <li>Ordnung in das „Chaos” der ungetypten Universen bringen.</li>
 <li>Die Anwendung unsinniger, fehlerhafter Operationen vermeiden.</li>
@@ -220,8 +220,8 @@ Typkompatibiliät im Kontext seiner Verwendung gelten.</li>
 
 </ul>
 </section>
-<section id="orge48e411">
-<h3 id="orge48e411">Syntaktische vs. semantische Typkompatibiliät</h3>
+<section id="orge656cbb">
+<h3 id="orge656cbb">Syntaktische vs. semantische Typkompatibiliät</h3>
 <ul>
 <li>Auch die Verwendbarkeit von größeren Software-Bausteinen, wie
 Objekten, Komponenten, Web-Services etc. kann auf die
@@ -252,8 +252,8 @@ semantisch inkompatiblen Software-Komponente zurückzuführen war.
 </p>
 
 </section>
-<section id="org0ae423f">
-<h3 id="org0ae423f">Weitere Aufgaben von Datentypen</h3>
+<section id="org9274f26">
+<h3 id="org9274f26">Weitere Aufgaben von Datentypen</h3>
 <ul>
 <li>Programmiersprachen stellen dem Programmierer Typkonstruktoren zur
 Verfügung, mit der die Menge der Datentypen erweitert werden kann.</li>
@@ -269,10 +269,10 @@ von statischen Typangaben bei der Deklaration von Variablen.</li>
 </section>
 <section>
 <section id="typsysteme">
-<h2 id="typsysteme"><a id="org093c3f5"></a>Typsysteme</h2>
+<h2 id="typsysteme"><a id="org7fcf260"></a>Typsysteme</h2>
 </section>
-<section id="org6cfdf88">
-<h3 id="org6cfdf88">Prüfbare Redundanz</h3>
+<section id="org2c47775">
+<h3 id="org2c47775">Prüfbare Redundanz</h3>
 <ul>
 <li>Da die „Bewohner“ eines ungetypten Universums die für die Prüfung der
 Typkompatibiliät nötigen Informationen nicht bereitstellen können,
@@ -311,8 +311,8 @@ kann geprüft werden, ob eine Verwendung von <code>pi</code> typgemäß erfolgt.
 
 </ol>
 </section>
-<section id="orgd88be0e">
-<h3 id="orgd88be0e">Statische vs. dynamische Typisierung</h3>
+<section id="org0676ca6">
+<h3 id="org0676ca6">Statische vs. dynamische Typisierung</h3>
 <ul>
 <li>Vereinfacht gesagt:
 <dl>
@@ -332,8 +332,8 @@ Verteilung.</li>
 
 </ul>
 </section>
-<section id="orgabe10c3">
-<h3 id="orgabe10c3">Präzisierung der Terminologie</h3>
+<section id="org3419947">
+<h3 id="org3419947">Präzisierung der Terminologie</h3>
 <ul>
 <li>Ein <i>strenges Typsystem</i> stellt jederzeit sicher, dass auf eine
 Variable bzw. Objekt nur der typgemäße Satz von Operationen
@@ -384,8 +384,8 @@ Skalen:
 
 </ul>
 </section>
-<section id="org6d9923e">
-<h3 id="org6d9923e">Einordnung von Programmiersprachen</h3>
+<section id="org5750f2c">
+<h3 id="org5750f2c">Einordnung von Programmiersprachen</h3>
 <ul>
 <li>Vorbemerkung: Die genannten Kategorien stellen Kontinua dar. So
 werden z.&nbsp;B. auch in Sprachen mit dynamischer Typprüfung statische
@@ -400,8 +400,8 @@ implizites Typsystem.</li>
 </ul>
 
 </section>
-<section id="orgcb8d597">
-<h3 id="orgcb8d597">Sind strenge Typsysteme besser als schwache?</h3>
+<section id="org1e3d341">
+<h3 id="org1e3d341">Sind strenge Typsysteme besser als schwache?</h3>
 <ul>
 <li>Die Attribute <i>streng</i> und <i>schwach</i> stellen keine Qualitätsmerkmale
 dar.</li>
@@ -415,8 +415,8 @@ eines strengen Typsystems aufzugeben.</li>
 
 </ul>
 </section>
-<section id="org9ea8f26">
-<h3 id="org9ea8f26">Sind statische Typsysteme besser als dynamische?</h3>
+<section id="org05de8ce">
+<h3 id="org05de8ce">Sind statische Typsysteme besser als dynamische?</h3>
 <ul>
 <li>Statische Typsysteme haben den Vorteil, dass bestimmte Fehler bereits
 vor Ablauf des Programms gefunden werden.</li>
@@ -446,8 +446,8 @@ eine Typverletzung darstellt.
 
 </ul>
 </section>
-<section id="org3158940">
-<h3 id="org3158940">Sind implizite Typsysteme besser als explizite?</h3>
+<section id="orge6c3026">
+<h3 id="orge6c3026">Sind implizite Typsysteme besser als explizite?</h3>
 <ul>
 <li>Implizite Typsysteme befreien den Programmierer davon, redundante
 Typinformationen dem Programm hinzuzufügen.</li>
@@ -470,18 +470,18 @@ Für eine eingehendere Betrachtung des Themas „Typsysteme“ vgl. Kapitel
 </section>
 </section>
 <section>
-<section id="org9e2c7b1">
-<h2 id="org9e2c7b1">Funktionale Programmiersprachen</h2>
-<div class="outline-text-2" id="text-org9e2c7b1">
+<section id="org70d7f2c">
+<h2 id="org70d7f2c">Funktionale Programmiersprachen</h2>
+<div class="outline-text-2" id="text-org70d7f2c">
 </div>
 </section>
-<section id="org2beabd5">
-<h3 id="org2beabd5">Clojure</h3>
-<div class="outline-text-3" id="text-org2beabd5">
+<section id="orgba874c6">
+<h3 id="orgba874c6">Clojure</h3>
+<div class="outline-text-3" id="text-orgba874c6">
 </div>
 </section>
-<section id="org8aef1dc">
-<h4 id="org8aef1dc">Eigenschaften von Clojure</h4>
+<section id="org3148233">
+<h4 id="org3148233">Eigenschaften von Clojure</h4>
 <p>
 Clojure &#x2026;
 </p>
@@ -495,8 +495,8 @@ objektorientiert, &#x2026;).</li>
 </ul>
 
 </section>
-<section id="org1cb943e">
-<h4 id="org1cb943e">Web-Seiten zu Clojure</h4>
+<section id="org13ef490">
+<h4 id="org13ef490">Web-Seiten zu Clojure</h4>
 <ul>
 <li><a href="http://clojure.org">Hauptseite</a></li>
 <li><a href="http://clojure.org/features">Features</a></li>
@@ -520,8 +520,8 @@ objektorientiert, &#x2026;).</li>
 </ul>
 
 </section>
-<section id="org2d19b62">
-<h4 id="org2d19b62">Benutzung von Clojure</h4>
+<section id="org89f0934">
+<h4 id="org89f0934">Benutzung von Clojure</h4>
 <ul>
 <li><a href="http://try-clojure.org/">Try Clojure</a> (???)</li>
 <li>Command line tool: <code>clj</code></li>
@@ -540,8 +540,8 @@ objektorientiert, &#x2026;).</li>
 </ul>
 
 </section>
-<section id="org317b304">
-<h4 id="org317b304">Die Read-Eval-Print-Loop</h4>
+<section id="org0a14e92">
+<h4 id="org0a14e92">Die Read-Eval-Print-Loop</h4>
 <p>
 Funktioniert wie in Racket (Interaktionsfenster in DrRacket)
 </p>
@@ -558,8 +558,8 @@ Funktioniert wie in Racket (Interaktionsfenster in DrRacket)
 </div>
 
 </section>
-<section id="org4d7c744">
-<h4 id="org4d7c744">Beispiele</h4>
+<section id="org49e76ae">
+<h4 id="org49e76ae">Beispiele</h4>
 <p>
 Clojure
 </p>
@@ -628,13 +628,13 @@ Racket
 </div>
 
 </section>
-<section id="org0a24e83">
-<h3 id="org0a24e83">Standard ML</h3>
-<div class="outline-text-3" id="text-org0a24e83">
+<section id="orgc6c14d9">
+<h3 id="orgc6c14d9">Standard ML</h3>
+<div class="outline-text-3" id="text-orgc6c14d9">
 </div>
 </section>
-<section id="org266911a">
-<h4 id="org266911a">Eigenschaften von ML</h4>
+<section id="orgd8ed899">
+<h4 id="orgd8ed899">Eigenschaften von ML</h4>
 <p>
 ML &#x2026;
 </p>
@@ -653,8 +653,8 @@ expliziten Fallunterscheidungen.</li>
 Wird benutzen Standard ML.
 </p>
 </section>
-<section id="org432f140">
-<h4 id="org432f140">Web-Seiten zu ML (SML)</h4>
+<section id="orge7bcef9">
+<h4 id="orge7bcef9">Web-Seiten zu ML (SML)</h4>
 <ul>
 <li><a href="http://sml-family.org">Standard ML Family GitHub Project</a></li>
 <li><a href="https://www.smlnj.org">Standard ML of New Jersey</a></li>
@@ -671,16 +671,16 @@ Wird benutzen Standard ML.
 
 </ul>
 </section>
-<section id="orgced65ef">
-<h4 id="orgced65ef">Benutzung von SML</h4>
+<section id="org9e05b72">
+<h4 id="org9e05b72">Benutzung von SML</h4>
 <ul>
 <li>Online-Interpreter <a href="https://sosml.github.io">SOSML</a></li>
 <li><a href="https://courses.cs.washington.edu/courses/cse341/13wi/sml_emacs.pdf">Using SML and Emacs</a> oder <a href="https://cs.wellesley.edu/~cs251/spring18/tools/smlnj.html">SML/NJ and Emacs SML Mode</a></li>
 
 </ul>
 </section>
-<section id="orgaf2c0af">
-<h4 id="orgaf2c0af">Beispiele</h4>
+<section id="org7ae86d0">
+<h4 id="org7ae86d0">Beispiele</h4>
 <p>
 SML
 </p>
@@ -749,13 +749,13 @@ Racket
 </div>
 
 </section>
-<section id="org3384ef1">
-<h3 id="org3384ef1">SML &#x2013; Kurzanleitung</h3>
-<div class="outline-text-3" id="text-org3384ef1">
+<section id="orgf2793cc">
+<h3 id="orgf2793cc">SML &#x2013; Kurzanleitung</h3>
+<div class="outline-text-3" id="text-orgf2793cc">
 </div>
 </section>
-<section id="org4443ec0">
-<h4 id="org4443ec0">Nutzung des Interpreters</h4>
+<section id="orgfa4cc91">
+<h4 id="orgfa4cc91">Nutzung des Interpreters</h4>
 <p>
 Der SML/NJ-Interpreter wird von der Kommandozeile mit <code>sml</code> (oder
 besser: <code>rlwrap sml</code> )gestartet:
@@ -784,8 +784,8 @@ val it = <span style="color: #008000;">"abcxyz"</span> : string
 </div>
 
 </section>
-<section id="orgfece5e4">
-<h4 id="orgfece5e4">Einfache Deklarationen</h4>
+<section id="org46f59a2">
+<h4 id="org46f59a2">Einfache Deklarationen</h4>
 <ul>
 <li>Erzeugen einer Deklaration (Variablenbindung):</li>
 
@@ -810,8 +810,8 @@ val y = 20 : int
 
 </ul>
 </section>
-<section id="orgf21ea0a">
-<h4 id="orgf21ea0a">Einfache Typen</h4>
+<section id="org57027f4">
+<h4 id="org57027f4">Einfache Typen</h4>
 <p>
 • Neben ganzen Zahlen (<code>int</code>):
 </p>
@@ -834,8 +834,8 @@ val y = 20 : int
 </pre>
 </div>
 </section>
-<section id="orgbc3fdcf">
-<h5 id="orgbc3fdcf">Typen besitzen spezifische Operationen:</h5>
+<section id="org369013f">
+<h5 id="org369013f">Typen besitzen spezifische Operationen:</h5>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -893,8 +893,8 @@ stdIn:1.2-17.1 Error: operator <span style="color: #0000FF;">and</span> <span st
 </div>
 
 </section>
-<section id="org8bf9089">
-<h4 id="org8bf9089">Funktionen</h4>
+<section id="org04fd50c">
+<h4 id="org04fd50c">Funktionen</h4>
 <ul>
 <li>Lambda-Ausdrücke:</li>
 
@@ -965,8 +965,8 @@ stdIn:1.2-17.1 Error: operator <span style="color: #0000FF;">and</span> <span st
 
 </ul>
 </section>
-<section id="org5822c86">
-<h5 id="org5822c86">Funktionen verallgemeinert (vorläufig)</h5>
+<section id="org9b2813e">
+<h5 id="org9b2813e">Funktionen verallgemeinert (vorläufig)</h5>
 <ul>
 <li><p>
 Die vorläufige Syntax für eine Funktionsdeklaration:
@@ -1022,8 +1022,8 @@ Beispiel:
 
 </ul>
 </section>
-<section id="org73e92fd">
-<h5 id="org73e92fd">Funktionsaufrufe</h5>
+<section id="orgd3896e6">
+<h5 id="orgd3896e6">Funktionsaufrufe</h5>
 <ul>
 <li><p>
 Syntax
@@ -1068,8 +1068,8 @@ für alle 1 ≤ i ≤ n, ei hat Type ti.</li>
 </div>
 
 </section>
-<section id="org4cfd88c">
-<h4 id="org4cfd88c">Lokale Definitionen</h4>
+<section id="orgd3fff4c">
+<h4 id="orgd3fff4c">Lokale Definitionen</h4>
 <ul>
 <li><p>
 Syntax:
@@ -1096,8 +1096,8 @@ Beispiel:
 
 </ul>
 </section>
-<section id="orgcbdad80">
-<h4 id="orgcbdad80">Optionale Werte (SML Options)</h4>
+<section id="org5283faf">
+<h4 id="org5283faf">Optionale Werte (SML Options)</h4>
 <ul>
 <li>Unter optionalen Werten (Options) versteht man solche, die existieren können
 aber nicht müssen:
@@ -1119,8 +1119,8 @@ erzeugt niemals eine Exception.
 
 </ul>
 </section>
-<section id="orgd43f537">
-<h5 id="orgd43f537">Anwendungsbeispiel</h5>
+<section id="org5556fb3">
+<h5 id="org5556fb3">Anwendungsbeispiel</h5>
 <ul>
 <li><p>
 Die folgende Funktion erzeugt eine Exception für leere Listen:
@@ -1184,7 +1184,7 @@ uncaught <span style="color: #0000FF;">exception</span> Option
 </ul>
 </section>
 <section id="zusammengesetzte-typen-tupel">
-<h4 id="zusammengesetzte-typen-tupel"><a id="orgf10e0e2"></a>Zusammengesetzte Typen: Tupel</h4>
+<h4 id="zusammengesetzte-typen-tupel"><a id="org526392a"></a>Zusammengesetzte Typen: Tupel</h4>
 <ul>
 <li>Paare und n-Tupel:</li>
 
@@ -1221,8 +1221,8 @@ uncaught <span style="color: #0000FF;">exception</span> Option
 
 </div>
 </section>
-<section id="org56beb01">
-<h4 id="org56beb01">Funktionen über Tupel</h4>
+<section id="org6980a89">
+<h4 id="org6980a89">Funktionen über Tupel</h4>
 <blockquote nil>
 <p>
 <b>Adhoc-Aufgabe:</b> Schreiben Sie ein Java-Programm mit einer Methode <code>div_mod</code>, die
@@ -1251,8 +1251,8 @@ die Clojure-Variante
 
 </ul>
 </section>
-<section id="orgf1b6c3f">
-<h4 id="orgf1b6c3f">Zusammengesetzte Typen: Listen</h4>
+<section id="org4a315e9">
+<h4 id="org4a315e9">Zusammengesetzte Typen: Listen</h4>
 <ul>
 <li>Listenkonstruktion:</li>
 
@@ -1290,8 +1290,8 @@ die Clojure-Variante
 
 </div>
 </section>
-<section id="org015a4a4">
-<h4 id="org015a4a4">Funktionen über Listen</h4>
+<section id="org316687f">
+<h4 id="org316687f">Funktionen über Listen</h4>
 <ul>
 <li>Beispiele:</li>
 
@@ -1317,7 +1317,7 @@ die Clojure-Variante
 </div>
 </section>
 <section id="zusammengesetzte-typen-verbuende">
-<h4 id="zusammengesetzte-typen-verbuende"><a id="orgaf0301b"></a>Zusammengesetzte Typen: Verbünde (Records)</h4>
+<h4 id="zusammengesetzte-typen-verbuende"><a id="org6190cb0"></a>Zusammengesetzte Typen: Verbünde (Records)</h4>
 <ul>
 <li><p>
 Records haben die Form:
@@ -1353,8 +1353,8 @@ Zugriffsoperationen:
 
 </ul>
 </section>
-<section id="orgc7fff5c">
-<h4 id="orgc7fff5c">Der Typ <code>unit</code></h4>
+<section id="org25f2a76">
+<h4 id="org25f2a76">Der Typ <code>unit</code></h4>
 <ul>
 <li>Es gib einen eingebauten Typ <code>unit</code>.</li>
 <li>Es handelt sich um ein Alias für den Tuple-Typ <code>{}</code>.</li>
@@ -1369,8 +1369,8 @@ eigentlich keinen Wert zurückgeben, sondern nur einen Effekt haben.</li>
 </section>
 </section>
 <section>
-<section id="org673bdea">
-<h2 id="org673bdea"><h2>Literaturverzeichnis</h2>
+<section id="org30da914">
+<h2 id="org30da914"><h2>Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="McCarthy1960">[McCarthy1960]</a> <a name="McCarthy1960"></a>McCarthy, Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I, <i>Commun. ACM</i>, <b>3(4)</b>, 184-195 (1960). <a href="http://doi.acm.org/10.1145/367177.367199">link</a>. <a href="http://dx.doi.org/10.1145/367177.367199">doi</a>.</li>
 <li><a id="Simons1">[Simons1]</a> <a name="Simons1"></a>Anthony Simons, The Theory of Classification, Part 1: Perspectives on Type Compatibility, <i>Journal of Object Technology</i>, <b>1(1)</b>, 55-61 (2002). <a href="http://www.jot.fm/issues/issue_2002_05/column5">link</a>.</li>
 <li><a id="Bra09">[Bra09]</a> <a name="Bra09"></a>Johannes Brauer, Typen, Objekte, Klassen - Teil 1: Grundlagen, NORDAKADEMIE Hochschule der Wirtschaft, (2009).</li>
@@ -1413,7 +1413,7 @@ dependencies: [
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
-,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ]});
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
 </script>
 </body>
 </html>
