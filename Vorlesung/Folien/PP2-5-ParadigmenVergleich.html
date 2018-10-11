@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Funktionale versus objektorientierte Programmierung</title>
+<meta name="author" content="(Johannes Brauer)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./mycss/myrevealstyle.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Funktionale versus objektorientierte Programmierung</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-10-11 Thu 19:00</p>
+</section>
+<section>
+<section id="orgb9d1ae5">
+<h2 id="orgb9d1ae5">Ziele</h2>
+<ul>
+<li>Erkennen von Zusammenhängen zwischen verschiedenen
+Programmierparadigmen, insbesondere zwischen der funktionalen und
+der objektorientierte Programmierung</li>
+<li>Erkennen der Kernkonzepte der Paradigmen</li>
+<li>Verstehen von Dimensionen der Erweiterbarkeit von Programmen</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="org72edfd9">
+<h2 id="org72edfd9">Funktionale versus objektorientierte Programmierung</h2>
+<div class="outline-text-2" id="text-org72edfd9">
+</div>
+</section>
+<section id="org739c9b9">
+<h3 id="org739c9b9">Ein wenig Historie</h3>
+
+<div class="figure">
+<p><img src="./Abbildungen/programmierung.png" alt="programmierung.png" width="700px" />
+</p>
+</div>
+</section>
+<section id="org0b9eb1a">
+<h4 id="org0b9eb1a">1936</h4>
+
+<div class="figure">
+<p><img src="./Abbildungen/alan-turing.jpg" alt="alan-turing.jpg" width="200px" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./Abbildungen/entscheidungsproblem.png" alt="entscheidungsproblem.png" width="600px" />
+</p>
+</div>
+<ul>
+<li>Begriffe: Unterprogramm, Makro, code is data</li>
+
+</ul>
+</section>
+<section id="orge2b9384">
+<h4 id="orge2b9384">1945</h4>
+<ul>
+<li>Turing schreibt Code. 
+<ul>
+<li>in Binärform</li>
+<li>benutzt Integer-Zahlen (add) und boolesche Operationen</li>
+<li>erfindet Unterprogramme einschl. Stack</li>
+<li>erfindet Gleitkommazahlen</li>
+
+</ul></li>
+<li>Anzahl der Computer weltweit: \(O(1)\).</li>
+<li>Anzahl der Programmierer weltweit: \(O(1)\).</li>
+
+</ul>
+</section>
+<section id="org304b8d2">
+<h4 id="org304b8d2">1953 Fortran</h4>
+
+<div class="figure">
+<p><img src="./Abbildungen/Fortran.png" alt="Fortran.png" />
+</p>
+</div>
+</section>
+<section id="org023429e">
+<h4 id="org023429e"></h4>
+
+<div class="figure">
+<p><img src="./Abbildungen/McCarthy.jpg" alt="McCarthy.jpg" />
+</p>
+</div>
+
+<p>
+Funktionale Programmierung
+</p>
+
+</section>
+<section id="org1da75c0">
+<h4 id="org1da75c0">1960</h4>
+<ul>
+<li>Anzahl der Computer weltweit: \(O(1E2)\).</li>
+<li>Anzahl der Programmierer weltweit: \(O(1E3)\).</li>
+
+</ul>
+</section>
+<section id="org5593d36">
+<h4 id="org5593d36">1965</h4>
+<ul>
+<li>Anzahl der Computer weltweit: \(O(1E4)\).</li>
+<li>Anzahl der Programmierer weltweit: \(O(1E5)\).</li>
+
+</ul>
+</section>
+<section id="org3e25318">
+<h4 id="org3e25318">1966 Simula 1967</h4>
+<p>
+Ole-Johan Dahl, Kristen Nygard:
+</p>
+
+
+<div class="figure">
+<p><img src="./Abbildungen/simuladahlnygard.gif" alt="simuladahlnygard.gif" width="400px" />
+</p>
+</div>
+
+<p>
+Objektorientierte Programmierung
+</p>
+
+</section>
+<section id="orgb0d6f79">
+<h4 id="orgb0d6f79">1968</h4>
+<p>
+Edsger Dijkstra:
+</p>
+
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/dijkstra.jpg" alt="dijkstra.jpg" />
+</p>
+</div>
+
+</div>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/gotoharmfull.png" alt="gotoharmfull.png" />
+</p>
+</div>
+
+</div>
+<div class="clear">
+
+</div>
+<p>
+Strukturierte Programmierung
+</p>
+
+</section>
+<section id="org50dca51">
+<h3 id="org50dca51">Drei Paradigmen</h3>
+<ul>
+<li>1968 &#x2013; Strukturierte Programmierung. Edsger Dijkstra zeigt, wie der
+Gebrauch von <code>GOTO</code>-Anweisungen durch <code>if/then/else</code> und <code>while</code>
+ersetzt werden kann.</li>
+
+<li>1966 &#x2013; Objektorientierte Programmierung. Ole-Johan Dahl und Kristen
+Nygaard entwickeln die erste OO-Sprache: <i>Simula-67</i>. Durch die
+Einführung der Polymorphie konnten die <code>function pointers</code>
+eliminiert werden.</li>
+
+<li>1957 &#x2013; Funktionale Programmierung. John McCarthy erfindet
+Lisp. Lisp basiert auf dem Lambda-Kalkül, entwickelt von Alonzo
+Church in den 1930ern. Ein wesentliches Merkmal: Es gibt keine Zuweisung.</li>
+
+</ul>
+
+<p>
+Drei Paradigmen, drei Einschränkungen
+</p>
+
+</section>
+<section id="org10c8e6c">
+<h4 id="org10c8e6c">1970</h4>
+<ul>
+<li>Anzahl der Computer weltweit: \(O(1E5)\).</li>
+<li>Anzahl der Programmierer weltweit: \(O(1E6)\).</li>
+
+</ul>
+
+</section>
+<section id="org3995083">
+<h3 id="org3995083">Was bringt die funktionale Programmierung?</h3>
+<ul>
+<li>Worin besteht der Kerngedanke der funktionalen Programmierung?</li>
+
+</ul>
+</section>
+<section id="org6a9b44b">
+<h3 id="org6a9b44b">Fehlen der Mutation</h3>
+<ul>
+<li>Wie kann das „Fehlen von Etwas” ein wichtiges Feature eines
+Programmierparadigmas sein?</li>
+<li>Das Fehlen von Zuweisungen ermöglicht das Schreiben von Programmcode
+ohne befürchten zu müssen, das anderer Code den eigenen negativ
+beeinflusst.</li>
+<li>Nicht änderbare Datenstrukturen sind das wichtigste „non-feature“,
+das eine Programmiersprache haben kann.</li>
+<li>Auf einen wichtigen Vorteil soll hier besonders eingegangen werden:
+Sharing und Aliasing werden irrelevant.</li>
+
+</ul>
+
+</section>
+<section id="org0a9076f">
+<h4 id="org0a9076f">Beispiel: Sortieren eines Vektors</h4>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">sort-pair</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>pair<span style="color: #909183;">]</span>
+     <span style="color: #909183;">(</span><span style="color: #0000FF;">if</span> <span style="color: #709870;">(</span>&lt; <span style="color: #907373;">(</span>pair 0<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>pair 1<span style="color: #907373;">)</span><span style="color: #709870;">)</span> 
+         pair
+         <span style="color: #709870;">[</span><span style="color: #907373;">(</span>pair 1<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>pair 0<span style="color: #907373;">)</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+
+<ul>
+<li>Die Funktion liefert im <code>else</code>-Fall einen neu erzeugten Vektor.</li>
+<li>Aber was passiert im <code>then</code>-Fall? 
+<ul>
+<li>Erhalten wir eine Kopie des an die Funktion übergebenen Vektors
+oder</li>
+<li>gibt die Funktion ein Alias auf denselben Vektor zurück?</li>
+
+</ul></li>
+<li>Bei Fehlen von Mutation ist die Frage irrelevant.</li>
+
+</ul>
+
+</section>
+<section id="org139542b">
+<h4 id="org139542b">Beispiel: Funktion append</h4>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">append</span> 
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>xs ys<span style="color: #909183;">]</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span> 
+      <span style="color: #709870;">(</span><span style="color: #006FE0;">empty?</span> xs<span style="color: #709870;">)</span> ys
+      <span style="color: #D0372D;">:else</span> <span style="color: #709870;">(</span><span style="color: #006FE0;">cons</span> <span style="color: #907373;">(</span><span style="color: #006FE0;">first</span> xs<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>append <span style="color: #6276BA;">(</span><span style="color: #006FE0;">rest</span> xs<span style="color: #6276BA;">)</span> ys<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+<ul>
+<li>Frage: Teilt die zurückgegebene Liste irgendwelche Elemente mit den
+Argumentlisten?</li>
+<li>Antwort 1: Es spielt keine Rolle, solange kein Aufrufer das
+feststellen kann.</li>
+<li>Antwort 2: Ja, die neue Liste „wiederverwendet” alle Elemente von
+<code>ys</code>. Das spart Speicherplatz und Rechenzeit.</li>
+<li>Ein Problem entstünde nur dann, wenn nachträglich die Liste <code>ys</code>
+verändert werden könnte.</li>
+<li>Unveränderliche Daten erleichtern das Schreiben eleganter
+Algorithmen erheblich.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Auch die Funktion <code>rest</code> teilt „dankenswerterweise” ihr Ergebnis
+mit ihrer Argumentliste (bis auf das erste Element).</li>
+<li>In der objektorientierten Programmierung, wo intensiv von
+Verweissemantik und Mutation Gebrauch gemacht wird, muss die
+Programmiererin sich mit den Fragen beschäftigen, ob Verweise auf
+alte Objekte genutzt oder neue Objekte erzeugt werden.</li>
+
+</ul>
+
+</section>
+<section id="orgc798517">
+<h4 id="orgc798517">Beispiel: Ein Java-Programm</h4>
+<ul>
+<li><p>
+Ein inzwischen behobenes Sicherheitsproblem in einer Java library:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">ProtectedResource</span> <span style="color: #707183;">{</span>
+     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">Resource</span> <span style="color: #BA36A5;">theResource</span> = ...;
+     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">String</span><span style="color: #7388D6;">[]</span> <span style="color: #BA36A5;">allowedUsers</span> = ...;
+     <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">String</span><span style="color: #7388D6;">[]</span> <span style="color: #006699;">getAllowedUsers</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">return</span> allowedUsers;
+     <span style="color: #7388D6;">}</span>
+     <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">String</span> <span style="color: #006699;">currentUser</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span> ... <span style="color: #7388D6;">}</span>
+     <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">useTheResource</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span><span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span>=0; i &lt; allowedUsers.<span style="color: #6434A3;">length</span>; i++<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+           <span style="color: #0000FF;">if</span><span style="color: #709870;">(</span>currentUser<span style="color: #907373;">()</span>.equals<span style="color: #907373;">(</span>allowedUsers<span style="color: #6276BA;">[</span>i<span style="color: #6276BA;">]</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>
+               ... <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">access allowed: use it</span>
+               <span style="color: #0000FF;">return</span>; 
+           <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+        <span style="color: #0000FF;">throw</span> <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">IllegalAccessException</span><span style="color: #909183;">()</span>;
+     <span style="color: #7388D6;">}</span>
+  <span style="color: #707183;">}</span>
+</pre>
+</div></li>
+
+<li>Problem: <code>getAllowedUsers</code> gibt einen Verweis auf das Array
+<code>allowedUsers</code> zurück.</li>
+<li>Damit ist <code>getAllowedUsers()[0] = currentUser()</code> möglich.</li>
+<li>Abhilfe?</li>
+
+</ul>
+
+</section>
+<section id="org4768d7b">
+<h3 id="org4768d7b">Integration von Daten und Funktionen &#x2013; Übergang zum Objektbegriff</h3>
+<p>
+(bereits in EidP behandelt!)
+</p>
+</section>
+<section id="org8c739c0">
+<h4 id="org8c739c0">Funktionen mit Funktionen als Resultat</h4>
+<p>
+Beispiele aus dem letzten Semester:
+</p>
+<ul>
+<li><p>
+Was liefert der Ausdruck <code>(inc 3)</code>, wenn die Funktion <code>inc</code> wie folgt
+definiert ist?
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">   <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">inc</span> 
+      <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>n<span style="color: #909183;">]</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #709870;">[</span>z<span style="color: #709870;">]</span> <span style="color: #709870;">(</span>+ z n<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Welches Resultat liefert eine Anwendung der Funktion <code>dot</code>?
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">   <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">dot</span>
+      <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>f g<span style="color: #909183;">]</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #709870;">[</span>x<span style="color: #709870;">]</span> <span style="color: #709870;">(</span>f <span style="color: #907373;">(</span>g x<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section id="orga6253a8">
+<h4 id="orga6253a8">Was ist ein Objekt?</h4>
+<ul>
+<li>Objekte im Sinne der „objektorientierten Programmierung” sind
+nichts weiter als Funktionen mit „internen” Daten.</li>
+<li><p>
+So gesehen liefert ein Ausdruck der Art
+</p>
+<pre class="example">
+(def inc-obj (inc 3))
+
+</pre>
+<p>
+ein Objekt (eine Funktion) mit dem internen Datum (Zustand) <b>3</b>.
+</p></li>
+<li>Die Funktion bezeichnet man in der objektorientierten Programmierung
+auch als <i>Methode</i>.</li>
+<li>Durch den Ausdruck <code>(inc-obj 7)</code> 
+wird die Methode aktiviert (die Funktion aufgerufen). Sie verlangt
+ein Argument.</li>
+<li><code>inc-obj</code> ist ein sehr primitives Objekt mit nur einer (unveränderlichen)
+Zustandsgrößen und einer Methode.</li>
+
+</ul>
+</section>
+<section id="org9750cc8">
+<h4 id="org9750cc8">Ein etwas interessanteres Objekt</h4>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">person</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>name vorname<span style="color: #909183;">]</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #709870;">[</span>get-name    <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #6276BA;">[]</span> name<span style="color: #907373;">)</span>
+          get-vorname <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #6276BA;">[]</span>vorname<span style="color: #907373;">)</span>
+          vollname    <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #6276BA;">[]</span> <span style="color: #6276BA;">(</span><span style="color: #006FE0;">str</span> vorname <span style="color: #008000;">" "</span> name<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>
+          gruss       <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #6276BA;">[</span>g<span style="color: #6276BA;">]</span> <span style="color: #6276BA;">(</span><span style="color: #006FE0;">str</span> g <span style="color: #008000;">" "</span> <span style="color: #858580;">(</span>vollname<span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
+      <span style="color: #709870;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #907373;">[</span>nachricht<span style="color: #907373;">]</span>
+        <span style="color: #907373;">(</span><span style="color: #0000FF;">cond</span>
+          <span style="color: #6276BA;">(</span>= nachricht 'get-name<span style="color: #6276BA;">)</span> get-name
+          <span style="color: #6276BA;">(</span>= nachricht 'get-vorname<span style="color: #6276BA;">)</span> get-vorname
+          <span style="color: #6276BA;">(</span>= nachricht 'get-vollname<span style="color: #6276BA;">)</span> vollname
+          <span style="color: #6276BA;">(</span>= nachricht 'gruss<span style="color: #6276BA;">)</span> gruss
+          <span style="color: #D0372D;">:else</span> <span style="color: #6276BA;">(</span><span style="color: #0000FF;">throw</span> <span style="color: #858580;">(</span>Exception. <span style="color: #008000;">"unbekannte Nachricht"</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+<ul>
+<li>Ein Aufruf der Funktion <code>person</code> liefert ein „Objekt” mit 
+<ul>
+<li>zwei Zustandsgrößen (<code>name</code>, <code>vorname</code>) und</li>
+<li>vier Methoden: <code>get-name</code>, <code>get-vorname</code>, <code>vollname</code> und <code>gruss</code></li>
+
+</ul></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>„In Wirklichkeit” liefert ein Aufruf der Funktion <code>person</code> eine
+Verteilfunktion, die anhand ihres Parameters <code>nachricht</code> ermittelt,
+welche der Methoden aufzurufen ist.</li>
+
+</ul>
+
+</section>
+<section id="orgc1823b4">
+<h4 id="orgc1823b4">Anwendungen des <code>person</code>-Objekts</h4>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Objekterzeugung:</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">p1</span> <span style="color: #7388D6;">(</span>person <span style="color: #008000;">"Gans"</span> <span style="color: #008000;">"Gustav"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>p1 'get-vorname<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>     <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; "Gustav"</span>
+<span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>p1 'get-name<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>        <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; "Gans"</span>
+<span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>p1 'get-vollname<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>    <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; "Gustav Gans"</span>
+<span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>p1 'gruss<span style="color: #7388D6;">)</span> <span style="color: #008000;">"hallo"</span><span style="color: #707183;">)</span>   <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; "hallo Gustav Gans"</span>
+<span style="color: #707183;">(</span>p1 'x<span style="color: #707183;">)</span>                 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">error</span>
+</pre>
+</div>
+
+</section>
+<section id="org973c8a4">
+<h4 id="org973c8a4">Java-Klasse <code>Person</code></h4>
+<div class="org-src-container">
+
+<pre  class="src src-java"> <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Person</span>
+<span style="color: #707183;">{</span>
+   <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">vorname</span>, <span style="color: #BA36A5;">name</span>;
+
+    <span style="color: #0000FF;">public</span> <span style="color: #006699;">Person</span> <span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">n</span>, <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">v</span><span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">{</span>
+        vorname = v;
+        name = n;
+    <span style="color: #7388D6;">}</span>
+
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">String</span> <span style="color: #006699;">get_name</span><span style="color: #7388D6;">()</span>
+    <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">return</span> name;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">String</span> <span style="color: #006699;">get_vorname</span><span style="color: #7388D6;">()</span>
+    <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">return</span> vorname;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">String</span> <span style="color: #006699;">vollname</span><span style="color: #7388D6;">()</span>
+    <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">return</span> vorname + <span style="color: #008000;">" "</span> + name;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">String</span> <span style="color: #006699;">gruss</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">gruss</span><span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">return</span> gruss + <span style="color: #008000;">" "</span> + <span style="color: #0000FF;">this</span>.vollname<span style="color: #909183;">()</span>;
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</section>
+<section id="org8edeac1">
+<h4 id="org8edeac1">Zusammenfassung</h4>
+<ul>
+<li>Für die objektorientierte Programmierung bedarf es keiner speziellen
+Programmiersprachen.</li>
+<li>Objektorientierung besteht nur aus einer Reihe von Konventionen zum
+Umgang mit Daten.</li>
+<li>Diese Konventionen werden von objektorientierten Sprachen explizit
+und implizit unterstützt. Z. B. muss die Verteilfunktion nicht
+selbst programmiert werden.</li>
+<li><p>
+Objekte sind nichts weiter als
+</p>
+<ul>
+<li>eine Menge von <code>Name-&gt;Wert</code>-Abbildungen</li>
+<li>eine Reihe von Funktionen, die solche Abbildungen als erstes
+Argument akzeptieren und</li>
+<li>eine Verteilfunktion, die ermittelt, welche dieser Funtkion
+aufzurufen ist.</li>
+
+</ul>
+<ul>
+<li>ergänzt um:</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="org06db0cc">
+<h3 id="org06db0cc">Erweiterbarkeit von Programmen</h3>
+<div class="outline-text-3" id="text-org06db0cc">
+</div>
+</section>
+<section id="org0ac1a2d">
+<h4 id="org0ac1a2d">Identifizierung des Problems</h4>
+<div class="outline-text-4" id="text-org0ac1a2d">
+</div>
+</section>
+<section id="org2735c2e">
+<h5 id="org2735c2e">Objektorientierte Programmierung &#x2026;</h5>
+<ul>
+<li>&#x2026; ist gekennzeichnet durch dynamische Bindung und Polymorphie.</li>
+<li><p>
+Polymorphie-Ansatz der meisten OO-Sprachen:
+</p>
+<ul>
+<li>Methoden werden innerhalb von Klassen definiert.</li>
+<li>Methodenaktivierung durch „Senden von Nachrichten”: Die zu
+aktivierende Methode wird anhand der Klassenzugehörigkeit des
+Empfängerobjekts bestimmt.</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Rechteck</span> <span style="color: #707183;">{</span>
+     <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">breite</span>, <span style="color: #BA36A5;">hoehe</span>;
+     <span style="color: #6434A3;">int</span> <span style="color: #006699;">flaeche</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span> ... <span style="color: #7388D6;">}</span><span style="color: #707183;">}</span>
+
+   <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Kreis</span> <span style="color: #707183;">{</span>
+      <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">radius</span>;
+      <span style="color: #6434A3;">int</span> <span style="color: #006699;">flaeche</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span> ... <span style="color: #7388D6;">}</span><span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+
+<ul>
+<li>Jeder „Datentyp” definiert seine Operationen.</li>
+<li><b>Problem</b>: Datentypen können ohne Zugriff auf den Quellcode nicht erweitert werden.</li>
+
+</ul>
+</section>
+<section id="orgea31e03">
+<h5 id="orgea31e03">Funktionale Programmierung &#x2026;</h5>
+<ul>
+<li><p>
+&#x2026; ist gekennzeichnet durch Funktionen als Werte erster Ordnung und
+die Abwesenheit von Seiteneffekten. 
+</p>
+<ul>
+<li>Funktionen enthalten Fallunterscheidungen für Datentypen</li>
+
+</ul>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">figur-flaeche</span>
+    <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>f<span style="color: #909183;">]</span>
+      <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span>
+        <span style="color: #709870;">(</span>kreis? f<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>kreis-flaeche f<span style="color: #709870;">)</span>
+        <span style="color: #709870;">(</span>rechteck? f<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>rechteck-flaeche f<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div></li>
+<li><b>Problem</b>: Hinzufügen eines neuen Datentyps bedeutet: Alle vorhanden
+Figur-Funktionen müssen angepasst werden.</li>
+
+</ul>
+</section>
+<section id="orgadbaed7">
+<h4 id="orgadbaed7">Objektorientierte versus funktionale Zerlegung</h4>
+<ul>
+<li>Rückgriff auf das Problem der Verarbeitung einer kleinen „Sprache”
+über arithmetische Ausdrücke (vgl. <a href="file:///Users/Shared/Dropbox/PP2/Aufgaben/aufgaben.html#aufgabemustervergleich">Aufgabe Mustervergleich</a>).</li>
+<li>In der funktionalen Programmierung werden üblicherweise Programme
+durch Zerlegung in Funktionen für die auszuführenden Operationen zerlegt.</li>
+<li>In der objektorientierten Programmierung werden Programme in Klassen
+zerlegt, die Verhalten für bestimmte Arten von Daten bereitstellen.</li>
+<li>Die folgenden Betrachtungen sollen einen Eindruck vermitteln, welche
+Probleme mit der Erweiterung von Programmen verbunden sein können
+und inwieweit diese mit dem verwendeten Paradigma in Verbindung
+stehen.</li>
+
+</ul>
+</section>
+<section id="orgc982a7d">
+<h5 id="orgc982a7d">Problemspezifikation</h5>
+<ul>
+<li>Die arithmetischen Ausdrücke bestehen aus ganzzahligen Werten,
+Negationen und Additionen.</li>
+<li>Für diese Ausdrücke sollen die Operationen
+<ul>
+<li>Auswertung (Bestimmung des Zahlenwerts)</li>
+<li>Umwandlung in eine Zeichenkettendarstellung</li>
+<li>Bestimmung, ob der Ausdruck die Konstante 0 enthält</li>
+
+</ul></li>
+<li><p>
+Die Konstellation kann durch diese Matrix zusammengefasst werden.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">eval</td>
+<td class="org-left">toString</td>
+<td class="org-left">hasZero</td>
+</tr>
+
+<tr>
+<td class="org-left">Constant</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Add</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Negation</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table></li>
+<li>Gleichgültig welches Paradigma benutzt werden soll, es muss für
+jedes der neun Felder in der Matrix das geeignete Verhalten bestimmt
+werden.</li>
+
+</ul>
+</section>
+<section id="orgdac5e60">
+<h5 id="orgdac5e60">Funktionale Lösung in ML</h5>
+<ul>
+<li>Die drei Datenarten werden an einer Stelle definiert.</li>
+<li>Die Implementierung der Operationen erfolgt „spaltenweise”.</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">exp</span> = 
+         Constant    <span style="color: #0000FF;">of</span> int
+         | Negate <span style="color: #0000FF;">of</span> exp 
+         | Add    <span style="color: #0000FF;">of</span> exp * exp 
+
+<span style="color: #0000FF;">exception</span> BadResult <span style="color: #0000FF;">of</span> string
+
+<span style="color: #0000FF;">fun</span> <span style="color: #006699;">eval</span> e = 
+    <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+        Constant _ =&gt; e
+      | Negate e1  =&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">case</span> eval e1 <span style="color: #0000FF;">of</span> 
+                            Constant i =&gt; Constant <span style="color: #7388D6;">(</span>~i<span style="color: #7388D6;">)</span>
+                          | _ =&gt; <span style="color: #0000FF;">raise</span> BadResult <span style="color: #008000;">"non-int in negation"</span><span style="color: #707183;">)</span>
+      | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">case</span> <span style="color: #7388D6;">(</span>eval e1, eval e2<span style="color: #7388D6;">)</span> <span style="color: #0000FF;">of</span>
+                           <span style="color: #7388D6;">(</span>Constant i, Constant j<span style="color: #7388D6;">)</span> =&gt; Constant <span style="color: #7388D6;">(</span>i+j<span style="color: #7388D6;">)</span>
+                           | _ =&gt; <span style="color: #0000FF;">raise</span> BadResult <span style="color: #008000;">"non-ints in addition"</span><span style="color: #707183;">)</span>
+
+<span style="color: #0000FF;">fun</span> <span style="color: #006699;">toString</span> e =
+    <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+        Constant i  =&gt; Int.toString i
+      | Negate e1   =&gt; <span style="color: #008000;">"-("</span> ^ <span style="color: #707183;">(</span>toString e1<span style="color: #707183;">)</span> ^ <span style="color: #008000;">")"</span>
+      | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span>  =&gt; <span style="color: #008000;">"("</span>  ^ <span style="color: #707183;">(</span>toString e1<span style="color: #707183;">)</span> ^ <span style="color: #008000;">" + "</span> ^ <span style="color: #707183;">(</span>toString e2<span style="color: #707183;">)</span> ^ <span style="color: #008000;">")"</span>
+
+<span style="color: #0000FF;">fun</span> <span style="color: #006699;">hasZero</span> e =
+    <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+        Constant i       =&gt; i=0 
+      | Negate e1   =&gt; hasZero e1
+      | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span>  =&gt; <span style="color: #707183;">(</span>hasZero e1<span style="color: #707183;">)</span> <span style="color: #0000FF;">orelse</span> <span style="color: #707183;">(</span>hasZero e2<span style="color: #707183;">)</span>
+</pre>
+</div>
+</section>
+<section id="org95894eb">
+<h5 id="org95894eb">Eine objektorientierte Lösung &#x2026;</h5>
+<ul>
+<li>&#x2026; sollte die folgenden Regeln beachten:
+<ul>
+<li>Definition einer Klasse für Ausdrücke mit je einer abstrakten
+Methode für jede Operation</li>
+<li>Defintion einer Unterklasse für jede Datenvariante</li>
+<li>In jeder der Unterklassen Definition einer Methode für jede
+Operation; Gemeinsamkeiten könnten in der Oberklasse definiert
+werden.</li>
+
+</ul></li>
+<li><p>
+Teil 1 von <a href="file:///Users/Shared/Dropbox/PP2/Aufgaben/aufgaben.html#aufgabeoopversusfp">Aufgabe (OOP versus FP)</a>
+</p>
+<blockquote nil>
+<p>
+Implementieren die das geschilderte Problem in einer
+objektorientierten Sprache Ihrer Wahl!
+</p>
+</blockquote></li>
+
+</ul>
+
+
+<p>
+• Define a subclass for each variant of data.
+• In each subclass, have a method definition for each operation. If there is a default for many variants,
+we can use a method definition in the superclass so that via inheritance we can avoid enumerating all
+the branches
+</p>
+</section>
+</section>
+<section>
+<section id="org39529c3">
+<h2 id="org39529c3">Funktionale Entwurfsmuster</h2>
+<p>
+(auch im Vergleich zu OOP-Mustern:
+<a href="https://fsharpforfunandprofit.com/fppatterns/">Functional Programming Design Patterns</a>)
+</p>
+</section>
+<section id="org3f3e164">
+<h3 id="org3f3e164">Vorbemerkungen</h3>
+<ul>
+<li>Welche Entwurfsmuster kennen Sie?</li>
+<li>Wozu dienen Entwurfsmuster?</li>
+<li>Das berühmte Buch: <a class='org-ref-reference' href="#E.-Gamma:1995pd">E.-Gamma:1995pd</a></li>
+<li><p>
+These:
+</p>
+<blockquote nil>
+<p>
+Jedes Entwurfsmuster offenbart einen Mangel der verwendeten Programmiersprache.
+</p>
+</blockquote>
+<p>
+So fand <a href="https://en.wikipedia.org/wiki/Peter_Norvig">Peter Norvig</a> heraus, dass 16 der 23 Entwurfsmuster aus dem oben
+genannten Buch in Sprachen wie Lisp verschwinden bzw. sich stark
+vereinfachen lassen (<a class='org-ref-reference' href="#Norvig1998">Norvig1998</a>).
+</p></li>
+<li>Mehrere Entwurfsmuster behandeln bzw. implizieren Zustandsänderungen
+und sind daher nicht auf die funktionale Programmierung übertragbar.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Viele (objektorientierte) Entwurfsmuster sind in funktionalen
+Sprachen Idiome. So wird das Iterator-Muster in Sprachen wie LISP oder
+ML nicht benötigt.</li>
+<li><p>
+Ein Bild, das in der Community kursiert (z.&nbsp;B. <a href="http://blog.cleancoder.com/uncle-bob/2014/11/24/FPvsOO.html">hier</a>):
+</p>
+
+<div class="figure">
+<p><img src="./Abbildungen/fpvsoopattern.jpg" alt="fpvsoopattern.jpg" width="400px" />
+</p>
+</div></li>
+<li>Eine Kategorie der Entwurfsmuster sind die Verhaltensmuster
+(behavioural patterns). Charakteristisch für die Muster ist die
+Beobachtung, dass sie Verben (Aktivitäten, Funktionen) in Substantive (Objekte)
+verwandelt. Funktion werden in Objekte „verpackt“.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Damit werden häufig natürliche Konzepte der funktionalen
+Programmierung für die Objektorientierung passend gemacht, häufig
+auf Kosten von Lesbarkeit und Prägnanz.</li>
+
+</ul>
+</section>
+<section id="orge8e0a6d">
+<h3 id="orge8e0a6d">Konkrete Muster</h3>
+<div class="outline-text-3" id="text-orge8e0a6d">
+</div>
+</section>
+<section id="orge3c7b9e">
+<h4 id="orge3c7b9e">Das Command-Muster</h4>
+<ul>
+<li>Als Beispiel werden verschiedene Commands betrachtet, die eine
+Nachricht verarbeiten.</li>
+<li><p>
+Basis: ein Interface
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #0000FF;">interface</span> <span style="color: #6434A3;">Command</span> <span style="color: #707183;">{</span>
+      <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span>;
+  <span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</div></li>
+<li>Verschiedene Implementierungen des Interface:</li>
+
+</ul>
+</section>
+<section >
+<ol>
+<li><p>
+für das Logging
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-java">     <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Logger</span> <span style="color: #0000FF;">implements</span> <span style="color: #6434A3;">Command</span> <span style="color: #707183;">{</span>
+         <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span>;
+
+         <span style="color: #0000FF;">public</span> <span style="color: #006699;">Logger</span><span style="color: #7388D6;">(</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span> <span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+             <span style="color: #0000FF;">this</span>.message = message;
+         <span style="color: #7388D6;">}</span>
+
+         <span style="color: #D0372D;">@Override</span>
+         <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+             System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"Logging: "</span> + message<span style="color: #909183;">)</span>;
+         <span style="color: #7388D6;">}</span>
+     <span style="color: #707183;">}</span>
+</pre>
+</div></li>
+
+</ol>
+</section>
+<section >
+<ol>
+<li value="2"><p>
+Speichern der Nachricht
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-java">     <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">FileSaver</span> <span style="color: #0000FF;">implements</span> <span style="color: #6434A3;">Command</span> <span style="color: #707183;">{</span>
+         <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span>;
+
+         <span style="color: #0000FF;">public</span> <span style="color: #006699;">FileSaver</span><span style="color: #7388D6;">(</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span> <span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+             <span style="color: #0000FF;">this</span>.message = message;
+         <span style="color: #7388D6;">}</span>
+
+         <span style="color: #D0372D;">@Override</span>
+         <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+             System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"Saving: "</span> + message<span style="color: #909183;">)</span>;
+         <span style="color: #7388D6;">}</span>
+     <span style="color: #707183;">}</span>
+</pre>
+</div></li>
+
+</ol>
+</section>
+<section >
+<ol>
+<li value="3"><p>
+Versenden per Email
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-java">     <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Mailer</span> <span style="color: #0000FF;">implements</span> <span style="color: #6434A3;">Command</span> <span style="color: #707183;">{</span>
+         <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span>;
+
+         <span style="color: #0000FF;">public</span> <span style="color: #006699;">Mailer</span><span style="color: #7388D6;">(</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span> <span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+             <span style="color: #0000FF;">this</span>.message = message;
+         <span style="color: #7388D6;">}</span>
+
+         <span style="color: #D0372D;">@Override</span>
+         <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+             System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"Sending: "</span> + message<span style="color: #909183;">)</span>;
+         <span style="color: #7388D6;">}</span>
+     <span style="color: #707183;">}</span>
+</pre>
+</div></li>
+
+</ol>
+</section>
+<section >
+<ul>
+<li><p>
+Ein Objekt, das diese Commands ausführen kann:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Executor</span> <span style="color: #707183;">{</span>
+      <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">execute</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">List</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">Command</span><span style="color: #909183;">&gt;</span> <span style="color: #BA36A5;">tasks</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+          <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">Command</span> <span style="color: #BA36A5;">task</span> : tasks<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+              task.run<span style="color: #709870;">()</span>;
+          <span style="color: #909183;">}</span>
+      <span style="color: #7388D6;">}</span>
+  <span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Ausführung einer Liste von Commands durch den <code>Executor</code>
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">Command</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">tasks</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ArrayList</span><span style="color: #707183;">&lt;&gt;()</span>;
+  tasks.add<span style="color: #707183;">(</span><span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Logger</span><span style="color: #7388D6;">(</span> <span style="color: #008000;">"Hi"</span> <span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+  tasks.add<span style="color: #707183;">(</span><span style="color: #0000FF;">new</span> <span style="color: #6434A3;">FileSaver</span><span style="color: #7388D6;">(</span> <span style="color: #008000;">"Cheers"</span> <span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+  tasks.add<span style="color: #707183;">(</span><span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Mailer</span><span style="color: #7388D6;">(</span> <span style="color: #008000;">"Bye"</span> <span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+
+  <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Executor</span><span style="color: #707183;">()</span>.execute<span style="color: #707183;">(</span> tasks <span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+<li>Wie in <a class='org-ref-reference' href="#E.-Gamma:1995pd">E.-Gamma:1995pd</a> gefordert, werden Funktionen (die
+auszuführenden Aktionen) in Objekte verpackt (die Commands, die
+diese Aktionen ausführen).</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Diese Indirektion hat keinen Vorteil, außer Funktionen in strikt
+objektorientierter Weise behandeln zu können.</li>
+<li>Durch die Einführung von Lambda-Ausdrücken in <b>Java 8</b> ist es
+möglich, beide Paradigmen (OO und FP) nahtlos miteinander zu verknüpfen.</li>
+<li>Das <code>Command</code>-Interface wird nicht benötigt, stattdessen kann das
+bekannte <code>Runnable</code>-Interface benutzt werden.</li>
+<li><p>
+Die drei <code>Command</code>-Implementierungen können in Java 8 prägnant durch drei als
+statische Methoden implementierte Funktionen geschrieben werden:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">log</span><span style="color: #707183;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+      System.out.println<span style="color: #7388D6;">(</span><span style="color: #008000;">"Logging: "</span> + message<span style="color: #7388D6;">)</span>;
+  <span style="color: #707183;">}</span>
+
+  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">save</span><span style="color: #707183;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+      System.out.println<span style="color: #7388D6;">(</span><span style="color: #008000;">"Saving: "</span> + message<span style="color: #7388D6;">)</span>;
+  <span style="color: #707183;">}</span>
+
+  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">send</span><span style="color: #707183;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+      System.out.println<span style="color: #7388D6;">(</span><span style="color: #008000;">"Sending: "</span> + message<span style="color: #7388D6;">)</span>;
+  <span style="color: #707183;">}</span>
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Das „Signal-Rausch-Verhältnis” des Codes wird deutlich verbessert,
+wenn man als Signal der Rumpf der Funktionen und das Rauschen der
+Code, der zusätzlich benötigt wird, um aus den Funktion Methoden zu machen.</li>
+<li><p>
+Auch die <code>Executor</code>-Klasse kann durch eine statische Methode
+implementiert werden, die eine Liste von <code>Runnables</code> als Argument
+akzeptiert:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">execute</span><span style="color: #707183;">(</span><span style="color: #6434A3;">List</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">Runnable</span><span style="color: #7388D6;">&gt;</span> <span style="color: #BA36A5;">tasks</span> <span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+      tasks.forEach<span style="color: #7388D6;">(</span> Runnable::run <span style="color: #7388D6;">)</span>;
+  <span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Die Funktionen können nun wieder in eine Liste gepackt und wie zuvor
+ausgeführt werden:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">Runnable</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">tasks</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ArrayList</span><span style="color: #707183;">&lt;&gt;()</span>;
+  tasks.add<span style="color: #707183;">(</span><span style="color: #7388D6;">()</span> -&gt; log<span style="color: #7388D6;">(</span><span style="color: #008000;">"Hi"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+  tasks.add<span style="color: #707183;">(</span><span style="color: #7388D6;">()</span> -&gt; save<span style="color: #7388D6;">(</span><span style="color: #008000;">"Cheers"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+  tasks.add<span style="color: #707183;">(</span><span style="color: #7388D6;">()</span> -&gt; send<span style="color: #7388D6;">(</span><span style="color: #008000;">"Bye"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+
+  execute<span style="color: #707183;">(</span> tasks <span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+<li>Der Java-Compiler übersetzt die Lambda-Ausdrücke ohne Argumente, die
+die statischen Methoden (<code>log</code>, <code>save</code>, <code>send</code>) ausführen, in
+anonyme Implementierungen des <code>Runnable</code>-Interface, wodurch sie in
+eine Liste von <code>Runnables</code> gepackt werden können.</li>
+
+</ul>
+</section>
+<section id="orgd8071d9">
+<h4 id="orgd8071d9">Weitere Muster?</h4>
+<ul>
+<li>noch offen!</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="orgd05738b">
+<h2 id="orgd05738b"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="E.-Gamma:1995pd">[E.-Gamma:1995pd]</a> <a name="E.-Gamma:1995pd"></a>Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides, Design Patterns: Elements of Reusable Object-Oriented Software, Addison-Wesley (1995).</li>
+<li><a id="Norvig1998">[Norvig1998]</a> <a name="Norvig1998"></a>Peter Norvig, Design Patterns in Dynamic Languages, (1998), zuletzt aufgerufen am 10.09.2018: <a href="http://www.norvig.com/design-patterns/">http://www.norvig.com/design-patterns/</a> </li>
+</ul></h2>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.05,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
+</script>
+</body>
+</html>
