@@ -29,11 +29,11 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Funktionale Programmierung: Ausgewählte Kapitel</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-10-07 Sun 17:28</p>
+<section id="sec-title-slide"><h1 class="title">Funktionale Programmierung: Ausgewählte Kapitel</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-10-11 Thu 21:05</p>
 </section>
 <section>
-<section id="org6e98b6d">
-<h2 id="org6e98b6d">Ziele</h2>
+<section id="org3790569">
+<h2 id="org3790569">Ziele</h2>
 <ul>
 <li><p>
 Verstehen der Aussage: 
@@ -51,8 +51,8 @@ Auswertung von Funktionsanwendungen.</li>
 </section>
 </section>
 <section>
-<section id="org0c34f5c">
-<h2 id="org0c34f5c">Datenabstraktion</h2>
+<section id="org37be7e0">
+<h2 id="org37be7e0">Datenabstraktion</h2>
 <p>
 <b>These:</b> 
 </p>
@@ -65,13 +65,13 @@ Es gibt keinen Wesensunterschied zwischen Programmen und Daten
 vgl. auch Kapitel <a href="https://johbra.github.io/EidP17/Vorlesung/EidP06-Datenabstraktion.html">Datenabstraktion</a> aus <a href="https://johbra.github.io/EidP17/">Einführung in die Programmierung</a>
 </p>
 </section>
-<section id="orgeab07f2">
-<h3 id="orgeab07f2">1. Beispiel: Rechnen mit Punkten in der Ebene</h3>
-<div class="outline-text-3" id="text-orgeab07f2">
+<section id="org303227b">
+<h3 id="org303227b">1. Beispiel: Rechnen mit Punkten in der Ebene</h3>
+<div class="outline-text-3" id="text-org303227b">
 </div>
 </section>
-<section id="orgb2e9f35">
-<h4 id="orgb2e9f35">Defintion von Punkten</h4>
+<section id="org9d1d285">
+<h4 id="org9d1d285">Defintion von Punkten</h4>
 <ul>
 <li>Ein Punkt in der Ebene wird durch seine x- und seine y-Koordinate
 bestimmt (kartesisches Koordinatensystem).</li>
@@ -95,8 +95,8 @@ y-Koordinate eines Punkts zugänglich machen:
 
 </ul>
 </section>
-<section id="org9656428">
-<h4 id="org9656428">Point-Funktionen</h4>
+<section id="org2ef0a6f">
+<h4 id="org2ef0a6f">Point-Funktionen</h4>
 <ul>
 <li><p>
 Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
@@ -133,8 +133,8 @@ Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
 
 </ul>
 </section>
-<section id="org8d866b4">
-<h4 id="org8d866b4">Mögliche Implementierungen von <code>points</code></h4>
+<section id="org2326de4">
+<h4 id="org2326de4">Mögliche Implementierungen von <code>points</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">als Datenstruktur mit defrecord</span>
@@ -153,8 +153,8 @@ Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
 </pre>
 </div>
 </section>
-<section id="org3740dce">
-<h5 id="org3740dce">Zum Vergleich die Strukturdefinition in Clojure</h5>
+<section id="org8f32286">
+<h5 id="org8f32286">Zum Vergleich die Strukturdefinition in Clojure</h5>
 <pre class="example">
 Willkommen bei DrClojure, Version 6.7 [3m].
 Sprache: Zwischenstufe mit lambda; memory limit: 128 MB.
@@ -172,8 +172,8 @@ Sprache: Zwischenstufe mit lambda; memory limit: 128 MB.
 #false
 </pre>
 </section>
-<section id="orgcf08af6">
-<h4 id="orgcf08af6">Anforderungen an die Implementierung</h4>
+<section id="org26a1629">
+<h4 id="org26a1629">Anforderungen an die Implementierung</h4>
 <ul>
 <li>Jede Implementierung, die den folgenden beiden Gleichungen genügt,
 ist hinreichend:<br />
@@ -189,8 +189,8 @@ sondern auch elementare Daten durch Funktionen dargestellt werden können.</li>
 
 </ul>
 </section>
-<section id="org065711b">
-<h3 id="org065711b">2. Beispiel: Listen</h3>
+<section id="org345acb2">
+<h3 id="org345acb2">2. Beispiel: Listen</h3>
 <ul>
 <li>Lisp-Sprachen stellen üblicherweise
 <ul>
@@ -217,8 +217,8 @@ folgenden Gleichungen beschrieben werden:<br />
 (vgl. auch <a href="https://johbra.github.io/EidP17/Vorlesung/EidP07-NichtNumerischeDaten.html#outline-container-org7de79e7">Symbolische Ausdrücke</a> in Racket oder Clojure)
 </p>
 </section>
-<section id="orgf389d6c">
-<h4 id="orgf389d6c">Implementierung von Listen durch Funktionen &#x2026;</h4>
+<section id="orgbc80684">
+<h4 id="orgbc80684">Implementierung von Listen durch Funktionen &#x2026;</h4>
 <p>
 Um Namenskollisionen mit den existierenden Standardfunktionen zu
 vermeiden, werden im folgenden alternative Namen verwendet:
@@ -230,8 +230,8 @@ vermeiden, werden im folgenden alternative Namen verwendet:
 
 </ul>
 </section>
-<section id="org0dbef48">
-<h5 id="org0dbef48">&#x2026; in Racket</h5>
+<section id="orgd52508f">
+<h5 id="orgd52508f">&#x2026; in Racket</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">cns</span>
@@ -256,8 +256,8 @@ vermeiden, werden im folgenden alternative Namen verwendet:
 </pre>
 </div>
 </section>
-<section id="org5e31eb1">
-<h5 id="org5e31eb1">Erläuterungen</h5>
+<section id="org6e8c1b0">
+<h5 id="org6e8c1b0">Erläuterungen</h5>
 <ul>
 <li>Die Benutzung der Funktionen hat nichts mehr mit einem intuitiven
 Verständnis von <i>Daten</i> zu tun.</li>
@@ -279,8 +279,8 @@ erzeugte Funktion ist, dann liefert die Anwendung von <code>z</code> auf 0
 
 </ul>
 </section>
-<section id="org39903fc">
-<h5 id="org39903fc">&#x2026; in Clojure</h5>
+<section id="org6ef81e6">
+<h5 id="org6ef81e6">&#x2026; in Clojure</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">cns</span>
@@ -298,8 +298,8 @@ erzeugte Funktion ist, dann liefert die Anwendung von <code>z</code> auf 0
 </pre>
 </div>
 </section>
-<section id="org51fe12d">
-<h5 id="org51fe12d">Benutzung</h5>
+<section id="org458a5ad">
+<h5 id="org458a5ad">Benutzung</h5>
 <p>
 Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </p>
@@ -318,8 +318,8 @@ Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </pre>
 </div>
 </section>
-<section id="orgfe00bc0">
-<h5 id="orgfe00bc0">&#x2026; in SML</h5>
+<section id="org64b266d">
+<h5 id="org64b266d">&#x2026; in SML</h5>
 <div class="org-src-container">
 
 <pre  class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">lst</span> = F <span style="color: #0000FF;">of</span> int-&gt;lst | I <span style="color: #0000FF;">of</span> int | E
@@ -357,24 +357,24 @@ Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </pre>
 </div>
 </section>
-<section id="org506eb69">
-<h4 id="org506eb69">Alternative Implementierung von Listen durch Funktionen</h4>
+<section id="org156d429">
+<h4 id="org156d429">Alternative Implementierung von Listen durch Funktionen</h4>
 <p>
 siehe
 <a href="../Aufgaben/aufgaben.html#aufgabealternativelistenimplementierung">Aufgabe
 Alternative Listenimplementierung</a>
 </p>
 </section>
-<section id="org0546b4e">
-<h3 id="org0546b4e">3. Beispiel: Natürliche Zahlen als rekursive Datenstruktur</h3>
-<div class="outline-text-3" id="text-org0546b4e">
+<section id="org50259fd">
+<h3 id="org50259fd">3. Beispiel: Natürliche Zahlen als rekursive Datenstruktur</h3>
+<div class="outline-text-3" id="text-org50259fd">
 </div>
 </section>
 <section id="datentypnat">
-<h4 id="datentypnat"><a id="orgf537fa0"></a>Definition eines Datentyps für natürliche Zahlen</h4>
+<h4 id="datentypnat"><a id="org6cadc31"></a>Definition eines Datentyps für natürliche Zahlen</h4>
 </section>
-<section id="org967c5d1">
-<h5 id="org967c5d1">Rekursive Definition der natürlichen Zahlen</h5>
+<section id="org703f3f1">
+<h5 id="org703f3f1">Rekursive Definition der natürlichen Zahlen</h5>
 <ul>
 <li>Mathematisch können die natürlichen Zahlen folgendermaßen definiert
 werden:
@@ -401,8 +401,8 @@ wird hier die Konstante <code>zero</code> anstelle von \(0\) verwendet.</li>
 
 </ul>
 </section>
-<section id="org55740aa">
-<h5 id="org55740aa">Clojure-Definitionen für <code>zero</code> und <code>succ</code></h5>
+<section id="org8b5bb87">
+<h5 id="org8b5bb87">Clojure-Definitionen für <code>zero</code> und <code>succ</code></h5>
 <ul>
 <li><p>
 Konstanten sind u.a. dadurch gekennzeichnet, dass sie zu sich selbst
@@ -431,8 +431,8 @@ folgende Definition zu erreichen:
 </ul>
 
 </section>
-<section id="orgf0c0e32">
-<h5 id="orgf0c0e32">Der abstrakte Datentyp <b>Nat</b></h5>
+<section id="org321ae3b">
+<h5 id="org321ae3b">Der abstrakte Datentyp <b>Nat</b></h5>
 <ul>
 <li><p>
 Mit den Definitionen für <code>zero</code> und <code>succ</code> haben wir quasi einen
@@ -457,13 +457,13 @@ natürliche Zahlen (d.h. Exemplare von <b>Nat</b>) als Ergebnis liefern.</li>
 </ul>
 
 </section>
-<section id="org13db380">
-<h5 id="org13db380">Anwendung des Datentyps <b>Nat</b></h5>
-<div class="outline-text-5" id="text-org13db380">
+<section id="org31db705">
+<h5 id="org31db705">Anwendung des Datentyps <b>Nat</b></h5>
+<div class="outline-text-5" id="text-org31db705">
 </div>
 </section>
-<section id="org7ae562f">
-<h6 id="org7ae562f">Beispiel: Zählen der Elemente einer Liste</h6>
+<section id="org5095e6a">
+<h6 id="org5095e6a">Beispiel: Zählen der Elemente einer Liste</h6>
 <ul>
 <li><p>
 Gemäß den Regeln für natürliche Rekursion ergibt sich folgende Schablone:
@@ -488,8 +488,8 @@ Gemäß den Regeln für natürliche Rekursion ergibt sich folgende Schablone:
 
 </ul>
 </section>
-<section id="org481463e">
-<h6 id="org481463e">Die Funktion <code>countElements</code></h6>
+<section id="orgc6a322c">
+<h6 id="orgc6a322c">Die Funktion <code>countElements</code></h6>
 <ul>
 <li><p>
 Wenn die Liste nicht leer ist, ist das Resultat der Nachfolger der
@@ -514,13 +514,13 @@ Anwendung von <code>countElements</code> auf die Restliste.
 
 </ul>
 </section>
-<section id="org72bec05">
-<h4 id="org72bec05">Definition weiterer Operationen für <b>Nat</b></h4>
-<div class="outline-text-4" id="text-org72bec05">
+<section id="org07dfa1b">
+<h4 id="org07dfa1b">Definition weiterer Operationen für <b>Nat</b></h4>
+<div class="outline-text-4" id="text-org07dfa1b">
 </div>
 </section>
-<section id="org30af8e8">
-<h5 id="org30af8e8">Die Operationen <code>pred</code> und <code>plus</code></h5>
+<section id="orge2d64e0">
+<h5 id="orge2d64e0">Die Operationen <code>pred</code> und <code>plus</code></h5>
 <ul>
 <li>Die Operation \(succ\) ermöglicht es bisher nur (vorwärts) zu zählen.</li>
 <li>Wir definieren zwei weitere Operationen zur
@@ -548,8 +548,8 @@ und \(succ\) zunächst durch Gleichungen beschreiben.
 
 </ul>
 </section>
-<section id="orgfc746f4">
-<h5 id="orgfc746f4">Prädikat <code>zero?</code></h5>
+<section id="orga653de6">
+<h5 id="orga653de6">Prädikat <code>zero?</code></h5>
 <ul>
 <li><p>
 Beide Definitionen basieren auf einer Fallunterscheidung. Um sie in
@@ -582,8 +582,8 @@ Argument <code>zero</code> ist:
 
 </ul>
 </section>
-<section id="org7fc5f40">
-<h5 id="org7fc5f40">Der abstrakte Datentyp <b>Nat</b>: <code>pred</code></h5>
+<section id="org7223968">
+<h5 id="org7223968">Der abstrakte Datentyp <b>Nat</b>: <code>pred</code></h5>
 <ul>
 <li><p>
 Definieren wir nun die Funktion <code>pred</code>:
@@ -609,8 +609,8 @@ Definieren wir nun die Funktion <code>pred</code>:
 </ul>
 
 </section>
-<section id="orgd9d3e6d">
-<h5 id="orgd9d3e6d">Der abstrakte Datentyp <b>Nat</b>: <code>plus</code></h5>
+<section id="orgfd62e8e">
+<h5 id="orgfd62e8e">Der abstrakte Datentyp <b>Nat</b>: <code>plus</code></h5>
 <ul>
 <li><p>
 Die rekursive Definition von \(plus\) übertragen wir in eine rekursive
@@ -639,8 +639,8 @@ Funktion <code>plus</code>:
 </ul>
 
 </section>
-<section id="org8234751">
-<h5 id="org8234751">Der Datentyp <b>Nat</b>: Zusammenfassung</h5>
+<section id="orgd7bcb45">
+<h5 id="orgd7bcb45">Der Datentyp <b>Nat</b>: Zusammenfassung</h5>
 <p>
 Was haben wir gelernt?
 </p>
@@ -663,8 +663,8 @@ Zahlen festlegen zu müssen.</li>
 <a href="../Aufgaben/aufgaben.html#aufgabendatentypnat">Aufgaben zum Datentyp Nat</a>
 </p>
 </section>
-<section id="orga61501e">
-<h3 id="orga61501e">4. Beispiel: „Church-Numerals"</h3>
+<section id="orge42911c">
+<h3 id="orge42911c">4. Beispiel: „Church-Numerals"</h3>
 <ul>
 <li>Im vorangegangen Kapitel haben wir mit dem Datentyp <b>Nat</b> eine rekursive
 Definition der natürlichen Zahlen kennen gelernt, die auf den
@@ -680,13 +680,13 @@ repräsentieren kann.</li>
 </section>
 </section>
 <section>
-<section id="org5528604">
-<h2 id="org5528604">Verzögerte Auswertung</h2>
-<div class="outline-text-2" id="text-org5528604">
+<section id="org549f7c7">
+<h2 id="org549f7c7">Verzögerte Auswertung</h2>
+<div class="outline-text-2" id="text-org549f7c7">
 </div>
 </section>
-<section id="org1cd81e1">
-<h3 id="org1cd81e1">Einführung</h3>
+<section id="orgd42ad01">
+<h3 id="orgd42ad01">Einführung</h3>
 <p>
 Wo und warum gibt es hier verzögerte Auswertung?
 </p>
@@ -799,8 +799,8 @@ werden nicht ausgewertet.</li>
 
 </ul>
 </section>
-<section id="orga7e8776">
-<h3 id="orga7e8776">Benutzung von Delay und Force</h3>
+<section id="org622c799">
+<h3 id="org622c799">Benutzung von Delay und Force</h3>
 <dl>
 <dt>Annahme:</dt><dd>Das Resultat irgendeiner aufwändigen Berechnung \(b\) wird
 als Argument einer anderen Funktion benötigt.  Abhängig
@@ -820,8 +820,8 @@ dies aber nur genau einmal. Der berechnete Wert wird
 </dl>
 
 </section>
-<section id="org784a8d9">
-<h4 id="org784a8d9">Implementierung von Delay und Force in Clojure</h4>
+<section id="orgd1ecb8b">
+<h4 id="orgd1ecb8b">Implementierung von Delay und Force in Clojure</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-delay</span>
@@ -838,8 +838,8 @@ dies aber nur genau einmal. Der berechnete Wert wird
 </div>
 
 </section>
-<section id="org077db8a">
-<h5 id="org077db8a">Erläuterungen</h5>
+<section id="org6b34156">
+<h5 id="org6b34156">Erläuterungen</h5>
 <ul>
 <li>Der Funktion <code>my-delay</code> wird ein thunk <code>f</code> übergeben und als zweites
 Element eines Vektors einer mutierbaren Struktur (<code>atom</code>) abgelegt.</li>
@@ -862,8 +862,8 @@ oder von änderbaren Daten abhängt.</li>
 </ul>
 
 </section>
-<section id="org52eae53">
-<h4 id="org52eae53">Anwendung von <code>my-delay</code> und <code>my-force</code></h4>
+<section id="org61cb3c4">
+<h4 id="org61cb3c4">Anwendung von <code>my-delay</code> und <code>my-force</code></h4>
 <p>
 Als Beispiel für eine Funktion, die die Auswertung eines ihrer
 Argumente nur unter bestimmten Bedingungen benötigt, betrachten wir
@@ -894,8 +894,8 @@ Bei dieser Variante würde bei einem Aufruf
 die Fakultät unnötigerweise berechnet.
 </p>
 </section>
-<section id="org651e141">
-<h5 id="org651e141">Variante von <code>my-mult</code> mit <code>y</code> als thunk</h5>
+<section id="org77b43ea">
+<h5 id="org77b43ea">Variante von <code>my-mult</code> mit <code>y</code> als thunk</h5>
 <div class="small">
 <div class="org-src-container">
 
@@ -938,8 +938,8 @@ zwischengespeichert.</li>
 
 </ul>
 </section>
-<section id="org7f85209">
-<h5 id="org7f85209">Weitere Variante von <code>my-mult</code></h5>
+<section id="orge6d702f">
+<h5 id="orge6d702f">Weitere Variante von <code>my-mult</code></h5>
 <p>
 Die folgende Version von <code>my-mult</code> erwartet anstelle eines beliebigen
 thunks ein Resultat von <code>my-delay</code> als zweites Argument. Damit wird
@@ -957,14 +957,14 @@ der Aufruf etwas komfortabler:
 </pre>
 </div>
 </section>
-<section id="org7b81206">
-<h3 id="org7b81206">Streams</h3>
+<section id="orgcae4805">
+<h3 id="orgcae4805">Streams</h3>
 <p>
 siehe <a href="file:///Users/Shared/Dropbox/PP2/Aufgaben/aufgaben.html#aufgabenstreams">Aufgaben zu Streams</a>
 </p>
 </section>
-<section id="org219b3a6">
-<h3 id="org219b3a6">Exkurs: Lazy sequences in Clojure</h3>
+<section id="org66e7fc4">
+<h3 id="org66e7fc4">Exkurs: Lazy sequences in Clojure</h3>
 <ul>
 <li>Clojure ist wie Racket und auch ML eine Sprache mit strikter
 Auswertungsstrategie.</li>
@@ -976,8 +976,8 @@ so genannter <i>lazy sequences</i>.</li>
 
 </ul>
 </section>
-<section id="org1ab98b6">
-<h4 id="org1ab98b6">Arbeiten mit unbegrenzten Listen</h4>
+<section id="org80d7bb5">
+<h4 id="org80d7bb5">Arbeiten mit unbegrenzten Listen</h4>
 <ul>
 <li><p>
 Erzeuge die ersten n Elemente einer unendlich langen Liste von
@@ -1068,8 +1068,8 @@ weitere Beispiele:
 
 </ul>
 </section>
-<section id="orgcc91d63">
-<h4 id="orgcc91d63">Funktionen höherer Ordnung und lazy sequences</h4>
+<section id="org7c73db5">
+<h4 id="org7c73db5">Funktionen höherer Ordnung und lazy sequences</h4>
 <ul>
 <li><p>
 Die klassischen Funktionen höherer Ordnung erzeugen lazy sequences:
@@ -1173,13 +1173,13 @@ Die Ausführung der Seiteneffekte kann mit <code>doall</code> erzwungen werden:
 </section>
 </section>
 <section>
-<section id="orga009a6f">
-<h2 id="orga009a6f">Funktionale Datenstrukturen</h2>
-<div class="outline-text-2" id="text-orga009a6f">
+<section id="orgdfc2672">
+<h2 id="orgdfc2672">Funktionale Datenstrukturen</h2>
+<div class="outline-text-2" id="text-orgdfc2672">
 </div>
 </section>
-<section id="orgfd22632">
-<h3 id="orgfd22632">Imperative Datenstrukturen</h3>
+<section id="org427aec8">
+<h3 id="org427aec8">Imperative Datenstrukturen</h3>
 <ul>
 <li>Änderungen an <i>imperativen Datenstrukturen</i> basieren auf dem Prinzip
 der Mutation.</li>
@@ -1239,8 +1239,8 @@ Ausgabe in der Shell
 
 </ul>
 </section>
-<section id="org6c58c83">
-<h3 id="org6c58c83">Funktionale Datenstrukturen</h3>
+<section id="org79f9234">
+<h3 id="org79f9234">Funktionale Datenstrukturen</h3>
 <ul>
 <li>Funktionale Datenstrukturen sind nicht änderbar.</li>
 <li><p>
@@ -1268,8 +1268,8 @@ Beispiel in Clojure
 
 </ul>
 </section>
-<section id="org34a3b48">
-<h4 id="org34a3b48">Effiziente Implementierung</h4>
+<section id="org7baa2d4">
+<h4 id="org7baa2d4">Effiziente Implementierung</h4>
 <ul>
 <li>Ideen basieren auf Okasakis Buch <i>Purely Functional Data Structures</i>
 [<a class='org-ref-reference' href="#Okasaki1999">Okasaki1999</a>]</li>
@@ -1289,8 +1289,8 @@ stellen.</li>
 
 </ul>
 </section>
-<section id="orgee55d69">
-<h4 id="orgee55d69">Exemplarische Darstellung für Vektoren in Clojure</h4>
+<section id="org0ddd32a">
+<h4 id="org0ddd32a">Exemplarische Darstellung für Vektoren in Clojure</h4>
 <ul>
 <li>Verwendet werden Strukturen, die Binärbäumen ähneln.</li>
 <li>Die internen Knoten enthalten keine Daten, sondern nur Verweise auf
@@ -1331,8 +1331,8 @@ werden Pfadkopien eingesetzt.</li>
 
 </ul>
 </section>
-<section id="org413876a">
-<h5 id="org413876a">Die Änderungsoperation</h5>
+<section id="orgb90ea0c">
+<h5 id="orgb90ea0c">Die Änderungsoperation</h5>
 <ul>
 <li>Um ein Vektorelement zu ändern, verfolgt man den Pfad bis zu dem
 Element, das geändert werden soll.</li>
@@ -1370,8 +1370,8 @@ Beispiel:
 
 </ul>
 </section>
-<section id="org6218c32">
-<h5 id="org6218c32">Anhängen eines Elements</h5>
+<section id="orgdb91a44">
+<h5 id="orgdb91a44">Anhängen eines Elements</h5>
 <ul>
 <li>Drei Fälle sind zu unterscheiden:
 <ol>
@@ -1383,8 +1383,8 @@ Beispiel:
 
 </ul>
 </section>
-<section id="org7284f05">
-<h6 id="org7284f05">Fall 1</h6>
+<section id="orgfae7273">
+<h6 id="orgfae7273">Fall 1</h6>
 <ul>
 <li><p>
 Vorgehensweise entspricht weitgehend der Änderungsoperation.
@@ -1416,8 +1416,8 @@ Beispiel:
 
 </ul>
 </section>
-<section id="org612f15f">
-<h6 id="org612f15f">Fall 2</h6>
+<section id="org582558a">
+<h6 id="org582558a">Fall 2</h6>
 <div class="nebeneinander">
 <ul>
 <li>Neue Knoten werden bei Bedarf erzeugt.</li>
@@ -1438,8 +1438,8 @@ Beispiel:
 
 </div>
 </section>
-<section id="orgd8b943b">
-<h6 id="orgd8b943b">Fall 3</h6>
+<section id="orgd3742f1">
+<h6 id="orgd3742f1">Fall 3</h6>
 <div class="nebeneinander">
 <ul>
 <li>Die neue Wurzel ist violett, die übrigen neu erzeugten Knoten sind
@@ -1460,8 +1460,8 @@ wieder rosa dargestellt.</li>
 
 </div>
 </section>
-<section id="orgf9ae662">
-<h5 id="orgf9ae662">Entfernen von Elementen</h5>
+<section id="org80f70be">
+<h5 id="org80f70be">Entfernen von Elementen</h5>
 <ul>
 <li>Hier sind ähnliche Überlegungen wie beim Hinzufügen von Elementen
 anzustellen.</li>
@@ -1472,8 +1472,8 @@ anzustellen.</li>
 
 </ul>
 </section>
-<section id="orgfc74fa7">
-<h3 id="orgfc74fa7">Effizeinzbetrachtung</h3>
+<section id="orge33716a">
+<h3 id="orge33716a">Effizeinzbetrachtung</h3>
 <ul>
 <li>Die geschilderten Operationen haben für imperative Datenstrukturen
 die Laufzeitkomplexität \(O(1)\).</li>
@@ -1488,8 +1488,8 @@ nicht größer als 6.</li>
 </section>
 </section>
 <section>
-<section id="orgf5fa55d">
-<h2 id="orgf5fa55d"><h2>Literaturverzeichnis</h2>
+<section id="org6db3b6b">
+<h2 id="org6db3b6b"><h2>Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="Okasaki1999">[Okasaki1999]</a> <a name="Okasaki1999"></a>Chris Okasaki, Purely Functional Data Structures, Cambridge University Press (1999).</li>
 </ul></h2>
 </section>
