@@ -29,11 +29,11 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Ausdrucksmittel funktionaler Programmiersprachen</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-10-07 Sun 17:12</p>
+<section id="sec-title-slide"><h1 class="title">Ausdrucksmittel funktionaler Programmiersprachen</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-11-06 Tue 18:18</p>
 </section>
 <section>
-<section id="org04d6a04">
-<h2 id="org04d6a04">Ziele</h2>
+<section id="org89e1424">
+<h2 id="org89e1424">Ziele</h2>
 <ul>
 <li>Kennen und Anwenden besonderer Ausdrucksmittel verschiedener funktionaler Sprachen:
 <ul>
@@ -49,20 +49,20 @@
 </section>
 </section>
 <section>
-<section id="org820c644">
-<h2 id="org820c644">Mustervergleich (pattern matching)</h2>
-<div class="outline-text-2" id="text-org820c644">
+<section id="org56584f3">
+<h2 id="org56584f3">Mustervergleich (pattern matching)</h2>
+<div class="outline-text-2" id="text-org56584f3">
 </div>
 </section>
-<section id="orgcfbe759">
-<h3 id="orgcfbe759">Algebraische Datentypen</h3>
+<section id="orgcdd3612">
+<h3 id="orgcdd3612">Algebraische Datentypen</h3>
 <p>
 Im Modul <i>Einführung in die Programmierung</i> wurden algebraische
  Datentypen behandelt: Produkttypen und Summentypen.
 </p>
 </section>
-<section id="orgadbfd81">
-<h4 id="orgadbfd81">Produkttypen</h4>
+<section id="orgd54d221">
+<h4 id="orgd54d221">Produkttypen</h4>
 <ul>
 <li>auch Verbünde, records genannt</li>
 <li><p>
@@ -79,8 +79,8 @@ kann als Teilmenge des kartesischen Produkts
 
 </ul>
 </section>
-<section id="orgb524f76">
-<h4 id="orgb524f76">Produkttypen in SML</h4>
+<section id="org1d92f86">
+<h4 id="org1d92f86">Produkttypen in SML</h4>
 <ul>
 <li>Tupel (vgl. <a href="./PP2-2-PrgSprchnTypsstm.html#zusammengesetzte-typen-tupel">Zusammengesetzte Typen: Tupel</a>)
 <ul>
@@ -123,8 +123,8 @@ type point = { x : int, y: int }
 
 </ul>
 </section>
-<section id="org811b6f1">
-<h4 id="org811b6f1">Summentypen</h4>
+<section id="org06d619c">
+<h4 id="org06d619c">Summentypen</h4>
 <ul>
 <li>in <i>Einführung in die Programmierung</i> als <i>gemischte Daten</i>
 bezeichnet</li>
@@ -152,8 +152,8 @@ Beispiel aus EidP: Flächeninhalt von Figuren
 
 </ul>
 </section>
-<section id="orgd49d980">
-<h4 id="orgd49d980">Summentypen in SML</h4>
+<section id="org1ef0593">
+<h4 id="org1ef0593">Summentypen in SML</h4>
 <ul>
 <li><p>
 Beispiel:
@@ -183,8 +183,8 @@ sog. <i>case-expressions</i>, d.&nbsp;h. für Mustervergleiche.</li>
 
 </ul>
 </section>
-<section id="orga7965b7">
-<h5 id="orga7965b7">Zugriff auf <code>datatype</code>-Werte</h5>
+<section id="org319557f">
+<h5 id="org319557f">Zugriff auf <code>datatype</code>-Werte</h5>
 <ul>
 <li><p>
 ausschließlich durch Mustervergleich:
@@ -239,8 +239,8 @@ benutzen/deklarieren.</li>
 
 </ul>
 </section>
-<section id="org71fe518">
-<h5 id="org71fe518">Übertragung des Figur-Beispiels aus Racket</h5>
+<section id="org7b45aee">
+<h5 id="org7b45aee">Übertragung des Figur-Beispiels aus Racket</h5>
 <div class="org-src-container">
 
 <pre  class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">shape</span> =
@@ -263,13 +263,13 @@ benutzen/deklarieren.</li>
 </pre>
 </div>
 </section>
-<section id="org6b44c24">
-<h4 id="org6b44c24">Listen als rekursive algebraische Datentypen</h4>
-<div class="outline-text-4" id="text-org6b44c24">
+<section id="orgc8a9075">
+<h4 id="orgc8a9075">Listen als rekursive algebraische Datentypen</h4>
+<div class="outline-text-4" id="text-orgc8a9075">
 </div>
 </section>
-<section id="org27fa7ae">
-<h5 id="org27fa7ae">in Racket</h5>
+<section id="org6354bf1">
+<h5 id="org6354bf1">in Racket</h5>
 <div class="org-src-container">
 
 <pre  class="src src-scheme"><span style="color: #8D8D84;">; </span><span style="color: #8D8D84; font-style: italic;">Eine Liste ist</span>
@@ -303,8 +303,8 @@ benutzen/deklarieren.</li>
 </pre>
 </div>
 </section>
-<section id="org8c7e076">
-<h5 id="org8c7e076">in SML</h5>
+<section id="org9800c6f">
+<h5 id="org9800c6f">in SML</h5>
 <ul>
 <li><code>datatype</code>-Definitionen dürfen rekursiv sein.</li>
 <li>Man beachte die Nutzung des Mustervergleichs in den Funktionen.</li>
@@ -324,8 +324,8 @@ benutzen/deklarieren.</li>
 </pre>
 </div>
 </section>
-<section id="org377189f">
-<h4 id="org377189f">Mustervergleich für in SML eingebaute Listen</h4>
+<section id="org1d287f1">
+<h4 id="org1d287f1">Mustervergleich für in SML eingebaute Listen</h4>
 <ul>
 <li><p>
 Statt
@@ -358,8 +358,8 @@ besser
 
 </ul>
 </section>
-<section id="orgf9a157a">
-<h4 id="orgf9a157a">Vorteile des Mustervergleichs</h4>
+<section id="org99a6921">
+<h4 id="org99a6921">Vorteile des Mustervergleichs</h4>
 <ul>
 <li>Laufzeitfehler wie durch <code>hd []</code> werden vermieden.</li>
 <li>Wenn in einem <code>case</code>-Ausdruck eine Variante fehlt, erzeugt der
@@ -370,8 +370,8 @@ Compiler ebenfalls eine Warnung.</li>
 
 </ul>
 </section>
-<section id="orge06b3e0">
-<h3 id="orge06b3e0">Polymorphe Datentypen</h3>
+<section id="org2b45919">
+<h3 id="org2b45919">Polymorphe Datentypen</h3>
 <ul>
 <li><p>
 die <code>append</code> Funktion für eingebaute Listen:
@@ -398,8 +398,8 @@ getypten Sprachen.</li>
 </ul>
 
 </section>
-<section id="org213f3d7">
-<h4 id="org213f3d7">Selbsdefinierte polymorphe Datentypen</h4>
+<section id="org021cc54">
+<h4 id="org021cc54">Selbsdefinierte polymorphe Datentypen</h4>
 <ul>
 <li><p>
 Beispiel: Binärbaum, dessen interne Knoten Daten vom Typ <code>’a</code> und
@@ -417,10 +417,10 @@ Mustervergleichs ist dieselbe für polymorphe und regulären Datentypen.</li>
 
 </ul>
 </section>
-<section id="org84297d5">
-<h3 id="org84297d5">Mustervergleich für Summentypen und die Wahrheit über Funktionen</h3>
+<section id="org9025270">
+<h3 id="org9025270">Mustervergleich für Produkttypen und die Wahrheit über Funktionen</h3>
 <ul>
-<li>Grundsätzlich ist der Mustervergleich auch auf Summentypen anwendbar.</li>
+<li>Grundsätzlich ist der Mustervergleich auch auf Produkttypen anwendbar.</li>
 <li>Für ein Record der Form <code>{f1=v1,...,fn=vn}</code> werden durch das Muster
 <code>{f1=x1,...,fn=xn}</code> die Variablen <code>xi</code> an die Werte <code>vi</code> gebunden.</li>
 <li>Ein Muster der Form <code>(x1,...,xn)</code> bindet die Werte eines Tupels
@@ -443,8 +443,8 @@ summiert:
 
 </ul>
 </section>
-<section id="org2a5716b">
-<h4 id="org2a5716b">Andere (bessere) syntaktische Varianten</h4>
+<section id="orgd47c324">
+<h4 id="orgd47c324">Andere (bessere) syntaktische Varianten</h4>
 <div class="small">
 <div class="org-src-container">
 
@@ -471,8 +471,8 @@ Jede Funktion in ML besitzt nur <b>einen</b> Parameter.
 </p>
 </blockquote>
 </section>
-<section id="org2563c96">
-<h3 id="org2563c96">Geschachtelte Muster</h3>
+<section id="orgf1a4942">
+<h3 id="orgf1a4942">Geschachtelte Muster</h3>
 <div class="org-src-container">
 
 <pre  class="src src-sml"><span style="color: #0000FF;">exception</span> BadTriple
@@ -493,8 +493,8 @@ Jede Funktion in ML besitzt nur <b>einen</b> Parameter.
 </pre>
 </div>
 </section>
-<section id="orgfae1098">
-<h3 id="orgfae1098">Exkurs: Destructuring in Clojure</h3>
+<section id="org4788d31">
+<h3 id="org4788d31">Exkurs: Destructuring in Clojure</h3>
 <p>
 Unter <i>destructuring</i> versteht man eine Weise, Werte aus einer
 Datenstruktur zu extrahieren und dabei an Variablen zu binden. Dabei
@@ -507,8 +507,8 @@ und Zeichenketten möglich.
 (vgl. <a href="https://clojure.org/guides/destructuring">Destructuring in Clojure</a>)
 </p>
 </section>
-<section id="org19c0741">
-<h4 id="org19c0741">Vektoren</h4>
+<section id="orgc3b7d6a">
+<h4 id="orgc3b7d6a">Vektoren</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-vector</span> <span style="color: #7388D6;">[</span><span style="color: #D0372D;">:a</span> <span style="color: #D0372D;">:b</span> <span style="color: #D0372D;">:c</span> <span style="color: #D0372D;">:d</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
@@ -565,8 +565,8 @@ und Zeichenketten möglich.
 </pre>
 </div>
 </section>
-<section id="org6a715a6">
-<h5 id="org6a715a6">Beispiel ohne Destructuring &#x2026;</h5>
+<section id="org17bbdee">
+<h5 id="org17bbdee">Beispiel ohne Destructuring &#x2026;</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-line</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>5 10<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>10 20<span style="color: #909183;">]</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
@@ -582,8 +582,8 @@ und Zeichenketten möglich.
 </pre>
 </div>
 </section>
-<section id="org68fac7d">
-<h5 id="org68fac7d">&#x2026; und mit Destructuring</h5>
+<section id="org3c20703">
+<h5 id="org3c20703">&#x2026; und mit Destructuring</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-line</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>5 10<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>10 20<span style="color: #909183;">]</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
@@ -597,8 +597,8 @@ und Zeichenketten möglich.
 </pre>
 </div>
 </section>
-<section id="orgbf57f61">
-<h4 id="orgbf57f61">Maps</h4>
+<section id="org6d1fb27">
+<h4 id="org6d1fb27">Maps</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-hashmap</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:a</span> <span style="color: #008000;">"A"</span> <span style="color: #D0372D;">:b</span> <span style="color: #008000;">"B"</span> <span style="color: #D0372D;">:c</span> <span style="color: #008000;">"C"</span> <span style="color: #D0372D;">:d</span> <span style="color: #008000;">"D"</span><span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
@@ -640,8 +640,8 @@ und Zeichenketten möglich.
 </pre>
 </div>
 </section>
-<section id="orgb54de95">
-<h5 id="orgb54de95">Beispiel</h5>
+<section id="org443a3b2">
+<h5 id="org443a3b2">Beispiel</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">client</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:name</span> <span style="color: #008000;">"Super Co."</span>
@@ -672,8 +672,8 @@ und Zeichenketten möglich.
 </pre>
 </div>
 </section>
-<section id="org4161566">
-<h4 id="org4161566">Funktionsköpfe</h4>
+<section id="org47098e6">
+<h4 id="org47098e6">Funktionsköpfe</h4>
 <ul>
 <li>Ein häufiger Anwendungszweck von Destructuring ist die Zerlegung von
 Argumenten, die an eine Funktion übergeben werden.</li>
@@ -704,8 +704,8 @@ Argumenten, die an eine Funktion übergeben werden.</li>
 </section>
 </section>
 <section>
-<section id="org3e53ae0">
-<h2 id="org3e53ae0">Curryfizierung &#x2013; partielle Anwendung von Funktionen</h2>
+<section id="orgffb68ca">
+<h2 id="orgffb68ca">Curryfizierung &#x2013; partielle Anwendung von Funktionen</h2>
 <ul>
 <li>ML-Funktionen akzeptieren nur ein Argument.</li>
 <li>Wege, um die Übergabe mehrerer Argumente zu „simulieren“:
@@ -729,8 +729,8 @@ bezeichnet. Das Verb (englisch) heißt <i>currify</i>, im Deutschen mit
 </ul>
 
 </section>
-<section id="org9569d76">
-<h3 id="org9569d76">Definition und Benutzung einer curryfizierten Funktion</h3>
+<section id="org211f926">
+<h3 id="org211f926">Definition und Benutzung einer curryfizierten Funktion</h3>
 <ul>
 <li><p>
 Beispiel einer Funktion mit „drei Parametern”:
@@ -772,8 +772,8 @@ sorted3_tupled(4,5,6)
 </ul>
 
 </section>
-<section id="org2ac08fe">
-<h4 id="org2ac08fe">Syntaktischer Zucker für die Definition von curryfizierten Funktionen</h4>
+<section id="org00dccbb">
+<h4 id="org00dccbb">Syntaktischer Zucker für die Definition von curryfizierten Funktionen</h4>
 <ul>
 <li><p>
 Die Definition von curryfizierten Funktionen mithilfe geschachtelter
@@ -803,8 +803,8 @@ val sorted3 = fn : int -&gt; int -&gt; int -&gt; bool
 </ul>
 
 </section>
-<section id="org8301d9e">
-<h3 id="org8301d9e">Partielle Anwendung von curryfizierten Funktionen</h3>
+<section id="org9db89ef">
+<h3 id="org9db89ef">Partielle Anwendung von curryfizierten Funktionen</h3>
 <ul>
 <li>In der Regel wird die Funktion <code>sorted3</code> wohl mit allen drei
 Argumenten aufgerufen werden.</li>
@@ -816,8 +816,8 @@ Argument nicht negativ ist.</li>
 
 </ul>
 </section>
-<section id="orged919fa">
-<h4 id="orged919fa">Partielle Anwendung und Funktionen höherer Ordnung</h4>
+<section id="orgd35ac10">
+<h4 id="orgd35ac10">Partielle Anwendung und Funktionen höherer Ordnung</h4>
 <ul>
 <li>Curryfizierung wird gerne im Zusammenhang mit den klassischen Funktionen
 höherer Ordnung benutzt.</li>
@@ -852,8 +852,8 @@ val sum2 = fold (fn (x,y) =&gt; x+y) 0
 
 </ul>
 </section>
-<section id="org1fc40c2">
-<h4 id="org1fc40c2">Diverse Funktionen höherer Ordnung in ML nutzen Curryfizierung</h4>
+<section id="org74ceaec">
+<h4 id="org74ceaec">Diverse Funktionen höherer Ordnung in ML nutzen Curryfizierung</h4>
 <ul>
 <li><p>
 Beispiele (aus dem Modul <code>List</code>):
@@ -892,8 +892,8 @@ Ein anderes Beispiel einer nützlichen curryfizierten Funktion ist
 </ul>
 
 </section>
-<section id="org2991be6">
-<h3 id="org2991be6">Curryfizierung im Allgemeinen</h3>
+<section id="org1930a43">
+<h3 id="org1930a43">Curryfizierung im Allgemeinen</h3>
 <ul>
 <li>Curryfizierung ist nicht nur im Zusammenhang von Funktionen höherer
 Ordnung von Bedeutung.</li>
@@ -921,8 +921,8 @@ wendet <code>range</code> partiell an und <code>add_numbers</code> verwandelt di
 </ul>
 
 </section>
-<section id="orgb373fa1">
-<h3 id="orgb373fa1">Curryfizierung in Lisp-Sprachen</h3>
+<section id="org6cbdb23">
+<h3 id="org6cbdb23">Curryfizierung in Lisp-Sprachen</h3>
 <ul>
 <li>in Lisp-Sprachen keine syntaktische Unterstützung</li>
 <li>gilt jedenfalls für Racket und Clojure</li>
@@ -931,13 +931,13 @@ möglich</li>
 
 </ul>
 </section>
-<section id="orgc5a3a08">
-<h4 id="orgc5a3a08">Beispiele in Clojure</h4>
-<div class="outline-text-4" id="text-orgc5a3a08">
+<section id="org23b47c4">
+<h4 id="org23b47c4">Beispiele in Clojure</h4>
+<div class="outline-text-4" id="text-org23b47c4">
 </div>
 </section>
-<section id="org36d5f92">
-<h5 id="org36d5f92">Funktion, die eine Funktion erzeugt, die eine Konstante addiert</h5>
+<section id="org1856e5d">
+<h5 id="org1856e5d">Funktion, die eine Funktion erzeugt, die eine Konstante addiert</h5>
 <div class="small">
 <div class="org-src-container">
 
@@ -974,8 +974,8 @@ wiederum einen (den zweiten) Summanden akzeptiert und auf den ersten addiert.</l
 
 </ul>
 </section>
-<section id="org3e7dd39">
-<h5 id="org3e7dd39">Funktion, die eine Funktion erzeugt, die an eine Liste ein Element vorn anhängt</h5>
+<section id="orga06ec8a">
+<h5 id="orga06ec8a">Funktion, die eine Funktion erzeugt, die an eine Liste ein Element vorn anhängt</h5>
 <pre  class="example">
 ;; make-prepend: X -&gt; ((list-of X) -&gt; (list-of X))
 
@@ -988,8 +988,8 @@ wiederum einen (den zweiten) Summanden akzeptiert und auf den ersten addiert.</l
 (= ((make-prepend "A") (list "B" "C" "D")) (list "A" "B" "C" "D"))
 </pre>
 </section>
-<section id="orgb4e6246">
-<h5 id="orgb4e6246">ein ML-Beispiel</h5>
+<section id="org29c3ab1">
+<h5 id="org29c3ab1">ein ML-Beispiel</h5>
 <div class="org-src-container">
 
 <pre  class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">make_mult</span> a =
@@ -1005,8 +1005,8 @@ wiederum einen (den zweiten) Summanden akzeptiert und auf den ersten addiert.</l
 </pre>
 </div>
 </section>
-<section id="org205ba15">
-<h4 id="org205ba15">Der Schönfinkel-Isomorphismus</h4>
+<section id="orga101639">
+<h4 id="orga101639">Der Schönfinkel-Isomorphismus</h4>
 <ul>
 <li>Die oben gezeigten Funktionen folgen alle dem gleichen Muster.</li>
 <li>Kann dieses Muster verallgemeinert, d.&nbsp;h. in eine Funktion
@@ -1018,8 +1018,8 @@ und liefert eine curryfizierte Variante zurück.</li>
 </ul>
 
 </section>
-<section id="org118b0d9">
-<h5 id="org118b0d9">Die Funktion <code>curry</code></h5>
+<section id="org516b859">
+<h5 id="org516b859">Die Funktion <code>curry</code></h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Prozedur mit zwei Parametern curryfizieren</span>
@@ -1042,8 +1042,8 @@ und liefert eine curryfizierte Variante zurück.</li>
 </div>
 
 </section>
-<section id="org28314c9">
-<h5 id="org28314c9">Die Funktion <code>uncurry</code></h5>
+<section id="orgf2796be">
+<h5 id="orgf2796be">Die Funktion <code>uncurry</code></h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">curryyfizierte Funktion entcurryfizieren</span>
@@ -1059,8 +1059,8 @@ und liefert eine curryfizierte Variante zurück.</li>
 </pre>
 </div>
 </section>
-<section id="org82bc078">
-<h5 id="org82bc078">Der Isomorphismus</h5>
+<section id="org49a7bcb">
+<h5 id="org49a7bcb">Der Isomorphismus</h5>
 <ul>
 <li>Es gilt folgende Gleichung für Funktionen \(f\) mit zwei Parametern:</li>
 
