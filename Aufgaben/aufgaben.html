@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-11-05 Mon 22:05 -->
+<!-- 2018-11-14 Wed 21:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aufgaben</title>
@@ -268,12 +268,12 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org7590ea2" class="outline-2">
-<h2 id="org7590ea2"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
+<div id="outline-container-org7e171f6" class="outline-2">
+<h2 id="org7e171f6"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org71c822d" class="outline-3">
-<h3 id="org71c822d"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
+<div id="outline-container-orga6f2afb" class="outline-3">
+<h3 id="orga6f2afb"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Lösen Sie das SEND-MORE-MONEY-Problem aus der Vorlesung 
@@ -283,8 +283,8 @@ Beachten Sie Nebenbedingungen.
 </div>
 </div>
 
-<div id="outline-container-org1ff41df" class="outline-3">
-<h3 id="org1ff41df"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
+<div id="outline-container-org47c2959" class="outline-3">
+<h3 id="org47c2959"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Führen Sie für das Pkw-Motorräder-Problem aus der <a href="../Vorlesung/PP2-1-Einstieg.html#aufgabePkw">Vorlesung</a> den dort
@@ -293,8 +293,8 @@ verlangten Beweis!
 </div>
 </div>
 
-<div id="outline-container-orga387178" class="outline-3">
-<h3 id="orga387178"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
+<div id="outline-container-orge7d7ff1" class="outline-3">
+<h3 id="orge7d7ff1"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li><p>
@@ -385,8 +385,8 @@ vorkommender Monat keinen Einfluss auf das Resultat hat.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org4e270f6" class="outline-3">
-<h3 id="aufgabemustervergleich"><a id="org4e270f6"></a><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
+<div id="outline-container-org10f86f2" class="outline-3">
+<h3 id="aufgabemustervergleich"><a id="org10f86f2"></a><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
 <div class="outline-text-3" id="text-aufgabemustervergleich">
 <ol class="org-ol">
 <li><p>
@@ -436,111 +436,14 @@ mit alles Konstanten des Ausdrucks liefert.</li>
 <li>Schreiben Sie eine SML-Funktion <code>number_of_adds</code>, die Anzahl der
 Additionen im Ausdruck ermittelt.</li>
 </ol></li>
-
-<li><p>
-Funktionen für ein <b>frei erfundenes Kartenspiel</b> (Solitär)
-</p>
-
-<ul class="org-ul">
-<li>Das Spiel beinhaltet einen <i>Kartenstapel</i> und einen <i>Zielwert</i>.</li>
-<li>Die Spielerin besitzt eine Liste <i>gezogener Karten</i>, die zu Beginn des
-Spiels leer ist.</li>
-<li>Sie führt einen <i>Zug</i> aus, indem sie entweder
-<ul class="org-ul">
-<li>die oberste Karte vom Kartenstapel <i>zieht</i> und zur Liste gezogener
-Karten hinzufügt oder</li>
-<li>eine Karte aus Liste gezogener Karten <i>ablegt</i>, d.&nbsp;h. aus
-der Liste gezogener Karten entfernt.</li>
-</ul></li>
-<li>Das Spiel ist beendet, wenn entweder
-<ul class="org-ul">
-<li>die Spielerin entscheidet, keinen weiteren Zug auszuführen oder</li>
-<li>die Summe der Werte der gezogenen Karten den Zielwert überschreitet.</li>
-</ul></li>
-<li>Das Ziel des Spiels besteht darin, es mit einem möglichst niedrigen
-<i>Punktestand</i> (0 ist das Optimum.)zu beenden.</li>
-<li>Der Punktestand wird wie folgt ermittelt: Sei \(s\) die Summe der
-Kartenwerte der gezogenen Karten. Dann gilt:
-\[vorlaeufiger Punktestand = \begin{cases} s>Zielwert &
-     3\cdot(s-Zielwert)\\
-     s\leq Zielwert & Zielwert-s\end{cases}\] 
-Der Punktestand ist der \(vorlaeufiger Punktestand\), es sei denn, alle
-gezogenen Karte haben die gleiche Farbe. In diesem Fall ist der
-Punktestand gleich \(\frac{vorlaeufiger Punktestand}{2}\), wobei hier
-ganzzahlig dividiert wird (Operator <code>div</code> in ML).</li>
-</ul>
-
-<p>
-Ihre Lösungen müssen Mustervergleich benutzen. Die Nutzung der
-Standard-Funktionen <code>null</code>, <code>hd</code>, <code>tl</code>, <code>isSome</code> und <code>valOf</code> ist
-nicht erlaubt. Auch ist nichts erlaubt, was das Zeichen # benutzt. 
-</p>
-
-<p>
-Benutzen Sie die folgenden Datentypen:  
-</p>
-<div class="org-src-container">
-<pre class="src src-sml">   <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">Sie d&#252;rfen davon ausgehen, dass f&#252;r Zahl nur die Werte 2, 3, ..., 10</span>
-<span style="color: #8D8D84; font-style: italic;">      benutzt werden. </span><span style="color: #8D8D84;">*)</span>
-   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">sorte</span> = Kreuz | Pik | Herz | Karo
-   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">wert</span> = Bube | Dame | Koenig | Ass | Zahl <span style="color: #0000FF;">of</span> int 
-   <span style="color: #0000FF;">type</span> <span style="font-weight: bold;">karte</span> = sorte * wert
-
-   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">farbe</span> = Rot | Schwarz
-   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">zug</span> = Ablegen <span style="color: #0000FF;">of</span> karte | Ziehen 
-
-   <span style="color: #0000FF;">exception</span> IllegalerZug
-</pre>
-</div>
-<p>
-Weitere Typdefinitionen sind nicht erforderlich.
-</p>
-
-<p>
-Schreiben Sie nun die folgenden Funktionen:
-</p>
-<dl class="org-dl">
-<dt><code>kartenfarbe</code></dt><dd>nimmt ein Exemplar von <code>karte</code> und liefert seine
-Farbe (Karo und Herz sind rot, Pik und Kreuz sind
-schwarz)</dd>
-
-<dt><code>kartenwert</code></dt><dd>nimmt ein Exemplar von <code>karte</code> und liefert seinen
-Wert (nummerierte Karten haben die Zahl als Wert,
-Asse zählen 11, alle anderen 10)</dd>
-
-<dt><code>entferne_karte</code></dt><dd>nimmt eine Liste von Karten <code>kn</code>, eine
-Karte <code>k</code> sowie eine Exception <code>e</code> und liefert die Liste <code>kn</code>
-ohne <code>k</code>. Falls <code>k</code> mehrfach in <code>kn</code> vorkommt, wird nur das
-erste Exemplar entfernt. Wenn <code>k</code> in <code>kn</code> nicht vorkommt, soll
-die Exception <code>e</code> erzeugt werden. Karten können mit dem
-Operator <code>=</code> verglichen werden.</dd>
-
-<dt><code>alle_farben_gleich</code></dt><dd>nimmt eine Liste von Karten und
-liefert <code>true</code>, wenn alle Karten in der Liste die gleiche
-Farbe haben</dd>
-
-<dt><code>kartensumme</code></dt><dd>nimmt eine Liste von Karten und summiert ihre
-Werte. Benutzen Sie eine endrekursive
-Hilfsfunktion.</dd>
-
-<dt><code>punktestand</code></dt><dd>nimmt eine Liste von Karten (die gezogenen
-Karten) und berechnet den Punktestand nach oben
-angegebener Formel</dd>
-
-<dt><code>spielablauf</code></dt><dd>nimmt eine Liste von Karten (der Kartenstapel),
-eine Liste von Zügen, die die Spielerin der
-Reihe nach abarbeitet, sowie einen Zielwert und
-liefert den Punktestand am Ende des
-Spiels. Benutzen Sie eine lokal definierte
-Hilfsfunktion, deren Argumente den aktuellen
-Spielstand repräsentieren.</dd>
-</dl></li>
+<li>Funktionen für ein <b>frei erfundenes Kartenspiel</b> (Solitär)
+vgl. <a href="AufgabePV.pdf">Prüfungsvorleistung</a></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org6ce3198" class="outline-3">
-<h3 id="org6ce3198"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
+<div id="outline-container-org7679892" class="outline-3">
+<h3 id="org7679892"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Überlegen Sie, wie Kreise, die durch
@@ -561,8 +464,8 @@ des Destructurings Gebrauch.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd0f321a" class="outline-3">
-<h3 id="orgd0f321a"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
+<div id="outline-container-org364b663" class="outline-3">
+<h3 id="org364b663"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Schreiben Sie für den Datentyp <code>exp</code> (vgl. <a href="#aufgabemustervergleich">Aufgabe (Mustervergleich)</a>)
@@ -585,8 +488,8 @@ Konstanten von <code>e</code> <code>true</code> liefert.</li>
 </div>
 </div>
 
-<div id="outline-container-orge64537a" class="outline-3">
-<h3 id="orge64537a"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung, Entcurryfizierung, partielle Anwendung)</h3>
+<div id="outline-container-org11508e1" class="outline-3">
+<h3 id="org11508e1"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung, Entcurryfizierung, partielle Anwendung)</h3>
 <div class="outline-text-3" id="text-1-7">
 <ol class="org-ol">
 <li><p>
@@ -670,8 +573,8 @@ aus, dass die Ausdrücke <code>true</code> liefern:
 </ol>
 </div>
 </div>
-<div id="outline-container-org38358ea" class="outline-3">
-<h3 id="aufgabealternativelistenimplementierung"><a id="org38358ea"></a><span class="section-number-3">1.8</span> Aufgabe (alternative Listenimplementierung)</h3>
+<div id="outline-container-org7b240fb" class="outline-3">
+<h3 id="aufgabealternativelistenimplementierung"><a id="org7b240fb"></a><span class="section-number-3">1.8</span> Aufgabe (alternative Listenimplementierung)</h3>
 <div class="outline-text-3" id="text-aufgabealternativelistenimplementierung">
 <p>
 Gegeben sind folgende Definitionen für <code>cns</code> und <code>fst</code>:
@@ -695,8 +598,8 @@ Resultat <code>x</code> liefert.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org834f6e1" class="outline-3">
-<h3 id="aufgabendatentypnat"><a id="org834f6e1"></a><span class="section-number-3">1.9</span> Aufgabe (Datentyp <b>Nat</b>)</h3>
+<div id="outline-container-org08d8079" class="outline-3">
+<h3 id="aufgabendatentypnat"><a id="org08d8079"></a><span class="section-number-3">1.9</span> Aufgabe (Datentyp <b>Nat</b>)</h3>
 <div class="outline-text-3" id="text-aufgabendatentypnat">
 <ol class="org-ol">
 <li>Schreiben Sie eine Funktion <code>repeat</code>, die eine natürliche Zahl
@@ -734,13 +637,13 @@ Schreiben Sie eine Funktion
 </ol>
 </div>
 </div>
-<div id="outline-container-org92577d9" class="outline-3">
-<h3 id="aufgabenstreams"><a id="org92577d9"></a><span class="section-number-3">1.10</span> Aufgabe (verzögerte Auswertung - Streams)</h3>
+<div id="outline-container-orge874463" class="outline-3">
+<h3 id="aufgabenstreams"><a id="orge874463"></a><span class="section-number-3">1.10</span> Aufgabe (verzögerte Auswertung - Streams)</h3>
 <div class="outline-text-3" id="text-aufgabenstreams">
 </div>
-<div id="outline-container-orgbdfac28" class="outline-4">
-<h4 id="orgbdfac28">Streams</h4>
-<div class="outline-text-4" id="text-orgbdfac28">
+<div id="outline-container-org5b8ac5c" class="outline-4">
+<h4 id="org5b8ac5c">Streams</h4>
+<div class="outline-text-4" id="text-org5b8ac5c">
 <p>
 Ein Stream ist eine unendliche Folge von Werten. Selbstverständlich
 kann ein solche Folge nicht tatsächlich erzeugt werden - dies
@@ -879,9 +782,9 @@ Beispielanwendung:
 </div>
 </div>
 
-<div id="outline-container-org95cff25" class="outline-4">
-<h4 id="org95cff25">Aufgaben</h4>
-<div class="outline-text-4" id="text-org95cff25">
+<div id="outline-container-orgb0ce799" class="outline-4">
+<h4 id="orgb0ce799">Aufgaben</h4>
+<div class="outline-text-4" id="text-orgb0ce799">
 <ol class="org-ol">
 <li><p>
 Schreiben Sie eine Funktion <code>stream-for-n-steps</code>, die einen Stream
@@ -916,8 +819,8 @@ Funktion zur Berechnung des nächsten einen Stream baut.</li>
 </div>
 </div>
 
-<div id="outline-container-orga67e197" class="outline-3">
-<h3 id="aufgabeoopversusfp"><a id="orga67e197"></a><span class="section-number-3">1.11</span> Aufgabe (OPP versus FP)</h3>
+<div id="outline-container-org05f7a42" class="outline-3">
+<h3 id="aufgabeoopversusfp"><a id="org05f7a42"></a><span class="section-number-3">1.11</span> Aufgabe (OPP versus FP)</h3>
 <div class="outline-text-3" id="text-aufgabeoopversusfp">
 <ol class="org-ol">
 <li>Implementieren die in der <a href="../Vorlesung/PP2-5-ParadigmenVergleich.html#problemarithmeischeausdruecke">Vorlesung geschilderte Aufgabenstellung</a>
@@ -937,15 +840,15 @@ Matrix eine neue Zeile hinzu.</li>
 </div>
 
 
-<div id="outline-container-org075432c" class="outline-2">
-<h2 id="org075432c"><span class="section-number-2">2</span> Teil 2 (6. Semester)</h2>
+<div id="outline-container-orgacaabb0" class="outline-2">
+<h2 id="orgacaabb0"><span class="section-number-2">2</span> Teil 2 (6. Semester)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-11-05 Mon 22:05</p>
+<p class="date">Created: 2018-11-14 Wed 21:32</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
