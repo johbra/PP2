@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-11-14 Wed 22:10 -->
+<!-- 2018-11-23 Fri 21:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ausgewählte Lösungen zu den Aufgaben</title>
@@ -246,12 +246,12 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org2bab9be" class="outline-2">
-<h2 id="org2bab9be"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
+<div id="outline-container-org09b0885" class="outline-2">
+<h2 id="org09b0885"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga0889b6" class="outline-3">
-<h3 id="orga0889b6"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
+<div id="outline-container-org099a186" class="outline-3">
+<h3 id="org099a186"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Lösen Sie das SEND-MORE-MONEY-Problem aus der Vorlesung 
@@ -261,8 +261,8 @@ Beachten Sie Nebenbedingungen.
 </div>
 </div>
 
-<div id="outline-container-orgde6cc19" class="outline-3">
-<h3 id="orgde6cc19"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
+<div id="outline-container-org02ccc8f" class="outline-3">
+<h3 id="org02ccc8f"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Führen Sie für das Pkw-Motorräder-Problem aus der <a href="../Vorlesung/PP2-1-Einstieg.html#aufgabePkw">Vorlesung</a> den dort
@@ -271,8 +271,8 @@ verlangten Beweis!
 </div>
 </div>
 
-<div id="outline-container-org03b40b8" class="outline-3">
-<h3 id="org03b40b8"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
+<div id="outline-container-orgf2699d4" class="outline-3">
+<h3 id="orgf2699d4"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li><p>
@@ -417,11 +417,113 @@ vorkommender Monat keinen Einfluss auf das Resultat hat.</li>
 </ol>
 </div>
 </div>
+
+<div id="outline-container-org46e38fb" class="outline-3">
+<h3 id="aufgabemustervergleich"><a id="org46e38fb"></a><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
+<div class="outline-text-3" id="text-aufgabemustervergleich">
+<ol class="org-ol">
+<li><p>
+Gegeben sei die folgende Datendefintion für <b>arithmetische Ausdrücke</b>,
+bestehend aus <i>Konstanten</i>, <i>Negationen</i>, <i>Additionen</i> und <i>Multiplikationen</i>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">exp</span> = Constant <span style="color: #0000FF;">of</span> int
+                | Negate <span style="color: #0000FF;">of</span> exp
+                | Add <span style="color: #0000FF;">of</span> exp * exp
+                | Multiply <span style="color: #0000FF;">of</span> exp * exp
+</pre>
+</div>
+<p>
+Durch diese rekursive Datendefintion werden Bäume definiert, deren
+Blätter ganze Zahlen und deren interne Knoten entweder Negationen mit
+einem Kindknoten oder Additionen bzw. Multiplikationen mit je zwei
+Kindknoten sind.
+</p>
+
+<p>
+Die folgenden SML-Funktionen akzeptieren alle einen Wert vom Typ <code>exp</code>
+als Argument.
+</p>
+
+<ol class="org-ol">
+<li><p>
+Schreiben Sie eine SML-Funktion <code>eval</code>, die den ganzzahligen Wert
+des Arguments berechnet.
+</p>
+
+<p>
+Z.&nbsp;B. liefert der Aufruf
+</p>
+<pre class="example">
+eval (Add (Constant 19, Negate (Constant 4)))
+
+</pre>
+<p>
+den Wert 15.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">eval</span> e =
+          <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+              Constant i =&gt; i
+            | Negate e1  =&gt; ~ <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span>
+            | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span> + <span style="color: #707183;">(</span>eval e2<span style="color: #707183;">)</span>
+            | Multiply<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span> * <span style="color: #707183;">(</span>eval e2<span style="color: #707183;">)</span>
+</pre>
+</div></li>
+<li><p>
+Schreiben Sie eine SML-Funktion <code>list_of_constants</code>, die eine Liste
+mit allen Konstanten des Ausdrucks liefert.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">list_of_constants</span> e =
+              <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+                  Constant i =&gt;  <span style="color: #707183;">[</span>i<span style="color: #707183;">]</span>
+                | Negate e =&gt;  <span style="color: #707183;">(</span>list_of_constants e<span style="color: #707183;">)</span> 
+                | Add <span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>list_of_constants e1<span style="color: #707183;">)</span> @ <span style="color: #707183;">(</span>list_of_constants e2<span style="color: #707183;">)</span>
+                | Multiply <span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>list_of_constants e1<span style="color: #707183;">)</span> @ <span style="color: #707183;">(</span>list_of_constants e2<span style="color: #707183;">)</span> 
+</pre>
+</div></li>
+<li><p>
+Schreiben Sie eine SML-Funktion <code>largest_constant</code>, die die größte
+Konstante des Ausdrucks ermittelt.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">largest_constant</span> e =
+          <span style="color: #0000FF;">let</span> <span style="color: #0000FF;">fun</span> <span style="color: #006699;">max</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
+                  <span style="color: #0000FF;">case</span> xs <span style="color: #0000FF;">of</span>
+                      x::<span style="color: #707183;">[]</span> =&gt; x 
+                    | x::xs' =&gt; <span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">tl_max</span> = maxi<span style="color: #707183;">(</span>xs'<span style="color: #707183;">)</span>
+                                <span style="color: #0000FF;">in</span> <span style="color: #0000FF;">if</span> x &gt; tl_max <span style="color: #0000FF;">then</span> x <span style="color: #0000FF;">else</span> tl_max
+                                <span style="color: #0000FF;">end</span>
+          <span style="color: #0000FF;">in</span>
+              max <span style="color: #707183;">(</span>list_of_constants e<span style="color: #707183;">)</span>
+          <span style="color: #0000FF;">end</span>
+</pre>
+</div></li>
+<li><p>
+Schreiben Sie eine SML-Funktion <code>number_of_adds</code>, die Anzahl der
+Additionen im Ausdruck ermittelt.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">number_of_adds</span> e =
+         <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+              Constant i =&gt; 0
+            | Negate e1 =&gt; number_of_adds e1
+            | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span>  =&gt; 1 + number_of_adds e1 + number_of_adds e2
+            | Multiply<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; number_of_adds e1 + number_of_adds e2
+</pre>
+</div></li>
+</ol></li>
+<li>Funktionen für ein <b>frei erfundenes Kartenspiel</b> (Solitär)
+vgl. <a href="AufgabePV.pdf">Prüfungsvorleistung</a></li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-11-14 Wed 22:10</p>
+<p class="date">Created: 2018-11-23 Fri 21:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
