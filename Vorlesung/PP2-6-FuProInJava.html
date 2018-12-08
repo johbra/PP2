@@ -1,0 +1,1223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+<!-- 2018-12-08 Sat 22:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Funktionale Konzepte in Java 8</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Johannes Brauer" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Funktionale Konzepte in Java 8
+<br />
+<span class="subtitle">Programmierparadigmen</span>
+</h1>
+<div id="outline-container-org2ae7371" class="outline-2">
+<h2 id="org2ae7371">Ziele</h2>
+<div class="outline-text-2" id="text-org2ae7371">
+<ul class="org-ul">
+<li>Erkennen von Zusammenhängen zwischen verschiedenen
+Programmierparadigmen</li>
+<li>Grundverständnis für die Nutzung funktionaler Konzepte in Java</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org7d199de" class="outline-2">
+<h2 id="org7d199de">Warum?</h2>
+<div class="outline-text-2" id="text-org7d199de">
+</div>
+<div id="outline-container-orgb1b1e6b" class="outline-3">
+<h3 id="orgb1b1e6b">Einstiegsbeispiele</h3>
+<div class="outline-text-3" id="text-orgb1b1e6b">
+</div>
+<div id="outline-container-org59a8818" class="outline-4">
+<h4 id="org59a8818">Finde Hamburg</h4>
+<div class="outline-text-4" id="text-org59a8818">
+<p>
+Statt einer imperativen Lösung
+</p>
+<div class="small">
+<div class="org-src-container">
+<pre class="src src-java">    <span style="color: #6434A3;">boolean</span> <span style="color: #BA36A5;">found</span> = <span style="color: #D0372D;">false</span>;
+    <span style="color: #0000FF;">for</span><span style="color: #707183;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">city</span> : cities<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+      <span style="color: #0000FF;">if</span><span style="color: #7388D6;">(</span>city.equals<span style="color: #909183;">(</span><span style="color: #008000;">"Hamburg"</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        found = <span style="color: #D0372D;">true</span>;
+        <span style="color: #0000FF;">break</span>;
+      <span style="color: #7388D6;">}</span>
+    <span style="color: #707183;">}</span>
+
+System.out.println<span style="color: #707183;">(</span><span style="color: #008000;">"Found Hamburg?:"</span> + found<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div>
+<p>
+besser
+</p>
+<div class="small">
+<div class="org-src-container">
+<pre class="src src-java">System.out.println<span style="color: #707183;">(</span><span style="color: #008000;">"Found Hamburg?:"</span> + cities.contains<span style="color: #7388D6;">(</span><span style="color: #008000;">"Hamburg"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div>
+</div>
+</div>
+<div id="outline-container-org571a7c2" class="outline-4">
+<h4 id="org571a7c2">Aufgabe aus Teil 1:</h4>
+<div class="outline-text-4" id="text-org571a7c2">
+<p>
+Schreiben Sie Java-Code, der alle Preise aus einer Liste, größer
+als 20 sind, um 10% rabattiert und aufsummiert.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">BigDecimal</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">prices</span> = Arrays.asList<span style="color: #707183;">(</span>
+  <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"10"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"30"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"17"</span><span style="color: #7388D6;">)</span>,
+  <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"20"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"15"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"18"</span><span style="color: #7388D6;">)</span>,
+  <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"45"</span><span style="color: #7388D6;">)</span>, <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">BigDecimal</span><span style="color: #7388D6;">(</span><span style="color: #008000;">"12"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">L&#246;sung f&#252;r Java &lt; 8</span>
+<span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> = <span style="color: #D0372D;">BigDecimal</span>.ZERO;
+
+<span style="color: #0000FF;">for</span><span style="color: #707183;">(</span><span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">price</span> : prices<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  <span style="color: #0000FF;">if</span><span style="color: #7388D6;">(</span>price.compareTo<span style="color: #909183;">(</span>BigDecimal.valueOf<span style="color: #709870;">(</span>20<span style="color: #709870;">)</span><span style="color: #909183;">)</span> &gt; 0<span style="color: #7388D6;">)</span>
+    totalOfDiscountedPrices =
+       totalOfDiscountedPrices.add<span style="color: #7388D6;">(</span>price.multiply<span style="color: #909183;">(</span>BigDecimal.valueOf<span style="color: #709870;">(</span>0.9<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">L&#246;sung f&#252;r Java &gt;= 8</span>
+<span style="color: #0000FF;">final</span> <span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> =
+  prices.stream<span style="color: #707183;">()</span>
+        .filter<span style="color: #707183;">(</span>price -&gt; price.compareTo<span style="color: #7388D6;">(</span>BigDecimal.valueOf<span style="color: #909183;">(</span>20<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span> &gt; 0<span style="color: #707183;">)</span>
+        .map<span style="color: #707183;">(</span>price -&gt; price.multiply<span style="color: #7388D6;">(</span>BigDecimal.valueOf<span style="color: #909183;">(</span>0.9<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+        .reduce<span style="color: #707183;">(</span><span style="color: #D0372D;">BigDecimal</span>.ZERO, BigDecimal::add<span style="color: #707183;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc8c0fed" class="outline-4">
+<h4 id="orgc8c0fed">Registrierung eines <i>event listeners</i> in <i>Swing</i></h4>
+<div class="outline-text-4" id="text-orgc8c0fed">
+<ul class="org-ul">
+<li>Swing ist eine Java-Bibliothek für die Programmierung graphischer
+Benutzungsoberflächen.</li>
+<li>Um herauszufinden, was ein Benutzer getan hat, werden event
+listeners registriert.</li>
+<li><p>
+Benutzung einer anonymen, inneren Klasse, um die Betätigung einer
+Schaltfläche mit einem Verhalten zu verknüpfen:
+</p>
+<div class="small">
+<div class="org-src-container">
+<pre class="src src-java">button.addActionListener<span style="color: #707183;">(</span><span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ActionListener</span><span style="color: #7388D6;">()</span> 
+                           <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">actionPerformed</span><span style="color: #909183;">(</span><span style="color: #6434A3;">ActionEvent</span> <span style="color: #BA36A5;">event</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+                                System.out.println<span style="color: #709870;">(</span><span style="color: #008000;">"button clicked"</span><span style="color: #709870;">)</span>;
+    <span style="color: #909183;">}</span>
+<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+<li>Erzeugung eines neuen Objekts, das das <code>ActionListener</code>-Interface
+implementiert.</li>
+<li>Das Interface besitzt eine einzige Methode, <code>actionPerformed</code>, die
+durch Betätigung der Schaltfläche aktiviert wird.</li>
+</ul>
+<ul class="org-ul">
+<li>Anonyme innere classes wurden eingeführt, um es Java-Programmierern
+zu erleichtern, Verhalten zu repräsentieren und als Argumente
+weitergeben zu können.</li>
+<li>Dennoch wird im Beispiel immer noch viel „Boilerplate“-Code für eine
+einzige Zeile relevanten Codes verlangt.</li>
+<li>Der Code ist auch irreführend. Die Absicht ist ja nicht ein Objekt
+zu übergeben, sondern Verhalten.</li>
+<li><p>
+Abhilfe: Benutzung eines Lambda-Ausdrucks:
+</p>
+<div class="small">
+<div class="org-src-container">
+<pre class="src src-java">button.addActionListener<span style="color: #707183;">(</span>event -&gt; System.out.println<span style="color: #7388D6;">(</span><span style="color: #008000;">"button clicked"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+<li><b>Frage:</b> Wo findet hier Typinferenz statt?</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd24f1e7" class="outline-4">
+<h4 id="orgd24f1e7">Durchsetzung von Programmierregeln</h4>
+<div class="outline-text-4" id="text-orgd24f1e7">
+<ul class="org-ul">
+<li>Datenbankzugriffe müssen in einem gegebenen Umfeld unter
+Einhaltung bestimmter Regeln programmiert werden; z.&nbsp;B. muss
+eine bestimmte Form des Loggings durchgeführt werden.</li>
+<li><p>
+Code-Sequenzen wie die folgende müssen ständig wiederholt werden:
+</p>
+<div class="small">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #6434A3;">Transaction</span> <span style="color: #BA36A5;">transaction</span> = getFromTransactionFactory<span style="color: #707183;">()</span>;
+
+<span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">... operation to run within the transaction ...</span>
+
+checkProgressAndCommitOrRollbackTransaction<span style="color: #707183;">()</span>;
+UpdateAuditTrail<span style="color: #707183;">()</span>;  
+</pre>
+</div>
+
+</div></li>
+<li><p>
+bessere Variante:
+</p>
+<div class="small">
+<div class="org-src-container">
+<pre class="src src-java">runWithinTransaction<span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>Transaction <span style="color: #6434A3;">transaction</span><span style="color: #7388D6;">)</span> -&gt; <span style="color: #7388D6;">{</span>
+  <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">... operation to run within the transaction ...</span>
+<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>;  
+</pre>
+</div>
+
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4722b09" class="outline-4">
+<h4 id="org4722b09">Hinweise auf Literatur</h4>
+<div class="outline-text-4" id="text-org4722b09">
+<ul class="org-ul">
+<li>Java
+<ul class="org-ul">
+<li>Learning Java Functional Programming [<a class='org-ref-reference' href="#Reese2015">Reese2015</a>]</li>
+<li>Functional Programming in Java [<a class='org-ref-reference' href="#Subramaniam2014">Subramaniam2014</a>]</li>
+</ul></li>
+<li>C#
+<ul class="org-ul">
+<li>Real-World Functional Programming: With Examples in F# and C# [<a class='org-ref-reference' href="#Petricek2010">Petricek2010</a>]</li>
+<li>Functional C#: Uncover the secrets of functional programming using
+C# and change the way you approach your applications forever
+[<a class='org-ref-reference' href="#Anggoro2016">Anggoro2016</a>]</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc17a57c" class="outline-3">
+<h3 id="orgc17a57c">Erste Erkenntnisse</h3>
+<div class="outline-text-3" id="text-orgc17a57c">
+<ul class="org-ul">
+<li>Vermeidung von expliziter Mutation: Mutation ist fehleranfällig und
+hinderlich für Parallelarbeit.<br />
+<a href="http://henrikeichenhardt.blogspot.com/2013/06/why-shared-mutable-state-is-root-of-all.html">(Why shared mutable state is the root of all evil</a>.)</li>
+<li>Der Code wird ausdrucksstärker: Eine Preisliste soll rabattiert
+(<code>map</code>), gefiltert (<code>filter</code>) und aufsummiert (<code>reduce</code>) werden.</li>
+<li>Code im funktionalen Stil ist prägnanter: In der Regel wird weniger
+Code benötigt. Dabei geht es fast weniger um das Schreiben
+(geschieht nur einmal) als um das Lesen und Pflegen.</li>
+<li>Der funktionale Stil erlaubt eher zu formulieren, <b>was</b> passieren
+soll, als Details des <b>Wie</b> notieren zu müssen.</li>
+</ul>
+<ul class="org-ul">
+<li>Der funktionale Stil steht nicht im Widerspruch zur Objektorientierung:
+<ul class="org-ul">
+<li>Der eigentliche Paradigmenwechsel geschieht vom imperativen zum
+deklarativen Stil.</li>
+<li>In Java 8 können funktionale und objektorientierte Stile wirksam
+kombiniert werden:
+<ul class="org-ul">
+<li>Objektorientierung kann für die Modellierung realer Weltobjekte,
+ihrer Zustände und Beziehungen weiter genutzt werden.</li>
+<li>Zusätzlich kann Verhalten und Datenverarbeitung durch Funktionen
+komponiert werden.</li>
+<li>Das Verhalten muss nicht mehr zwingend an Objekte gebunden
+werden.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6ec7013" class="outline-2">
+<h2 id="org6ec7013">Sprachkonzepte</h2>
+<div class="outline-text-2" id="text-org6ec7013">
+</div>
+<div id="outline-container-orgfdd8636" class="outline-3">
+<h3 id="orgfdd8636">Lambda-Ausdrücke</h3>
+<div class="outline-text-3" id="text-orgfdd8636">
+<ul class="org-ul">
+<li>einige Beispiele bereits gesehen</li>
+<li>Lambda-Ausdrücke sind 
+<ul class="org-ul">
+<li>anonyme Funktionen</li>
+<li>akzeptieren Argumente</li>
+<li>liefern Resultate</li>
+<li>können auf außerhalb des Ausdrucks definierte zugreifen</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgc484bff" class="outline-4">
+<h4 id="orgc484bff">Formen:</h4>
+<div class="outline-text-4" id="text-orgc484bff">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lambda-Ausdruck</th>
+<th scope="col" class="org-left">Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">()-&gt;System.out.println()</td>
+<td class="org-left">keine Parameter, erzeugt Effekt</td>
+</tr>
+
+<tr>
+<td class="org-left">x-&gt;System.out.println(x)</td>
+<td class="org-left">ein Parameter</td>
+</tr>
+
+<tr>
+<td class="org-left">x-&gt;2*x</td>
+<td class="org-left">ein Parameter, liefert Resultat</td>
+</tr>
+
+<tr>
+<td class="org-left">(x,y)-&gt;x+y</td>
+<td class="org-left">zwei Parameter, werden addiert</td>
+</tr>
+
+<tr>
+<td class="org-left">x-&gt;{int y = 2 x; return y;}</td>
+<td class="org-left">Code-Block aus mehreren Anweisungen</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org18f1e6a" class="outline-4">
+<h4 id="org18f1e6a">Hinweise zur Benutzung</h4>
+<div class="outline-text-4" id="text-org18f1e6a">
+<p>
+siehe unten
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga6d0977" class="outline-3">
+<h3 id="orga6d0977">Default-Methoden</h3>
+<div class="outline-text-3" id="text-orga6d0977">
+<ul class="org-ul">
+<li>Eine Default-Methode ist eine Interface-Methode mit Implementierung.</li>
+<li>kein innerer Zusammenhang zu Lambda-Ausdrücken</li>
+<li>Einer Klasse, die ein Interface implementiert, stehen deren
+Default-Methoden zur Verfügung.</li>
+</ul>
+</div>
+<div id="outline-container-org77bc53f" class="outline-4">
+<h4 id="org77bc53f">simples Beispiel</h4>
+<div class="outline-text-4" id="text-org77bc53f">
+<ul class="org-ul">
+<li><p>
+Definition von Default-Methoden:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">interface</span> <span style="color: #6434A3;">Computable</span> <span style="color: #707183;">{</span>
+      <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">int</span> <span style="color: #006699;">compute</span><span style="color: #7388D6;">()</span>;
+      <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">default</span> <span style="color: #6434A3;">int</span> <span style="color: #006699;">doubleNumber</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">num</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+          <span style="color: #0000FF;">return</span> 2*num;
+      <span style="color: #7388D6;">}</span>
+      <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">default</span> <span style="color: #6434A3;">int</span> <span style="color: #006699;">negateNumber</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">num</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+         <span style="color: #0000FF;">return</span> -1*num;
+  <span style="color: #7388D6;">}</span> <span style="color: #707183;">}</span>
+</pre>
+</div></li>
+</ul>
+<ul class="org-ul">
+<li>Benutzung:
+<ol class="org-ol">
+<li>Erzeugen einer Klasse, die das Interface (<code>Computable</code>)
+implementiert</li>
+<li><p>
+Erzeugen eines Exemplars der Klasse und Aktivierung der Default-Methode
+</p>
+<div class="small">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">ComputeImpl</span> <span style="color: #0000FF;">implements</span> <span style="color: #6434A3;">Computable</span> <span style="color: #707183;">{</span>
+           <span style="color: #D0372D;">@Override</span>
+           <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">int</span> <span style="color: #006699;">compute</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+ <span style="color: #0000FF;">return</span> 1; <span style="color: #7388D6;">}</span>     
+
+ComputeImplcomputeImpl = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ComputeImpl</span><span style="color: #7388D6;">()</span>;
+   System.out.println<span style="color: #7388D6;">(</span>computeImpl.doubleNumber<span style="color: #909183;">(</span>2<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>;     
+</pre>
+</div>
+
+</div></li>
+</ol></li>
+<li>Eine Implementierung der Methode <code>doubleNumber</code> ist in der Klasse
+<code>ComputeImpl</code> nicht erforderlich.</li>
+<li>Überschreiben ist jedoch zulässig.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc9c9727" class="outline-4">
+<h4 id="orgc9c9727">Nutzen</h4>
+<div class="outline-text-4" id="text-orgc9c9727">
+<ul class="org-ul">
+<li>In Java 8 dürfen Interfaces statische Methoden und Default-Methoden besitzen.</li>
+<li>Hauptmotivation: Evolution von Interfaces; Interfaces aus der vor
+Java-8-Epoche können um Funktionen erweitert werden, ohne
+existierenden Code zu beeinflussen.</li>
+<li>Beispiel: Die <code>forEach</code>-Methode wurde als Default-Methode dem
+Interface <code>Iterable</code> aus dem <code>java.lang</code>-Package hinzugefügt.</li>
+<li><code>forEach</code> akzeptiert einen Lambda-Ausdruck als Argument, der zu der
+<code>accept</code>-Methode des <code>Consumer</code>-Interface passt und führt ihn für
+jedes Element des zugrundeliegenden Behälters aus.</li>
+<li><p>
+Die Klasse <code>ArrayList</code> implementiert das <code>Iterable</code>-Interface:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #6434A3;">ArrayList</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">list</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ArrayList</span><span style="color: #707183;">&lt;&gt;()</span>;
+list.add<span style="color: #707183;">(</span><span style="color: #008000;">"Kartoffel"</span><span style="color: #707183;">)</span>; list.add<span style="color: #707183;">(</span><span style="color: #008000;">"Bohne"</span><span style="color: #707183;">)</span>; list.add<span style="color: #707183;">(</span><span style="color: #008000;">"M&#246;hre"</span><span style="color: #707183;">)</span>;
+list.forEach<span style="color: #707183;">(</span>f-&gt;System.out.println<span style="color: #7388D6;">(</span>f<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;  
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf997546" class="outline-4">
+<h4 id="orgf997546">Unterschied zu abstrakten Klassen</h4>
+<div class="outline-text-4" id="text-orgf997546">
+<ul class="org-ul">
+<li>Abstrakte Klassen können Exemplarvariablen besitzen, Interfaces nicht.</li>
+<li>Klassen können Verhalten (Default-Methoden) von mehreren Interfaces
+erben, aber nur von einer abstrakten Klasse.</li>
+<li>Die Regel, möglichst Interfaces gegenüber abstrakten Klassen zu
+bevorzugen, ist dank der Default-Methoden leichter zu befolgen.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3270cbe" class="outline-3">
+<h3 id="org3270cbe">Funktionale Interfaces</h3>
+<div class="outline-text-3" id="text-org3270cbe">
+<ul class="org-ul">
+<li>Ein funktionales Interface
+<ul class="org-ul">
+<li>besitzt genau eine abstrakte Methode
+(Beispiel <code>Computable</code> s.&nbsp;.o),</li>
+<li>darf Default-Methoden und</li>
+<li>statische Methoden besitzen,</li>
+<li>erleichtert die Nutzung von Lambda-Ausdrücken</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgcc6f63e" class="outline-4">
+<h4 id="orgcc6f63e">Beispiele vordefinierter funktionaler Interfaces</h4>
+<div class="outline-text-4" id="text-orgcc6f63e">
+<dl class="org-dl">
+<dt><code>Consumer&lt;T&gt;</code></dt><dd><dl class="org-dl">
+<dt>Beschreibung</dt><dd>steht für eine Operation mit einem Parameter und
+ohne Reslutat, d.&nbsp;h. sinnvoll nur für
+Operationen mit Seiteneffekten</dd>
+<dt>Abstrakte Methode</dt><dd><code>accept()</code></dd>
+<dt>Default-Methoden</dt><dd><code>andThen()</code></dd>
+<dt>Benutzungsbeispiel</dt><dd>als Parameter der <code>forEach=Methode</code></dd>
+</dl></dd>
+</dl>
+<dl class="org-dl">
+<dt><code>Supplier&lt;T&gt;</code></dt><dd><dl class="org-dl">
+<dt>Beschreibung</dt><dd>eine Fabrik, die ein neues oder ein existierndes
+Objekt liefert</dd>
+<dt>Abstrakte Methode</dt><dd><code>get()</code></dd>
+<dt>Default-Methoden</dt><dd>&#x2013;</dd>
+<dt>Benutzungsbeispiele</dt><dd>für die Erzeugung verzögerter, unendlicher
+Streams und als Parameter für die <code>orElseGet()</code>-Methode der
+Klasse <code>Optional</code></dd>
+</dl></dd>
+</dl>
+<dl class="org-dl">
+<dt><code>Predicate&lt;T&gt;</code></dt><dd><dl class="org-dl">
+<dt>Beschreibung</dt><dd>erlaubt die Prüfung, ob ein Argument eine
+Bedingung erfüllt</dd>
+<dt>Abstrakte Methode</dt><dd><code>test()</code></dd>
+<dt>Default-Methoden</dt><dd><code>and()</code>, <code>negate()</code>, <code>or()</code></dd>
+<dt>Benutzungsbeispiel</dt><dd>als Parameter für <code>Stream</code>-Methoden wie
+<code>filter()</code> und <code>anyMatch()</code></dd>
+</dl></dd>
+</dl>
+<dl class="org-dl">
+<dt><code>Function&lt;T&gt;</code></dt><dd><dl class="org-dl">
+<dt>Beschreibung</dt><dd>steht für eine Operation mit einem Argument und
+einem Resultat</dd>
+<dt>Abstrakte Methode</dt><dd><code>apply()</code></dd>
+<dt>Default-Methoden</dt><dd><code>andThen(), compose()</code></dd>
+<dt>Benutzungsbeispiel</dt><dd>als Parameter für die  <code>Stream</code>-Methode <code>map()</code></dd>
+</dl></dd>
+</dl>
+</div>
+</div>
+</div>
+<div id="outline-container-org9458990" class="outline-3">
+<h3 id="org9458990">Methoden- und Konstruktorverweise</h3>
+<div class="outline-text-3" id="text-org9458990">
+<ul class="org-ul">
+<li>&#x2026; eröffnen die Möglichkeit, an Stellen, wo Lambda-Ausdrücke
+erwartet werden, benannte Methoden oder Konstruktoren einzusetzen.</li>
+<li>Beispiele: 
+<ul class="org-ul">
+<li><p>
+Die Sequenz
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #6434A3;">Stream</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">Integer</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">stream</span> = Stream.of<span style="color: #707183;">(</span>12, 52, 32, 74, 25<span style="color: #707183;">)</span>;
+       Stream
+           .map<span style="color: #707183;">(</span>x -&gt; x * 2<span style="color: #707183;">)</span>
+           .forEach<span style="color: #707183;">(</span>x -&gt;System.out.println<span style="color: #7388D6;">(</span>x<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div>
+<p>
+kann ersetzt werden durch 
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #6434A3;">Stream</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">Integer</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">stream</span> = Stream.of<span style="color: #707183;">(</span>12, 52, 32, 74, 25<span style="color: #707183;">)</span>;
+Stream
+    .map<span style="color: #707183;">(</span>x -&gt; x * 2<span style="color: #707183;">)</span>
+    .forEach<span style="color: #707183;">(</span>System.out::println<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Zwei Methodenverweise 
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java">stream.map<span style="color: #707183;">(</span>Math::sin.forEach<span style="color: #7388D6;">(</span>System.out::println<span style="color: #7388D6;">)</span>;=    
+</pre>
+</div>
+
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5bf6091" class="outline-3">
+<h3 id="org5bf6091">Behälter</h3>
+<div class="outline-text-3" id="text-org5bf6091">
+<ul class="org-ul">
+<li>Das bekannte <code>Collection</code>-Interface wurde um Methoden erweitert, die
+<code>Stream</code>-Objekte erzeugen:
+<dl class="org-dl">
+<dt><code>stream</code></dt><dd>erzeugt einen sequentiel zu verarbeitenden <code>Stream</code></dd>
+<dt><code>parallelStream</code></dt><dd>erzeugt einen <code>Stream</code>, der parallel
+verarbeitet werden kann</dd>
+</dl></li>
+<li><p>
+Beispiel für die Anwendung von <code>stream()</code> (Das <code>List</code>-Interface
+erweitert das <code>Collection</code>-Interface.)
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">names</span><span style="color: #707183;">[]</span> = <span style="color: #707183;">{</span><span style="color: #008000;">"Karl"</span>, <span style="color: #008000;">"Rosa"</span>, <span style="color: #008000;">"Klara"</span>, <span style="color: #008000;">"Che"</span><span style="color: #707183;">}</span>;
+       <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">list</span> = Arrays.asList<span style="color: #707183;">(</span>names<span style="color: #707183;">)</span>;
+       <span style="color: #6434A3;">Stream</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">stream</span> = list.stream<span style="color: #707183;">()</span>;
+       stream.forEach<span style="color: #707183;">(</span>name -&gt;System.out.println<span style="color: #7388D6;">(</span>name + <span style="color: #008000;">" - "</span>
+           + name.length<span style="color: #909183;">()</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;  
+</pre>
+</div>
+
+</div></li>
+</ul>
+<ul class="org-ul">
+<li><p>
+Hinweis: Da das <code>Collection</code>-Interface vom <code>Iterable</code>-Interface
+erbt, kann auf <code>List</code>-Objekte auch die <code>forEach</code>-Methode angewendet
+werden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java">       list.forEach<span style="color: #707183;">(</span>name -&gt;System.out.println<span style="color: #7388D6;">(</span>name + <span style="color: #008000;">" - "</span>
+           + name.length<span style="color: #909183;">()</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org736dfe4" class="outline-2">
+<h2 id="org736dfe4">Zusammenspiel der Konzepte</h2>
+<div class="outline-text-2" id="text-org736dfe4">
+</div>
+<div id="outline-container-org9f44dae" class="outline-3">
+<h3 id="org9f44dae">Evolution der Iteration</h3>
+<div class="outline-text-3" id="text-org9f44dae">
+<ul class="org-ul">
+<li>Die Mehrzahl aller Datenverarbeitungsprozesse beinhalten die
+Iteration über Behälter.</li>
+<li><p>
+Zum Beispiel über eine Liste mit Namen:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">studierende</span> =
+   Arrays.asList<span style="color: #707183;">(</span><span style="color: #008000;">"Niklas"</span>, <span style="color: #008000;">"Bogdan"</span>, <span style="color: #008000;">"Markus"</span>, <span style="color: #008000;">"Jonah"</span>, <span style="color: #008000;">"Felina"</span>, <span style="color: #008000;">"Finn"</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+<li><p>
+der „klassische” imperative Weg, wortreich und fehleranfällig: 
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">for</span><span style="color: #707183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; studierende.<span style="color: #6434A3;">size</span><span style="color: #7388D6;">()</span>; i++<span style="color: #707183;">)</span> 
+   <span style="color: #707183;">{</span> System.out.println<span style="color: #7388D6;">(</span>studierende.get<span style="color: #909183;">(</span>i<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>;<span style="color: #707183;">}</span>  
+</pre>
+</div>
+
+</div></li>
+<li><p>
+schon besser, benutzt intern das <code>Iterator</code>-Interface mit den Methoden
+<code>hasNext()</code> und <code>next()</code>:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">for</span><span style="color: #707183;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">name</span> : studierende<span style="color: #707183;">)</span> <span style="color: #707183;">{</span> System.out.println<span style="color: #7388D6;">(</span>name<span style="color: #7388D6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</div></li>
+</ul>
+<ul class="org-ul">
+<li>Beide Varianten benutzen externe Iteratoren.</li>
+<li>Dabei werden das Was und das Wie vermengt.</li>
+<li>Gründe für den Umstieg auf eine funktionale Variante:
+<ol class="org-ol">
+<li>Die Schleifenkonstrukte sind inhärent sequentiell.</li>
+<li>Die Lösungen sind nicht polymorph. Die Liste wird an <code>for</code>
+„übergeben“, anstatt sie als Argument an eine Methode
+weiterzureichen, die die Aufgabe erledigt.</li>
+<li>Damit ist das Abstraktionsniveau gering. Die Details der
+Iteration sollten ein für alle Bibliotheksroutinen überlassen werden.</li>
+</ol></li>
+<li><p>
+Das leistet die bereits behandelte <code>forEach</code>-Methode:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java">studierende.forEach<span style="color: #707183;">(</span><span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Consumer</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #7388D6;">&gt;()</span> 
+   <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">accept</span><span style="color: #909183;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">name</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>System.out.println<span style="color: #709870;">(</span>name<span style="color: #709870;">)</span>; <span style="color: #909183;">}</span>
+<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>;  
+</pre>
+</div>
+
+</div></li>
+<li><p>
+der letzte Iterationsschritt: Ersetzen der anonymen inneren Klasse
+durch einen Lambda-Ausdruck und ohne explizite Typangabe:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java">studierende.forEach<span style="color: #707183;">(</span><span style="color: #7388D6;">(</span>name<span style="color: #7388D6;">)</span> -&gt; System.out.println<span style="color: #7388D6;">(</span>name<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;  
+</pre>
+</div>
+
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9d02138" class="outline-3">
+<h3 id="org9d02138">Transformation von Listen</h3>
+<div class="outline-text-3" id="text-org9d02138">
+<ul class="org-ul">
+<li>Angenommen, die Elemente der Namensliste sollen in Großbuchstaben
+verwandelt werden.</li>
+<li>Auf eine Lösung mit Mutation soll/muss verzichtet, weil
+<ul class="org-ul">
+<li><code>String</code>-Objekte nicht änderbar sind,</li>
+<li>die Originalliste erhalten bleiben soll und/oder</li>
+<li>eine mit <code>Arrays.asList()</code> erzeugte Liste nicht änderbar ist.</li>
+</ul></li>
+<li><p>
+Eine Lösung unter Verwendung von <code>forEach</code> könnte so aussehen:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">uppercaseNames</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ArrayList</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;()</span>; 
+studierende.forEach<span style="color: #707183;">(</span>name -&gt; uppercaseNames.add<span style="color: #7388D6;">(</span>name.toUpperCase<span style="color: #909183;">()</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>; 
+System.out.println<span style="color: #707183;">(</span>uppercaseNames<span style="color: #707183;">)</span>;  
+</pre>
+</div>
+
+</div></li>
+<li>Der Vorteil von <code>forEach</code>: kann auf alle Behälterklassen angewendet werden.</li>
+<li>Der Nachteil: <code>forEach</code> liefert keinen Rückgabewert.</li>
+<li>Folge: leere Liste muss erzeugt werden, der die Elemente mit <code>add</code>
+hinzugefügt werden müsssen.</li>
+</ul>
+<ul class="org-ul">
+<li>Diese imperativen Überbleibsel können durch Verwendung der
+<code>map</code>-Methode beseitigt werden.</li>
+<li><p>
+Diese &#x2013; wie andere klassiche Funktionen höherer Ordnung auch &#x2013; ist
+nur auf Streams anwendbar.
+</p>
+<div class="org-src-container">
+<pre class="src src-java">studierende.stream<span style="color: #707183;">()</span>
+           .map<span style="color: #707183;">(</span>name -&gt; name.toUpperCase<span style="color: #7388D6;">()</span><span style="color: #707183;">)</span>
+           .forEach<span style="color: #707183;">(</span>name -&gt; System.out.print<span style="color: #7388D6;">(</span>name + <span style="color: #008000;">" "</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">oder</span>
+
+studierende.stream<span style="color: #707183;">()</span>
+           .map<span style="color: #707183;">(</span>String::toUpperCase<span style="color: #707183;">)</span>
+           .forEach<span style="color: #707183;">(</span>name -&gt; System.out.print<span style="color: #7388D6;">(</span>name + <span style="color: #008000;">" "</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc655af3" class="outline-3">
+<h3 id="orgc655af3">Weiterverarbeitung von Streams als Listen</h3>
+<div class="outline-text-3" id="text-orgc655af3">
+<ul class="org-ul">
+<li><p>
+Die Sequenz
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">List</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">startsWithF</span> = 
+   studierende.stream<span style="color: #707183;">()</span>
+              .filter<span style="color: #707183;">(</span>name -&gt; name.startsWith<span style="color: #7388D6;">(</span><span style="color: #008000;">"F"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> 
+              .collect<span style="color: #707183;">(</span>Collectors.toList<span style="color: #7388D6;">()</span><span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div>
+<p>
+liefert eine Liste aller Namen, die mit „F“ beginnen.
+</p></li>
+<li>Das <code>Stream</code>-Objekt, das die <code>filter</code>-Methode (wie auch <code>map</code>) als
+Resultat liefert, kann mit der <code>Stream</code>-Methode <code>collect</code> und der
+<code>toList</code>-Methode der Klasse <code>Collectors</code> in eine Liste verwandelt werden.</li>
+<li><p>
+Das ermöglicht z.&nbsp;B. folgende Ausgabe 
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java">System.out.println<span style="color: #707183;">(</span>String.format<span style="color: #7388D6;">(</span><span style="color: #008000;">"Found %d names"</span>, startsWithF.size<span style="color: #909183;">()</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>;   
+</pre>
+</div>
+
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9e63c53" class="outline-3">
+<h3 id="org9e63c53">Wiederverwendung von Lambda-Ausdrücken</h3>
+<div class="outline-text-3" id="text-org9e63c53">
+<ul class="org-ul">
+<li><p>
+Ein Lambda-Ausdruck kann an eine Variable vom Typ <code>Predicate&lt;T&gt;</code>
+gebunden werden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">Predicate</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">startsWithF</span> = name -&gt; name.startsWith<span style="color: #707183;">(</span><span style="color: #008000;">"F"</span><span style="color: #707183;">)</span>;
+<span style="color: #0000FF;">final</span> <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">countStudierendeStartF</span> = 
+    studierende.stream<span style="color: #707183;">()</span>
+         .filter<span style="color: #707183;">(</span>startsWithF<span style="color: #707183;">)</span>.count<span style="color: #707183;">()</span>;
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Um die Funktion für variable Anfangsbuchstaben umzugestalten, kann
+eine statische Methode benutzt werden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">Predicate</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #707183;">&gt;</span> <span style="color: #006699;">checkIfStartsWith</span><span style="color: #707183;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">letter</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">return</span> name -&gt; name.startsWith<span style="color: #7388D6;">(</span>letter<span style="color: #7388D6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</div>
+<p>
+Benutzung:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">countStudierendeStartN</span> = 
+   studierende.stream<span style="color: #707183;">()</span>.filter<span style="color: #707183;">(</span>checkIfStartsWith<span style="color: #7388D6;">(</span><span style="color: #008000;">"N"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>.count<span style="color: #707183;">()</span>; 
+</pre>
+</div>
+
+</div></li>
+</ul>
+<ul class="org-ul">
+<li><p>
+Wenn statische Methode vermieden werden sollen, kann das
+<code>Function</code>-Interface verwendet werden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">Function</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span>, <span style="color: #6434A3;">Predicate</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #7388D6;">&gt;</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">startsWithLetter</span> = 
+  <span style="color: #707183;">(</span>String <span style="color: #6434A3;">letter</span><span style="color: #707183;">)</span> -&gt; <span style="color: #707183;">{</span>
+    <span style="color: #6434A3;">Predicate</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #7388D6;">&gt;</span> <span style="color: #BA36A5;">checkStarts</span> = <span style="color: #7388D6;">(</span>String <span style="color: #6434A3;">name</span><span style="color: #7388D6;">)</span> -&gt; name.startsWith<span style="color: #7388D6;">(</span>letter<span style="color: #7388D6;">)</span>;
+    <span style="color: #0000FF;">return</span> checkStarts;
+<span style="color: #707183;">}</span>;
+</pre>
+</div>
+
+</div>
+<p>
+Die Variable <code>startsWithLetter</code> wird an eine Funktion gebunden, die
+ein <code>String</code> erwartet und ein <code>Predicate</code> zurückgibt. Die Funktion
+ist äquivalent zur oben gezeigten statischen Methode. Die folgende
+Abkürzung ist erlaubt:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">Function</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span>, <span style="color: #6434A3;">Predicate</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #7388D6;">&gt;</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">startsWithLetter</span> = 
+  <span style="color: #707183;">(</span>String <span style="color: #6434A3;">letter</span><span style="color: #707183;">)</span> -&gt; <span style="color: #707183;">(</span>String <span style="color: #6434A3;">name</span><span style="color: #707183;">)</span> -&gt; name.startsWith<span style="color: #707183;">(</span>letter<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div>
+<p>
+oder unter Verwendung von Java's Typinferenz:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">Function</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">String</span>, <span style="color: #6434A3;">Predicate</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #7388D6;">&gt;</span><span style="color: #707183;">&gt;</span> <span style="color: #BA36A5;">startsWithLetter</span> = 
+  letter -&gt;  name -&gt; name.startsWith<span style="color: #707183;">(</span>letter<span style="color: #707183;">)</span>;
+</pre>
+</div>
+
+</div></li>
+</ul>
+<ul class="org-ul">
+<li><p>
+Benutzung der Funktion <code>startsWithLetter</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">countStudierendeStartN</span> =
+  studierende.stream<span style="color: #707183;">()</span>
+         .filter<span style="color: #707183;">(</span>startsWithLetter.apply<span style="color: #7388D6;">(</span><span style="color: #008000;">"N"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>.count<span style="color: #707183;">()</span>;
+
+<span style="color: #0000FF;">final</span> <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">countStudierendeStartB</span> =
+  studierende.stream<span style="color: #707183;">()</span>
+         .filter<span style="color: #707183;">(</span>startsWithLetter.apply<span style="color: #7388D6;">(</span><span style="color: #008000;">"B"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>.count<span style="color: #707183;">()</span>;
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge87bb82" class="outline-2">
+<h2 id="orge87bb82">Flüssige Schnittstellen mit Lambda-Ausdrücken</h2>
+<div class="outline-text-2" id="text-orge87bb82">
+<ul class="org-ul">
+<li><i>Flüssige Schnittstelle</i> ist die Übersetzung des englischen
+Fachbegriffs <i>fluent interface</i>.</li>
+<li>Der Begriff ist wohl von Martin Fowler <a href="https://martinfowler.com/bliki/FluentInterface.html">geprägt</a> worden.</li>
+<li>Sie stellen eine Gestaltungsform für APIs dar, die zu gut lesbarem
+Code führt.</li>
+</ul>
+</div>
+<div id="outline-container-org2cc754c" class="outline-3">
+<h3 id="org2cc754c">Beispiel</h3>
+<div class="outline-text-3" id="text-org2cc754c">
+<p>
+Das hier gezeigte Anwendungsbeispiel ist <a class='org-ref-reference' href="#Subramaniam2014">Subramaniam2014</a>
+entnommen.
+</p>
+<ul class="org-ul">
+<li><p>
+Die herkömmliche Schnittstelle einer <code>Mailer</code>-Klasse, gekennzeichnet
+durch viele <code>void</code>-Methoden.
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Mailer</span> <span style="color: #707183;">{</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">from</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">address</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span> <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">to</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">address</span><span style="color: #7388D6;">)</span>   <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span> <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">subject</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">line</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span> <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">body</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span> <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">send</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span> System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"sending..."</span><span style="color: #909183;">)</span>; <span style="color: #7388D6;">}</span>  
+
+<span style="color: #8D8D84;">//  </span><span style="color: #8D8D84; font-style: italic;">k&#246;nnte so benutzt werden:</span>
+
+<span style="color: #6434A3;">Mailer</span> <span style="color: #BA36A5;">mailer</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Mailer</span><span style="color: #7388D6;">()</span>;
+mailer.from<span style="color: #7388D6;">(</span><span style="color: #008000;">"build@agiledeveloper.com"</span><span style="color: #7388D6;">)</span>;
+mailer.to<span style="color: #7388D6;">(</span><span style="color: #008000;">"venkats@agiledeveloper.com"</span><span style="color: #7388D6;">)</span>;
+mailer.subject<span style="color: #7388D6;">(</span><span style="color: #008000;">"build notification"</span><span style="color: #7388D6;">)</span>;
+mailer.body<span style="color: #7388D6;">(</span><span style="color: #008000;">"...your code sucks..."</span><span style="color: #7388D6;">)</span>; 
+mailer.send<span style="color: #7388D6;">()</span>;
+</pre>
+</div></li>
+</ul>
+<ul class="org-ul">
+<li>Nachteile dieser Lösung
+<ul class="org-ul">
+<li>geschwätzig: <code>mailer</code> muss dauernd wiederholt werden</li>
+<li>Verbleib des <code>Mailer</code>-Objekts unklar</li>
+</ul></li>
+<li><p>
+Erste Maßnahme: Verkettung von Methodenaufrufen
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">MailBuilder</span> <span style="color: #707183;">{</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">MailBuilder</span> <span style="color: #006699;">from</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">address</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">MailBuilder</span> <span style="color: #006699;">to</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">address</span><span style="color: #7388D6;">)</span>   <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">MailBuilder</span> <span style="color: #006699;">subject</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">line</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">MailBuilder</span> <span style="color: #006699;">body</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">send</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span> System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"sending..."</span><span style="color: #909183;">)</span>; <span style="color: #7388D6;">}</span>
+
+  <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">... wird so benutzt:</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span><span style="color: #909183;">[]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+    <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">MailBuilder</span><span style="color: #909183;">()</span>
+      .from<span style="color: #909183;">(</span><span style="color: #008000;">"build@agiledeveloper.com"</span><span style="color: #909183;">)</span>
+      .to<span style="color: #909183;">(</span><span style="color: #008000;">"venkats@agiledeveloper.com"</span><span style="color: #909183;">)</span>
+      .subject<span style="color: #909183;">(</span><span style="color: #008000;">"build notification"</span><span style="color: #909183;">)</span>
+      .body<span style="color: #909183;">(</span><span style="color: #008000;">"...it sucks less..."</span><span style="color: #909183;">)</span>
+      .send<span style="color: #909183;">()</span>;
+  <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>  
+</pre>
+</div></li>
+</ul>
+<ul class="org-ul">
+<li>Nutzung des Konstruktors stört noch den Lesefluss.</li>
+<li>Lebensdauer des <code>MailBuilder</code>-Objekts weiterhin problematisch.</li>
+<li><p>
+Zweite Maßnahme: Einsatz von Lambda-Ausdrücken und Privatisierung
+des Konstruktors
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">FluentMailer</span> <span style="color: #707183;">{</span>
+  <span style="color: #0000FF;">private</span> <span style="color: #006699;">FluentMailer</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{}</span>
+  
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">FluentMailer</span> <span style="color: #006699;">from</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">address</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">FluentMailer</span> <span style="color: #006699;">to</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">address</span><span style="color: #7388D6;">)</span>   <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">FluentMailer</span> <span style="color: #006699;">subject</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">line</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">FluentMailer</span> <span style="color: #006699;">body</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">message</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #8D8D84;">/*</span><span style="color: #8D8D84; font-style: italic;">... */</span>; <span style="color: #0000FF;">return</span> <span style="color: #0000FF;">this</span>; <span style="color: #7388D6;">}</span>
+  
+  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">send</span><span style="color: #7388D6;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">Consumer</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">FluentMailer</span><span style="color: #909183;">&gt;</span> <span style="color: #BA36A5;">block</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> 
+    <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">FluentMailer</span> <span style="color: #BA36A5;">mailer</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">FluentMailer</span><span style="color: #909183;">()</span>;
+    block.accept<span style="color: #909183;">(</span>mailer<span style="color: #909183;">)</span>; 
+    System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"sending..."</span><span style="color: #909183;">)</span>; 
+  <span style="color: #7388D6;">}</span>
+</pre>
+</div></li>
+</ul>
+<ul class="org-ul">
+<li>Externe Erzeugung eines <code>FluentMailer</code>-Objekts nicht mehr möglich.</li>
+<li><code>send</code>-Methode ist statisch und erwartet ein <code>Consumer</code>-Objekt
+(<code>block</code>) als Argument.</li>
+<li>Benutzung: Anstatt ein Exemplar zu erzeugen, wird die <code>send</code>-Methode aufgerufen.</li>
+<li><p>
+Diese erzeugt ein Exemplar und übergibt es an den Block:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #707183;">(</span><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span><span style="color: #7388D6;">[]</span> <span style="color: #BA36A5;">args</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    FluentMailer.send<span style="color: #7388D6;">(</span>mailer -&gt;
+      mailer.from<span style="color: #909183;">(</span><span style="color: #008000;">"build@agiledeveloper.com"</span><span style="color: #909183;">)</span>
+            .to<span style="color: #909183;">(</span><span style="color: #008000;">"venkats@agiledeveloper.com"</span><span style="color: #909183;">)</span>
+            .subject<span style="color: #909183;">(</span><span style="color: #008000;">"build notification"</span><span style="color: #909183;">)</span>
+            .body<span style="color: #909183;">(</span><span style="color: #008000;">"...much better..."</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>;
+  <span style="color: #707183;">}</span> 
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org38f5636" class="outline-2">
+<h2 id="org38f5636">Fazit</h2>
+<div class="outline-text-2" id="text-org38f5636">
+<ul class="org-ul">
+<li>Nicht alles verwerfen, was Sie über Objektorientierung gelernt
+haben, aber nutzen Sie die funktionalen Möglichkeiten von Java 8:
+<ul class="org-ul">
+<li>Schreiben Sie deklarativen Code!</li>
+<li>Vermeiden Sie Zustandsänderungen!</li>
+<li>Vermeiden Sie Seiteneffekte!</li>
+<li>Bevorzugen Sie Ausdrücke gegenüber Anweisungen!</li>
+<li>Arbeiten Sie mit Funktionen höherer Ordnung!</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb75b267" class="outline-2">
+<h2 id="orgb75b267"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Reese2015">[Reese2015]</a> <a name="Reese2015"></a>Richard M Reese, Learning Java Functional Programming, Packt Publishing (2015).</li>
+<li><a id="Subramaniam2014">[Subramaniam2014]</a> <a name="Subramaniam2014"></a>Venkat Subramaniam, Functional Programming in Java: Harnessing the Power Of Java 8 Lambda Expressions, Pragmatic Bookshelf (2014).</li>
+<li><a id="Petricek2010">[Petricek2010]</a> <a name="Petricek2010"></a>Tomas Petricek & Jon Skeet, Real-World Functional Programming: With Examples in F# and C#, Manning Publications (2010).</li>
+<li><a id="Anggoro2016">[Anggoro2016]</a> <a name="Anggoro2016"></a>Wisnu Anggoro, Functional C#: Uncover the secrets of functional programming using C# and change the way you approach your applications forever, Packt Publishing (2016).</li>
+</ul></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Johannes Brauer</p>
+<p class="date">Created: 2018-12-08 Sat 22:35</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

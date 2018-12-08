@@ -43,6 +43,7 @@
     width: 110%;
 }
 
+.reveal .smaller {height: 100px;}
 .reveal .small {height: 200px;}
 .reveal .large {height: 500px;}
 .reveal .slides > section,
