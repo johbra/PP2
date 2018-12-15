@@ -28,11 +28,11 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Funktionale Konzepte in Java 8</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-12-08 Sat 22:38</p>
+<section id="sec-title-slide"><h1 class="title">Funktionale Konzepte in Java 8</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-12-15 Sat 11:35</p>
 </section>
 <section>
-<section id="orgd9f51af">
-<h2 id="orgd9f51af">Ziele</h2>
+<section id="orga245d81">
+<h2 id="orga245d81">Ziele</h2>
 <ul>
 <li>Erkennen von Zusammenhängen zwischen verschiedenen
 Programmierparadigmen</li>
@@ -44,18 +44,18 @@ Programmierparadigmen</li>
 </section>
 </section>
 <section>
-<section id="orgb1eddea">
-<h2 id="orgb1eddea">Warum?</h2>
-<div class="outline-text-2" id="text-orgb1eddea">
+<section id="org58fdeee">
+<h2 id="org58fdeee">Warum?</h2>
+<div class="outline-text-2" id="text-org58fdeee">
 </div>
 </section>
-<section id="org744748e">
-<h3 id="org744748e">Einstiegsbeispiele</h3>
-<div class="outline-text-3" id="text-org744748e">
+<section id="org451f5ff">
+<h3 id="org451f5ff">Einstiegsbeispiele</h3>
+<div class="outline-text-3" id="text-org451f5ff">
 </div>
 </section>
-<section id="orge626e21">
-<h4 id="orge626e21">Finde Hamburg</h4>
+<section id="org4b3c827">
+<h4 id="org4b3c827">Finde Hamburg</h4>
 <p>
 Statt einer imperativen Lösung
 </p>
@@ -87,8 +87,8 @@ besser
 
 </div>
 </section>
-<section id="org0dd5415">
-<h4 id="org0dd5415">Aufgabe aus Teil 1:</h4>
+<section id="orgfa1680d">
+<h4 id="orgfa1680d">Aufgabe aus Teil 1:</h4>
 <p>
 Schreiben Sie Java-Code, der alle Preise aus einer Liste, größer
 als 20 sind, um 10% rabattiert und aufsummiert.
@@ -119,8 +119,8 @@ als 20 sind, um 10% rabattiert und aufsummiert.
 </pre>
 </div>
 </section>
-<section id="orgaa7e0ef">
-<h4 id="orgaa7e0ef">Registrierung eines <i>event listeners</i> in <i>Swing</i></h4>
+<section id="orga731c70">
+<h4 id="orga731c70">Registrierung eines <i>event listeners</i> in <i>Swing</i></h4>
 <ul>
 <li>Swing ist eine Java-Bibliothek für die Programmierung graphischer
 Benutzungsoberflächen.</li>
@@ -173,8 +173,8 @@ Abhilfe: Benutzung eines Lambda-Ausdrucks:
 
 </ul>
 </section>
-<section id="orga52be91">
-<h4 id="orga52be91">Durchsetzung von Programmierregeln</h4>
+<section id="org4f48a87">
+<h4 id="org4f48a87">Durchsetzung von Programmierregeln</h4>
 <ul>
 <li>Datenbankzugriffe müssen in einem gegebenen Umfeld unter
 Einhaltung bestimmter Regeln programmiert werden; z.&nbsp;B. muss
@@ -211,8 +211,8 @@ bessere Variante:
 
 </ul>
 </section>
-<section id="orgd9b87b1">
-<h4 id="orgd9b87b1">Hinweise auf Literatur</h4>
+<section id="org46cb3a5">
+<h4 id="org46cb3a5">Hinweise auf Literatur</h4>
 <ul>
 <li>Java
 <ul>
@@ -231,8 +231,8 @@ C# and change the way you approach your applications forever
 
 </ul>
 </section>
-<section id="org23010d6">
-<h3 id="org23010d6">Erste Erkenntnisse</h3>
+<section id="org507a220">
+<h3 id="org507a220">Erste Erkenntnisse</h3>
 <ul>
 <li>Vermeidung von expliziter Mutation: Mutation ist fehleranfällig und
 hinderlich für Parallelarbeit.<br />
@@ -271,13 +271,13 @@ werden.</li>
 </section>
 </section>
 <section>
-<section id="orgbdc42f1">
-<h2 id="orgbdc42f1">Sprachkonzepte</h2>
-<div class="outline-text-2" id="text-orgbdc42f1">
+<section id="org81cd74d">
+<h2 id="org81cd74d">Sprachkonzepte</h2>
+<div class="outline-text-2" id="text-org81cd74d">
 </div>
 </section>
-<section id="org4a94bc6">
-<h3 id="org4a94bc6">Lambda-Ausdrücke</h3>
+<section id="org84acb39">
+<h3 id="org84acb39">Lambda-Ausdrücke</h3>
 <ul>
 <li>einige Beispiele bereits gesehen</li>
 <li>Lambda-Ausdrücke sind 
@@ -291,8 +291,8 @@ werden.</li>
 
 </ul>
 </section>
-<section id="orgf546c95">
-<h4 id="orgf546c95">Formen:</h4>
+<section id="org5f5f661">
+<h4 id="org5f5f661">Formen:</h4>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -336,14 +336,14 @@ werden.</li>
 </table>
 
 </section>
-<section id="org4d4e906">
-<h4 id="org4d4e906">Hinweise zur Benutzung</h4>
+<section id="org727f507">
+<h4 id="org727f507">Hinweise zur Benutzung</h4>
 <p>
 siehe unten
 </p>
 </section>
-<section id="org0ec3baa">
-<h3 id="org0ec3baa">Default-Methoden</h3>
+<section id="org6872713">
+<h3 id="org6872713">Default-Methoden</h3>
 <ul>
 <li>Eine Default-Methode ist eine Interface-Methode mit Implementierung.</li>
 <li>kein innerer Zusammenhang zu Lambda-Ausdrücken</li>
@@ -352,8 +352,8 @@ Default-Methoden zur Verfügung.</li>
 
 </ul>
 </section>
-<section id="org9ca5386">
-<h4 id="org9ca5386">simples Beispiel</h4>
+<section id="org5175f77">
+<h4 id="org5175f77">simples Beispiel</h4>
 <ul>
 <li><p>
 Definition von Default-Methoden:
@@ -404,8 +404,8 @@ ComputeImplcomputeImpl = <span style="color: #0000FF;">new</span> <span style="c
 
 </ul>
 </section>
-<section id="orgbe504d2">
-<h4 id="orgbe504d2">Nutzen</h4>
+<section id="org4af487b">
+<h4 id="org4af487b">Nutzen</h4>
 <ul>
 <li>In Java 8 dürfen Interfaces statische Methoden und Default-Methoden besitzen.</li>
 <li>Hauptmotivation: Evolution von Interfaces; Interfaces aus der vor
@@ -429,8 +429,8 @@ list.forEach<span style="color: #707183;">(</span>f-&gt;System.out.println<span 
 
 </ul>
 </section>
-<section id="org209f013">
-<h4 id="org209f013">Unterschied zu abstrakten Klassen</h4>
+<section id="org7d9c2f5">
+<h4 id="org7d9c2f5">Unterschied zu abstrakten Klassen</h4>
 <ul>
 <li>Abstrakte Klassen können Exemplarvariablen besitzen, Interfaces nicht.</li>
 <li>Klassen können Verhalten (Default-Methoden) von mehreren Interfaces
@@ -440,8 +440,8 @@ bevorzugen, ist dank der Default-Methoden leichter zu befolgen.</li>
 
 </ul>
 </section>
-<section id="orgd7a0f04">
-<h3 id="orgd7a0f04">Funktionale Interfaces</h3>
+<section id="org4414228">
+<h3 id="org4414228">Funktionale Interfaces</h3>
 <ul>
 <li>Ein funktionales Interface
 <ul>
@@ -455,8 +455,8 @@ bevorzugen, ist dank der Default-Methoden leichter zu befolgen.</li>
 
 </ul>
 </section>
-<section id="orgf8af514">
-<h4 id="orgf8af514">Beispiele vordefinierter funktionaler Interfaces</h4>
+<section id="org8ac8a57">
+<h4 id="org8ac8a57">Beispiele vordefinierter funktionaler Interfaces</h4>
 <dl>
 <dt><code>Consumer&lt;T&gt;</code></dt><dd><dl>
 <dt>Beschreibung</dt><dd>steht für eine Operation mit einem Parameter und
@@ -512,8 +512,8 @@ einem Resultat</dd>
 
 </dl>
 </section>
-<section id="orgf0e66dd">
-<h3 id="orgf0e66dd">Methoden- und Konstruktorverweise</h3>
+<section id="orgd8f5327">
+<h3 id="orgd8f5327">Methoden- und Konstruktorverweise</h3>
 <ul>
 <li>&#x2026; eröffnen die Möglichkeit, an Stellen, wo Lambda-Ausdrücke
 erwartet werden, benannte Methoden oder Konstruktoren einzusetzen.</li>
@@ -563,8 +563,8 @@ Zwei Methodenverweise
 
 </ul>
 </section>
-<section id="org108b856">
-<h3 id="org108b856">Behälter</h3>
+<section id="org12b6279">
+<h3 id="org12b6279">Behälter</h3>
 <ul>
 <li>Das bekannte <code>Collection</code>-Interface wurde um Methoden erweitert, die
 <code>Stream</code>-Objekte erzeugen:
@@ -615,13 +615,13 @@ werden:
 </section>
 </section>
 <section>
-<section id="org65f83e0">
-<h2 id="org65f83e0">Zusammenspiel der Konzepte</h2>
-<div class="outline-text-2" id="text-org65f83e0">
+<section id="orge109e17">
+<h2 id="orge109e17">Zusammenspiel der Konzepte</h2>
+<div class="outline-text-2" id="text-orge109e17">
 </div>
 </section>
-<section id="orgbb775ae">
-<h3 id="orgbb775ae">Evolution der Iteration</h3>
+<section id="org27d8f8f">
+<h3 id="org27d8f8f">Evolution der Iteration</h3>
 <ul>
 <li>Die Mehrzahl aller Datenverarbeitungsprozesse beinhalten die
 Iteration über Behälter.</li>
@@ -676,7 +676,7 @@ schon besser, benutzt intern das <code>Iterator</code>-Interface mit den Methode
 „übergeben“, anstatt sie als Argument an eine Methode
 weiterzureichen, die die Aufgabe erledigt.</li>
 <li>Damit ist das Abstraktionsniveau gering. Die Details der
-Iteration sollten ein für alle Bibliotheksroutinen überlassen werden.</li>
+Iteration sollten ein für alle mal Bibliotheksroutinen überlassen werden.</li>
 
 </ol></li>
 <li><p>
@@ -707,8 +707,8 @@ durch einen Lambda-Ausdruck und ohne explizite Typangabe:
 
 </ul>
 </section>
-<section id="org6945382">
-<h3 id="org6945382">Transformation von Listen</h3>
+<section id="orgd9ca881">
+<h3 id="orgd9ca881">Transformation von Listen</h3>
 <ul>
 <li>Angenommen, die Elemente der Namensliste sollen in Großbuchstaben
 verwandelt werden.</li>
@@ -763,8 +763,8 @@ studierende.stream<span style="color: #707183;">()</span>
 
 </ul>
 </section>
-<section id="orge206f38">
-<h3 id="orge206f38">Weiterverarbeitung von Streams als Listen</h3>
+<section id="org9ea2e1f">
+<h3 id="org9ea2e1f">Weiterverarbeitung von Streams als Listen</h3>
 <ul>
 <li><p>
 Die Sequenz
@@ -800,8 +800,8 @@ Das ermöglicht z.&nbsp;B. folgende Ausgabe
 
 </ul>
 </section>
-<section id="org13931dd">
-<h3 id="org13931dd">Wiederverwendung von Lambda-Ausdrücken</h3>
+<section id="org27dcb53">
+<h3 id="org27dcb53">Wiederverwendung von Lambda-Ausdrücken</h3>
 <ul>
 <li><p>
 Ein Lambda-Ausdruck kann an eine Variable vom Typ <code>Predicate&lt;T&gt;</code>
@@ -917,8 +917,8 @@ Benutzung der Funktion <code>startsWithLetter</code>
 </section>
 </section>
 <section>
-<section id="orgdd0e64f">
-<h2 id="orgdd0e64f">Flüssige Schnittstellen mit Lambda-Ausdrücken</h2>
+<section id="org5172122">
+<h2 id="org5172122">Flüssige Schnittstellen mit Lambda-Ausdrücken</h2>
 <ul>
 <li><i>Flüssige Schnittstelle</i> ist die Übersetzung des englischen
 Fachbegriffs <i>fluent interface</i>.</li>
@@ -928,8 +928,8 @@ Code führt.</li>
 
 </ul>
 </section>
-<section id="org034a356">
-<h3 id="org034a356">Beispiel</h3>
+<section id="org7082dc7">
+<h3 id="org7082dc7">Beispiel</h3>
 <p>
 Das hier gezeigte Anwendungsbeispiel ist <a class='org-ref-reference' href="#Subramaniam2014">Subramaniam2014</a>
 entnommen.
@@ -1049,8 +1049,8 @@ Diese erzeugt ein Exemplar und übergibt es an den Block:
 </section>
 </section>
 <section>
-<section id="orgd61a98c">
-<h2 id="orgd61a98c">Fazit</h2>
+<section id="orgcf64fec">
+<h2 id="orgcf64fec">Fazit</h2>
 <ul>
 <li>Nicht alles verwerfen, was Sie über Objektorientierung gelernt
 haben, aber nutzen Sie die funktionalen Möglichkeiten von Java 8:
@@ -1068,8 +1068,8 @@ haben, aber nutzen Sie die funktionalen Möglichkeiten von Java 8:
 </section>
 </section>
 <section>
-<section id="org9e65a1f">
-<h2 id="org9e65a1f"><h2>Literaturverzeichnis</h2>
+<section id="orgea34c4e">
+<h2 id="orgea34c4e"><h2>Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="Reese2015">[Reese2015]</a> <a name="Reese2015"></a>Richard M Reese, Learning Java Functional Programming, Packt Publishing (2015).</li>
 <li><a id="Subramaniam2014">[Subramaniam2014]</a> <a name="Subramaniam2014"></a>Venkat Subramaniam, Functional Programming in Java: Harnessing the Power Of Java 8 Lambda Expressions, Pragmatic Bookshelf (2014).</li>
 <li><a id="Petricek2010">[Petricek2010]</a> <a name="Petricek2010"></a>Tomas Petricek & Jon Skeet, Real-World Functional Programming: With Examples in F# and C#, Manning Publications (2010).</li>
