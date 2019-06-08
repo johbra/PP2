@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Relational-logische Programmierung</title>
+<meta name="author" content="(Johannes Brauer)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./mycss/myrevealstyle.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Relational-logische Programmierung</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-08 Sat 17:02</p>
+</section>
+
+<section>
+<section id="org026249e">
+<h2 id="org026249e">Einführung</h2>
+<ul>
+<li>Relational-logische Programmierung: Programme spezifizieren
+Relationen zwischen Größen.</li>
+<li>Logische Programmierung: Programm mit Datenstrukturen: Listen,
+Binärbäume, symbolische Ausdrücke, natürliche Zahlen.</li>
+<li>Der Ursprung der logischen Programmierung: automatische Theorembeweiser.</li>
+<li>Sie verlangt eine Änderung der Denkweise:
+<ol>
+<li>Strukturierte logische Formeln werden als Relations- (Prozedur-)
+Spezifikationen betrachtet.</li>
+<li>Eine Frage zu einer logischen Implikation wird als Relations-
+(Prozedur-) Aufruf betrachtet.</li>
+<li>Der Beweis der Implikation ist dann die Berechnung der Antwort.</li>
+
+</ol></li>
+
+</ul>
+
+</section>
+<section >
+
+<ul>
+<li>Konkreter: Ein Axiom der Form:<br />
+<code>A if B1 and B2 ... and Bn</code><br />
+kann als Prozedur in einer Programmiersprache betrachtet werden:
+<ul>
+<li><code>A</code> ist der Prozedurkopf,</li>
+<li>die <code>Bis</code> bilden ihren Rumpf.</li>
+
+</ul></li>
+<li>Der Versuch <code>A</code> zu lösen, wird als Ausführung der Prozedur
+verstanden. Dazu muss der Ausdruck <code>B1 and B2 ... and Bn</code> gelöst
+bzw. ausgeführt werden.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="orgc7ac915">
+<h2 id="orgc7ac915">Relationale Programmierung mit Prolog</h2>
+<ul>
+<li>Prolog (Programming in Logic) wurde Anfang der 1970er Jahre von dem
+französischen Informatiker Alain Colmerauer entwickelt.</li>
+<li>Prolog hat sich als Programmiersprache über die strikte logische
+Basis hinaus entwickelt: Praktische Programmierkonstrukte wie
+arithmetische Operationen, Optimierungshilfmittel und Ein-/Ausgabe
+sind hinzugekommen.</li>
+<li>Die Darstellungen in den folgenden Abschnitten basieren auf
+<a class='org-ref-reference' href="#Bramer2013">Bramer2013</a> und  <a class='org-ref-reference' href="#Clocksin2003">Clocksin2003</a>.</li>
+
+</ul>
+
+</section>
+<section id="orgeca5363">
+<h3 id="orgeca5363">Syntax und Semantik relational-logischer Programme</h3>
+<ul>
+<li>Die Syntax basiert auf einer Teilmenge der Prädikatenkalküls. Ein
+relational-logisches Programm besteht aus einer Menge von Formeln,
+ die nach Fakten und Regeln unterschieden werden. Beide beschreiben
+ bekannte Relationen auf der Problemdomäne.</li>
+<li>Die Semantik besteht in einer Menge von Antworten auf Fragen.</li>
+<li>Ein Programm wird ausgeführt durch eine logische Aussage, die auch
+Frage oder <i>Zielausdruck</i> (oder goal oder query) genannt wird.</li>
+<li>Fragen können Variablen enthalten.</li>
+<li>Die Beantwortung von Fragen mit Variablen besteht darin,
+Variablenbindungen zu finden, die die Frage „beweisen“.</li>
+<li>Dies geschieht mithilfe zweier Techniken:
+<ul>
+<li>Unifikation: Belegung von Variablen in zwei Termen, so dass diese
+gleich werden.</li>
+<li>Backtracking: Suchstrategie bei der Beweisfindung.</li>
+
+</ul></li>
+<li>Es gibt nur eine primitive Operation: den Unifikationsoperator
+<code>=</code>.</li>
+<li>Es gibt keine Typen.</li>
+
+</ul>
+</section>
+<section id="org9809bfa">
+<h3 id="org9809bfa">Einstiegsbeispiel</h3>
+<ul>
+<li>Das „Hallo Welt“-Äquivalent für ein Prolog-Programm ist meistens
+eine Wissensdatenbank mit Verwandtschaftsverhältnissen.
+<ul>
+<li>Eltern: Paul, Elfriede</li>
+<li>Kinder: Klaus, Claudia, Monika</li>
+
+</ul></li>
+<li><p>
+Fakten in Prolog:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog">  vater(klaus, paul).
+  vater(claudia, paul).
+  vater(monika, paul).
+  mutter(klaus, elfriede).
+  mutter(claudia, elfriede).
+  mutter(monika, elfriede).
+  verheiratet(paul, elfriede).
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="org1b86499">
+<h4 id="org1b86499">Start des Prolog-Interpreters</h4>
+<ul>
+<li>Im folgenden wird <a href="http://www.swi-prolog.org">SWI-Prolog</a> benutzt.</li>
+<li>Nach dem Start des Interpreters und der Konsultation der Faktendatei
+<code>stammbaum.pl</code> können Fragen an den Interpreter gestellt werden:</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #BA36A5;">Welcome</span> to <span style="color: #BA36A5;">SWI</span>-<span style="color: #BA36A5;">Prolog</span> (threaded, 64 bits, version 7.4.2)
+<span style="color: #BA36A5;">SWI</span>-<span style="color: #BA36A5;">Prolog</span> comes with <span style="color: #BA36A5;">ABSOLUTELY</span> <span style="color: #BA36A5;">NO</span> <span style="color: #BA36A5;">WARRANTY</span>. <span style="color: #BA36A5;">This</span> is free software.
+<span style="color: #BA36A5;">Please</span> run ?- license. <span style="color: #006699;">for</span> legal details.
+
+<span style="color: #BA36A5;">For</span> online help and background, visit http://www.<span style="color: #006699;">swi</span>-prolog.<span style="color: #006699;">org</span>
+<span style="color: #BA36A5;">For</span> built-in help, use ?- help(<span style="color: #BA36A5;">Topic</span>). <span style="color: #006699;">or</span> ?- apropos(<span style="color: #BA36A5;">Word</span>).
+
+1 ?- consult(<span style="color: #008000;">'stammbaum.pl'</span>).
+true.
+
+2 ?- vater(klaus, paul).
+true.
+
+3 ?- mutter(claudia, paul).
+false.
+</pre>
+</div>
+</section>
+<section id="org6d7461e">
+<h4 id="org6d7461e">Weitere Beispiele für Fragen (Zielausdrücke, goals):</h4>
+<p>
+Fragen können Variablen benutzen, die stets mit einem Großbuchstaben
+beginnen müssen.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?-  mutter(klaus, elfriede).
+    true.
+?-  vater(claudia, <span style="color: #BA36A5;">X</span>).
+    <span style="color: #BA36A5;">X</span>=paul.
+?-  vater(peter, <span style="color: #BA36A5;">X</span>).
+    false.
+?-  vater(<span style="color: #BA36A5;">X</span>, paul).
+    <span style="color: #BA36A5;">X</span>=klaus<span style="color: #0000FF;">;</span>
+    <span style="color: #BA36A5;">X</span>=claudia<span style="color: #0000FF;">;</span>
+    <span style="color: #BA36A5;">X</span>=monika.
+?-  verheiratet(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Y</span>).
+    <span style="color: #BA36A5;">X</span>=paul<span style="color: #0000FF;">;</span>
+    <span style="color: #BA36A5;">Y</span>=elfriede.
+</pre>
+</div>
+</section>
+<section id="orgb910ce8">
+<h4 id="orgb910ce8">Regeln</h4>
+<p>
+Nehmen wir an, wir möchten auch Anfragen über die
+Schwesterbeziehung in die Datenbasis aufnehmen, um entsprechende
+Anfragen beantworten zu können. Dann hat man zwei Möglichkeiten:
+</p>
+<ol>
+<li><p>
+Neue Fakten hinzufügen:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">   schwester(claudia, monika).
+   schwester(monika, claudia).
+   schwester(klaus, claudia).
+   schwester(klaus, monika).
+</pre>
+</div>
+
+</div></li>
+<li>Formulierung einer Regel: <code>Y</code> ist Schwester von <code>X</code>, falls <code>Y</code> 
+weiblich und Mutter von <code>X</code> gleich Mutter von <code>Y</code> ist und Vater von
+<code>X</code> gleich Vater von <code>Y</code>.<br />
+Dann muss man nur noch als Fakten festhalten, welche
+Familienmitglieder weiblich sind. Die Regel erlaubt es, aus bekannten 
+Fakten neue herzuleiten!</li>
+
+</ol>
+
+</section>
+<section id="org7cdd917">
+<h4 id="org7cdd917">Prolog-Programm mit Schwesterregel</h4>
+<p>
+Fakten:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">vater</span>(klaus, paul).
+<span style="color: #006699;">vater</span>(claudia, paul).
+<span style="color: #006699;">vater</span>(monika, paul).
+<span style="color: #006699;">mutter</span>(klaus, elfriede).
+<span style="color: #006699;">mutter</span>(claudia, elfriede).
+<span style="color: #006699;">mutter</span>(monika, elfriede).
+<span style="color: #006699;">verheiratet</span>(paul, elfriede).
+<span style="color: #006699;">weiblich</span>(claudia).
+<span style="color: #006699;">weiblich</span>(monika).
+<span style="color: #006699;">weiblich</span>(elfriede).
+</pre>
+</div>
+
+<p>
+Regeln:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">schwester</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Y</span>):- weiblich(<span style="color: #BA36A5;">Y</span>), 
+       mutter(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Z</span>), mutter(<span style="color: #BA36A5;">Y</span>, <span style="color: #BA36A5;">Z</span>), 
+       vater(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">W</span>), vater(<span style="color: #BA36A5;">Y</span>, <span style="color: #BA36A5;">W</span>),
+       <span style="color: #BA36A5;">X</span> \== <span style="color: #BA36A5;">Y</span>.
+</pre>
+</div>
+
+</div>
+
+</section>
+<section id="org15a3fa0">
+<h4 id="org15a3fa0">Beispielanfragen</h4>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- schwester(klaus, claudia).
+</pre>
+</div>
+
+</div>
+
+<p>
+Das Prolog-System muss
+</p>
+
+<ol>
+<li>prüfen, ob <code>claudia</code> weiblich ist (Faktum)</li>
+<li>erkennen, dass <code>mutter(klaus,Z)</code> und <code>mutter(claudia,Z)</code> gelten für
+<code>Z=elfriede</code></li>
+<li>erkennen, dass <code>vater(klaus,W)</code> und <code>vater(claudia,W)</code> gelten für
+<code>W=Paul</code></li>
+<li>daher <code>true</code> ausgeben</li>
+
+</ol>
+
+</section>
+<section >
+
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- schwester(klaus, <span style="color: #BA36A5;">X</span>).
+</pre>
+</div>
+
+</div>
+
+<ul>
+<li>Die Frage bedeutet: Wer sind die Schwestern von Klaus?</li>
+<li>Das Prolog-System durchsucht seine Datenbank von Fakten (und Regeln)
+in fester Reihenfolge; nämlich:
+<ol>
+<li>von oben nach unten</li>
+<li>von links nach rechts</li>
+
+</ol></li>
+<li><p>
+Daher liefert die Anfrage die Antwort:
+</p>
+
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">   <span style="color: #BA36A5;">X</span>=claudia<span style="color: #0000FF;">;</span>
+   <span style="color: #BA36A5;">X</span>=monika<span style="color: #0000FF;">;</span>
+   false.
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+
+</section>
+<section >
+
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- schwester(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Y</span>).
+</pre>
+</div>
+
+</div>
+
+<p>
+Es ist nicht schwer zu sehen, dass aufgrund der o.g. Auswertestrategie
+folgende Ausgabe erzeugt wird:
+</p>
+
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #BA36A5;">X</span> = klaus, <span style="color: #BA36A5;">Y</span> = claudia <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">X</span> = monika, <span style="color: #BA36A5;">Y</span> = claudia <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">X</span> = klaus, <span style="color: #BA36A5;">Y</span> = monika <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">X</span> = claudia, <span style="color: #BA36A5;">Y</span> = monika <span style="color: #0000FF;">;</span>
+false.
+</pre>
+</div>
+
+</div>
+
+</section>
+<section id="org0df85dc">
+<h3 id="org0df85dc">Basiskonzepte von Prolog</h3>
+<div class="outline-text-3" id="text-org0df85dc">
+</div>
+</section>
+<section id="orgdda29d8">
+<h4 id="orgdda29d8">Terme</h4>
+<ul>
+<li>Alle Daten (einschließlich der Prolog-Programme) in Prolog werden
+durch <i>Terme</i> repräsentiert.</li>
+<li>Ein Term ist:
+<dl>
+<dt>ein <i>Atom</i></dt><dd>Beispiele sind <code>elmshorn</code>, <code>claudia</code>. Atome beginnen
+mit einem Kleinbuchstaben.</dd>
+<dt>eine <i>Variable</i></dt><dd>Variablen beginnen mit einem Großbuchstaben oder
+dem Unterstrich. Ein singulärer Unterstrich bezeichnet die
+<i>anonyme Variable</i>, die für „irgendeinen Term” steht.</dd>
+<dt>eine <i>Ganzzahl</i> oder eine <i>Gleitkommazahl</i></dt><dd></dd>
+
+<dt>ein <i>zusammengesetzter Term</i> (compound term)</dt><dd>Wenn \(t_1, t_2, \ldots ,t_n\) Terme sind, dann ist auch \(f(t_1,
+      t_2, \ldots ,t_n)\) ein Term. &nbsp; \(f\) heißt Funktor und \(n\) ist die
+  Stelligkeit des zusammen&#x00ad;gesetzten Terms.<br />
+  Beispiele: <code>f(a)</code>, <code>g(f(X))</code>, <code>+(a, f(X))</code></dd>
+
+</dl></li>
+
+</ul>
+</section>
+<section id="org10f9a71">
+<h4 id="org10f9a71">Programme</h4>
+<ul>
+<li>Ein Prolog-Programm besteht aus einer Menge von Prädikaten.</li>
+<li>Prädikate beschreiben Relationen zwischen ihren Argumenten. Logisch
+betrachtet beschreibt ein Prolog-Programm, was gilt.</li>
+<li>Jedes <i>Prädikat</i> besitzt ein Atom als Namen und beliebig viele Argumente.</li>
+<li>Jedes Argument ist ein Prolog-Term.</li>
+<li>Ein Prädikat mit dem Namen <code>Pred</code> und \(n\) Argumenten wird durch
+einen Prädikatsindikator notiert: <code>Pred/n</code>. \(n\) ist die Stelligkeit
+des Prädikats.</li>
+<li>Ein Prädikat wird durch eine Menge von <i>Klauseln</i> (s. u.) definiert.</li>
+<li>Die Klauseln, die ein Prädikat definieren, stellen logische
+Alternativen dar. Wenn eine der Klauseln wahr ist, ist das ganze
+Prädikat war.</li>
+
+</ul>
+</section>
+<section id="org41fbb39">
+<h4 id="org41fbb39">Klauseln &#x2013; Regeln</h4>
+<ul>
+<li>Ein Klausel ist entweder ein <i>Fakt</i> oder eine <i>Regel</i>.</li>
+<li>Eine Regel hat die Form:<br />
+<code>Kopf :- Rumpf.</code>
+<ul>
+<li>Die Form des <code>Kopf</code> hängt von der Zahl der Argumente des Prädikats
+ab:
+<ul>
+<li>Besitzt das Prädikat keine Argumente, dann besteht der <code>Kopf</code>
+nur aus dem Namen des Prädikats, ist also ein Atom.</li>
+<li>Andernfalls ist <code>Kopf</code> ein zusammengesetzter Term, z. B.:<br />
+<code>schwester(X, Y)</code></li>
+
+</ul></li>
+<li>Der <code>Rumpf</code> hat die Form: \(B_1,\ldots,B_n\), wobei die \(B_i\) Terme
+sind, die mit dem Komma konjunktiv verknüpft sind.</li>
+<li>Die Zeichenfolge <code>:-</code> steht für die logische Implikation,
+gerichtet vom Rumpf zum Kopf.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Z. B. kann die Regel<br />
+</p>
+<pre class="example">
+father(Dad, Child) :- parent(Dad, Child), male(Dad).
+</pre>
+
+<p>
+wie folgt gelesen werden: <code>Dad</code> (eine Variable) ist <code>father</code> von
+<code>Child</code> (Variable), wenn <code>Dad</code> <code>parent</code> von <code>Child</code> und <code>Dad</code>
+<code>male</code> ist.
+</p></li>
+
+</ul>
+</section>
+<section id="org7f8ccf3">
+<h4 id="org7f8ccf3">Klauseln &#x2013; Fakten</h4>
+<ul>
+<li>Ein Faktum wird so aufgeschrieben:<br />
+<code>Kopf.</code></li>
+<li>Dieser Ausdruck ist äquivalent zur Regel:<br />
+<code>Kopf :- true.</code></li>
+<li>Logisch bedeutet das, dass die Regel immer wahr ist, weil das
+Standardprädikat <code>true/0</code> immer wahr ist.</li>
+
+</ul>
+</section>
+<section id="orgdb73ac3">
+<h4 id="orgdb73ac3">Starten von Prolog-Programmen</h4>
+<ul>
+<li>Eingabe von Fragen/Zielausdrücken (queries) am Eingabeprompt des
+Prolog-Interpreters</li>
+<li>Ein Zielausdruck besteht aus dem Namen eines beliebigen Prädikats
+und seiner Argumente.</li>
+<li>Eine Frage kann aus der Und-Verknüpfung von mehreren Zielausdrücken
+bestehen.</li>
+<li>In einer Frage sind Variabeln existenz-quantifiziert. Eine Frage
+<code>p(X)</code> kann so gelesen werden: Existiert eine Variablenbindung für
+X, so dass <code>p(X)</code> wahr wird.</li>
+<li>Wenn eine passende Variablenbindung gefunden werden kann (the goal
+succeeds), antwortet der Interpreter mit einem logisch äquivalenten
+Zielausdruck.</li>
+<li>Wenn eine Frage mehrere Antworten hat, liefert der Interpreter die
+übrigen auf besondere Anforderung (in SWI-Prolog durch Eingabe von
+Leerzeichen oder Semikolon).</li>
+
+</ul>
+
+</section>
+<section id="orgb8fee77">
+<h4 id="orgb8fee77">Ausführung von Prolog-Programmen</h4>
+<p>
+Die operationale Semantik von Prolog
+</p>
+<ul>
+<li>Die Ausführung von Prolog-Code kann als ein Spezialfall einer
+<i>Resolution</i> betrachtet werden.</li>
+<li>Die Resolution ist ein Verfahren der formalen Logik, um die
+Gültigkeit einer logischen Formel zu prüfen. Dabei wird versucht,
+aus der Verneinung der Frage einen Widerspruch abzuleiten.</li>
+<li>Wenn ein Widerspruch gefunden wird, ist die Frage die logische
+Folgerung aus dem Programm.</li>
+<li>Ein wichtiger Schritt in diesem Prozess ist die Unifikation von
+Termen.</li>
+<li>Wird der Kopf einer Klausel für die Unifikation mit einem
+Zielausdruck ausgewählt, wird diese auf die Argumente von beiden
+Termen angewendet.</li>
+<li>Daraus folgt, dass es in Prolog keine Unterscheidung zwischen Ein-
+und Ausgabeparametern gibt.
+(Vgl. <a href="PP2-7-RelProgUebrscht.html#beispiel-natuerliche-zahlen">Implementierung von natürlichen Zahlen</a>!)</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Sind die Köpfe mehrerer Klauseln mit einem Zielausdruck
+unifizierbar, werden die Alternativen durch <i>Backtracking</i>
+abgearbeitet.</li>
+<li>Informell kann die Ausführungsstrategie von Prolog als Tiefensuche
+(depth-first search) mit <i>chronologischem Backtracking</i> betrachtet
+werden (nähere Erläuterung s.&nbsp;u.).</li>
+
+</ul>
+</section>
+<section id="org7776abe">
+<h4 id="org7776abe">Standardprädikate</h4>
+<ul>
+<li>Es gibt einige vordefinierte Standardprädikate, z. B.
+<ul>
+<li><code>=/2</code> ist wahr, wenn seine Argumente unifizierbar sind;</li>
+<li><code>true/0</code> ist immer wahr, <code>false/0</code> immer falsch;</li>
+<li><code>dif/2</code> is wahr genau dann, wenn die Argumente unterschiedliche
+Terme sind;</li>
+<li><code>,/2</code> bezeichnet die Konjunktion, <code>;/2</code> die Disjunktion.</li>
+
+</ul></li>
+<li>Standardprädikate für den Vergleich von Zahlen (alle zweistellig):
+<ul>
+<li><code>=:=</code>, <code>=\=</code> numerische Gleichheit, Ungleichheit</li>
+<li><code>&lt;</code>, <code>&gt;</code>, <code>=&lt;</code>, <code>&gt;=</code></li>
+
+</ul></li>
+<li>Arithmetische Operationen (alle zweistellig):<br />
+<code>+ - * / // mod</code><br />
+Es gelten die üblichen Vorrangregeln.</li>
+<li>Die Standardprädikate für Zahlen können in Infixnotation geschrieben
+werden, also <code>3 + 4</code> anstatt <code>+(3, 4)</code>.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Beachte: Der Unifikationsoperator <code>=/2</code> bewirkt keine Auswertung
+arithmetischer Ausdrücke, dafür steht der Operator <code>is/2</code> zur
+Verfügung:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">  ?- <span style="color: #BA36A5;">X</span> = 3 + 4.
+  <span style="color: #BA36A5;">X</span> = 3+4.
+  ?- <span style="color: #BA36A5;">X</span> is 3+4.
+  <span style="color: #BA36A5;">X</span> = 7.
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+
+</section>
+<section id="org111a824">
+<h4 id="org111a824">Resolution / Backtracking</h4>
+<ul>
+<li>Resolution: Grundlage für eine automatische Beweisführung</li>
+<li>basiert auf dem Prinzip der Unifikation und des automatischen
+Rücksetzens (Backtracking).</li>
+<li>Prolog benutzt Tiefensuche; Reihenfolge der Klauseln entscheidend</li>
+<li>Teilziele einer Anfrage werden von links nach rechts bearbeitet.</li>
+<li>Zu jedem Teilziel wird die im Programmtext erste Klausel ausgewählt
+und versucht mit dem Teilziel zu unifizieren.</li>
+<li>Ist die Klausel eine Regel, so wird das Teilziel durch den
+Regelrumpf ersetzt und versucht zu beweisen. Andernfalls wird
+versucht das nächste Ziel der Anfrage herzuleiten.</li>
+<li>Tritt während der Resolution ein Fehler bei der Unifikation auf,
+wird also keine passende Programmklausel gefunden, so springt das
+PROLOG-System durch das eingebaute Rücksetzen auf den letzten Punkt
+zurück, an dem eine Entscheidung getroffen wurde, hebt die an dieser
+Stelle gemachten Variablenbindungen auf und wählt die nächste
+alternative Klausel aus.</li>
+
+</ul>
+</section>
+<section id="orgdd2a118">
+<h5 id="orgdd2a118">Beispiel</h5>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">father</span>(abraham,isaac).
+<span style="color: #006699;">father</span>(haran,lot).
+<span style="color: #006699;">father</span>(haran,milcah).
+<span style="color: #006699;">father</span>(haran,yiscah).
+<span style="color: #006699;">male</span>(isaac).
+<span style="color: #006699;">male</span>(lot).
+<span style="color: #006699;">female</span>(milcah).
+<span style="color: #006699;">female</span>(yiscah).
+<span style="color: #006699;">son</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), male(<span style="color: #BA36A5;">X</span>).
+<span style="color: #006699;">daughter</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), female(<span style="color: #BA36A5;">X</span>).
+</pre>
+</div>
+<p>
+Nachfolgend wird die Resolution der Anfrage
+</p>
+<pre class="example">
+daughter(X,haran).
+</pre>
+
+<p>
+gezeigt.
+</p>
+</section>
+<section >
+<div class="nebeneinander">
+<ol>
+<li>Prolog sucht passende Programmklausel<br />
+Unifikation <code>daughter(X,Y)</code> und <code>daughter(X,haran)</code> <br />
+\(\rightarrow\) Substitution <code>Y=haran</code></li>
+
+</ol>
+
+</div>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/bibel.png" alt="bibel.png" width="350px" />
+</p>
+</div>
+
+</div>
+<div class="clear">
+
+</div>
+<ol>
+<li value="2">Das ursprüngliche Ziel wird durch den Regelrumpf ersetzt<br />
+\(\rightarrow\) neue Zielanfrage: <code>father(haran,X), female(X).</code></li>
+<li>linkes Teilziel wird ausgewählt: <code>father(haran,X)</code><br />
+erste Programmklausel wird ausgewählt: <code>father(abraham,isaac).</code><br />
+\(\rightarrow\) Unifikation nicht möglich<br />
+\(\rightarrow\) Backtracking</li>
+<li>nächste alternative Programmklausel wird ausgewählt: <code>father(haran,lot)</code><br />
+\(\rightarrow\) Substitution <code>X=lot</code></li>
+
+</ol>
+</section>
+<section >
+<div class="nebeneinander">
+<ol>
+<li value="5">rechtes Teilziel wird ausgewählt und Substitution angewendet: <code>female(lot)</code><br />
+\(\rightarrow\) keine passende Programmklausel vorhanden \(\rightarrow\) Backtracking</li>
+
+</ol>
+
+</div>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/bibel.png" alt="bibel.png" width="350px" />
+</p>
+</div>
+
+</div>
+<div class="clear">
+
+</div>
+<ol>
+<li value="6">Substitution <code>X=lot</code> wird aufgehoben, nächste Klausel im
+Programmtext ausgewählt: <code>father(haran,milcah)</code> <br />
+\(\rightarrow\) Substitution <code>X=milcah</code></li>
+<li>rechtes Teilziel wird ausgewählt und Substitution angewendet:
+<code>female(milcah)</code><br />
+\(\rightarrow\) passende Programmklausel vorhanden
+\(\rightarrow\) Prolog gibt die Substitution <code>X=milcah</code> aus</li>
+<li>Durch Eingabe von <code>;</code> wird manuell Backtracking erzwungen um
+alternative Lösungen zu finden</li>
+
+</ol>
+</section>
+<section >
+<div class="nebeneinander">
+<ol>
+<li value="9">Substitution <code>X=milcah</code> wird aufgehoben, nächste Klausel im
+Programmtext ausgewählt: <code>father(haran,yiscah)</code> <br />
+\(\rightarrow\) Substitution <code>X=yiscah</code></li>
+
+</ol>
+
+</div>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/bibel.png" alt="bibel.png" width="350px" />
+</p>
+</div>
+
+</div>
+<div class="clear">
+
+</div>
+<ol>
+<li value="10">rechtes Teilziel wird ausgewählt und Substitution angewendet:<br />
+<code>female(yiscah)</code> <br />
+\(\rightarrow\) passende Programmklausel vorhanden<br />
+\(\rightarrow\) Prolog gibt die Substitution <code>X=yiscah.</code> aus und
+schließt die Beantwortung der ursprünglichen Anfrage, da
+keine Alternativen mehr vorhanden sind.</li>
+
+</ol>
+</section>
+</section>
+<section>
+<section id="orga1c6c70">
+<h2 id="orga1c6c70"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Bramer2013">[Bramer2013]</a> <a name="Bramer2013"></a>Max Bramer, Logic Programming with Prolog, Springer (2013).</li>
+<li><a id="Clocksin2003">[Clocksin2003]</a> <a name="Clocksin2003"></a>William Clocksin & Christopher Mellish, Programming in Prolog: Using the ISO Standard, Springer (2003).</li>
+</ul></h2>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.05,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
+</script>
+</body>
+</html>
