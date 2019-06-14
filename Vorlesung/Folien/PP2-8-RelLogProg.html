@@ -29,12 +29,25 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Relational-logische Programmierung</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-08 Sat 17:02</p>
+<section id="sec-title-slide"><h1 class="title">Relational-logische Programmierung</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-14 Fri 23:10</p>
 </section>
 
 <section>
-<section id="org026249e">
-<h2 id="org026249e">Einführung</h2>
+<section id="orgcb540ab">
+<h2 id="orgcb540ab">Ziele</h2>
+<ul>
+<li>Vermittlung von Grundkenntnissen und Fertigkeiten der
+logischen/prädikativen/relationalen Programmierung</li>
+<li>Kennenlernen der Syntax und Semantik von Prolog</li>
+<li>Ausführung von Prolog-Programen</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="org226efec">
+<h2 id="org226efec">Einführung</h2>
 <ul>
 <li>Relational-logische Programmierung: Programme spezifizieren
 Relationen zwischen Größen.</li>
@@ -74,8 +87,8 @@ bzw. ausgeführt werden.</li>
 </section>
 </section>
 <section>
-<section id="orgc7ac915">
-<h2 id="orgc7ac915">Relationale Programmierung mit Prolog</h2>
+<section id="orgd81b5af">
+<h2 id="orgd81b5af">Relationale Programmierung mit Prolog</h2>
 <ul>
 <li>Prolog (Programming in Logic) wurde Anfang der 1970er Jahre von dem
 französischen Informatiker Alain Colmerauer entwickelt.</li>
@@ -89,8 +102,8 @@ sind hinzugekommen.</li>
 </ul>
 
 </section>
-<section id="orgeca5363">
-<h3 id="orgeca5363">Syntax und Semantik relational-logischer Programme</h3>
+<section id="orgabcca9c">
+<h3 id="orgabcca9c">Syntax und Semantik relational-logischer Programme</h3>
 <ul>
 <li>Die Syntax basiert auf einer Teilmenge der Prädikatenkalküls. Ein
 relational-logisches Programm besteht aus einer Menge von Formeln,
@@ -115,8 +128,8 @@ gleich werden.</li>
 
 </ul>
 </section>
-<section id="org9809bfa">
-<h3 id="org9809bfa">Einstiegsbeispiel</h3>
+<section id="org7007934">
+<h3 id="org7007934">Einstiegsbeispiel</h3>
 <ul>
 <li>Das „Hallo Welt“-Äquivalent für ein Prolog-Programm ist meistens
 eine Wissensdatenbank mit Verwandtschaftsverhältnissen.
@@ -143,8 +156,8 @@ Fakten in Prolog:
 </ul>
 
 </section>
-<section id="org1b86499">
-<h4 id="org1b86499">Start des Prolog-Interpreters</h4>
+<section id="orgb20a7bf">
+<h4 id="orgb20a7bf">Start des Prolog-Interpreters</h4>
 <ul>
 <li>Im folgenden wird <a href="http://www.swi-prolog.org">SWI-Prolog</a> benutzt.</li>
 <li>Nach dem Start des Interpreters und der Konsultation der Faktendatei
@@ -171,8 +184,8 @@ false.
 </pre>
 </div>
 </section>
-<section id="org6d7461e">
-<h4 id="org6d7461e">Weitere Beispiele für Fragen (Zielausdrücke, goals):</h4>
+<section id="org6164972">
+<h4 id="org6164972">Weitere Beispiele für Fragen (Zielausdrücke, goals):</h4>
 <p>
 Fragen können Variablen benutzen, die stets mit einem Großbuchstaben
 beginnen müssen.
@@ -195,8 +208,8 @@ beginnen müssen.
 </pre>
 </div>
 </section>
-<section id="orgb910ce8">
-<h4 id="orgb910ce8">Regeln</h4>
+<section id="org8eb5382">
+<h4 id="org8eb5382">Regeln</h4>
 <p>
 Nehmen wir an, wir möchten auch Anfragen über die
 Schwesterbeziehung in die Datenbasis aufnehmen, um entsprechende
@@ -227,8 +240,8 @@ Fakten neue herzuleiten!</li>
 </ol>
 
 </section>
-<section id="org7cdd917">
-<h4 id="org7cdd917">Prolog-Programm mit Schwesterregel</h4>
+<section id="orgfc6be45">
+<h4 id="orgfc6be45">Prolog-Programm mit Schwesterregel</h4>
 <p>
 Fakten:
 </p>
@@ -263,8 +276,8 @@ Regeln:
 </div>
 
 </section>
-<section id="org15a3fa0">
-<h4 id="org15a3fa0">Beispielanfragen</h4>
+<section id="org42d6389">
+<h4 id="org42d6389">Beispielanfragen</h4>
 <div class="smaller">
 <div class="org-src-container">
 
@@ -355,15 +368,42 @@ false.
 </div>
 
 </div>
-
 </section>
-<section id="org0df85dc">
-<h3 id="org0df85dc">Basiskonzepte von Prolog</h3>
-<div class="outline-text-3" id="text-org0df85dc">
+<section id="orgc8a5f68">
+<h4 id="orgc8a5f68">modus ponens</h4>
+<ul>
+<li>Die oben gezeigten Ableitungen basieren auf dem <i>modus ponens</i>,
+einer Schlussregel der Logik:<br />
+Aus den Prämissen <i>Wenn A dann B</i> und <i>A</i> lässt sich <i>B</i>
+schlussfolgern.</li>
+<li>Mit anderen Worten: Der logische Ausdruck
+\[((A\to B)\wedge A)\to B\]
+ist eine Tautologie.</li>
+<li>Die oben genannte Beispielanfrage <code>schwester(klaus, claudia).</code>
+entspricht dem <i>B</i>.</li>
+<li><p>
+Die rechte Seite der Schwesterregel
+</p>
+<pre class="example">
+weiblich(Y), mutter(X, Z), mutter(Y, Z), vater(X, W), vater(Y, W), X \== Y.
+</pre>
+
+<p>
+entpricht dem <i>A</i>. Wenn also <i>A</i> bewiesen werden kann,
+d.&nbsp;h. eine Belegung der Variablen <code>X, Y, W</code> und <code>Z</code> gefunden
+werden kann, für die alle Teilausdrücke von <i>A</i> wahr werden, ist
+auch <i>B</i> bewiesen. 
+</p></li>
+
+</ul>
+</section>
+<section id="org8492218">
+<h3 id="org8492218">Basiskonzepte von Prolog</h3>
+<div class="outline-text-3" id="text-org8492218">
 </div>
 </section>
-<section id="orgdda29d8">
-<h4 id="orgdda29d8">Terme</h4>
+<section id="org924d505">
+<h4 id="org924d505">Terme</h4>
 <ul>
 <li>Alle Daten (einschließlich der Prolog-Programme) in Prolog werden
 durch <i>Terme</i> repräsentiert.</li>
@@ -378,15 +418,35 @@ dem Unterstrich. Ein singulärer Unterstrich bezeichnet die
 
 <dt>ein <i>zusammengesetzter Term</i> (compound term)</dt><dd>Wenn \(t_1, t_2, \ldots ,t_n\) Terme sind, dann ist auch \(f(t_1,
       t_2, \ldots ,t_n)\) ein Term. &nbsp; \(f\) heißt Funktor und \(n\) ist die
-  Stelligkeit des zusammen&#x00ad;gesetzten Terms.<br />
+  Stelligkeit (arity) des zusammen&#x00ad;gesetzten Terms.<br />
   Beispiele: <code>f(a)</code>, <code>g(f(X))</code>, <code>+(a, f(X))</code></dd>
 
 </dl></li>
 
 </ul>
 </section>
-<section id="org10f9a71">
-<h4 id="org10f9a71">Programme</h4>
+<section id="org6373535">
+<h5 id="org6373535">Übersicht</h5>
+
+<div class="figure">
+<p><img src="./Abbildungen/prologterme.png" alt="prologterme.png" width="750px" />
+</p>
+</div>
+</section>
+<section id="org8a0eb21">
+<h5 id="org8a0eb21">Stelligkeit</h5>
+<ul>
+<li>In Prolog können zwei Prädikate mit demselben Funktor aber
+unterschiedlicher Stelligkeit definiert werden.</li>
+<li>Prolog behandelte diese als zwei verschiedene Prädikate.</li>
+<li>In der Prolog-Dokumentation wird die Stelligkeit eines Prädikats
+durch Anhängen von "/" gefolgt von der Zahl, die die Stelligkeit
+angibt, dargestellt.</li>
+
+</ul>
+</section>
+<section id="orge858096">
+<h4 id="orge858096">Programme</h4>
 <ul>
 <li>Ein Prolog-Programm besteht aus einer Menge von Prädikaten.</li>
 <li>Prädikate beschreiben Relationen zwischen ihren Argumenten. Logisch
@@ -403,8 +463,8 @@ Prädikat war.</li>
 
 </ul>
 </section>
-<section id="org41fbb39">
-<h4 id="org41fbb39">Klauseln &#x2013; Regeln</h4>
+<section id="orgb788eab">
+<h4 id="orgb788eab">Klauseln &#x2013; Regeln</h4>
 <ul>
 <li>Ein Klausel ist entweder ein <i>Fakt</i> oder eine <i>Regel</i>.</li>
 <li>Eine Regel hat die Form:<br />
@@ -445,8 +505,8 @@ wie folgt gelesen werden: <code>Dad</code> (eine Variable) ist <code>father</cod
 
 </ul>
 </section>
-<section id="org7f8ccf3">
-<h4 id="org7f8ccf3">Klauseln &#x2013; Fakten</h4>
+<section id="org91a3ed9">
+<h4 id="org91a3ed9">Klauseln &#x2013; Fakten</h4>
 <ul>
 <li>Ein Faktum wird so aufgeschrieben:<br />
 <code>Kopf.</code></li>
@@ -457,8 +517,8 @@ Standardprädikat <code>true/0</code> immer wahr ist.</li>
 
 </ul>
 </section>
-<section id="orgdb73ac3">
-<h4 id="orgdb73ac3">Starten von Prolog-Programmen</h4>
+<section id="org1bf5eb8">
+<h4 id="org1bf5eb8">Starten von Prolog-Programmen</h4>
 <ul>
 <li>Eingabe von Fragen/Zielausdrücken (queries) am Eingabeprompt des
 Prolog-Interpreters</li>
@@ -479,8 +539,8 @@ Leerzeichen oder Semikolon).</li>
 </ul>
 
 </section>
-<section id="orgb8fee77">
-<h4 id="orgb8fee77">Ausführung von Prolog-Programmen</h4>
+<section id="org825cac3">
+<h4 id="org825cac3">Ausführung von Prolog-Programmen</h4>
 <p>
 Die operationale Semantik von Prolog
 </p>
@@ -514,8 +574,89 @@ werden (nähere Erläuterung s.&nbsp;u.).</li>
 
 </ul>
 </section>
-<section id="org7776abe">
-<h4 id="org7776abe">Standardprädikate</h4>
+<section id="org6cc1d96">
+<h4 id="org6cc1d96">Unifikation</h4>
+<div class="outline-text-4" id="text-org6cc1d96">
+</div>
+</section>
+<section id="org271ce32">
+<h5 id="org271ce32">Informelle Definition:</h5>
+<blockquote nil>
+<p>
+Zwei Terme sind unifizierbar, wenn sie identisch sind oder Variablen
+enthalten, die einheitlich mit Termen so belegt werden können, dass
+sie gleich (unifiziert) sind.
+</p>
+</blockquote>
+<ul>
+<li>Beispiele:
+<ul>
+<li>karin und karin sind unifiziert.</li>
+<li>42 und 42 sind unifiziert.</li>
+<li>weiblich(karla) und weiblich(karla) sind unifiziert.</li>
+<li>klara und rosa sind nicht unifizierbar.</li>
+<li>weiblich(karla) und weiblich(rosa) sind nicht unifizierbar.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li>Welche der folgenden Term-Paare sind unifizierbar?
+<ul>
+<li>rosa und X</li>
+<li>weiblich(X) und weiblich(klara)</li>
+<li>liebt(rosa,X) und liebt(X,karl)</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="org8bd699b">
+<h5 id="org8bd699b">Präzise Definition</h5>
+<ol>
+<li>Sind \(t_1\) und \(t_2\) Konstanten, dann sind \(t_1\) und \(t_2\)
+unifizierbar, wenn sie dasselbe Atom oder dieselbe Zahl sind.</li>
+<li>Ist \(t_1\) eine Variable und \(t_2\) irgendein Term, dann sind \(t_1\)
+und \(t_2\) unifizierbar, wenn \(t_1\) mit  \(t_2\) belegt wird (und umgekehrt).</li>
+<li>Sind \(t_1\) und \(t_2\) komplexe Terme, dann sind sie unifizierbar, wenn:
+<ol>
+<li>sie denselben Funktor mit derselben Stelligkeit besitzen, <b>und</b></li>
+<li>alle ihre korrespondierenden Argumente unifizierbar sind, <b>und</b></li>
+<li>die Variablenbelegungen kompatibel sind.</li>
+
+</ol></li>
+
+</ol>
+</section>
+<section id="org27953dd">
+<h5 id="org27953dd">Anwendungsbeispiele für <code>=/2</code></h5>
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- claudia = claudia.
+... .
+
+?- claudia = claudius.
+... .
+
+?- claudia = <span style="color: #BA36A5;">X</span>.
+... .
+
+?- <span style="color: #BA36A5;">X</span> = claudia, <span style="color: #BA36A5;">X</span> = claudius.
+... .
+
+?- k(s(g),<span style="color: #BA36A5;">Y</span>) = k(<span style="color: #BA36A5;">X</span>,t(k)).
+... ,
+...  .
+
+?- father(<span style="color: #BA36A5;">X</span>) = <span style="color: #BA36A5;">X</span>.
+... .
+</pre>
+</div>
+</section>
+<section id="orgad6a784">
+<h4 id="orgad6a784">Standardprädikate</h4>
 <ul>
 <li>Es gibt einige vordefinierte Standardprädikate, z. B.
 <ul>
@@ -562,8 +703,8 @@ Verfügung:
 </ul>
 
 </section>
-<section id="org111a824">
-<h4 id="org111a824">Resolution / Backtracking</h4>
+<section id="org203365d">
+<h4 id="org203365d">Resolution / Backtracking</h4>
 <ul>
 <li>Resolution: Grundlage für eine automatische Beweisführung</li>
 <li>basiert auf dem Prinzip der Unifikation und des automatischen
@@ -584,8 +725,8 @@ alternative Klausel aus.</li>
 
 </ul>
 </section>
-<section id="orgdd2a118">
-<h5 id="orgdd2a118">Beispiel</h5>
+<section id="orgf2517f7">
+<h5 id="orgf2517f7">Beispiel</h5>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><span style="color: #006699;">father</span>(abraham,isaac).
@@ -708,10 +849,659 @@ keine Alternativen mehr vorhanden sind.</li>
 
 </ol>
 </section>
+<section id="org0d480af">
+<h3 id="org0d480af">Rekursion</h3>
+<ul>
+<li>Davon, asss Prolog rekursive Regeln erlaubt, wurde schon in bei der
+logischen <a href="PP2-7-RelProgUebrscht.html#beispiel-natuerliche-zahlen">Implementierung von natürlichen Zahlen</a> Gebrauch gemacht.</li>
+<li>Weiteres Beispiel, dass die Notwendigkeit, Regeln rekursiv
+definieren zu können, deutlich macht.</li>
+<li><p>
+Modifikation des Stammbaum-Beispiels, zunächst ein paar Fakten:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">  mutter(klaus, elfriede).
+  mutter(claudia, elfriede).
+  mutter(elfriede, rosa).
+  mutter(rosa, klara)
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Gesucht ein Prädikat, das erlaubt festzustellen, ob eine Person
+Abkömmling einer anderen Person ist. Z.&nbsp;B. sollte die folgende
+Frage mit <code>true</code> beantwortet werden:
+</p>
+<pre class="example">
+abkoemmling(klara, elfriede). 
+</pre></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Wie lautet das Prädikat <code>abkoemling(X,Y)</code>?<br />
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">  mutter(klaus, elfriede).
+  mutter(claudia, elfriede).
+  mutter(elfriede, rosa).
+  mutter(rosa, klara)
+ 
+  abkoemling(<span style="color: #BA36A5;">X</span><span style="color: #0000FF;">;</span><span style="color: #BA36A5;">Y</span>) :- <span style="color: #8D8D84; font-style: italic;">% Y ist Abk&#246;mmling von X</span>
+</pre>
+</div>
+
+</div>
+<div class="fragment roll-in small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">  abkoemmling(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- mutter(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>).
+  abkoemmling(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- mutter(<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">X</span>), abkoemmling(<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">Y</span>).
+</pre>
+</div>
+
+</div>
+<ul class="fragment roll-in">
+<li>Warum ist Rekursion hier erforderlich?</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="org9bcfad5">
+<h3 id="org9bcfad5">Listen in Prolog</h3>
+<ul>
+<li>Listen in Prolog ähneln bis auf die Syntax den aus Racket oder
+Clojure bekannten.
+<ul>
+<li>Beispiel: <code>[3,4,5,6,7]</code></li>
+
+</ul></li>
+<li>Sie können heterogen sein.
+<ul>
+<li>Beispiel: <code>(a, 3, 2.0, f(a), g[X])</code></li>
+
+</ul></li>
+<li>Die leere Liste: <code>[]</code></li>
+<li>Jede Liste außer der leeren besteht aus zwei Teilen: dem ersten Element (head) und
+der Restliste (tail).</li>
+<li>Der senkrechte Strich entspricht der aus den Lisp-Sprachen bekannten
+<code>cons</code>-Funktion. 
+<ul>
+<li><p>
+Beispiele:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">    ?- <span style="color: #0000FF;">[</span>a, b, c, d<span style="color: #0000FF;">]</span> = <span style="color: #0000FF;">[</span>a <span style="color: #0000FF;">|</span> <span style="color: #0000FF;">[</span>b, c, d<span style="color: #0000FF;">]]</span>.
+    true.
+    ?- <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">H</span> <span style="color: #0000FF;">|</span> <span style="color: #BA36A5;">T</span><span style="color: #0000FF;">]</span> = <span style="color: #0000FF;">[</span>a, b, c, d<span style="color: #0000FF;">]</span>.
+    <span style="color: #BA36A5;">H</span> = a,
+    <span style="color: #BA36A5;">T</span> = <span style="color: #0000FF;">[</span>b, c, d<span style="color: #0000FF;">]</span>.    
+</pre>
+</div>
+
+</div></li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="orgd3de7e6">
+<h3 id="orgd3de7e6">Beipiele für Listen-Prädikate</h3>
+<div class="outline-text-3" id="text-orgd3de7e6">
+</div>
+</section>
+<section id="org15e5624">
+<h4 id="org15e5624"><code>member</code></h4>
+<ul>
+<li><p>
+Die Frage <code>member(X, L)</code> soll genau dann <code>true</code> liefern, wenn <code>X</code> in
+der Liste <code>L</code> vorkommt.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">member</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">X</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">T</span><span style="color: #0000FF;">]</span>).                <span style="color: #8D8D84; font-style: italic;">% besser: member(X,[X|_]).</span>
+<span style="color: #006699;">member</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">H</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">T</span><span style="color: #0000FF;">]</span>) :- member(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">T</span>). <span style="color: #8D8D84; font-style: italic;">% besser: member(X,[_|T]) :- member(X,T).</span>
+
+?- member(a, <span style="color: #0000FF;">[</span>b, a, c<span style="color: #0000FF;">]</span>).
+true 
+
+?- member(a, <span style="color: #0000FF;">[</span>b, c, d<span style="color: #0000FF;">]</span>).
+false
+
+?- member(a, <span style="color: #0000FF;">[]</span>).
+false.
+
+?- member(<span style="color: #BA36A5;">X</span>, <span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span>).
+<span style="color: #BA36A5;">X</span> = a <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">X</span> = b <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">X</span> = c <span style="color: #0000FF;">;</span>
+false.
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="org80fb02d">
+<h4 id="org80fb02d"><code>count</code></h4>
+<ul>
+<li><p>
+<code>count</code> soll die Anzahl der Elemente einer Liste ermitteln.
+</p>
+<ol>
+<li>Die Anzahl der Elemente der leeren Liste ist \(0\).</li>
+<li>Die Anzahl der Elemente der nicht-leeren Liste ist \(1 +
+     count(T)\), wobei \(T\) die Restliste ist.</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">count</span>(<span style="color: #0000FF;">[]</span>,0).
+<span style="color: #006699;">count</span>(<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">_</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">T</span><span style="color: #0000FF;">]</span>,<span style="color: #BA36A5;">N</span>) :- count(<span style="color: #BA36A5;">T</span>, <span style="color: #BA36A5;">X</span>), <span style="color: #BA36A5;">N</span> is <span style="color: #BA36A5;">X</span>+1.
+
+?- count(<span style="color: #0000FF;">[]</span>, <span style="color: #BA36A5;">N</span>).
+<span style="color: #BA36A5;">N</span> = 0.
+
+?- count(<span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span>, <span style="color: #BA36A5;">N</span>).
+<span style="color: #BA36A5;">N</span> = 3.
+
+?- count(<span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span>, 3).
+true.
+
+?- count(<span style="color: #0000FF;">[</span>a, <span style="color: #0000FF;">[</span>1, 2<span style="color: #0000FF;">]</span>, c<span style="color: #0000FF;">]</span>, 3).
+true.
+
+?- count(<span style="color: #BA36A5;">X</span>, 3).
+<span style="color: #BA36A5;">X</span> = <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">_6622</span>, <span style="color: #BA36A5;">_6628</span>, <span style="color: #BA36A5;">_6634</span><span style="color: #0000FF;">]</span> 
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section id="org73475bb">
+<h5 id="org73475bb">Endrekursive Variante mit akkumulierendem Parameter</h5>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">acCount</span>(<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">_</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">T</span><span style="color: #0000FF;">]</span>,<span style="color: #BA36A5;">A</span>,<span style="color: #BA36A5;">L</span>) :- <span style="color: #BA36A5;">An</span> is <span style="color: #BA36A5;">A</span>+1, acCount(<span style="color: #BA36A5;">T</span>,<span style="color: #BA36A5;">An</span>,<span style="color: #BA36A5;">L</span>). 
+<span style="color: #006699;">acCount</span>(<span style="color: #0000FF;">[]</span>,<span style="color: #BA36A5;">A</span>,<span style="color: #BA36A5;">A</span>).
+
+<span style="color: #006699;">countAcc</span>(<span style="color: #BA36A5;">L</span>,<span style="color: #BA36A5;">N</span>) :- acCount(<span style="color: #BA36A5;">L</span>,0,<span style="color: #BA36A5;">N</span>).
+
+?- countAcc(<span style="color: #0000FF;">[</span>a, <span style="color: #0000FF;">[</span>1, 2<span style="color: #0000FF;">]</span>, c<span style="color: #0000FF;">]</span>, 3).
+true.
+
+<span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">Benutzung der Trace-Funktion von SWI-Prolog</span>
+?- trace.
+true.
+
+<span style="color: #0000FF;">[</span>trace<span style="color: #0000FF;">]</span> 10 ?- acCount(<span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span>,0,<span style="color: #BA36A5;">N</span>).
+   <span style="color: #BA36A5;">Call</span>: (8) acCount(<span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span>, 0, <span style="color: #BA36A5;">_1850</span>) ? 
+   <span style="color: #BA36A5;">Call</span>: (9) <span style="color: #BA36A5;">_2100</span> is 0+1 ? 
+   <span style="color: #BA36A5;">Exit</span>: (9) 1 is 0+1 ? 
+   <span style="color: #BA36A5;">Call</span>: (9) acCount(<span style="color: #0000FF;">[</span>b, c<span style="color: #0000FF;">]</span>, 1, <span style="color: #BA36A5;">_1850</span>) ? 
+   <span style="color: #BA36A5;">Call</span>: (10) <span style="color: #BA36A5;">_2106</span> is 1+1 ? 
+   <span style="color: #BA36A5;">Exit</span>: (10) 2 is 1+1 ? 
+   <span style="color: #BA36A5;">Call</span>: (10) acCount(<span style="color: #0000FF;">[</span>c<span style="color: #0000FF;">]</span>, 2, <span style="color: #BA36A5;">_1850</span>) ? 
+   <span style="color: #BA36A5;">Call</span>: (11) <span style="color: #BA36A5;">_2112</span> is 2+1 ? 
+   <span style="color: #BA36A5;">Exit</span>: (11) 3 is 2+1 ? 
+   <span style="color: #BA36A5;">Call</span>: (11) acCount(<span style="color: #0000FF;">[]</span>, 3, <span style="color: #BA36A5;">_1850</span>) ? 
+   <span style="color: #BA36A5;">Exit</span>: (11) acCount(<span style="color: #0000FF;">[]</span>, 3, 3) ? 
+   <span style="color: #BA36A5;">Exit</span>: (10) acCount(<span style="color: #0000FF;">[</span>c<span style="color: #0000FF;">]</span>, 2, 3) ? 
+   <span style="color: #BA36A5;">Exit</span>: (9) acCount(<span style="color: #0000FF;">[</span>b, c<span style="color: #0000FF;">]</span>, 1, 3) ? 
+   <span style="color: #BA36A5;">Exit</span>: (8) acCount(<span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span>, 0, 3) ? 
+<span style="color: #BA36A5;">N</span> = 3.
+</pre>
+</div>
+</section>
+<section id="org6de0736">
+<h4 id="org6de0736"><code>append</code></h4>
+<ul>
+<li><p>
+Die Frage <code>append(L1, L2, L3)</code> soll genau dann <code>true</code> liefern, wenn
+die Liste <code>L3</code> gleich der Verkettung der Liste <code>L1</code> mit der Liste <code>L2</code> ist.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">append</span>(<span style="color: #0000FF;">[]</span>,<span style="color: #BA36A5;">L</span>,<span style="color: #BA36A5;">L</span>).
+<span style="color: #006699;">append</span>(<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">H</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">T</span><span style="color: #0000FF;">]</span>,<span style="color: #BA36A5;">L2</span>,<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">H</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">L3</span><span style="color: #0000FF;">]</span>)  :-  append(<span style="color: #BA36A5;">T</span>,<span style="color: #BA36A5;">L2</span>,<span style="color: #BA36A5;">L3</span>).
+
+?- append(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>,<span style="color: #0000FF;">[</span>1,2,3<span style="color: #0000FF;">]</span>,<span style="color: #0000FF;">[</span>a,b,c,1,2,3<span style="color: #0000FF;">]</span>).
+true.
+
+?- append(<span style="color: #0000FF;">[</span>a,<span style="color: #0000FF;">[</span>b,c<span style="color: #0000FF;">]</span>,d<span style="color: #0000FF;">]</span>,<span style="color: #0000FF;">[</span>1,2,3<span style="color: #0000FF;">]</span>,<span style="color: #0000FF;">[</span>a,<span style="color: #0000FF;">[</span>b,c<span style="color: #0000FF;">]</span>,d,1,2,3<span style="color: #0000FF;">]</span>).
+true.
+
+?- append(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>,<span style="color: #0000FF;">[</span>1,2,3<span style="color: #0000FF;">]</span>,<span style="color: #0000FF;">[</span>1,2,3,a,b,c<span style="color: #0000FF;">]</span>).
+false.
+
+?- append(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>,<span style="color: #0000FF;">[</span>1,2,3<span style="color: #0000FF;">]</span>,<span style="color: #BA36A5;">L</span>).
+<span style="color: #BA36A5;">L</span> = <span style="color: #0000FF;">[</span>a, b, c, 1, 2, 3<span style="color: #0000FF;">]</span>.
+
+?- append(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>,<span style="color: #BA36A5;">L</span>,<span style="color: #0000FF;">[</span>a, b, c, 1, 2, 3<span style="color: #0000FF;">]</span>).
+<span style="color: #BA36A5;">L</span> = <span style="color: #0000FF;">[</span>1, 2, 3<span style="color: #0000FF;">]</span>.
+
+?- append(<span style="color: #BA36A5;">L1</span>, <span style="color: #BA36A5;">L2</span>, <span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>).
+<span style="color: #BA36A5;">L1</span> = <span style="color: #0000FF;">[]</span>,
+<span style="color: #BA36A5;">L2</span> = <span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span> <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">L1</span> = <span style="color: #0000FF;">[</span>a<span style="color: #0000FF;">]</span>,
+<span style="color: #BA36A5;">L2</span> = <span style="color: #0000FF;">[</span>b, c<span style="color: #0000FF;">]</span> <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">L1</span> = <span style="color: #0000FF;">[</span>a, b<span style="color: #0000FF;">]</span>,
+<span style="color: #BA36A5;">L2</span> = <span style="color: #0000FF;">[</span>c<span style="color: #0000FF;">]</span> <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">L1</span> = <span style="color: #0000FF;">[</span>a, b, c<span style="color: #0000FF;">]</span>,
+<span style="color: #BA36A5;">L2</span> = <span style="color: #0000FF;">[]</span> <span style="color: #0000FF;">;</span>
+false.
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="org341719c">
+<h3 id="org341719c">Negation, <code>cut</code> und <code>fail</code></h3>
+<div class="outline-text-3" id="text-org341719c">
+</div>
+</section>
+<section id="org371618b">
+<h4 id="org371618b">Erzwingen von Backtracking</h4>
+<ul>
+<li><p>
+Gesucht ist ein Prädikat <code>all/1</code>, dass angewendet auf eine Liste
+alle Elemente anzeigt:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- all(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>).
+a
+b
+c
+true.
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section id="org093d29d">
+<h5 id="org093d29d">Erste Versuche</h5>
+<p>
+Die Verwendung des Prädikats 
+</p>
+<pre class="example">
+all_0(L) :- member(X,L).
+</pre>
+
+<p>
+führt zu folgendem Ergebnis:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- all_0(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>).
+true <span style="color: #0000FF;">;</span>
+true <span style="color: #0000FF;">;</span>
+true <span style="color: #0000FF;">;</span>
+false.
+</pre>
+</div>
+
+</div>
+<p>
+Verwendung des Standardprädikats <code>write/1</code>:
+</p>
+<pre class="example">
+all_1(L) :- member(X,L), write(X).
+</pre>
+
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- all_1(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>).
+a
+true <span style="color: #0000FF;">;</span>
+b
+true <span style="color: #0000FF;">;</span>
+c
+true <span style="color: #0000FF;">;</span>
+false.
+</pre>
+</div>
+
+</div>
+</section>
+<section id="orga5c2a22">
+<h5 id="orga5c2a22">Verwendung von <code>fail/0</code></h5>
+<ul>
+<li>Das Prädikat fail/0 schlägt immer fehl.</li>
+<li>Seine Verwendung führt daher immer zu Backtracking.</li>
+<li><p>
+Damit kann hier die Ausgabe aller Elemente ohne Benutzerinteraktion
+erreicht werden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">all_2</span>(<span style="color: #BA36A5;">L</span>) :- member(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">L</span>), write(<span style="color: #BA36A5;">X</span>),fail.
+?- all_2(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>).
+abc
+false.
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Beseitigung der „Schönheitsfehler“:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">all</span>(<span style="color: #BA36A5;">L</span>):- member(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">L</span>),writeln(<span style="color: #BA36A5;">X</span>),fail.
+<span style="color: #006699;">all</span>(<span style="color: #BA36A5;">_</span>).
+
+?- all(<span style="color: #0000FF;">[</span>a,b,c<span style="color: #0000FF;">]</span>).
+a
+b
+c
+true.
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+
+</section>
+<section id="org0fd3549">
+<h4 id="org0fd3549">Das Standardprädikat <code>!/0</code> (Cut)</h4>
+<p>
+(vgl. <a href="http://www.learnprolognow.org/lpnpage.php?pagetype=html&amp;pageid=lpn-htmlch10">Learn Prolog Now</a>)
+</p>
+<ul>
+<li><p>
+Gesucht ein Prädikat <code>max/3</code>, das drei ganze Zahlen als Argumente
+erwartet und erfüllt ist, wenn das dritte Argument gleich dem
+größeren der beiden ersten Argumente ist.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Y</span>):- <span style="color: #BA36A5;">X</span> =&lt; <span style="color: #BA36A5;">Y</span>. 
+<span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>):- <span style="color: #BA36A5;">X</span> &gt;  <span style="color: #BA36A5;">Y</span>.
+
+?- max(5,4,5).
+true.
+
+?- max(2,3,3).
+true <span style="color: #0000FF;">;</span>
+false.
+
+?- max(5,4,4).
+false.
+
+?- max(5,4,5).
+true.
+
+?- max(5,4,<span style="color: #BA36A5;">X</span>).
+<span style="color: #BA36A5;">X</span> = 5.
+
+?- max(2,3,<span style="color: #BA36A5;">X</span>).
+<span style="color: #BA36A5;">X</span> = 3 <span style="color: #0000FF;">;</span>
+false.
+</pre>
+</div></li>
+<li><code>max/3</code> ist korrekt, aber ineffizient, warum?</li>
+
+</ul>
+</section>
+<section id="org87393e8">
+<h5 id="org87393e8">Vermeidung des Backtracking</h5>
+<ul>
+<li>Da die beiden Regeln von <code>max/3</code> sich gegenseitig ausschließen, wäre
+es wünschenswert, das Backtracking, für den Fall, dass die erste
+Regel erfüllt ist, zu vermeiden, da die zweite nie erfüllt werden kann.</li>
+<li><p>
+Das ermöglicht der Cut-Operator <code>!/0</code>. 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Y</span>):- <span style="color: #BA36A5;">X</span> =&lt; <span style="color: #BA36A5;">Y</span>, <span style="color: #0000FF;">!</span>. 
+<span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>):- <span style="color: #BA36A5;">X</span> &gt;  <span style="color: #BA36A5;">Y</span>.
+
+?- max(2,3,3).
+true.
+
+?- max(5,4,<span style="color: #BA36A5;">X</span>).
+<span style="color: #BA36A5;">X</span> = 5.
+
+?- max(2,3,<span style="color: #BA36A5;">X</span>).
+<span style="color: #BA36A5;">X</span> = 3.
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section id="org8dd1b68">
+<h5 id="org8dd1b68">Wirkungsweise und Nutzen des Cut-Operators</h5>
+<ul>
+<li>Wirkungsweise:
+<ul>
+<li>Der Cut wird im Rumpf von Regeln eingesetzt und verhindert Backtracking.</li>
+<li>Der Cut gelingt immer.</li>
+<li>Nach dem Passieren eines Cuts in einem Regelrumpf sind
+<ul>
+<li>die Teilziele, die in demselben Regelrumpf vor dem Cut stehen, und</li>
+<li>alle weiteren Klauseln desselben Prädikats, die hinter der Regel
+stehen, vom weiteren Backtracking ausgeschlossen.</li>
+
+</ul></li>
+
+</ul></li>
+<li>Der Cut kann genutzt werden für
+<ul>
+<li>Effizienzsteigerung</li>
+<li>Speichereinsparung</li>
+<li>Verkürzung von Programmen</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="org1936626">
+<h5 id="org1936626">Grüne und rote Cuts</h5>
+<ul>
+<li>Der Cut in <code>max/3</code> ändert nichts am Ergebnis des Prädikats gegenüber
+der ersten Version ohne Cut. Einen solchen Cut nennt man grün.</li>
+<li>Er dient hier der Effizienzsteigerung.</li>
+<li><p>
+Man könnte auf die Idee kommen, den Rumpf der zweiten Regel als
+redundant zu betrachten und das Prädikat dann so schreiben:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Y</span>):- <span style="color: #BA36A5;">X</span> =&lt; <span style="color: #BA36A5;">Y</span>, <span style="color: #0000FF;">!</span>. 
+<span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>).
+</pre>
+</div>
+
+</div></li>
+<li>Anfragen der Art <code>max(5,4,X)</code> oder <code>max(2,3,X)</code> werden nach wie vor
+korrekt beantwortet.</li>
+<li>Die Anfrage <code>max(4,5,4)</code> müsste fehlschlagen, liefert aber <code>true</code>. Warum?</li>
+
+</ul>
+<ul class="fragment roll-in">
+<li>Da <code>max(4,5,4)</code> nicht mit dem ersten Regelkopf unifizierbar ist,
+geht Prolog direkt zur zweiten Klausel, die trivialerweise <code>true</code>
+liefert.</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Schreibt man das Prädikat wie folgt um
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Z</span>):- <span style="color: #BA36A5;">X</span> =&lt; <span style="color: #BA36A5;">Y</span>, <span style="color: #0000FF;">!</span>, <span style="color: #BA36A5;">Y</span> = <span style="color: #BA36A5;">Z</span>. 
+<span style="color: #006699;">max</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>).  
+</pre>
+</div>
+
+</div>
+<p>
+funktioniert wieder alles. Jetzt kann der erste Regelkopf mit
+<code>max(4,5,4)</code> unifiziert werden.
+</p></li>
+<li>Diesen Cut nennt man rot, weil er nicht entfernt werden kann, ohne das Resultat zu
+verändern.</li>
+
+</ul>
+<blockquote nil>
+<p>
+Fazit: Mit Cuts muss man vorsichtig umgehen.
+</p>
+</blockquote>
+</section>
+<section id="org3d0046c">
+<h4 id="org3d0046c">Negation mit Cut und <code>fail</code></h4>
+<ul>
+<li><p>
+Keine Regel ohne Ausnahme: Wir wollen festhalten, dass Karl Pizza
+mag, außer Salami-Pizza:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">mag</span>(karl, <span style="color: #BA36A5;">X</span>) :- salami_pizza(<span style="color: #BA36A5;">X</span>),<span style="color: #0000FF;">!</span>,fail.
+<span style="color: #006699;">mag</span>(karl, <span style="color: #BA36A5;">X</span>) :- pizza(<span style="color: #BA36A5;">X</span>).
+
+<span style="color: #006699;">pizza</span>(<span style="color: #BA36A5;">X</span>)  :-  vier_jahreszeiten_pizza(<span style="color: #BA36A5;">X</span>).
+<span style="color: #006699;">pizza</span>(<span style="color: #BA36A5;">X</span>)  :-  salami_pizza(<span style="color: #BA36A5;">X</span>). 
+<span style="color: #006699;">pizza</span>(<span style="color: #BA36A5;">X</span>)  :-  champignon_pizza(<span style="color: #BA36A5;">X</span>).
+
+<span style="color: #006699;">vier_jahreszeiten_pizza</span>(vklein). 
+<span style="color: #006699;">vier_jahreszeiten_pizza</span>(vgross). 
+<span style="color: #006699;">salami_pizza</span>(s). 
+<span style="color: #006699;">champignon_pizza</span>(c).
+
+?- mag(karl,c).
+true.
+
+?- mag(karl,s).
+false.
+</pre>
+</div></li>
+<li>So weit, so gut aber &#x2026;</li>
+
+</ul>
+</section>
+<section id="orgba7d618">
+<h5 id="orgba7d618">Wirkungsweise und Probleme &#x2026;</h5>
+<ul>
+<li>Wirkungsweise der ersten Regel: 
+<ul>
+<li>Wenn <code>X=s</code>, ist  <code>salami_pizza(X)</code>  erfüllt.</li>
+<li>Wir erreichen den Cut, d.&nbsp;h. die zweite Regel wird nicht
+probiert.</li>
+<li>Anschließend fordert <code>fail</code> ein Backtracking, was aber vom Cut
+verhindert wird.</li>
+<li>Das Ergebnis von <code>mag(karl,s)</code> ist also <code>false</code>.</li>
+
+</ul></li>
+<li>Probleme
+<ul>
+<li>Die Regeln des Prädikats <code>mag</code> dürfen nicht vertauscht werden.</li>
+<li>Der Cut ist rot.</li>
+<li>Außerdem: <code>mag(karl, X)</code> liefert <code>false</code>.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="orgf65a4b4">
+<h5 id="orgf65a4b4">&#x2026; Abhilfe</h5>
+<ul>
+<li>Die Cut-fail-Kombination stellt eine Art Negation zur Verfügung, die
+auch als <i>negation as failure</i> bezeichnet wird.</li>
+<li><p>
+Versteckt man diese in einem Prädikat <code>neg/1</code>, lässt sich das
+<code>mag/1</code>-Prädikat sehr viel prägnanter aufschreiben:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">neg</span>(<span style="color: #BA36A5;">Ziel</span>)  :-  <span style="color: #BA36A5;">Ziel</span>,<span style="color: #0000FF;">!</span>,fail. 
+<span style="color: #006699;">neg</span>(<span style="color: #BA36A5;">Ziel</span>).
+
+<span style="color: #006699;">mag</span>(karl, <span style="color: #BA36A5;">X</span>) :- pizza(<span style="color: #BA36A5;">X</span>), neg(salami_pizza(<span style="color: #BA36A5;">X</span>)).
+</pre>
+</div>
+
+</div></li>
+<li>Karl mag Pizza, aber keine Salami-Pizza.</li>
+<li><p>
+Statt <code>neg/1</code> kann auch das Standardprädikat <code>\+/1</code> verwendet
+werden:
+</p>
+<pre class="example">
+mag(karl, X) :- pizza(X), \+ (salami_pizza(X)).
+</pre></li>
+<li><p>
+Die Frage <code>mag(karl, X)</code> liefert jetzt auch das richtige Ergebnis:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-prolog">?- mag(karl, <span style="color: #BA36A5;">X</span>).
+<span style="color: #BA36A5;">X</span> = vklein <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">X</span> = vgross <span style="color: #0000FF;">;</span>
+<span style="color: #BA36A5;">X</span> = c.
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section id="orgf25c79a">
+<h5 id="orgf25c79a"><code>\+/1</code> ist keine logische Negation</h5>
+<ul>
+<li>Das <code>mag/1</code>-Prädikat ist auch in der letzten Fassung nicht
+vollständig deklarativ.</li>
+<li><p>
+Schreibt man das Prädikat als
+</p>
+<pre class="example">
+mag(karl, X) :- \+ (salami_pizza(X)), pizza(X).
+</pre>
+
+<p>
+liefert <code>mag(karl, X)</code> wieder <code>false</code>.
+</p></li>
+<li>Man mache sich klar, woran das liegt.</li>
+
+</ul>
+
+
+
+
+</section>
 </section>
 <section>
-<section id="orga1c6c70">
-<h2 id="orga1c6c70"><h2>Literaturverzeichnis</h2>
+<section id="orgb1ef4d2">
+<h2 id="orgb1ef4d2"><h2>Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="Bramer2013">[Bramer2013]</a> <a name="Bramer2013"></a>Max Bramer, Logic Programming with Prolog, Springer (2013).</li>
 <li><a id="Clocksin2003">[Clocksin2003]</a> <a name="Clocksin2003"></a>William Clocksin & Christopher Mellish, Programming in Prolog: Using the ISO Standard, Springer (2003).</li>
 </ul></h2>
