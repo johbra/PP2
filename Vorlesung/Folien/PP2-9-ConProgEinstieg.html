@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Constraint-Programmierung &#x2013; Grundlagen</title>
+<meta name="author" content="(Johannes Brauer)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./mycss/myrevealstyle.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Constraint-Programmierung &#x2013; Grundlagen</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-16 Sun 22:34</p>
+</section>
+
+<section>
+<section id="org1fc0a2b">
+<h2 id="org1fc0a2b">Ziele</h2>
+<ul>
+<li>Kennenlernen grundlegender Begriffe der Constraint-Programmierung</li>
+<li>die zwei wichtigsten Lösungsverfahren in Constraint-Systemen unterscheiden können</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="org13a4e0b">
+<h2 id="org13a4e0b">Einstieg</h2>
+<p>
+Hier verwendete und weiterführende Literatur:
+</p>
+
+<ul>
+<li><a class='org-ref-reference' href="#Fruehwirth2010">Fruehwirth2010</a></li>
+<li><a class='org-ref-reference' href="#Marriott1998">Marriott1998</a></li>
+<li><a class='org-ref-reference' href="#Bartak99">Bartak99</a></li>
+<li><a class='org-ref-reference' href="#Sicp1999">Sicp1999</a></li>
+<li><a class='org-ref-reference' href="#Carro1998">Carro1998</a></li>
+
+</ul>
+
+</section>
+<section id="org391e396">
+<h3 id="org391e396">Begriff</h3>
+<ul>
+<li>Die Constraint-Programmierung wird meist als eine Spielart der
+logischen Programmierung angesehen.</li>
+<li>Der Begriff <i>constraint</i> bedeutet in etwa <i>Bedingung</i>,
+<i>Einschränkung</i>, (<i>Regel?</i>).</li>
+<li>Man könnte auch von regelbasierter Programmierung sprechen.</li>
+<li>Regeln können in verschiedenen Formen auftreten:
+
+<ul>
+<li>funktional orientiert: mathematische Gleichungen; Beispiel:
+\(x-y=23\)</li>
+
+<li>logik-orientiert: logische Prädikate bzw. Wenn-dann-Regeln;
+Beispiel:
+Gesucht ist die Zahl \(x\), die ein Zahlenschloss mit den Ziffern 0
+bis 9 öffnet. Wir wissen, dass \(x\)
+
+<ul>
+<li>\(\geq 5\),</li>
+
+<li>eine Primzahl ist</li>
+
+</ul></li>
+
+<li>Regel: \(x\in {0, 1, \ldots , 9} \wedge x\geq 5 
+                  \wedge prime(x)\)</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="org9690d89">
+<h3 id="org9690d89">Prinzip</h3>
+<ul>
+<li>In der regelbasierten Programmierung wird ein ein Satz von Regeln
+(constraints) angegeben, denen die Lösung genügen muss.</li>
+<li>Es wird <b>kein</b> Algorithmus formuliert, der die Lösung Schritt für
+Schritt ermittelt.</li>
+<li>Ein regelbasiertes Programmiersystem muss daher über einen
+eingebauten Lösungsalgorithmus (Constraint-Löser) verfügen.</li>
+<li>Dieser versucht &#x2013; vereinfacht gesprochen &#x2013; einen Weltzustand zu
+finden, in dem möglichst viele der angegebenen Regeln gleichzeitig
+erfüllt sind.</li>
+<li>Mit der Gleichung \(x-y=23\) als einziger Regel, wird der
+Constraint-Löser wohl sagen müssen, dass die Regel durch unendlich
+viele Belegungen von \(x\) und \(y\) erfüllt werden kann.</li>
+<li>Fügt man als zweite Regel \(2x + 13 = y\) hinzu, gibt es nur noch eine
+Lösung.</li>
+
+</ul>
+
+</section>
+<section id="org7bc05fe">
+<h3 id="org7bc05fe">Anwendungen</h3>
+<ul>
+<li>Verarbeitung natürlicher Sprachen</li>
+<li>Datenbanksysteme (Konsistenzsicherung)</li>
+<li>Operations Research (Optimierungsprobleme)</li>
+<li>Ökonomie (Optionshandel)</li>
+<li>Layout-Berechnung für integrierte Schaltungen</li>
+<li>Erstellung von Stundenplänen</li>
+<li>Entscheidungsunterstützungssysteme für Planung und Konfiguration</li>
+<li>Kommerzielle Anwendungsbeispiele nach <a class='org-ref-reference' href="#Fruehwirth2010">Fruehwirth2010</a>
+<ul>
+<li>Lufthansa: Short-term staff planning.</li>
+<li>Renault: Short-term production planning.</li>
+<li>Nokia: Software configuration for mobile phones.</li>
+<li>Airbus: Cabin layout.</li>
+<li>Siemens: Circuit verification.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="org5f9bb81">
+<h3 id="org5f9bb81">Contstraints im Straßenverkehr</h3>
+
+<div class="figure">
+<p><img src="./Abbildungen/verkehr.png" alt="verkehr.png" width="600px" />
+</p>
+</div>
+
+
+<p>
+<a class='org-ref-reference' href="#Fruehwirth2010">Fruehwirth2010</a>
+</p>
+
+</section>
+<section id="orgf16dd5f">
+<h3 id="orgf16dd5f">Holy Grail of programming</h3>
+<blockquote nil>
+<p>
+Constraint Programming represents one of the closest approaches computer
+science has yet made to the Holy Grail of programming: the user states
+the problem, the computer solves it.
+</p>
+
+<p>
+[E. Freuder]
+</p>
+</blockquote>
+
+</section>
+</section>
+<section>
+<section id="orge8be559">
+<h2 id="orge8be559">Begriffsdefinitionen</h2>
+<div class="outline-text-2" id="text-orge8be559">
+</div>
+</section>
+<section id="orge3dc0af">
+<h3 id="orge3dc0af">Einschränkung (<i>constraint</i>)</h3>
+<ul>
+<li>Eine <i>Einschränkung</i> (<i>constraint</i>) stellt eine Beziehung zwischen
+verschiedenen Unbekannten (Variablen) her. Jede Variable kann Werte
+aus einem gegebenen Wertebereich (<i>domain</i>) annehmen.</li>
+<li>Eine Einschränkung beschreibt gegebenes Wissen über die Werte der
+Variablen.</li>
+<li>Eine Einschränkung beschreibt, welche Beziehung gelten muss, ohne
+eine Berechnungsprozedur dafür anzugeben, wie die Einhaltung der
+Beziehung erzwungen werden kann.</li>
+<li>Beispiel aus dem täglichen Leben: Terminabsprachen</li>
+
+</ul>
+
+</section>
+<section id="org39a2895">
+<h3 id="org39a2895">Erfüllbarkeit (<i>satisfiability</i>)</h3>
+<dl>
+<dt>erfüllbar:</dt><dd>Es existiert eine Lösung für die Einschränkungen.</dd>
+
+<dt>nicht erfüllbar:</dt><dd>Es existiert <b>keine</b> Lösung für die
+Einschränkungen.</dd>
+
+</dl>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">\(X \leq 3 \wedge Y = X + 1\)</td>
+<td class="org-left">erfüllbar</td>
+</tr>
+
+<tr>
+<td class="org-left">\(X \leq 3 \wedge Y = X + 1 \wedge Y \geq 6\)</td>
+<td class="org-left">nicht erfüllbar</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="orgd171c46">
+<h3 id="orgd171c46">Lösungsverfahren</h3>
+<ul>
+<li>Zwei Lösungsstrategien
+<ul>
+<li><i>constraint satisfaction</i></li>
+<li><i>constraint solving</i></li>
+
+</ul></li>
+<li>Constraint-satisfaction behandelt Probleme über endlichen
+Wertemengen. Schätzungsweise mehr als 95% aller industriellen
+CP-Anwendungen benutzen endliche Domänen.</li>
+<li>Constraint-solving behandelt Probleme über nicht endlichen
+Wertebereichen.</li>
+<li>Während beim Constraint-satisfaction kombinatorische Methoden zum
+Einsatz kommen, werden beim Constraint-solving
+mathematisch-analytische Verfahren benutzt (Differentiation,
+Integration, Taylor-Reihen etc.).</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="org4138398">
+<h2 id="org4138398">Constraint-satisfaction</h2>
+<div class="outline-text-2" id="text-org4138398">
+</div>
+</section>
+<section id="org0f04ff3">
+<h3 id="org0f04ff3">Prinzip</h3>
+<ul>
+<li><p>
+Ein Constraint-satisfaction-Problem (CSP) wird 
+definiert durch:
+</p>
+<ul>
+<li>eine Menge von Variable \(X=\{x_{1},...,x_{n}\}\),</li>
+<li>für jede Variable \(x_{i}\), eine endliche Menge \(D_{i}\) möglicher
+Werte (Domäne)</li>
+<li>eine Menge von Einschränkungen (constraints), die Werte, die die
+Variablen gleichzeitig annehmen können, einschränken</li>
+
+</ul>
+
+<p>
+Beispiel: \[X=\{1,2\}, Y=\{1,2\}, Z=\{1,2\}\]
+\[X = Y, X \neq Z, Y > Z\]
+</p></li>
+
+<li><p>
+Lösung eines CSP: Belegung jeder Variablen mit einem Wert aus ihrer
+Menge, so dass alle Einschränkungen erfüllt sind.
+</p>
+
+<p>
+Beispiel: \[X=2, Y=2, Z=1\]
+</p></li>
+
+</ul>
+
+</section>
+<section id="org3746d9e">
+<h3 id="org3746d9e">Systematische Suche</h3>
+<ul>
+<li>Grundsätzlich kann ein CSP durch systematisches Durchsuchen des
+Lösungsraums gelöst werden.</li>
+<li>Ein solches Verfahren ist simpel aber ineffizient.</li>
+<li>Zwei Varianten:
+<ul>
+<li><i>Generate &amp; Test</i> (GT): Eine Belegung aller Variablen wird erzeugt
+und geprüft.</li>
+<li><i>Backtracking</i> (BT): Schrittweise Erweiterung korrekter
+Teillösungen zur Gesamtlösung.</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="figure">
+<p><img src="./Abbildungen/SystematischeSuche.png" alt="SystematischeSuche.png" width="400px" />
+</p>
+</div>
+
+</section>
+<section id="orgbf24527">
+<h3 id="orgbf24527">Generate &amp; Test</h3>
+<ul>
+<li>Grundlegendes Verfahren zur Lösung von CSPs</li>
+
+<li>Algorithmus:</li>
+
+</ul>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/gt.png" alt="gt.png" width="200px" />
+</p>
+</div>
+
+</div>
+
+<div class="nebeneinander">
+<p>
+Nachteile:
+</p>
+<ul>
+<li>dummer Generator</li>
+<li>Nichterfüllbarkeit wird spät erkannt.</li>
+
+</ul>
+
+</div>
+<div class="clear">
+
+</div>
+
+</section>
+<section id="org6487015">
+<h3 id="org6487015">Backtracking</h3>
+<ul>
+<li>Partielle Lösung wird schrittweise zur vollständigen erweitert.</li>
+<li>Algorithmus (vereinfacht):</li>
+
+</ul>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/bt.png" alt="bt.png" width="200px" />
+</p>
+</div>
+
+</div>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/BT-Beispiel.png" alt="BT-Beispiel.png" width="200px" />
+</p>
+</div>
+
+</div>
+<div class="clear">
+
+</div>
+
+<ul>
+<li>Nachteile:
+<ul>
+<li><i>thrashing,</i> d.h. wiederholte Fehlbelegung</li>
+<li>Nichterfüllbarkeit wird spät erkannt.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="orgd3427ed">
+<h3 id="orgd3427ed">Anwendungsbeispiel für GT und BT</h3>
+<p>
+<b>Aufgabenstellung</b>:
+ \[X=\{1,2\}, Y=\{1,2\}, Z=\{1,2\}\]
+\[X = Y, X \neq Z, Y > Z\]
+</p>
+
+<div class="nebeneinander">
+<p>
+<b>Generate &amp; Test</b>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">X</th>
+<th scope="col" class="org-right">Y</th>
+<th scope="col" class="org-right">Z</th>
+<th scope="col" class="org-left">Prüfung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">erfüllt</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div class="nebeneinander">
+
+</div>
+<div class="nebeneinander">
+<p>
+<b>Backtracking</b>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">X</th>
+<th scope="col" class="org-right">Y</th>
+<th scope="col" class="org-right">Z</th>
+<th scope="col" class="org-left">Prüfung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">2</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">2</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">fehlgeschlagen</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">erfüllt</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div class="clear">
+
+</div>
+
+</section>
+<section id="org8029eba">
+<h3 id="org8029eba">Optimierungen der systematischen Suche</h3>
+<ul>
+<li>Grundidee: Entfernung von inkonsistenten Werten aus der Wertemenge
+einer Variablen</li>
+<li>Repräsentation von binären und unären Einschränkungen durch Graphen:</li>
+
+</ul>
+<div class="nebeneinander">
+<dl>
+<dt>Knoten</dt><dd>Variablen</dd>
+
+</dl>
+
+</div>
+<div class="nebeneinander">
+<dl>
+<dt>Kanten</dt><dd>Einschränkungen</dd>
+
+</dl>
+
+</div>
+<div class="clear">
+
+</div>
+<div class="nebeneinander">
+<ul>
+<li>Prüfung der
+<ul>
+<li>Knotenkonsistenz (Entfernung von Werten im Widerspruch zu unären
+Einschränkungen)</li>
+<li>Kantenkonsistenz (dito für binäre Einschränkungen)</li>
+<li>Pfadkonsistenz</li>
+
+</ul></li>
+
+</ul>
+
+</div>
+<div class="nebeneinander">
+
+<div class="figure">
+<p><img src="./Abbildungen/csp-graph.png" alt="csp-graph.png" width="250px" />
+</p>
+</div>
+
+</div>
+<div class="clear">
+
+</div>
+<ul>
+<li>Optimierung der Suche nach wie vor Forschungsgegenstand</li>
+
+</ul>
+
+</section>
+<section id="org76c53fd">
+<h3 id="org76c53fd">Constraint logic programming</h3>
+<ul>
+<li>Bei Constraint-satisfaction-Verfahren gibt es Anknüpfungspunkte zur
+logischen Programmierung.</li>
+<li>Daher wird in diesem Zusammenhang auch häufig der Begriff
+<i>constraint logic programming</i> (CLP) benutzt.</li>
+<li>Für Beispiele der <a href="PP2-11.ConLogProgr.html">Constraint-logic-Programmierung</a> gibt es ein
+eigenes Kapitel.</li>
+<li>Zuvor betrachten wird Techniken des Constraint-solvings.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="org949b8d7">
+<h2 id="org949b8d7">Constraint-solving</h2>
+<ul>
+<li><a href="PP2-10-ConSolv.html">Konstruktion eines Constraint-solvers</a></li>
+<li><a href="PP2-10-ConSolv.html">Constraint-solving mit Prolog</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="orgf560baf">
+<h2 id="orgf560baf"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Fruehwirth2010">[Fruehwirth2010]</a> <a name="Fruehwirth2010"></a>Thom Frühwirth & Slim Abdennadher, Essentials of Constraint Programming (Cognitive Technologies), Springer (2010).</li>
+<li><a id="Marriott1998">[Marriott1998]</a> <a name="Marriott1998"></a>Kimbal Marriott & Peter Stuckey, Programming with Constraints: An Introduction, The MIT Press (1998).</li>
+<li><a id="Bartak99">[Bartak99]</a> <a name="Bartak99"></a>Roman Bart\`ak, Constraint programming: In pursuit of the holy grail, 555-564, in in: In Proceedings of the Week of Doctoral Students (WDS99 -invited lecture, edited by (1999)</li>
+<li><a id="Sicp1999">[Sicp1999]</a> <a name="Sicp1999"></a>Harold Abelson, Gerald Jay Sussman & Julie Sussman, Structure and interpretation of computer programs, The MIT Press (1999).</li>
+<li><a id="Carro1998">[Carro1998]</a> <a name="Carro1998"></a>Manuel Carro, An Introductory Course on Constraint Logic  Programming, (1998), zuletzt aufgerufen am 10.09.2017: <a href="https://cliplab.org/~vocal/public_info/seminar_notes/seminar_notes.html">https://cliplab.org/~vocal/public_info/seminar_notes/seminar_notes.html</a> </li>
+</ul></h2>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.05,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ]});
+</script>
+</body>
+</html>

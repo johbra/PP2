@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Constraint-logic-Programmierung</title>
+<meta name="author" content="(Johannes Brauer)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./mycss/myrevealstyle.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Constraint-logic-Programmierung</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-16 Sun 22:46</p>
+</section>
+
+<section>
+<section id="org3d438e8">
+<h2 id="org3d438e8">Ziele</h2>
+<ul>
+<li>Zusammenhänge zwischen Logik- und Constraint-Programmierung verstehen</li>
+<li>Kennenlernen einer Alternative zu Prolog - miniKanren</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="orgb004e37">
+<h2 id="orgb004e37">Constraint Logic Programming (CLP)</h2>
+<ul>
+<li>wichtige Quelle: <a class='org-ref-reference' href="#Carro1998">Carro1998</a></li>
+
+</ul>
+</section>
+<section id="orgd968704">
+<h3 id="orgd968704">Vorbemerkungen</h3>
+<ul>
+<li>Traditionelle Logikprogrammierung kennt nur eine Art von Constraint:
+Logische Äquivalenz über Termen</li>
+<li>Constraint-Logikprogrammierung unterstützt weitere Arten von Constraints:
+<ul>
+<li>Constraints über endlichen Wertebereichen (finite domains, CLP(FD)),</li>
+<li>Constraints über Mengen (CLP(Set)),</li>
+
+</ul></li>
+<li>Unifikation von Variablen wird ersetzt durch Prüfung der
+Erfüllbarkeit (satisfaction) von Constraints.</li>
+
+</ul>
+
+</section>
+<section >
+
+<ul>
+<li>Der typische Lösungsweg in der Constraint-Logikprogrammierung:
+<ol>
+<li>Analyse des zu lösenden Problems, um zu verstehen, aus welchen
+Teilen es besteht.</li>
+<li>Bestimmung der Bedingungen/Relationen, die zwischen den Teilen
+gelten: Diese sind der Schlüssel zur Lösung, weil mit ihrer Hilfe
+das Problem modelliert wird.</li>
+<li>Formulierung der Bedingungen/Relationen als Gleichungen; der
+Charakter der Gleichungen kann Hinweise auf die Art des zu
+verwendenden C(L)P-Systems geben.</li>
+<li>Lösung der Gleichungen; dies geschieht in der Regel transparent
+für den Benutzer, da die Sprache einen „eingebauten” Löser benutzt.</li>
+
+</ol></li>
+
+</ul>
+
+</section>
+<section >
+
+<ul>
+<li>Typische Anwendungsbereiche:
+<ul>
+<li>Anwendungen, für die keine effizienten Algorithmen existieren
+(NP-completeness)</li>
+<li>Anwendungen, deren Problemspezifikation sich häufig ändert: hier
+sollte einfach möglich sein, das Programm schnell zu ändern (rapid
+prototyping).</li>
+<li>Anwendungen, die Entscheidungsunterstützung erfordern &#x2013; entweder
+automatisch durch das Programm und in Kooperation mit dem Benutzer.
+Viele Entscheidungen können durch mathematische Formeln codiert
+werden, aber nicht alle.</li>
+<li>konkret: Planung, Ressourcen-Zuweisung, Logistik/Transport,
+Schaltkreisentwurf und -verifikation, Zustandsmaschinen,
+Finanzwesen, Verarbeitung raumbezogener Daten (Navigation), &#x2026;</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="org10e2230">
+<h3 id="org10e2230">Implementierung</h3>
+<div class="outline-text-3" id="text-org10e2230">
+</div>
+</section>
+<section id="org6054f30">
+<h4 id="org6054f30">Sprachschnittstellen</h4>
+<ul>
+<li>Benutzung einer Bibliothek, die Gleichungen, Variablen etc.
+implementiert, in einer Wirtssprache</li>
+
+</ul>
+
+<div class="figure">
+<p><img src="./Abbildungen/einbettung-in-wirtsprache.png" alt="einbettung-in-wirtsprache.png" width="400px" />
+</p>
+</div>
+<ul>
+<li>Benutzung einer Sprache mit erweiterter Semantik: Variablen können zu
+anderen in Beziehung gesetzt werden und unbestimmete Werte enthalten.</li>
+
+</ul>
+
+<div class="figure">
+<p><img src="./Abbildungen/constraintprogramminglanguage.png" alt="constraintprogramminglanguage.png" width="350px" />
+</p>
+</div>
+</section>
+<section id="org43cf383">
+<h4 id="org43cf383">Anforderungen an CP-Sprachen</h4>
+<ul>
+<li>Es muss ein <i>Constraint-solver</i> zur Verfügung stehen, der Gleichungen
+löst bzw. ihre Unlösbarkeit mitteilt.</li>
+<li>Sprachmittel für die Formulierung von Gleichungen, Formeln etc.</li>
+<li>Eine Schnittstelle zum Constraint-solver, die es erlaubt,
+Einschränkungen zu übermitteln und Lösungen entgegen zu nehmen.</li>
+
+</ul>
+
+</section>
+<section id="org3858824">
+<h3 id="org3858824">Beispiel: Send more money</h3>
+<div class="outline-text-3" id="text-org3858824">
+</div>
+</section>
+<section id="orgaff52cd">
+<h4 id="orgaff52cd">Mehr Geld bitte!</h4>
+<p>
+Sie senden einen Brief an Ihre Eltern mit dem Inhalt:
+</p>
+<pre class="example">
+             SEND
+            +MORE
+            -----
+            MONEY
+</pre>
+<p>
+Wieviel Geld erhalten Sie?
+</p>
+
+<p>
+Die Aufgabe besteht darin, jedem Buchstaben aus \(\{S,E,N,D,M,O,R,Y\}\)
+eine unterschiedliche Ziffer aus \(\{0,...,9\}\) zuzuordnen, so dass die
+Gleichung 
+\[SEND+MORE=MONEY\]
+erfüllt wird.
+</p>
+
+</section>
+<section id="orgef29b4a">
+<h4 id="orgef29b4a">Lösungsansatz: „Rohe Gewalt“</h4>
+<ul>
+<li>Alles durchprobieren!</li>
+<li>Man braucht 8 ineinander geschachtelte Schleifen.</li>
+<li>Achtung: Acht Variablen (<code>S,E,N,D,M,O,R,Y</code>) können zehn verschiedene
+Werte annehmen. Ergibt \(10^{8}\) Möglichkeiten.</li>
+<li>Allerdings verringern einschränkende Bedingungen die Zahl der Möglichkeiten:
+<ul>
+<li><code>S</code> und <code>M</code> dürfen nicht \(0\) sein.</li>
+<li>Da <code>M</code> als Übertrag entsteht, kann <code>M</code> nur \(1\) sein.</li>
+<li>Die Werte der Variablen müssen paarweise verschieden sein.</li>
+
+</ul></li>
+<li>Weitere logische Überlegungen über Zusammenhänge zwischen den
+Ziffern können das Verfahren beschleunigen (s.&nbsp;u.).</li>
+<li>Lösung z.&nbsp;B. in Clojure:</li>
+
+</ul>
+</section>
+<section >
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">for</span> <span style="color: #7388D6;">[</span>s <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 1 10<span style="color: #909183;">)</span>
+      e <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      n <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      d <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      m <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 1 2<span style="color: #909183;">)</span>
+      o <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      r <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      y <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      <span style="color: #D0372D;">:let</span> <span style="color: #909183;">[</span>z <span style="color: #709870;">[</span>s e n d m o r y<span style="color: #709870;">]</span><span style="color: #909183;">]</span>
+      <span style="color: #D0372D;">:when</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">and</span> <span style="color: #709870;">(</span><span style="color: #006FE0;">distinct?</span> s e n d m o r y<span style="color: #709870;">)</span>
+                 <span style="color: #709870;">(</span>= <span style="color: #907373;">(</span>+ <span style="color: #6276BA;">(</span>* 1000 s<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 100 e<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 10 n<span style="color: #6276BA;">)</span> d
+                       <span style="color: #6276BA;">(</span>* 1000 m<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 100 o<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 10 r<span style="color: #6276BA;">)</span> e<span style="color: #907373;">)</span>
+                    <span style="color: #907373;">(</span>+ <span style="color: #6276BA;">(</span>* m 10000<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 1000 o<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 100 n<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 10 e<span style="color: #6276BA;">)</span> y<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">]</span>
+  z<span style="color: #707183;">)</span>
+</pre>
+</div>
+</section>
+<section id="orgbe3d6e4">
+<h3 id="orgbe3d6e4">Lösungsansatz: Constraint Satisfaction</h3>
+<ul>
+<li>Einfaches Modell durch Spezifikation der folgenden Gleichung als Einschränkung:
+\[1000*S+100*E+10*N+D \]
+\[+ 1000*M+100*O+10*R+E \]
+\[= 10000*M+1000*O+100*N+10*E+Y\]</li>
+<li>Den Variablen \(E, N, D, O, R, Y\) wird die Domäne \(\{0 \ldots 9\}\), 
+der Variablen \(S\) die Domäne \(\{1 \ldots 9\}\) und \(M\) die Domäne 
+\(\{1\}\) zugeordnet.</li>
+<li>Außerdem muss die Einschränkung 
+\(all\_different([S,E,N,D,M,O,R,Y])\) hinzugefügt werden.</li>
+<li>Das Modell ist nicht effizient, weil alle Variablen bis auf eine
+schon belegt sein müssen, bevor die „Haupteinschränkung”
+geprüft werden kann.</li>
+
+</ul>
+</section>
+<section id="org5919a67">
+<h5 id="org5919a67">Implementierung in Prolog &#x2026;</h5>
+<p>
+&#x2026; unter Nutzung der <a href="http://www.swi-prolog.org/pldoc/man?section=clpfd">Constraint Logic Programming over Finite Domains Library</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog">:- <span style="color: #006FE0;">use_module</span>(library(clpfd)). <span style="color: #8D8D84; font-style: italic;">%Nutzung der Constraint Logic</span>
+                               <span style="color: #8D8D84; font-style: italic;">% Programming over Finite Domains Library</span>
+<span style="color: #006699;">sendmore</span>(<span style="color: #BA36A5;">Digits</span>) :-
+        <span style="color: #BA36A5;">Digits</span> = <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">S</span>,<span style="color: #BA36A5;">E</span>,<span style="color: #BA36A5;">N</span>,<span style="color: #BA36A5;">D</span>,<span style="color: #BA36A5;">M</span>,<span style="color: #BA36A5;">O</span>,<span style="color: #BA36A5;">R</span>,<span style="color: #BA36A5;">Y</span><span style="color: #0000FF;">]</span>, <span style="color: #8D8D84; font-style: italic;">% Liste der Variablen</span>
+        <span style="color: #BA36A5;">Digits</span> ins 0..9,            <span style="color: #8D8D84; font-style: italic;">% Zuordnung von Wertebereichen an Variablen</span>
+        <span style="color: #BA36A5;">S</span> #\= 0,              <span style="color: #8D8D84; font-style: italic;">% Constraint: S muss ungleich 0 sein, ...</span>
+        <span style="color: #BA36A5;">M</span> #\= 0,              <span style="color: #8D8D84; font-style: italic;">% ebenso M</span>
+        all_different(<span style="color: #BA36A5;">Digits</span>), <span style="color: #8D8D84; font-style: italic;">% alle Elemente von Digits m&#252;ssen</span>
+                               <span style="color: #8D8D84; font-style: italic;">% unterschiedliche Werte haben</span>
+        1000*<span style="color: #BA36A5;">S</span> + 100*<span style="color: #BA36A5;">E</span> + 10*<span style="color: #BA36A5;">N</span> + <span style="color: #BA36A5;">D</span> <span style="color: #8D8D84; font-style: italic;">% Haupt-Constraint</span>
+        + 1000*<span style="color: #BA36A5;">M</span> + 100*<span style="color: #BA36A5;">O</span> + 10*<span style="color: #BA36A5;">R</span> + <span style="color: #BA36A5;">E</span>
+        #= 10000*<span style="color: #BA36A5;">M</span> + 1000*<span style="color: #BA36A5;">O</span> + 100*<span style="color: #BA36A5;">N</span> + 10*<span style="color: #BA36A5;">E</span> + <span style="color: #BA36A5;">Y</span>,
+        label(<span style="color: #BA36A5;">Digits</span>).          <span style="color: #8D8D84; font-style: italic;">% sorgt f&#252;r die Belegung aller Variablenwerte </span>
+</pre>
+</div>
+
+</section>
+<section id="org511a3eb">
+<h5 id="org511a3eb">Implementierung in Standard-Prolog</h5>
+<div class="org-src-container">
+
+<pre  class="src src-prolog"><span style="color: #006699;">select</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">X</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">R</span><span style="color: #0000FF;">]</span>, <span style="color: #BA36A5;">R</span>).
+<span style="color: #006699;">select</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">Y</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">Xs</span><span style="color: #0000FF;">]</span>, <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">Y</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">Ys</span><span style="color: #0000FF;">]</span>):- select(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Xs</span>, <span style="color: #BA36A5;">Ys</span>).
+
+<span style="color: #006699;">assign_digits</span>(<span style="color: #0000FF;">[]</span>, <span style="color: #BA36A5;">_List</span>).
+<span style="color: #006699;">assign_digits</span>(<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">D</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">Ds</span><span style="color: #0000FF;">]</span>, <span style="color: #BA36A5;">List</span>):-
+        select(<span style="color: #BA36A5;">D</span>, <span style="color: #BA36A5;">List</span>, <span style="color: #BA36A5;">NewList</span>),
+        assign_digits(<span style="color: #BA36A5;">Ds</span>, <span style="color: #BA36A5;">NewList</span>).
+
+<span style="color: #006699;">smm</span> :-  <span style="color: #BA36A5;">X</span> = <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">S</span>,<span style="color: #BA36A5;">E</span>,<span style="color: #BA36A5;">N</span>,<span style="color: #BA36A5;">D</span>,<span style="color: #BA36A5;">M</span>,<span style="color: #BA36A5;">O</span>,<span style="color: #BA36A5;">R</span>,<span style="color: #BA36A5;">Y</span><span style="color: #0000FF;">]</span>,
+        <span style="color: #BA36A5;">Digits</span> = <span style="color: #0000FF;">[</span>0,1,2,3,4,5,6,7,8,9<span style="color: #0000FF;">]</span>,
+        assign_digits(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Digits</span>),
+        <span style="color: #BA36A5;">M</span> = 1, 
+        <span style="color: #BA36A5;">S</span> &gt; 0,
+                  1000*<span style="color: #BA36A5;">S</span> + 100*<span style="color: #BA36A5;">E</span> + 10*<span style="color: #BA36A5;">N</span> + <span style="color: #BA36A5;">D</span> +
+                  1000*<span style="color: #BA36A5;">M</span> + 100*<span style="color: #BA36A5;">O</span> + 10*<span style="color: #BA36A5;">R</span> + <span style="color: #BA36A5;">E</span> =:=
+        10000*<span style="color: #BA36A5;">M</span> + 1000*<span style="color: #BA36A5;">O</span> + 100*<span style="color: #BA36A5;">N</span> + 10*<span style="color: #BA36A5;">E</span> + <span style="color: #BA36A5;">Y</span>,
+        write(<span style="color: #BA36A5;">X</span>).        
+</pre>
+</div>
+</section>
+<section id="org54e4cf0">
+<h4 id="org54e4cf0">Verfeinertes CSP-Modell</h4>
+<ul>
+<li><p>
+Nutzung der Überträge der Addition für die Zerlegung der „großen“
+Einschränkung in mehrere kleine:
+</p>
+<div>
+ \begin{eqnarray*}
+    E+D & = & Y+10*C1  \\
+    C1+N+R & = & E+10*C2  \\
+    C2+E+O & = & N+10*C3  \\
+    C3+S+M & = & 10*M+O
+\end{eqnarray*}
+
+</div></li>
+<li><p>
+Die Domänen der Variablen:
+</p>
+<div>
+ \begin{eqnarray*}
+    E,N,D,O,R,Y & := & \{0,\ldots,9\} \\
+            S & := & \{1,\ldots,9\} \\
+            M & := & \{1\} \\
+       C1,C2,C3 & := & \{0,1\}   
+\end{eqnarray*}
+
+</div></li>
+<li>Die „kleinen“ Einschränkungen werden während
+der Belegungsphase früher geprüft und damit inkonsistente Belegungen
+ausgeschlossen.</li>
+
+</ul>
+</section>
+<section id="orgcd74e00">
+<h5 id="orgcd74e00">Implementierung in Prolog &#x2026;</h5>
+<p>
+&#x2026; unter Nutzung der <a href="http://www.swi-prolog.org/pldoc/man?section=clpfd">Constraint Logic Programming over Finite Domains Library</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-prolog">:- <span style="color: #006FE0;">use_module</span>(library(clpfd)). <span style="color: #8D8D84; font-style: italic;">%Nutzung der Constraint Logic</span>
+                               <span style="color: #8D8D84; font-style: italic;">% Programming over Finite Domains Library</span>
+<span style="color: #006699;">sendmore</span>(<span style="color: #BA36A5;">Digits</span>) :-
+        <span style="color: #BA36A5;">Digits</span> = <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">S</span>,<span style="color: #BA36A5;">E</span>,<span style="color: #BA36A5;">N</span>,<span style="color: #BA36A5;">D</span>,<span style="color: #BA36A5;">M</span>,<span style="color: #BA36A5;">O</span>,<span style="color: #BA36A5;">R</span>,<span style="color: #BA36A5;">Y</span><span style="color: #0000FF;">]</span>, 
+        <span style="color: #BA36A5;">Carries</span> = <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">C1</span>, <span style="color: #BA36A5;">C2</span>, <span style="color: #BA36A5;">C3</span><span style="color: #0000FF;">]</span>,     <span style="color: #8D8D84; font-style: italic;">% Liste der &#220;bertr&#228;ge </span>
+        <span style="color: #BA36A5;">Digits</span> ins 0..9,      
+        <span style="color: #BA36A5;">S</span> #\= 0,              
+        <span style="color: #BA36A5;">M</span> #\= 0,
+        <span style="color: #BA36A5;">Carries</span> ins 0..1,           <span style="color: #8D8D84; font-style: italic;">% &#220;bertr&#228;ge k&#246;nnen nur 0 oder 1 sein</span>
+        all_different(<span style="color: #BA36A5;">Digits</span>), 
+        <span style="color: #BA36A5;">E</span> + <span style="color: #BA36A5;">D</span> #= <span style="color: #BA36A5;">Y</span> + 10 *  <span style="color: #BA36A5;">C1</span>,
+        <span style="color: #BA36A5;">C1</span> + <span style="color: #BA36A5;">N</span> + <span style="color: #BA36A5;">R</span> #= <span style="color: #BA36A5;">E</span> + 10 * <span style="color: #BA36A5;">C2</span>,
+        <span style="color: #BA36A5;">C2</span> + <span style="color: #BA36A5;">E</span> + <span style="color: #BA36A5;">O</span> #= <span style="color: #BA36A5;">N</span> + 10 * <span style="color: #BA36A5;">C3</span>,
+        <span style="color: #BA36A5;">C3</span> + <span style="color: #BA36A5;">S</span> + <span style="color: #BA36A5;">M</span> #= 10 * <span style="color: #BA36A5;">M</span> + <span style="color: #BA36A5;">O</span>,
+        label(<span style="color: #BA36A5;">Digits</span>).          
+</pre>
+</div>
+
+</section>
+<section id="orgd80b079">
+<h4 id="orgd80b079">Implementierung in C++ (ILOG Solver)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-cpp"><span style="color: #808080;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #008000;">ilsolver/ctint.h</span><span style="color: #707183;">&gt;</span>
+<span style="color: #6434A3;">CtInt</span> <span style="color: #BA36A5;">dummy</span> = CtInit<span style="color: #707183;">()</span>;
+<span style="color: #6434A3;">CtIntVar</span> <span style="color: #BA36A5;">S</span><span style="color: #707183;">(</span>1, 9<span style="color: #707183;">)</span>, <span style="color: #BA36A5;">E</span><span style="color: #707183;">(</span>0, 9<span style="color: #707183;">)</span>, <span style="color: #BA36A5;">N</span><span style="color: #707183;">(</span>0, 9<span style="color: #707183;">)</span>, <span style="color: #BA36A5;">D</span><span style="color: #707183;">(</span>0, 9<span style="color: #707183;">)</span>,
+         <span style="color: #BA36A5;">M</span><span style="color: #707183;">(</span>1, 9<span style="color: #707183;">)</span>, <span style="color: #BA36A5;">O</span><span style="color: #707183;">(</span>0, 9<span style="color: #707183;">)</span>, <span style="color: #BA36A5;">R</span><span style="color: #707183;">(</span>0, 9<span style="color: #707183;">)</span>, <span style="color: #BA36A5;">Y</span><span style="color: #707183;">(</span>0, 9<span style="color: #707183;">)</span>;
+<span style="color: #6434A3;">CtIntVar</span>* <span style="color: #BA36A5;">AllVars</span><span style="color: #707183;">[]</span>=
+         <span style="color: #707183;">{</span>&amp;S, &amp;E, &amp;N, &amp;D, &amp;M, &amp;O, &amp;R, &amp;Y<span style="color: #707183;">}</span>;
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span><span style="color: #707183;">(</span><span style="color: #6434A3;">int</span>, <span style="color: #6434A3;">char</span>**<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    CtAllNeq<span style="color: #7388D6;">(</span>8, AllVars<span style="color: #7388D6;">)</span>;
+    CtEq<span style="color: #7388D6;">(</span>          1000*S + 100*E + 10*N + D
+                 + 1000*M + 100*O + 10*R + E,
+         10000*M + 1000*O + 100*N + 10*E + Y<span style="color: #7388D6;">)</span>;
+    CtSolve<span style="color: #7388D6;">(</span>CtGenerate<span style="color: #909183;">(</span>8, AllVars<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>;
+    PrintSol<span style="color: #7388D6;">(</span>CtInt, AllVars<span style="color: #7388D6;">)</span>;
+                CtEnd<span style="color: #7388D6;">()</span>;
+                <span style="color: #0000FF;">return</span> 0; <span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="org99d95e8">
+<h2 id="org99d95e8">Exkurs: Die Prolog-Alternative miniKanren</h2>
+<div class="outline-text-2" id="text-org99d95e8">
+</div>
+</section>
+<section id="orgb8d0c05">
+<h3 id="orgb8d0c05">Grundlagen</h3>
+<ul>
+<li><a href="http://minikanren.org">miniKanren</a> ist eine domänenspezifische Sprache (DSL) für die
+Einbettung der Logikprogrammierung in verschiedene <a href="http://minikanren.org/#implementations">Wirtssprachen</a>.</li>
+<li>Darunter sind Scheme/Racket, Clojure, Javascript, Java, C#.</li>
+<li>ursprüngliche Implementierung in Scheme</li>
+<li>miniKanren kann leicht erweitert werden, z.B. für Constraint Logic
+Programming.</li>
+<li>Buch: The Reasoned Schemer <a class='org-ref-reference' href="#danielpfriedman2018">danielpfriedman2018</a></li>
+
+</ul>
+</section>
+<section id="org44da55b">
+<h3 id="org44da55b">Einführung</h3>
+<div class="outline-text-3" id="text-org44da55b">
+</div>
+</section>
+<section id="org757c0d5">
+<h4 id="org757c0d5">Kernbestandteile der Sprache</h4>
+<ul>
+<li>Die Wirtsprache (hier: Clojure) wird um drei Operationen erweitert:
+<ul>
+<li><code>==</code> für die Unifikation (in Prolog: <code>=</code>)</li>
+<li><code>fresh</code> für die Deklaration von Variablen (in Prolog:
+Großschreibung von Bezeichnern)</li>
+<li><code>conde</code> für Fallunterscheidungen</li>
+
+</ul></li>
+<li>Die <code>run</code>-Form bildet die Schnittstelle zur Wirtssprache.</li>
+<li><p>
+Die Syntax eines logischen Programms (gemäß der
+<a href="https://rawgit.com/dedeibel/clojure-core-logic-cheatsheets/master/out/cheatsheet-use-title-attribute-no-cdocs-summary.html">core.logic-Bibliothek</a> für Clojure):
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>logic-variable<span style="color: #7388D6;">]</span>
+   &amp;logic-expressions<span style="color: #707183;">)</span>  
+</pre>
+</div>
+
+</div></li>
+<li>Die Semantik: Nimm die Menge der logischen Ausdrücke
+(<code>logic-expressions</code>), lass sie durch den Löser laufen und gib alle
+Werte von <code>logic-variable</code> zurück, die die logischen Ausdrücke erfüllen.</li>
+<li>Statt <code>(run* [...] ...)</code> kann man auch <code>(run n [...] ...)</code>
+schreiben, wobei <code>n</code> die Anzahl der gewünschten Resultate angibt.</li>
+
+</ul>
+</section>
+<section id="org1219a5b">
+<h4 id="org1219a5b">Elementare Beispiele</h4>
+<ul>
+<li><p>
+Einbindung der <a href="https://github.com/clojure/core.logic">core.logic-Bibliothek</a> (<a href="https://clojure.github.io/core.logic/#clojure.core.logic.fd/!=">Dokumentation</a>), die die Einbettung von
+miniKanren in Clojure bewerkstelligt:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #006FE0;">use</span> 'clojure.core.logic<span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; nil</span>
+</pre>
+</div>
+
+</div></li>
+<li><code>==</code> unifiziert zwei Terme.</li>
+<li><code>fresh</code> führt lokale Clojure-Variablen ein, die an neue logische
+Variablen gebunden werden.</li>
+<li><code>fresh</code> führt eine Konjunktion der Relationen in seinem Rumpf aus.</li>
+<li><p>
+Der Ausdruck
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>fresh <span style="color: #7388D6;">(</span>x y z<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>== x z<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>== 3 y<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; #function[user/eval9395/fn--9396]</span>
+</pre>
+</div>
+
+</div>
+<p>
+führte die logischen Variablen <code>x</code>, <code>y</code> und <code>z</code>, und assoziierte <code>x</code>
+mit <code>z</code> und <code>y</code> mit 3. 
+</p></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Allerdings ist das kein korrektes miniKanren Program. Der Ausdruck
+muss in die <code>run</code>-Form eingerahmt werden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run 1 <span style="color: #7388D6;">(</span>q<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">(</span>x y z<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>== x z<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>== 3 y<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (_0)</span>
+</pre>
+</div>
+
+</div>
+<p>
+Das Resultat ist eine Liste mit dem Wert <code>_0</code>, das ist der
+verdinglichte Wert einer ungebunden Query-Variable <code>q</code>.
+</p></li>
+<li><p>
+<code>q</code> ist auch in dem folgenden Ausdruck ungebunden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run 1 <span style="color: #7388D6;">(</span>q<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">(</span>x y<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>== x q<span style="color: #909183;">)</span> <span style="color: #909183;">(</span>== 3 y<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>  
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (_0)</span>
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+In den folgenden Ausdrücken wird die Query-Variable durch Unifikation gebunden:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run 1 <span style="color: #7388D6;">(</span>y<span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">(</span>x z<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>== x z<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>== 3 y<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (3)</span>
+
+  <span style="color: #707183;">(</span>run 1 <span style="color: #7388D6;">(</span>q<span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">(</span>x z<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>== x z<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>== 3 z<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>== q x<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (3)</span>
+
+  <span style="color: #707183;">(</span>run 1 <span style="color: #7388D6;">(</span>y<span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">(</span>x y<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>== 4 x<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span>== x y<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">(</span>== 3 y<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (3)</span>
+</pre>
+</div></li>
+
+</ul>
+
+<ul>
+<li><p>
+Ein <code>run</code> Ausdruck liefert eine Liste mit den Resultaten. Diese kann
+leer sein, wenn der Ausdruck im Rumpf logisch inkonsistent ist.
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run 1 <span style="color: #7388D6;">(</span>x<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>== x 5<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">(</span>== x 3<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>  
+  <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; ()</span>
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section id="orgcfb2b25">
+<h4 id="orgcfb2b25">Definitionen</h4>
+<ul>
+<li>Ein <i>logischer Ausdruck</i> besteht aus einer Menge von <i>logischen
+Variablen</i> und einer Menge von <i>Regeln</i> (constraints), die die Werte
+der Variablen einschränken.</li>
+<li>Eine <i>logische Variable</i> (häufig mit <i>lvar</i> abgekürzt) kann
+verschiedene Werte annehmen aber immer nur einen zu einem Zeitpunkt.</li>
+<li><p>
+Beispiel: Das Programm
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>membero q <span style="color: #909183;">[</span>1 2 3<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">(</span>membero q <span style="color: #909183;">[</span>2 3 4<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>  
+  <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; (2 3)</span>
+</pre>
+</div>
+
+</div>
+<p>
+kann folgendermaßen gelesen werden: Der Löser soll alle Werte von
+<code>q</code> liefern, so dass <code>q</code> Element des Vektors [1 2 3] <b>und</b> Element
+des Vektors [2 3 4] ist.
+</p></li>
+
+</ul>
+</section>
+<section id="org71da9da">
+<h5 id="org71da9da">Namenskonventionen</h5>
+<ul>
+<li>Clojure bietet mit seiner miniKanren-Einbettung core.logic die
+Möglichkeit funktionales und logisches Programmieren miteinander zu verbinden.</li>
+<li>Um Relationen wie <code>membero</code> oder <code>appendo</code> von ihren funktionalen
+Pendants äußerlich gut unterscheiden zu können wird an diese häufig
+ein Vokal angehängt.</li>
+
+</ul>
+</section>
+<section id="org8c3aa12">
+<h4 id="org8c3aa12">Logische Variablen</h4>
+<ul>
+<li>entsprechen weitgehend lokalen Variablen in Clojure: begrenzter
+Gültigkeitsbereich, keine Mutation</li>
+<li>Der Wert einer logischen Variablen kann undefiniert (oder beliebig)
+sein. Werte dieser Art werden durch die Notation <code>_N</code> dargestellt,
+wobei N eine natürliche Zahl ist.</li>
+<li>Wenn eine lvar einen <code>_N</code>-Wert hat, bedeutet das, dass sie einen
+beliebigen Wert annehmen könnte, ohne dass die Gültigkeit der Regeln
+verletzt würde.</li>
+<li>Besitzen zwei lvars die Werte _0 bzw. _1 sind deren Werte beliebig
+und dürfen auch unterschiedlich sein.</li>
+<li>Besitzen zwei lvars den Wert _0 sind deren Werte beliebig aber
+gleich.</li>
+<li>Logische Variablen werden auf zwei Arten deklariert:</li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Die Haupt- bzw. Query-Variable wird durch die <code>run</code>-Form eingeführt:
+</p>
+<pre class="example">
+(run* [query-variable] ...)
+</pre>
+
+<ul>
+<li>Ihre (möglichen) Werte bilden das Resultat des <code>(run* ...)</code>-Ausdrucks.</li>
+<li>Es gibt nur eine Hauptvariable.</li>
+
+</ul></li>
+<li><p>
+Weitere lvars werden durch die <code>fresh</code>-Klausel definiert. Durch
+</p>
+<pre class="example">
+(fresh [a b c] &amp;logic-expressions)
+</pre>
+
+<p>
+werden drei lvars deklariert, die innerhalb der <code>logic
+     expressions</code> benutzt werden können.
+</p></li>
+
+</ul>
+</section>
+<section id="org9f7ba8d">
+<h4 id="org9f7ba8d">Regeln</h4>
+<ul>
+<li>Logische Ausdrücke schränken die Wertebereiche logischer Variablen ein.</li>
+<li>Alle Ausdrücke innerhalb der <code>run</code>-Form werden konjunktiv verknüpft.</li>
+<li><p>
+Der Ausdruck
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>constraint-1<span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">(</span>constraint-2<span style="color: #7388D6;">)</span>
+    <span style="color: #7388D6;">(</span>constraint-3<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+<p>
+bindet an <code>q</code> einen Wert der alle drei <code>constraints</code> erfüllt.
+</p></li>
+<li><p>
+In der Terminologie von miniKanren werden (ähnlich wie in Prolog)
+die einzelnen Terme einer Konjunktion auch als <i>Ziele</i> (goals) bezeichnet, die
+erreicht werden (goal succeeds) oder verfehlt werden (goal fails).
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>v<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">[</span>q<span style="color: #909183;">]</span>
+    <span style="color: #909183;">(</span>membero q <span style="color: #709870;">[</span>1 2 3<span style="color: #709870;">]</span><span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span>membero q <span style="color: #709870;">[</span>2 3 4<span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (_0 _0)</span>
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section id="orgbcd4459">
+<h4 id="orgbcd4459">Die Operatoren</h4>
+<div class="outline-text-4" id="text-orgbcd4459">
+</div>
+</section>
+<section id="org8897df7">
+<h5 id="org8897df7"><code>fresh</code></h5>
+<p>
+siehe oben
+</p>
+</section>
+<section id="orge5276f2">
+<h5 id="orge5276f2">Die Unifikation: <code>==</code></h5>
+<ul>
+<li>Der Ausdruck <code>(== lvar1 lvar2)</code> sorgt dafür, dass die beiden lvars
+die gleiche Menge möglicher Werte besitzen. Das Ziel wird erreicht,
+wenn <code>lvar1</code> in Übereinstimmung mit <code>lvar2</code> gebracht werden kann.</li>
+
+</ul>
+<ul class="org-ul">
+<li><a id="org2415e45"></a>Unifikation einer einzelnen Variablen mit einem Literal<br />
+<ul>
+<li>Für eine der Variablen kann ein Clojure Literal verwendet werden.</li>
+<li><p>
+Das Ziel in dem Ausdruck
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>== q 1<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;;</span><span style="color: #8D8D84; font-style: italic;">=&gt; (1)</span>
+</pre>
+</div>
+
+</div>
+<p>
+wird erreicht, wenn <code>q</code> den Wert 1 annehmen kann. Da <code>run*</code> die
+Variable <code>q</code> in einem frischen Zustand einführt, ist das
+möglich. Daher ist das Resultat der Auswertung des Ausdrucks <code>(1)</code>.
+</p></li>
+
+</ul>
+</section>
+<section >
+<ul>
+<li><p>
+Auch Exemplare komplexerer Datentypen können unifiziert werden:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>== q <span style="color: #909183;">{</span><span style="color: #D0372D;">:a</span> 1 <span style="color: #D0372D;">:b</span> 2<span style="color: #909183;">}</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; ({:a 1, :b 2})</span>
+
+  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>== <span style="color: #909183;">{</span><span style="color: #D0372D;">:a</span> q <span style="color: #D0372D;">:b</span> 2<span style="color: #909183;">}</span> <span style="color: #909183;">{</span><span style="color: #D0372D;">:a</span> 1 <span style="color: #D0372D;">:b</span> 2<span style="color: #909183;">}</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (1)</span>
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Die Reihenfolge der Argumente von <code>==</code> ist belanglos: Der Ausdruck
+</p>
+<pre class="example">
+(run* [q] (== 1 q))
+</pre>
+
+<p>
+liefert (1).
+</p></li>
+
+</ul>
+</section>
+<section >
+</li>
+<li><a id="org0cb4638"></a>Unifikation von zwei Variablen<br />
+<ul>
+<li><p>
+Beispiel:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+   <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">[</span>a<span style="color: #909183;">]</span>
+     <span style="color: #909183;">(</span>membero a <span style="color: #709870;">[</span>1 2 3<span style="color: #709870;">]</span><span style="color: #909183;">)</span>
+     <span style="color: #909183;">(</span>membero q <span style="color: #709870;">[</span>3 4 5<span style="color: #709870;">]</span><span style="color: #909183;">)</span>
+     <span style="color: #909183;">(</span>== a q<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (3)</span>
+</pre>
+</div>
+
+</div></li>
+<li>Hier wird mit <code>fresh</code> eine neue Variable <code>a</code> eingeführt. Die beiden ersten
+Ziele bestimmen, dass \(a\in\{1,2,3\} \land q\in\{3,4,5\}\) gilt. Die
+Unifikation <code>(== a q)</code> sorgt dafür, dass beide Variablen an die
+Schnittmenge gebunden werden.</li>
+
+</ul>
+</section>
+<section >
+</li>
+<li><a id="org2c29e10"></a>Die Reihenfolge der Ziele ist irrelevant &#x2026;<br />
+<ul>
+<li>&#x2026; bezüglich der Bestimmung des Wertes einer <code>run</code>-Form.</li>
+<li><p>
+Die beiden Ausdrücke
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+   <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">[</span>a<span style="color: #909183;">]</span>
+     <span style="color: #909183;">(</span>membero a <span style="color: #709870;">[</span>1 2 3<span style="color: #709870;">]</span><span style="color: #909183;">)</span>
+     <span style="color: #909183;">(</span>membero q <span style="color: #709870;">[</span>3 4 5<span style="color: #709870;">]</span><span style="color: #909183;">)</span>
+     <span style="color: #909183;">(</span>== a q<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+   <span style="color: #7388D6;">(</span>fresh <span style="color: #909183;">[</span>a<span style="color: #909183;">]</span>
+     <span style="color: #909183;">(</span>membero a <span style="color: #709870;">[</span>3 4 5<span style="color: #709870;">]</span><span style="color: #909183;">)</span>
+     <span style="color: #909183;">(</span>== q a<span style="color: #909183;">)</span>
+     <span style="color: #909183;">(</span>membero q <span style="color: #709870;">[</span>1 2 3<span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+<p>
+liefern das gleiche Ergebnis: <code>(3)</code>.
+</p></li>
+
+</ul>
+</li>
+</ul>
+</section>
+<section id="org6e6de87">
+<h5 id="org6e6de87"><code>conde</code></h5>
+<ul>
+<li><code>conde</code> ermöglicht die disjunktive Verknüpfung von Zielen.</li>
+<li><p>
+Syntax:
+</p>
+<pre class="example">
+(conde &amp;clauses)
+</pre></li>
+<li><p>
+Die Semantik kann durch folgende Analogiebetrachtung erklärt werden:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span>goal1 goal2 ...<span style="color: #909183;">]</span>
+       ...<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>  
+</pre>
+</div>
+
+</div>
+<p>
+ist vergleichbar mit 
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>OR
+       <span style="color: #909183;">[</span>goal1 AND goal2 AND ...<span style="color: #909183;">]</span>
+       ...<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>  
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section >
+<ul class="org-ul">
+<li><a id="org1a6df89"></a>Beispiele<br />
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span>succeed<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (_0)</span>
+</pre>
+</div>
+
+</div>
+<p>
+<code>succeed</code> ist immer erfolgreich. <code>q</code> kann jeden Wert annehmen:
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span>succeed succeed succeed<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (_0)</span>
+</pre>
+</div>
+
+</div>
+<p>
+erfolgreiche Konjunktion, <code>q</code> kann jeden Wert annehmen.
+</p>
+
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span>succeed fail succeed<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; ()</span>
+</pre>
+</div>
+
+</div>
+<p>
+nicht erfolgreiche Konjunktion, der Wert für <code>q</code> ist ().
+</p>
+
+</section>
+<section >
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span>succeed<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>succeed<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (_0 _0)</span>
+</pre>
+</div>
+
+</div>
+
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span>s#<span style="color: #909183;">]</span> <span style="color: #909183;">[</span>u#<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (_0)</span>
+</pre>
+</div>
+
+</div>
+<p>
+Jedes Ziel innerhalb einer <code>conde</code>-Klausel wird unabhängig
+voneinander erfüllt oder nicht. (<code>s#</code> kurz für <code>succeed</code>, <code>u#</code> kurz
+für <code>fail</code>)
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span>s# <span style="color: #709870;">(</span>== q 1<span style="color: #709870;">)</span><span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt;  (1)</span>
+
+  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span><span style="color: #709870;">(</span>== q 2<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>== q 1<span style="color: #709870;">)</span><span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt;  ()</span>
+
+  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
+     <span style="color: #7388D6;">(</span>conde
+       <span style="color: #909183;">[</span><span style="color: #709870;">(</span>== q 2<span style="color: #709870;">)</span><span style="color: #909183;">]</span> 
+       <span style="color: #909183;">[</span><span style="color: #709870;">(</span>== q 1<span style="color: #709870;">)</span><span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt;  (2 1)</span>
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="org5677352">
+<h4 id="org5677352">Die „Relationifizierung” einer Funktion</h4>
+<ul>
+<li><p>
+Eine klassische Funktion:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">rember</span>
+    <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>x l<span style="color: #909183;">]</span>
+      <span style="color: #909183;">(</span><span style="color: #0000FF;">cond</span>
+        <span style="color: #709870;">(</span><span style="color: #006FE0;">empty?</span> l<span style="color: #709870;">)</span> l
+        <span style="color: #709870;">(</span>= x <span style="color: #907373;">(</span><span style="color: #006FE0;">first</span> l<span style="color: #907373;">)</span><span style="color: #709870;">)</span> <span style="color: #709870;">(</span><span style="color: #006FE0;">rest</span> l<span style="color: #709870;">)</span>
+        <span style="color: #D0372D;">:else</span> <span style="color: #709870;">(</span><span style="color: #006FE0;">cons</span> <span style="color: #907373;">(</span><span style="color: #006FE0;">first</span> l<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>rember x <span style="color: #6276BA;">(</span><span style="color: #006FE0;">rest</span> l<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #707183;">(</span>rember 'f '<span style="color: #7388D6;">(</span><span style="color: #006FE0;">e</span> f g h i f j k l<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div></li>
+<li><p>
+Umwandlung in eine Relation (1. Versuch):
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">rembero1</span> <span style="color: #7388D6;">[</span>x l out<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>conde
+      <span style="color: #909183;">[</span><span style="color: #709870;">(</span>emptyo l<span style="color: #709870;">)</span>   <span style="color: #709870;">(</span>== <span style="color: #907373;">()</span> out<span style="color: #709870;">)</span><span style="color: #909183;">]</span>
+      <span style="color: #909183;">[</span><span style="color: #709870;">(</span>firsto l x<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>resto l out<span style="color: #709870;">)</span><span style="color: #909183;">]</span>
+      <span style="color: #909183;">[</span>s#           <span style="color: #709870;">(</span>fresh <span style="color: #907373;">[</span>a d res<span style="color: #907373;">]</span>
+                      <span style="color: #907373;">(</span>resto l d<span style="color: #907373;">)</span>
+                      <span style="color: #907373;">(</span>firsto l a<span style="color: #907373;">)</span>
+                      <span style="color: #907373;">(</span>conso a res out<span style="color: #907373;">)</span>
+                      <span style="color: #907373;">(</span>rembero1 x d res<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span> <span style="color: #7388D6;">(</span>rembero1 'f '<span style="color: #909183;">(</span><span style="color: #006FE0;">e</span> f g h i f j k l<span style="color: #909183;">)</span> q<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; #'user/rembero1((e g h i f j k l) (e f g h i j k l) (e f g h i f j k l))</span>
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section >
+
+<ul>
+<li><p>
+Umwandlung in eine Relation (2. Versuch):
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-clojure">  <span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">rembero1</span> <span style="color: #7388D6;">[</span>x l out<span style="color: #7388D6;">]</span>
+    <span style="color: #7388D6;">(</span>conde
+      <span style="color: #909183;">[</span><span style="color: #709870;">(</span>emptyo l<span style="color: #709870;">)</span>   <span style="color: #709870;">(</span>== <span style="color: #907373;">()</span> out<span style="color: #709870;">)</span><span style="color: #909183;">]</span>
+      <span style="color: #909183;">[</span><span style="color: #709870;">(</span>firsto l x<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>resto l out<span style="color: #709870;">)</span><span style="color: #909183;">]</span>
+      <span style="color: #909183;">[</span>s#           <span style="color: #709870;">(</span>fresh <span style="color: #907373;">[</span>a d res<span style="color: #907373;">]</span>
+                      <span style="color: #907373;">(</span>resto l d<span style="color: #907373;">)</span>
+                      <span style="color: #907373;">(</span>firsto l a<span style="color: #907373;">)</span>
+                      <span style="color: #907373;">(</span>conso a res out<span style="color: #907373;">)</span>
+                      <span style="color: #907373;">(</span>!= a x<span style="color: #907373;">)</span>
+                      <span style="color: #8D8D84;">;;;;;;;;</span>
+                      <span style="color: #907373;">(</span>rembero1 x d res<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span> <span style="color: #7388D6;">(</span>rembero1 'f '<span style="color: #909183;">(</span><span style="color: #006FE0;">e</span> f g h i f j k l<span style="color: #909183;">)</span> q<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+   <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; #'user/rembero1((e g h i f j k l))</span>
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="org2b20100">
+<h4 id="org2b20100">Weitere Anwendungen</h4>
+<p>
+siehe <a href="file:///Users/jb/Dropbox/Programmierparadigmen/Clojure/logic-tutorial/ProPar-CoreLogicAnwndngn.html">dort</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="orgc148072">
+<h2 id="orgc148072"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Carro1998">[Carro1998]</a> <a name="Carro1998"></a>Manuel Carro, An Introductory Course on Constraint Logic  Programming, (1998), zuletzt aufgerufen am 10.09.2017: <a href="https://cliplab.org/~vocal/public_info/seminar_notes/seminar_notes.html">https://cliplab.org/~vocal/public_info/seminar_notes/seminar_notes.html</a> </li>
+<li><a id="danielpfriedman2018">[danielpfriedman2018]</a> <a name="danielpfriedman2018"></a>Daniel P Friedman, The Reasoned Schemer (MIT Press) (The MIT Press), MIT Press (2018).</li>
+</ul></h2>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.05,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
+</script>
+</body>
+</html>
