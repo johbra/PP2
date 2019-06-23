@@ -29,12 +29,12 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Constraint-solving</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-16 Sun 22:24</p>
+<section id="sec-title-slide"><h1 class="title">Constraint-solving</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-23 Sun 14:52</p>
 </section>
 
 <section>
-<section id="orgfca1054">
-<h2 id="orgfca1054">Ziele</h2>
+<section id="org8c9dc5d">
+<h2 id="org8c9dc5d">Ziele</h2>
 <ul>
 <li>Lernen, wie man einen Constraint-solver selbst bauen kann</li>
 <li>Lernen, wie man eine Constraint-solving-Bibliothek von SWI-Prolog
@@ -44,8 +44,8 @@ nutzen kann</li>
 </section>
 </section>
 <section>
-<section id="org1224e03">
-<h2 id="org1224e03">Konzept eines einfachen Constraint-solving-Systems</h2>
+<section id="org02ddfce">
+<h2 id="org02ddfce">Konzept eines einfachen Constraint-solving-Systems</h2>
 <ul>
 <li>Unter Verwendung der so genannten <i>Regelfortpflanzung</i>.</li>
 <li>Von Regelfortpflanzung (constraint propagation) wurde erstmals im
@@ -59,8 +59,8 @@ berechnen einen Wert in Abhängigkeit von ihre Eingangsgrößen
 </ul>
 
 </section>
-<section id="orgae0a3de">
-<h3 id="orgae0a3de">Gleichungen</h3>
+<section id="org81c9788">
+<h3 id="org81c9788">Gleichungen</h3>
 <ul>
 <li>Aus der Zinseszinsrechnung ist die folgende Gleichung bekannt:
 \[\frac{K_{n}}{K_{0}}=(1+\frac{p}{100})^{n}\]</li>
@@ -75,8 +75,8 @@ Prozedur (Funktion) schreiben.</li>
 </ul>
 
 </section>
-<section id="orgc6bf070">
-<h3 id="orgc6bf070">Elementare Constraints</h3>
+<section id="orgc0bf049">
+<h3 id="orgc0bf049">Elementare Constraints</h3>
 <ul>
 <li>Um mit Gleichungen (Relationen) direkt umgehen zu können, führen wir
 als Elemente einer Constraint-Spracje <i>primitive constraints</i> ein.</li>
@@ -101,8 +101,8 @@ vorkommt.</li>
 </ul>
 
 </section>
-<section id="orgf15ce47">
-<h3 id="orgf15ce47">Beispiel: Celsius-Fahrenheit-Konverter</h3>
+<section id="orgd0d435f">
+<h3 id="orgd0d435f">Beispiel: Celsius-Fahrenheit-Konverter</h3>
 <ul>
 <li>Zusammenhang zwischen Fahrenheit und Celsius: \[9C=5(F-32)\]</li>
 <li>Schaltbild aus Addierern, Multiplizierern und Konstanten:</li>
@@ -125,8 +125,8 @@ aus der Gleichung.</li>
 </ul>
 
 </section>
-<section id="orgdca58cc">
-<h3 id="orgdca58cc">Berechnungsprozess</h3>
+<section id="org50784dd">
+<h3 id="org50784dd">Berechnungsprozess</h3>
 <ul>
 <li>Ein Konnektor erhält einen Wert (wird aktiviert) durch
 <ul>
@@ -157,8 +157,8 @@ Wert für F bzw. C berechnet.</li>
 </ul>
 
 </section>
-<section id="orgef50d8e">
-<h3 id="orgef50d8e">Der Celsius-Fahrenheit-Konverter in Clojure</h3>
+<section id="org698f55a">
+<h3 id="org698f55a">Der Celsius-Fahrenheit-Konverter in Clojure</h3>
 <ul>
 <li>Der Fahrenheit-Celsius-Konverter als black box:</li>
 
@@ -210,8 +210,8 @@ Die Prozedur <code>celsius-fahrenheit-converter</code>
 </ul>
 
 </section>
-<section id="org2e37e16">
-<h3 id="org2e37e16">Anbringen von Messfühlern</h3>
+<section id="orgd8b6d02">
+<h3 id="orgd8b6d02">Anbringen von Messfühlern</h3>
 <ul>
 <li><p>
 Die Verknüpfung eines Konnektors mit einem Messfühler (probe)
@@ -273,16 +273,16 @@ berechnen, und umgekehrt.</li>
 </section>
 </section>
 <section>
-<section id="org18abd8d">
-<h2 id="org18abd8d">Implementierung des Constraint-solving-Systems</h2>
+<section id="orga99566d">
+<h2 id="orga99566d">Implementierung des Constraint-solving-Systems</h2>
 <ul>
 <li>&#x2026; in Clojure</li>
 <li>originale Scheme-Version stammt aus <a class='org-ref-reference' href="#Sicp1999">Sicp1999</a></li>
 
 </ul>
 </section>
-<section id="org9b6b719">
-<h3 id="org9b6b719">Struktur des <code>adder</code></h3>
+<section id="org2719466">
+<h3 id="org2719466">Struktur des <code>adder</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">adder</span>
@@ -326,8 +326,8 @@ Konnektoren definiert.</li>
 </ul>
 
 </section>
-<section id="org3bcfcb9">
-<h3 id="org3bcfcb9">Basisoperationen für Konnektoren</h3>
+<section id="org93b0e77">
+<h3 id="org93b0e77">Basisoperationen für Konnektoren</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">has-value?: connector -&gt; boolean</span>
@@ -372,8 +372,8 @@ Konnektoren definiert.</li>
 </div>
 
 </section>
-<section id="org9cbbbc0">
-<h4 id="org9cbbbc0">Lokale Hilfsfunktionen für <code>adder</code></h4>
+<section id="org7c917a9">
+<h4 id="org7c917a9">Lokale Hilfsfunktionen für <code>adder</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span>process-new-value <span style="color: #7388D6;">[]</span>
@@ -408,8 +408,8 @@ Konnektoren definiert.</li>
 </div>
 
 </section>
-<section id="orgd4079bb">
-<h4 id="orgd4079bb">Struktur des <code>multiplier</code></h4>
+<section id="orgebeb4ef">
+<h4 id="orgebeb4ef">Struktur des <code>multiplier</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">multiplier</span>
@@ -429,8 +429,8 @@ Konnektoren definiert.</li>
 </div>
 
 </section>
-<section id="orge71e981">
-<h4 id="orge71e981">Lokale Hilfsfunktionen für <code>multiplier</code></h4>
+<section id="org8bda744">
+<h4 id="org8bda744">Lokale Hilfsfunktionen für <code>multiplier</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span>process-new-value <span style="color: #7388D6;">[]</span>
@@ -469,8 +469,8 @@ Konnektoren definiert.</li>
 </div>
 
 </section>
-<section id="orgf0619b0">
-<h3 id="orgf0619b0">Der Konstantenerzeuger</h3>
+<section id="orga212d2d">
+<h3 id="orga212d2d">Der Konstantenerzeuger</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">constant</span> 
@@ -490,8 +490,8 @@ Konnektoren definiert.</li>
 </ul>
 
 </section>
-<section id="org23a34f3">
-<h3 id="org23a34f3">Der Messfühler</h3>
+<section id="org28d17d8">
+<h3 id="org28d17d8">Der Messfühler</h3>
 <p>
 Der Messfühler gibt beim Setzen bzw. Vergessen des Wertes des mit ihm
 verbundenen Konnektors einen Text aus.
@@ -519,8 +519,8 @@ verbundenen Konnektors einen Text aus.
 </div>
 
 </section>
-<section id="org17417d3">
-<h3 id="org17417d3">Konnektoren</h3>
+<section id="orgaa5fa64">
+<h3 id="orgaa5fa64">Konnektoren</h3>
 <ul>
 <li><p>
 Ein Konnektor wird als Prozedur mit drei lokalen Zustandsvariablen
@@ -550,8 +550,8 @@ Wertes informiert werden müssen.</dd>
 </ul>
 
 </section>
-<section id="org730a83e">
-<h4 id="org730a83e"><code>make-connector -- set-my-value</code></h4>
+<section id="orgb40bb9b">
+<h4 id="orgb40bb9b"><code>make-connector -- set-my-value</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span>set-my-value <span style="color: #7388D6;">[</span>newval setter<span style="color: #7388D6;">]</span>
@@ -576,8 +576,8 @@ Ausnahme des Informanten) darüber informiert.</li>
 </ul>
 
 </section>
-<section id="org295c57a">
-<h4 id="org295c57a"><code>make-connector -- forget-my-value</code></h4>
+<section id="orgc12a167">
+<h4 id="orgc12a167"><code>make-connector -- forget-my-value</code></h4>
 <div class="small">
 <div class="org-src-container">
 
@@ -603,8 +603,8 @@ Ausnahme des Informanten) darüber informiert.</li>
 </ul>
 
 </section>
-<section id="org97a5e50">
-<h4 id="org97a5e50"><code>make-connector -- connect</code></h4>
+<section id="orgdc510f1">
+<h4 id="orgdc510f1"><code>make-connector -- connect</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span>connect <span style="color: #7388D6;">[</span>new-constraint<span style="color: #7388D6;">]</span>
@@ -624,8 +624,8 @@ Constraint-Element darüber informiert.</li>
 </ul>
 
 </section>
-<section id="orgb717e33">
-<h4 id="orgb717e33"><code>make-connector -- me</code></h4>
+<section id="org0084a9a">
+<h4 id="org0084a9a"><code>make-connector -- me</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span>me <span style="color: #7388D6;">[</span>request<span style="color: #7388D6;">]</span>
@@ -644,8 +644,8 @@ Constraint-Element darüber informiert.</li>
 
 </ul>
 </section>
-<section id="org910abdc">
-<h3 id="org910abdc">Hilfsprozeduren</h3>
+<section id="org51a96d8">
+<h3 id="org51a96d8">Hilfsprozeduren</h3>
 <ul>
 <li>Es fehlen jetzt noch die Prozeduren:
 <ul>
@@ -658,8 +658,8 @@ Constraint-Element darüber informiert.</li>
 </ul>
 
 </section>
-<section id="org506b958">
-<h4 id="org506b958">Iterator <code>for-each-except</code></h4>
+<section id="orgfe1d976">
+<h4 id="orgfe1d976">Iterator <code>for-each-except</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">for-each-except</span> 
@@ -682,8 +682,8 @@ mit Ausnahme des Elements <code>exception</code>.</li>
 </ul>
 
 </section>
-<section id="orgdb86f62">
-<h4 id="orgdb86f62"><code>inform-about-…</code></h4>
+<section id="orgdcd679c">
+<h4 id="orgdcd679c"><code>inform-about-…</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">inform-about-value</span>
@@ -704,15 +704,15 @@ mit Ausnahme des Elements <code>exception</code>.</li>
 </section>
 </section>
 <section>
-<section id="org4acc98b">
-<h2 id="org4acc98b">Constraint solving mit SWI-Prolog</h2>
+<section id="orgf128036">
+<h2 id="orgf128036">Constraint solving mit SWI-Prolog</h2>
 <p>
 Die clpr-Library erlaubt die Verwendung eines Constraint-Lösers für
   nicht-endliche Wertebereiche.
 </p>
 </section>
-<section id="orgf40b55e">
-<h3 id="orgf40b55e">Darlehensberechnung</h3>
+<section id="orgc20e56b">
+<h3 id="orgc20e56b">Darlehensberechnung</h3>
 <ul>
 <li>Berechnung von Annuitäten-Darlehen (Beispiel entnommen aus <a class='org-ref-reference' href="#Fruehwirth2010">Fruehwirth2010</a>)</li>
 <li>Bedeutung der Größen:
@@ -728,8 +728,8 @@ Die clpr-Library erlaubt die Verwendung eines Constraint-Lösers für
 </ul>
 
 </section>
-<section id="org474481f">
-<h4 id="org474481f">Lösung SWI-Prolog</h4>
+<section id="org244a5b9">
+<h4 id="org244a5b9">Lösung SWI-Prolog</h4>
 <div class="small">
 <div class="org-src-container">
 
@@ -756,8 +756,8 @@ Fragen:
 </ul>
 
 </section>
-<section id="orgd9cfc1c">
-<h3 id="orgd9cfc1c">Der Celsius-Fahrenheit-Konverter</h3>
+<section id="org3462939">
+<h3 id="org3462939">Der Celsius-Fahrenheit-Konverter</h3>
 <div class="smaller">
 <div class="org-src-container">
 
@@ -769,21 +769,25 @@ Fragen:
 </div>
 <p>
 Anwendungen:
-#+BEGIN<sub>SRC</sub> prolog
-?- cf(25,F).
-F = 77.0 
 </p>
+<div class="small">
+<div class="org-src-container">
 
-<p>
-?- cf(C, 77).
-C = 25.0 
-</p>
+<pre  class="src src-prolog">?- cf(25,<span style="color: #BA36A5;">F</span>).
+<span style="color: #BA36A5;">F</span> = 77.0 
+
+?- cf(<span style="color: #BA36A5;">C</span>, 77).
+<span style="color: #BA36A5;">C</span> = 25.0 
+</pre>
+</div>
+
+</div>
 
 </section>
 </section>
 <section>
-<section id="orgedf32b2">
-<h2 id="orgedf32b2"><h2>Literaturverzeichnis</h2>
+<section id="orgb1056c2">
+<h2 id="orgb1056c2"><h2>Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="Sicp1999">[Sicp1999]</a> <a name="Sicp1999"></a>Harold Abelson, Gerald Jay Sussman & Julie Sussman, Structure and interpretation of computer programs, The MIT Press (1999).</li>
 <li><a id="Fruehwirth2010">[Fruehwirth2010]</a> <a name="Fruehwirth2010"></a>Thom Frühwirth & Slim Abdennadher, Essentials of Constraint Programming (Cognitive Technologies), Springer (2010).</li>
 </ul></h2>
