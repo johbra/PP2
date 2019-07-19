@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+<!-- 2019-07-19 Fri 16:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parallelprogrammierung &#x2013; Software Transactional Memory</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Johannes Brauer" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Parallelprogrammierung &#x2013; Software Transactional Memory
+<br />
+<span class="subtitle">Programmierparadigmen</span>
+</h1>
+<div id="outline-container-orgf5e19a7" class="outline-2">
+<h2 id="orgf5e19a7">Ziele</h2>
+<div class="outline-text-2" id="text-orgf5e19a7">
+<ul class="org-ul">
+<li>Ursachen von Problemen nebenläufiger Programme erkennen</li>
+<li>Verstehen des Konzepts von Software Transactional Memory am Beispiel
+von Clojure</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org14b3053" class="outline-2">
+<h2 id="org14b3053">Zustand und Identität</h2>
+<div class="outline-text-2" id="text-org14b3053">
+<ul class="org-ul">
+<li>Viele Gründe für das Schreiben nebenläufiger/paralleler Programme:
+<ul class="org-ul">
+<li>Hardware ist nebenläufig, Software muss dem folgen</li>
+<li>Aufwändige Berechnungen müssen parallel auf mehreren Rechnerkernen
+ausgeführt werden, um Zeitvorgaben einhalten zu können.</li>
+<li>Aktivitäten, die auf Ressourcen warten, sollten anderen Aktivitäten die
+Nutzung der verfügbaren Prozessoren ermöglichen.</li>
+<li>Benutzungsschnittstellen sollten auch während lang laufender
+Programme reagieren.</li>
+</ul></li>
+<li>Nebenläufigkeit führt offensichtlich dazu, dass mehrere Aktivitäten
+auf dieselben Daten.</li>
+<li>Dies führt zu massiven Problemen in Programmiersprachen, die die
+Konzepte <i>Zustand</i> und <i>Identität</i> vermengen (vgl. <a class='org-ref-reference' href="#Hickey2011">Hickey2011</a>).</li>
+</ul>
+</div>
+<div id="outline-container-org008fa57" class="outline-3">
+<h3 id="org008fa57">Unterscheidung zwischen Zustand und Identität</h3>
+<div class="outline-text-3" id="text-org008fa57">
+<ul class="org-ul">
+<li>Unter einer Identität wird ein konkretes <i>Ding</i> verstanden, das &#x2013;
+einmal erschaffen &#x2013; bleibt.</li>
+<li><p>
+Ein solches <i>Ding</i> kann <i>Zustände</i> besitzen, die sich im Laufe der
+Zeit ändern können.
+</p></li>
+</ul>
+
+<div class="figure">
+<p><img src="./Abbildungen/identity.jpg" alt="identity.jpg" />
+</p>
+</div>
+
+<p>
+(Abbildung entnommen aus <a class='org-ref-reference' href="#Rathore2016">Rathore2016</a>)
+</p>
+<ul class="org-ul">
+<li>Auch wenn sich das Alter (Zustand) einer Person (Ding) ändert,
+bleibt das Ding, die Person, dasselbe.</li>
+<li>Die Identität ändert sich nie, ihre Zustände vielleicht.</li>
+<li>Die Zustände werden durch Werte repräsentiert, die sich nicht ändern
+können sollten.</li>
+<li>Sarahs Adresse ist eine Identität, deren Wert 2018 anders lauten
+kann als 2020.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3f95bd1" class="outline-3">
+<h3 id="org3f95bd1">Vermengung von Zustand und Identität</h3>
+<div class="outline-text-3" id="text-org3f95bd1">
+<ul class="org-ul">
+<li>Problem in den gängigen objektorientierten Sprachen</li>
+<li>In der objektorientierten Programmierung kennt man den Begriff der
+<i>Objektidentität</i>.</li>
+<li>Die Objektidentität manifestiert sich in der Speicheradresse des
+Objekts.</li>
+<li>Ein Datum wird wie ein Hauptbuch mit nur einer einzigen Zeile behandelt.</li>
+<li>Jede Schreiboperation zerstört die Historie.</li>
+<li>Das Problem wird nicht erst durch Nebenläufigkeit virulent:
+<ul class="org-ul">
+<li>Bedenke das Problem der Verweissemantik z.&nbsp;B. in den
+objektorientierten Sprachen.</li>
+</ul></li>
+<li>Wurzel des Übels ist die Änderbarkeit (mutability) von Variablen.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb47c7cc" class="outline-3">
+<h3 id="orgb47c7cc">Robert C. Martin: The failure of state</h3>
+<div class="outline-text-3" id="text-orgb47c7cc">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=7Zlp9rKHGD4">Video: Functional Programming &#x2013; The Failure of State</a></li>
+<li>Ausschnitte:
+<ul class="org-ul">
+<li>34:34 - <a href="https://www.youtube.com/watch?v=7Zlp9rKHGD4&amp;t=2074s">fewer concurrency issues</a></li>
+<li>36:12 - Moore's law bis 43:47</li>
+<li>49:44 - <a href="https://www.youtube.com/watch?v=7Zlp9rKHGD4&amp;t=2984s">OO = procedure + state</a> bis 50:56</li>
+<li>53:57 - <a href="https://www.youtube.com/watch?v=7Zlp9rKHGD4&amp;t=3237s">impose discipline on the change of state</a> bis 55:12</li>
+</ul></li>
+<li>Ohne Zustandsänderungen gibt es keine Probleme mit Nebenläufigkeit.</li>
+<li>Wo Zustände nicht vermeidbar sind, ist disziplinierter Umgang mit
+Zustandsänderungen erforderlich:
+<ul class="org-ul">
+<li>Nutzung des Transaktionskonzepts - Software Transactional Memory
+(STM)</li>
+</ul></li>
+<li>Nutzung von Sperren ist hoch problematisch (<a class='org-ref-reference' href="#Goetz2006">Goetz2006</a>).</li>
+<li>Programmierer können damit nicht umgehen.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org70a67f2" class="outline-2">
+<h2 id="org70a67f2">Refs und Software Transactional Memory in Clojure</h2>
+<div class="outline-text-2" id="text-org70a67f2">
+</div>
+<div id="outline-container-orged10309" class="outline-3">
+<h3 id="orged10309">Anlegen von Verweisen (references) und Zugriff auf ihren Inhalt</h3>
+<div class="outline-text-3" id="text-orged10309">
+<ul class="org-ul">
+<li>Normale Objekte in Clojure sind nicht änderbar (immutable).</li>
+<li><p>
+Es gibt spezielle Sprachkonstrukte (<code>ref</code>) zur Erzeugung einer änderbaren
+<i>reference</i>:
+</p>
+<pre class="example">
+(def aktueller-titel (ref "Knockin' On Heaven's Door"))
+​;; =&gt; 'user/aktueller-titel​
+</pre></li>
+<li>Eine reference kapselt ihren internen Zustand.</li>
+<li><p>
+Für den Zugriff auf den Inhalt dient <code>deref</code>:
+</p>
+<pre class="example">
+(deref aktueller-titel)
+​;; =&gt; ​"Knockin' On Heaven's Door​"
+</pre>
+
+<p>
+oder 
+</p>
+<pre class="example">
+@aktueller-titel
+​;; =&gt; ​"Knockin' On Heaven's Door​"
+</pre></li>
+</ul>
+<ul class="org-ul">
+<li>Das Clojure-Konzept spiegelt die Realität wider:
+<ul class="org-ul">
+<li>Ein Titel (Knockin' On Heaven's Door​) ist ein unveränderliches
+Ding, das sich auch nicht verändert, wenn das Abspielen beendet ist.</li>
+<li>Aber <code>aktueller-titel</code> ist der Verweis (reference) auf ein Ding,
+das sich ändern kann.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge4bc59e" class="outline-3">
+<h3 id="orge4bc59e">Änderungen von Verweisen</h3>
+<div class="outline-text-3" id="text-orge4bc59e">
+<ul class="org-ul">
+<li>Sprachkonstrukt <code>ref-set</code></li>
+<li><p>
+Hören eines neuen Titels:
+</p>
+<pre class="example">
+(ref-set aktueller-titel "Walking Aimlessly")
+;; =&gt; java.lang.IllegalStateException​:​ No transaction running
+</pre></li>
+<li>Weil Verweise änderbar sind, muss die Änderung geschützt werden.</li>
+<li>Das passiert häufig durch Sperren.</li>
+<li>In Clojure kann man Transaktionen benutzen.</li>
+<li><p>
+Zur Klammerung einer Transaktion dient das Sprachkonstrukt <code>dosync</code>:
+</p>
+<pre class="example">
+(dosync (ref-set aktueller-titel "Walking Aimlessly"))
+;; =&gt; "Walking Aimlessly"
+</pre></li>
+<li>Der Verweis <code>aktueller-titel</code> zeigt nun auf einen anderen Titel.</li>
+</ul>
+</div>
+<div id="outline-container-org2f412cd" class="outline-4">
+<h4 id="org2f412cd">Transaktionseigenschaften</h4>
+<div class="outline-text-4" id="text-org2f412cd">
+<ul class="org-ul">
+<li>Ähnlich wie Datenbanktransaktionen erlaubt STM, Lese- und
+Änderungsoperationen auf Verweisen transaktional zu behandeln.</li>
+<li>Eigenschaften derartiger Transaktionen:
+<dl class="org-dl">
+<dt>Änderungen sind atomar.</dt><dd>Bei Änderungen an mehr als einem Verweis
+werden diese nur vollständig oder garnicht abgearbeitet.</dd>
+<dt>Änderungen sind konsistent.</dt><dd>Verweise können
+Validierungsfunktionen spezifizieren. Wenn eine dieser
+Funktionen fehlschlägt, schlägt die ganze Transaktion fehl.</dd>
+<dt>Änderungen sind isoliert.</dt><dd>Nebenläufige Transaktionen
+beeinflussen sich nicht. Insbesondere werden keine
+Teiländerungen sichtbar.</dd>
+</dl></li>
+<li>Datenbanktransaktionen haben zusätzlich noch die Eigenschaft der
+Dauerhaftigkeit (das "D" in "ACID"). Dies gilt für
+STM-Transkaktionen, die sich im Arbeitsspeicher abspielen, nicht.</li>
+</ul>
+</div>
+<div id="outline-container-org6e76b24" class="outline-5">
+<h5 id="org6e76b24">Beispiel</h5>
+<div class="outline-text-5" id="text-org6e76b24">
+<div class="org-src-container">
+<pre class="src src-clojure">user&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">aktueller-titel</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref</span> <span style="color: #008000;">"Knockin' On Heaven's Door"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; #'user/aktueller-titel</span>
+user&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">aktueller-interpret</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref</span> <span style="color: #008000;">"Bob Dylan"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; #'user/aktueller-interpret</span>
+user&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">dosync</span> 
+       <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref-set</span> aktueller-titel <span style="color: #008000;">"Walking Aimlessly"</span><span style="color: #7388D6;">)</span>
+       <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref-set</span> aktueller-interpret <span style="color: #008000;">"Anna Ternheim"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; "Anna Ternheim"</span>
+user&gt; @aktueller-titel
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; "Walking Aimlessly"</span>
+user&gt; @aktueller-interpret
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; "Anna Ternheim"</span>
+user&gt; 
+</pre>
+</div>
+<ul class="org-ul">
+<li>Da die Änderungen in einer Transaktion ablaufen, kann kein
+inkonsistenter Zustand von anderen Threads gesehen werden.</li>
+<li>Man beachte: Es gibt keine expliziten Sperren.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgba38601" class="outline-4">
+<h4 id="orgba38601">Verwendung von <code>alter</code> für Änderungsoperationen</h4>
+<div class="outline-text-4" id="text-orgba38601">
+<ul class="org-ul">
+<li>Das oben gezeigte Beispiel ist besonders simpel, da die Änderungen
+unabhängig von einem früheren Zustand sind.</li>
+<li>Im folgenden Beispiel (<a class='org-ref-reference' href="#Miller2018">Miller2018</a>) einer einfachen Chat-Applikation ist das
+anders. (Die vollständige <a href="https://media.pragprog.com/titles/shcloj3/code/src/examples/chat.clj">Clojure-Datei</a> kann daungelohdet werden.)</li>
+<li><p>
+Mit
+</p>
+<pre class="example">
+(defrecord Message [sender text])
+;; =&gt; user.Message
+</pre>
+
+<p>
+wird zunächst eine Message-Datenstruktur definiert.
+</p></li>
+<li><p>
+Ein Exemplar der Struktur wird dann z.&nbsp;B. so erzeugt:
+</p>
+<pre class="example">
+(-&gt;Message "Klara" "Hallo")
+;; =&gt; {:sender "Klara", :text "Hallo"}
+</pre></li>
+<li><p>
+Die Liste der Nachrichten wird dann als Verweis angelegt:
+</p>
+<pre class="example">
+(def messages (ref ()))
+;; =&gt; #'user/messages
+</pre></li>
+</ul>
+<ul class="org-ul">
+<li><p>
+Mit den bisher bekannten Mitteln könnte eine transnationale Funktion
+zum Hinzufügen einer Nachricht so definiert werden:
+</p>
+<pre class="example">
+(defn add-message [msg]
+  (dosync (ref-set messages (cons msg @messages))))
+;; =&gt; #'user/add-message
+</pre></li>
+<li>Mit der Funktion <code>alter</code> stellt Clojure eine komfortable Möglichkeit
+bereit, das Lesen des aktuellen Werts des Verweises und seine Veränderung in einem
+Schritt durchzuführen.</li>
+<li><code>alter</code> erwartet als Argumente einen Verweis (<code>ref</code>) eine
+Änderungs&#x00ad;funktion (<code>update-fn</code>) und optional weitere Argumente, die
+die Änderungsfunktion benötigt: <br />
+<code>(alter ref update-fn &amp; args...)</code></li>
+<li>Der Rückgabewert von <code>alter</code> ist der neue Wert von <code>ref</code> innerhalb
+der Transaktion.</li>
+<li>Wird die Transaktion erfolgreich beendet, nimmt <code>ref</code> seinen letzten
+Wert innerhalb der Transaktion an.</li>
+</ul>
+<ul class="org-ul">
+<li><p>
+Die Funktion <code>add-message</code> unter Verwendung von <code>alter</code>:
+</p>
+<pre class="example">
+(defn add-message [msg]
+  (dosync (alter messages conj msg)))
+;; =&gt; #'user/add-message
+</pre></li>
+<li>Die <code>alter</code>-Funktion ruft die Änderungsfunktion (hier <code>conj</code>) mit
+dem Wert des Verweises (hier <code>messages</code>) als erstem Argument
+auf. Deshalb muss hier <code>conj</code> anstelle von <code>cons</code> benutzt werden.</li>
+<li>Zum Vergleich: <br />
+<code>(cons item list)</code><br />
+<code>(conj list item)</code></li>
+<li>Die Reihenfolge ist auch für eigene Änderungsfunktionen zu
+beachten:<br />
+<code>(my-update-fn thing-that-gets-updated &amp; optional-other-args)</code></li>
+<li><p>
+Benutzung von <code>add-message</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #7388D6;">(</span>-&gt;Message <span style="color: #008000;">"Rosa"</span> <span style="color: #008000;">"Hallo"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; ({:sender "Rosa", :text "Hallo"})</span>
+user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #7388D6;">(</span>-&gt;Message <span style="color: #008000;">"Karl"</span> <span style="color: #008000;">"Hei"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; ({:sender "Karl", :text "Hei"} {:sender "Rosa", :text "Hallo"})</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org2868a01" class="outline-3">
+<h3 id="org2868a01">Arbeitsweise von STM in Clojure</h3>
+<div class="outline-text-3" id="text-org2868a01">
+<ul class="org-ul">
+<li>Es wird eine Technik namens <i><a href="https://de.wikipedia.org/wiki/Multiversion_Concurrency_Control">Multiversion Concurrency Control</a></i>
+(MVCC) benutzt, die auch in Datenbanksystemen
+Verwendung findet.</li>
+<li>Eine Transaktion A erhält zu Beginn einen Zeitstempel (ganze Zahl).</li>
+<li>Transaktion A erhält Zugriff auf lokale Kopien von allen Verweisen,
+die sie benötigt.</li>
+<li>Alle Operationen auf einem Verweis während der laufenden Transaktion
+A wirken auf der lokalen Kopie. Die so entstehenden Werte heißen
+<i>in-transaction values</i>.</li>
+<li>Versucht Transaktion A mit <code>set/alter</code> den Verweis zu
+aktuali&#x00ad;sie&#x00ad;ren und STM entdeckt, dass dies schon von einer anderen
+Transak&#x00ad;tion gemacht wurde, wird Transaktion A zurückgesetzt und neu
+gestartet.</li>
+<li>Wenn innerhalb eines <code>dosync</code>-Blocks eine Exception ausgelöst wird,
+wird die Transaktion ohne Neustart abgebrochen.</li>
+<li>Wenn Transaktion A erfolgreich abgeschlossen wird (commit), werden
+die in-transaction values nach außen sichtbar. Diese
+Änderungen werden mit dem Zeitstempel der Transaktion assoziiert.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3aee2b2" class="outline-3">
+<h3 id="org3aee2b2">Clojure <code>dosync</code> vs. Java <code>synchronized</code></h3>
+<div class="outline-text-3" id="text-org3aee2b2">
+<ul class="org-ul">
+<li>Mit <code>synchronized</code> werden implizit Sperren angefordert und
+freigegeben.</li>
+<li>Betritt ein Thread einen <code>synchronized</code>-Block, versucht er die
+zugehörige Sperre zu erlangen. Gelingt dies nicht, weil schon ein
+anderer Thread die Sperre hält, wird der Thread blockiert und wartet
+bis die Sperre wieder frei ist.</li>
+<li>Mit <code>dosync</code> wird eine Code-Sequenz zur Ausführung als Transaktion bestimmt.</li>
+<li>Eine solche Transaktion hat die oben genannten Eigenschaften:
+<ul class="org-ul">
+<li>automatische Wiederholung bei Fehlschlag</li>
+<li>keine Sperren, kein Warten, keine Verklemmungen</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0dca62f" class="outline-3">
+<h3 id="org0dca62f">Validierungsfunktionen für Verweise</h3>
+<div class="outline-text-3" id="text-org0dca62f">
+<ul class="org-ul">
+<li>Vergleichbar mit Integritätsbedingungen in relationalen Datenbanken 
+können Verweise mit Validierungsfunktionen
+ausgestattet werden: <br />
+<code>(ref initial-state :validator validator-fn)</code></li>
+<li><p>
+Anwendung auf die Chat-Applikation:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defrecord</span> <span style="color: #6434A3;">Message</span> <span style="color: #7388D6;">[</span>sender text<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">messages</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref</span> <span style="color: #909183;">()</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">valid-message?</span> <span style="color: #7388D6;">[</span>msg<span style="color: #7388D6;">]</span> 
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">and</span> <span style="color: #909183;">(</span><span style="color: #D0372D;">:sender</span> msg<span style="color: #909183;">)</span> <span style="color: #909183;">(</span><span style="color: #D0372D;">:text</span> msg<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">validate-message-list</span> #<span style="color: #7388D6;">(</span><span style="color: #006FE0;">every?</span> valid-message? <span style="color: #BA36A5;">%</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">messages</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref</span> <span style="color: #909183;">()</span> <span style="color: #D0372D;">:validator</span> validate-message-list<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">add-message</span> <span style="color: #7388D6;">[</span>msg<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">dosync</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">alter</span> messages conj msg<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Repl:</span>
+user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #008000;">"ung&#252;ltig"</span><span style="color: #707183;">)</span>
+IllegalStateException Invalid reference state
+user&gt; @messages
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; ()</span>
+user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #7388D6;">(</span>-&gt;Message <span style="color: #008000;">"Kurt"</span> <span style="color: #008000;">"g&#252;ltig"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; ({:sender "Kurt", :text "g&#252;ltig"})</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf6a813" class="outline-2">
+<h2 id="orgcf6a813"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Hickey2011">[Hickey2011]</a> <a name="Hickey2011"></a>Hickey, Simple Made Easy, (2011), zuletzt aufgerufen am 10. 7. 2019: <a href="https://www.infoq.com/presentations/Simple-Made-Easy/">https://www.infoq.com/presentations/Simple-Made-Easy/</a> </li>
+<li><a id="Rathore2016">[Rathore2016]</a> <a name="Rathore2016"></a>Rathore, Clojure in action, Manning (2016).</li>
+<li><a id="Goetz2006">[Goetz2006]</a> <a name="Goetz2006"></a>Goetz, Java concurrency in practice, Addison-Wesley (2006).</li>
+<li><a id="Miller2018">[Miller2018]</a> <a name="Miller2018"></a>Miller, Halloway & Bedra, Programming Clojure, Pragmatic Bookshelf (2018).</li>
+</ul></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Johannes Brauer</p>
+<p class="date">Created: 2019-07-19 Fri 16:54</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

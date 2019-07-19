@@ -1,0 +1,1467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+<!-- 2019-07-19 Fri 16:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parallelprogrammierung &#x2013; Multithreading (in Java)</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Johannes Brauer" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Parallelprogrammierung &#x2013; Multithreading (in Java)
+<br />
+<span class="subtitle">Programmierparadigmen</span>
+</h1>
+<div id="outline-container-org47bab80" class="outline-2">
+<h2 id="org47bab80">Ziele</h2>
+<div class="outline-text-2" id="text-org47bab80">
+<ul class="org-ul">
+<li>Verständnis für mögliche Probleme nebenläufiger Programme erlangen</li>
+<li>Grundkenntnisse von Multithreading-Techniken in Java erwerben</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9c5d9ba" class="outline-2">
+<h2 id="org9c5d9ba">Multithreading &#x2013; Grundlagen</h2>
+<div class="outline-text-2" id="text-org9c5d9ba">
+<p>
+Die Ausführungen in diesem Kapitel orientieren sich an <a class='org-ref-reference' href="#Kalin2015">Kalin2015</a>.
+</p>
+</div>
+<div id="outline-container-orgadde761" class="outline-3">
+<h3 id="orgadde761">Überblick</h3>
+<div class="outline-text-3" id="text-orgadde761">
+<ul class="org-ul">
+<li>Vorteile von Multithreading gegenüber Multiprocessing:
+<ul class="org-ul">
+<li>Threads verursachen geringere „Kosten“ als Threads.</li>
+<li>Ein Prozess besteht aus einem oder mehreren Threads.</li>
+<li>Der Umschaltprozess zwischen Prozessen (context switch) kostet
+viel Rechenzeit (im Millisekundenbereich).</li>
+<li>Das Umschalten zwischen zwei Threads desselben Prozesses ist
+nahezu kostenlos.</li>
+</ul></li>
+<li>Nachteile von Multithreading gegenüber Multiprocessing: 
+<ul class="org-ul">
+<li>Threads eines Prozesses teilen sich den Adressraum.</li>
+<li>Dafür, dass es nicht zu unkoordiniertem Zugriff auf dieselbe
+Speicherzelle kommt ist jetzt nicht der das Betriebssystem sondern
+der Programmierer selbst zuständig.</li>
+<li>So muss der Programmierer Wettläufe (<i>race conditions</i> verhindern.</li>
+<li>Koordinierungsmaßnahmen (Sperren) können zu Verklemmungen
+(<i>deadlocks</i>) führen.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgc4b7248" class="outline-4">
+<h4 id="orgc4b7248">Handhabung von Threads durch Betriebssysteme</h4>
+<div class="outline-text-4" id="text-orgc4b7248">
+<ul class="org-ul">
+<li>Manche Systeme (z.&nbsp;B. Linux) implementieren Threads als
+Prozesse mit gemeinsame Adressraum.</li>
+<li>Andere (z.&nbsp;B. Windows) besitzen besondere Unterstützung von
+Threads im Kernel.</li>
+<li>Allen Systemen gemeinsam ist der geteilte Adressraum für Threads
+desselben Prozesses.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org52956fc" class="outline-3">
+<h3 id="org52956fc">Beispiel für einen Wettlauf in Java</h3>
+<div class="outline-text-3" id="text-org52956fc">
+</div>
+<div id="outline-container-org752eec4" class="outline-4">
+<h4 id="org752eec4">Benutzung von <code>RaceC</code> von der Kommandozeile:</h4>
+<div class="outline-text-4" id="text-org752eec4">
+<div class="org-src-container">
+<pre class="src src-sh">bash-3.2$ javac RaceC.java
+bash-3.2$ java Main
+n<span style="color: #008000;">'s value is: -332920</span>
+<span style="color: #008000;">n'</span>s value is: 237836
+n<span style="color: #008000;">'s value is: 73816</span>
+<span style="color: #008000;">n'</span>s value is: 61941
+n<span style="color: #008000;">'s value is: 59569</span>
+<span style="color: #008000;">n'</span>s value is: -2
+n<span style="color: #008000;">'s value is: -2</span>
+<span style="color: #008000;">n'</span>s value is: 80561
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc0279d4" class="outline-4">
+<h4 id="orgc0279d4">Quellcode von  <a href="./Working-Files/Chapter-5/RaceC.java">RaceC.java</a></h4>
+<div class="outline-text-4" id="text-orgc0279d4">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #036A07;">/** To compile: javac RaceC.java</span>
+<span style="color: #036A07;">    To run:     java Main</span>
+
+<span style="color: #036A07;">    Flow of control for Threads referenced by t1 and t2 (for convenience,</span>
+<span style="color: #036A07;">    call the Threads referenced by t1 and t2 simply 't1' and 't2'):</span>
+
+<span style="color: #036A07;">    The 'main thread' is the thread that executes the method 'main', in</span>
+<span style="color: #036A07;">    this case in class Main (see below).</span>
+<span style="color: #036A07;"> </span>
+<span style="color: #036A07;">                 creates</span>
+<span style="color: #036A07;">    main thread-----------</span><span style="color: #ff0000; font-weight: bold;">&gt;</span><span style="color: #036A07;">t1 and t2</span>
+
+<span style="color: #036A07;">                  starts</span>
+<span style="color: #036A07;">    main thread-----------</span><span style="color: #ff0000; font-weight: bold;">&gt;</span><span style="color: #036A07;">t1 and t2</span>
+
+<span style="color: #036A07;">                 calls run()</span>
+<span style="color: #036A07;">    Java runtime-------------</span><span style="color: #ff0000; font-weight: bold;">&gt;</span><span style="color: #036A07;">on started Threads t1 and t2</span>
+
+<span style="color: #036A07;">    At this point, three threads in the app are executing: main, t1, and t2.</span>
+
+<span style="color: #036A07;">    An instance of a Java Thread represents the sequence of instructions in the</span>
+<span style="color: #036A07;">    body of the encapsulated 'run' method (and any other instructions in methods</span>
+<span style="color: #036A07;">    that 'run' invokes).</span>
+
+<span style="color: #036A07;">    A thread that exits run() terminates, and cannot be restarted.</span>
+<span style="color: #036A07;">*/</span>
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">RaceC</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span>;                            <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">a single instance on n</span>
+    <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">race</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        n = 0;                               <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">initialize to zero before threads alter its value</span>
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">limit</span> = <span style="color: #D0372D;">Integer</span>.MAX_VALUE * 2L; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">four billion and change</span>
+        <span style="color: #6434A3;">Thread</span> <span style="color: #BA36A5;">t1</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Thread</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>           <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">incrementing thread</span>
+                <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #709870;">()</span> <span style="color: #709870;">{</span> 
+                    <span style="color: #0000FF;">for</span> <span style="color: #907373;">(</span><span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">limit</span>; i++<span style="color: #907373;">)</span> n = n + 1; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">increment limit times</span>
+                <span style="color: #709870;">}</span>
+            <span style="color: #909183;">}</span>;
+        <span style="color: #6434A3;">Thread</span> <span style="color: #BA36A5;">t2</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Thread</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>           <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">decrementing thread</span>
+                <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #709870;">()</span> <span style="color: #709870;">{</span>
+                    <span style="color: #0000FF;">for</span> <span style="color: #907373;">(</span><span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">limit</span>; i++<span style="color: #907373;">)</span> n = n - 1; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">decrement limit times</span>
+                <span style="color: #709870;">}</span>
+            <span style="color: #909183;">}</span>;
+        t1.start<span style="color: #909183;">()</span>;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">start t1's execution</span>
+        t2.start<span style="color: #909183;">()</span>;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">start t2's execution</span>
+        <span style="color: #0000FF;">try</span> <span style="color: #909183;">{</span>
+            t1.join<span style="color: #709870;">()</span>;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">wait here until t1 terminates</span>
+            t2.join<span style="color: #709870;">()</span>;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">wait here until t2 terminates</span>
+        <span style="color: #909183;">}</span> <span style="color: #0000FF;">catch</span><span style="color: #909183;">(</span><span style="color: #6434A3;">Exception</span> <span style="color: #BA36A5;">e</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span> <span style="color: #909183;">}</span>
+        System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"n's value is: "</span> + n<span style="color: #909183;">)</span>;
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Main</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">*** main thread executes method main</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; 8; i++<span style="color: #909183;">)</span> RaceC.race<span style="color: #909183;">()</span>; 
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #036A07;">/** Output from a sample run:</span>
+
+<span style="color: #036A07;">    n's value is: -265936</span>
+<span style="color: #036A07;">    n's value is: -7317</span>
+<span style="color: #036A07;">    n's value is: 47128</span>
+<span style="color: #036A07;">    n's value is: -219153</span>
+<span style="color: #036A07;">    n's value is: 82805</span>
+<span style="color: #036A07;">    n's value is: -7944</span>
+<span style="color: #036A07;">    n's value is: 87322</span>
+<span style="color: #036A07;">    n's value is: -2</span>
+<span style="color: #036A07;">*/</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org169a98f" class="outline-3">
+<h3 id="org169a98f">Analyse des Wettlaufs</h3>
+<div class="outline-text-3" id="text-org169a98f">
+<ul class="org-ul">
+<li><code>T1</code> and <code>T2</code> sind Threads im Prozess <code>P</code>: <code>T1</code> und <code>T2</code> haben
+Zugriff auf dieselben Speicherzellen.</li>
+<li><code>N</code> ist eine Speicherzelle im gemeinsamen Adressraum von <code>T1</code> und <code>T2</code>.</li>
+<li><p>
+<code>T1</code> inkrementiert, <code>T2</code> dekrementiert <code>N</code>.
+</p>
+<pre class="example">
+      N = N + 1  +---+  N = N - 1        ## Sind diese Zuweisungen „atomar“?
+   T1-----------&gt;| 5 |&lt;-----------T2
+	         +---+
+	           N
+</pre></li>
+<li>Jede Instruktion beinhaltet eine Addition/Subtraktion und eine Zuweisung.
+<ul class="org-ul">
+<li><p>
+Angenommen das Ergebnis der arithmetischen Operation wird in einem
+CPU-Register oder auf dem Stack (jedenfalls an einem flüchtigen
+Platz). Das könnte so dargestellt werden:
+</p>
+<pre class="example">
+ Temp1 = N + 1  ### incrementiere N und speichere das Ergenbis zwischen 
+                    (N ist noch unverändert)
+ N = Temp1      ### Weise den zwischengespeicherten Wert N zu
+</pre></li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org29f5087" class="outline-4">
+<h4 id="org29f5087">Beispielszenario</h4>
+<div class="outline-text-4" id="text-org29f5087">
+<ul class="org-ul">
+<li>Die Maschine besitzt mehrere Rechenkerne: <code>T1</code> und <code>T2</code> laufen auf
+unterschiedlichen Kernen.</li>
+<li><p>
+Im Folgenden wird ein möglicher Ausgang eines Wettlaufs dargestellt
+(<code>Temp1</code> und <code>Temp2</code> sind die flüchtigen Zwischnspeicher für <code>T1</code>
+resp. <code>T2</code>.):
+</p>
+<pre class="example">
+Clock-Takte:
+  
+C1: Temp1 = 5 + 1 = 6   ## T1's Addition
+C2: Temp2 = 5 - 1 = 4   ## T2's Subtraction (T1's Zuweisung hat noch nicht stattgefunden.)
+C3: N = Temp2           ## T2's Zuweisung (N erhält den Wert 4)
+C4: N = Temp1           ## T1's Zuweisung (N erhält den Wert 6)
+</pre></li>
+<li>Nach einmaliger Inkrementierung und Dekrementierung um 1 ist der
+Endwert von <code>N</code> 6 anstelle von 5.</li>
+<li>Worin besteht die Ursache des Fehlers und wie könnte er behoben
+werden?</li>
+</ul>
+<ul class="org-ul">
+<li>Problem des überlappenden Ablaufs von Operationen:
+<ul class="org-ul">
+<li>Der Thread, der seine arithmetische Operation beginnt, muss die
+Möglichkeit haben, auch die Zuweisung ohne Unterbrechung
+auszuführen.</li>
+<li>Die Threads müssten in der Weise <i>snychronisiert</i> werden, dass
+durch Sperren (<i>locking</i>) von <code>N</code> die beiden Teiloperationen nur
+von einem Thread ausgeführt werden können.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org66889a4" class="outline-3">
+<h3 id="org66889a4">Explizite Sperrverfahren</h3>
+<div class="outline-text-3" id="text-org66889a4">
+</div>
+<div id="outline-container-orgb98b3c0" class="outline-4">
+<h4 id="orgb98b3c0">Code-Beispiele</h4>
+<div class="outline-text-4" id="text-orgb98b3c0">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #8D8D84;">/* </span><span style="color: #8D8D84; font-style: italic;">Thread synchronization mechanisms: code examples */</span>
+
+<span style="color: #036A07;">/** C example **/</span>
+<span style="color: #0000FF;">static</span> <span style="color: #6434A3;">pthread_mutex_t</span> <span style="color: #BA36A5;">lock</span>;  <span style="color: #8D8D84;">/* </span><span style="color: #8D8D84; font-style: italic;">declare a lock */</span>              <span style="color: #036A07;">/** line 1 **/</span>
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">increment_n</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>                                            <span style="color: #036A07;">/** line 2 **/</span>
+    pthread_mutex_lock<span style="color: #7388D6;">(</span>&amp;lock<span style="color: #7388D6;">)</span>;                                  <span style="color: #036A07;">/** line 3 **/</span>
+    n = n + 1;  <span style="color: #8D8D84;">/* </span><span style="color: #8D8D84; font-style: italic;">critical section code */</span>                     <span style="color: #036A07;">/** line 4 **/</span>
+    pthread_mutex_unlock<span style="color: #7388D6;">(</span>&amp;lock<span style="color: #7388D6;">)</span>;                                <span style="color: #036A07;">/** line 5 **/</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #036A07;">/** Java example **/</span>
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Test</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">a single, shared storage location          /** line 6 **/</span>
+    <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">Object</span> <span style="color: #BA36A5;">lock</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Object</span><span style="color: #7388D6;">()</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">can't be null         /** line 7 **/</span>
+    <span style="color: #6434A3;">void</span> <span style="color: #006699;">incrementN</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">synchronized</span><span style="color: #909183;">(</span>lock<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>                                    <span style="color: #036A07;">/** line 8 **/</span>
+            n = n + 1; <span style="color: #8D8D84;">/* </span><span style="color: #8D8D84; font-style: italic;">critical section code */</span>              <span style="color: #036A07;">/** line 9 **/</span>
+        <span style="color: #909183;">}</span>                                                       <span style="color: #036A07;">/** line 10 **/</span>
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6006c08" class="outline-4">
+<h4 id="org6006c08">Verfahren für die Koordination von Threads</h4>
+<div class="outline-text-4" id="text-org6006c08">
+<ul class="org-ul">
+<li>Die im Folgenden genannten Begriffe können sowohl auf Prozesse als
+auch auf Threads angewendet werden. Hier stehen die Threads im Vordergrund.</li>
+<li>Ein <i>kritischer Abschnitt</i> im Programmcode ist eine Anweisungsfolge,
+die nur von einem Thread zur Zeit ausgeführt werden darf.
+<ul class="org-ul">
+<li><p>
+Beispiel: Wenn die Threads <code>T1</code> und <code>T2</code> beide den Code
+</p>
+<pre class="example">
+N = N + 1  ## dieselbe Speicherzelle N ist für T1 und T2 zugreifbar
+</pre>
+
+<p>
+ausführen können, handelt es sich um einen kritischen
+Abschnitt. <code>T1</code> und <code>T2</code> dürfen den Code nicht gleichzeitig ausführen.
+</p></li>
+</ul></li>
+<li>Ein Sperrmechanismus muss folgendes leisten:
+<ul class="org-ul">
+<li>Wechselseitiger Ausschluss (<i>mutual exclusion</i>) muss gewährleistet
+werden: Wenn <code>T1</code> die Sperre erlangt, wird <code>T2</code> solange vom
+Betreten des kritischen Abschnitts ausgeschlossen, wie <code>T1</code> die
+Sperre hält.</li>
+<li>Wenn kein Thread eine Sperre hält, darf jeder Thread die Sperre
+erwerben und den kritischen Abschnitt betreten.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbc0da3f" class="outline-4">
+<h4 id="orgbc0da3f">Bekannte Sperrmechanismen</h4>
+<div class="outline-text-4" id="text-orgbc0da3f">
+<ul class="org-ul">
+<li>Eine <i>Semaphore</i> begrenzt die Anzahl der Threads, die gleichzeitig
+auf ein geteiltes Betriebsmittel Zugriff haben.
+<ul class="org-ul">
+<li>Eine Semaphore mit dem Wert 3 erlaubt maximal 3 Threads den
+Zugriff auf die durch sie geschützte Ressource.</li>
+</ul></li>
+<li>Eine <i>Mutex</i> ist eine Semaphore mit dem Wert 1: Der Thread, der die
+Mutex besitzt (hält) hat als einziger Zugriff auf die geschützte Ressource.
+<ul class="org-ul">
+<li>Eine Mutex stellt wechselseitigen Ausschluss sicher.</li>
+</ul></li>
+<li>Ein <i>Monitor</i> stellt auch wechselseitigen Ausschluss sicher. Darüber
+hinaus stellt er weitere Mechanismen für die Thread-Kooperation
+bereit.
+<ul class="org-ul">
+<li>Der <i>synchronized</i>-Block in Java stellt
+<ul class="org-ul">
+<li>den <i>wait</i>-Mechanismus
+bereit, der nicht-aktives Warten auf das Freigeben einer Sperre
+unterstützt und</li>
+<li>den <i>notify</i>-Mechanismus, der wartende Threads über eine
+freigegebene Sperre unterrichtet, bereit.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org2baa2c9" class="outline-3">
+<h3 id="org2baa2c9">Beispiel für eine Verklemmung (in Java)</h3>
+<div class="outline-text-3" id="text-org2baa2c9">
+</div>
+<div id="outline-container-org7af62d6" class="outline-4">
+<h4 id="org7af62d6">Benutzung von <code>Deadlock</code> von der Kommandozeile:</h4>
+<div class="outline-text-4" id="text-org7af62d6">
+<div class="org-src-container">
+<pre class="src src-sh">bash-3.2$ javac Deadlock.java 
+bash-3.2$ java Deadlock
+thread2 holds lock2
+thread1 holds lock1
+thread2 waiting for lock1
+        <span style="color: #707183;">(</span>thread2 needs lock1 to release lock2...<span style="color: #707183;">)</span>
+thread1 waiting for lock2
+        <span style="color: #707183;">(</span>thread1 needs lock2 to release lock1...<span style="color: #707183;">)</span>
+  ^C ^Cbash-3.2$ 
+bash-3.2$ java Deadlock
+thread1 holds lock1
+thread2 holds lock2
+thread2 waiting for lock1
+thread1 waiting for lock2
+        <span style="color: #707183;">(</span>thread2 needs lock1 to release lock2...<span style="color: #707183;">)</span>
+        <span style="color: #707183;">(</span>thread1 needs lock2 to release lock1...<span style="color: #707183;">)</span>
+  ^C ^Cbash-3.2$ 
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeaa9580" class="outline-4">
+<h4 id="orgeaa9580">Quellcode von  <a href="./Working-Files/Chapter-5/Deadlock.java">Deadlock.java</a></h4>
+<div class="outline-text-4" id="text-orgeaa9580">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #036A07;">/** To compile and run from the command-line:</span>
+<span style="color: #036A07;">      javac Deadlock.java</span>
+<span style="color: #036A07;">      java Deadlock</span>
+<span style="color: #036A07;">*/</span>
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Deadlock</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">Object</span> <span style="color: #BA36A5;">lock1</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Object</span><span style="color: #7388D6;">()</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">a single lock1                   /** line 1 **/</span>
+    <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">Object</span> <span style="color: #BA36A5;">lock2</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Object</span><span style="color: #7388D6;">()</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">a single lock2</span>
+    
+    <span style="color: #036A07;">/** Each thread executes its run() method. **/</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">args</span><span style="color: #909183;">[]</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #6434A3;">Thread</span> <span style="color: #BA36A5;">thread1</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Thread</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>  
+                <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #709870;">()</span> <span style="color: #709870;">{</span>                            
+                    <span style="color: #0000FF;">synchronized</span><span style="color: #907373;">(</span>lock1<span style="color: #907373;">)</span> <span style="color: #907373;">{</span>                                   <span style="color: #036A07;">/** line 2 **/</span>
+                        print<span style="color: #6276BA;">(</span><span style="color: #008000;">"thread1 holds lock1"</span><span style="color: #6276BA;">)</span>;
+                        <span style="color: #0000FF;">try</span> <span style="color: #6276BA;">{</span> Thread.sleep<span style="color: #858580;">(</span>2<span style="color: #858580;">)</span>; <span style="color: #6276BA;">}</span> <span style="color: #0000FF;">catch</span><span style="color: #6276BA;">(</span><span style="color: #6434A3;">Exception</span> <span style="color: #BA36A5;">e</span><span style="color: #6276BA;">)</span> <span style="color: #6276BA;">{</span> <span style="color: #6276BA;">}</span>     <span style="color: #036A07;">/** line 3 **/</span>
+                        print<span style="color: #6276BA;">(</span><span style="color: #008000;">"thread1 waiting for lock2"</span><span style="color: #6276BA;">)</span>;
+                        print<span style="color: #6276BA;">(</span><span style="color: #008000;">"\t(thread1 needs lock2 to release lock1...)"</span><span style="color: #6276BA;">)</span>;
+                        <span style="color: #0000FF;">synchronized</span><span style="color: #6276BA;">(</span>lock2<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">{</span>                               <span style="color: #036A07;">/** line 4 **/</span>
+                            print<span style="color: #858580;">(</span><span style="color: #008000;">"thread1 holds lock1 and lock2"</span><span style="color: #858580;">)</span>;
+                        <span style="color: #6276BA;">}</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">lock2 released here                            /** line 5 **/</span>
+                    <span style="color: #907373;">}</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">lock1 released here                                /** line 6 **/</span>
+                <span style="color: #709870;">}</span> 
+            <span style="color: #909183;">}</span>;
+        <span style="color: #6434A3;">Thread</span> <span style="color: #BA36A5;">thread2</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Thread</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>
+                <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #709870;">()</span> <span style="color: #709870;">{</span>
+                    <span style="color: #0000FF;">synchronized</span><span style="color: #907373;">(</span>lock2<span style="color: #907373;">)</span> <span style="color: #907373;">{</span>                                   <span style="color: #036A07;">/** line 7 **/</span>
+                        print<span style="color: #6276BA;">(</span><span style="color: #008000;">"thread2 holds lock2"</span><span style="color: #6276BA;">)</span>;
+                        <span style="color: #0000FF;">try</span> <span style="color: #6276BA;">{</span> Thread.sleep<span style="color: #858580;">(</span>2<span style="color: #858580;">)</span>; <span style="color: #6276BA;">}</span> <span style="color: #0000FF;">catch</span><span style="color: #6276BA;">(</span><span style="color: #6434A3;">Exception</span> <span style="color: #BA36A5;">e</span><span style="color: #6276BA;">)</span> <span style="color: #6276BA;">{</span> <span style="color: #6276BA;">}</span>
+                        print<span style="color: #6276BA;">(</span><span style="color: #008000;">"thread2 waiting for lock1"</span><span style="color: #6276BA;">)</span>;
+                        print<span style="color: #6276BA;">(</span><span style="color: #008000;">"\t(thread2 needs lock1 to release lock2...)"</span><span style="color: #6276BA;">)</span>;
+                        <span style="color: #0000FF;">synchronized</span><span style="color: #6276BA;">(</span>lock1<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">{</span>                               <span style="color: #036A07;">/** line 8 **/</span>
+                            print<span style="color: #858580;">(</span><span style="color: #008000;">"thread2 holds lock2 and lock1"</span><span style="color: #858580;">)</span>;
+                        <span style="color: #6276BA;">}</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">lock1 released here                            /** line 9 **/</span>
+                    <span style="color: #907373;">}</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">lock2 released here                                /** line 10 **/</span>
+                <span style="color: #709870;">}</span>
+            <span style="color: #909183;">}</span>;
+        thread1.start<span style="color: #909183;">()</span>;                                                    <span style="color: #036A07;">/** line 11 **/</span>
+        thread2.start<span style="color: #909183;">()</span>;                                                    <span style="color: #036A07;">/** line 12 **/</span>
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">print</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">Object</span> <span style="color: #BA36A5;">obj</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> System.out.println<span style="color: #909183;">(</span>obj<span style="color: #909183;">)</span>; <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org33aca7d" class="outline-3">
+<h3 id="org33aca7d">Behandlung der Nebenläufigkeit von Threads</h3>
+<div class="outline-text-3" id="text-org33aca7d">
+<ul class="org-ul">
+<li>Durch Multithreading werden dem Programmierer Aufgaben aufgebürdet,
+die beim Multiprocessing durch das Betriebssystem erledigt werden.
+<ul class="org-ul">
+<li>Es hindert Prozesse auf die Speicherbereiche von anderen Prozessen
+zuzugreifen.</li>
+<li>Für Threads muss dies der Programmierer leisten.</li>
+</ul></li>
+<li>Wie kann Thread-Sicherheit, d.&nbsp;h. Sicherheit von Wettläufen,
+gewährleistet werden?
+<ul class="org-ul">
+<li><p>
+Beispiel: Eine änderbare Liste und eine <code>ADD</code>-Operation
+</p>
+<pre class="example">
+       ADD 3  +---+---+
+thread-------&gt;| 1 | 2 |        ## Liste L vor Ausführung von ADD
+              +---+---+
+              +---+---+---+
+              | 1 | 2 | 3 |    ## Ausführung von ADD verändert die Original-Liste
+              +---+---+---+
+</pre></li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgc60935c" class="outline-4">
+<h4 id="orgc60935c">Basis-Ansatz in Java</h4>
+<div class="outline-text-4" id="text-orgc60935c">
+<ul class="org-ul">
+<li>Sicherstellen des wechselseitigen Ausschlusses durch Sperren.
+<ul class="org-ul">
+<li>Sperre erlaubt nur einem einzigen Thread Zugriff auf die Liste
+während einer <code>ADD</code>-Operation.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0cd6101" class="outline-4">
+<h4 id="org0cd6101">Basis-Ansatz in Clojure</h4>
+<div class="outline-text-4" id="text-org0cd6101">
+<ul class="org-ul">
+<li>Objekte im Speicher sind grundsätzlich (bis auf wenige
+wohl-definierte Ausnahmen) unveränderbar (immutable).
+<ul class="org-ul">
+<li><p>
+Die <code>ADD</code>-Operation fertigt zuerst eine Kopie der Original-Liste
+an und ändert dann die Kopie.
+</p>
+<pre class="example">
+       ADD 3  +---+---+
+thread-------&gt;| 1 | 2 |        ## Liste L 
+              +---+---+
+                  L
+
+              +---+---+
+              | 1 | 2 |        ## Kopie von Liste L
+              +---+---+
+                  Lc
+
+              +---+---+---+
+              | 1 | 2 | 3 |    ## Kopie nach Ausführung von ADD 
+              +---+---+---+    ## (Original ist unverändert)
+                  Lc
+</pre></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org322ad14" class="outline-4">
+<h4 id="org322ad14">Basis-Ansatz in Go</h4>
+<div class="outline-text-4" id="text-org322ad14">
+<ul class="org-ul">
+<li>Es gibt nur einen Thread, der den Zugriff auf die Liste steuert.</li>
+<li>Andere Threads senden Nachrichten an diesen, z.&nbsp;B. die
+Nachricht <code>ADD</code>.
+<ul class="org-ul">
+<li><p>
+Diese Nachrichten werden an einen thread-sicheren Kanal geschickt.
+</p>
+<pre class="example">
+             +---+---+
+             | 1 | 2 |      ## ein einzelner Thread T verwaltet den Zugriff auf L
+             +---+---+
+
+        ADD 3                ADD 33
+thread1-------&gt;channel to T&lt;--------thread2  ## der Kanal verfügt über 
+                                             ## eingebaute Synchronisation
+</pre></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org7373013" class="outline-3">
+<h3 id="org7373013">Zusammenfassung</h3>
+<div class="outline-text-3" id="text-org7373013">
+<ul class="org-ul">
+<li>Multithreading kann eine effiziente Methode für nebenläufige
+Programme sei, da der Kontextwechsel zwischen Threads nur geringe
+Kosten verursacht.
+<ul class="org-ul">
+<li>Bevorzugte Methode für Nebenläufigkeit z.&nbsp;B. in Java und C#.</li>
+</ul></li>
+<li>Multithreading ruft drei Herausforderungen für Programmierer hervor:
+<ol class="org-ol">
+<li>Vermeidung von Wettläufen bei Zugriff auf gemeinsam genutzte Speicherbereiche
+<ul class="org-ul">
+<li>Sicherstellen, dass kritische Abschnitte nicht von mehreren
+Threads gleichzeitig betreten werden.</li>
+</ul></li>
+<li>Vermeidung von „Übersychronisation” &#x2013; dadurch könnte die
+Parallelarbeit behindert werden (Thema Sperrgranularität)</li>
+<li>Vermeidung von Verklemmungen: Planung von sukzessiven Sperren.</li>
+</ol></li>
+<li>Programmiersprachen bieten heutzutage Konstrukte und Typen auf
+höherer Ebene an, um die nebenläufige Programmierung zu erleichtern.
+<ul class="org-ul">
+<li>Manchmal ist eine einfache Mutex aber das Mittel der Wahl.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd721a39" class="outline-2">
+<h2 id="orgd721a39">Multithreading &#x2013; Vertiefung</h2>
+<div class="outline-text-2" id="text-orgd721a39">
+<p>
+Die Ausführungen in diesem Kapitel orientieren sich an <a class='org-ref-reference' href="#Kalin2015">Kalin2015</a>.
+</p>
+</div>
+<div id="outline-container-org68a9d85" class="outline-3">
+<h3 id="org68a9d85">Das Geizhals-Verschwender-Problem in Java</h3>
+<div class="outline-text-3" id="text-org68a9d85">
+<ul class="org-ul">
+<li>Der Geizhals (miser) inkrementiert ein Konto um 1.</li>
+<li>Der Verschwender (spendthrift) dekrementiert dasselbe Konto um 1.</li>
+<li>Die Anzahl der Inkrementierungen/Dekrementierungen wird als
+Kommandozeilenargument übergeben.</li>
+</ul>
+</div>
+<div id="outline-container-org3f2a07f" class="outline-4">
+<h4 id="org3f2a07f">Übersicht - drei Java-Implementierungen</h4>
+<div class="outline-text-4" id="text-org3f2a07f">
+<pre class="example">
+                           code
+                            |
+       +--------------------+--------------------+
+       |                    |                    |
+     acct                 acct2                acct3           ## Java Package-Namen
+Account.java         Account.java         Account.java         
+RaceCondition.java   RaceCondition.java   RaceCondition.java   ## Applikationsklasse (main)
+   acct Implementierung: keine Thread-Koordination, Wettläufe möglich
+  acct2 Implementierung: explizite Thread-Koordination (low-level) mit synchronized blocks
+  acct3 Implementierung: Verwendung von AtomicInteger (eingebaute Synchronisation)
+</pre>
+<ul class="org-ul">
+<li>Der Quellcode ist in <a href="./Working-Files/Chapter-6/miserSpendthriftJava.zip">miserSpendthriftJava.zip</a> zu finden.</li>
+<li><p>
+Verzeichnisstruktur
+</p>
+<pre class="example">
+      code/
+      code/acct/
+      code/acct/Account.java
+      code/acct/RaceCondition.java
+      code/acct2/
+      code/acct2/Account.java
+      code/acct2/RaceCondition.java
+      code/acct3/
+      code/acct3/Account.java
+      code/acct3/RaceCondition.java
+</pre></li>
+</ul>
+<ul class="org-ul">
+<li><p>
+Übersetzen und Starten aus dem <code>code</code>-Verzeichnis von der Kommandozeile:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">     javac acct/*.java
+     java acct.RaceCondition 50000000
+
+     javac acct2/*.java
+     java acct2.RaceCondition 600000
+
+     javac acct3/*.java
+     java acct3.RaceCondition 7700000
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org677284b" class="outline-4">
+<h4 id="org677284b">Demo</h4>
+<div class="outline-text-4" id="text-org677284b">
+<div class="org-src-container">
+<pre class="src src-shell">bash-3.2$ cd code
+bash-3.2$ javac acct/*.java
+bash-3.2$  java acct.RaceCondition 500000
+Final balance: -48910
+bash-3.2$  java acct.RaceCondition 500000
+Final balance: 237043
+bash-3.2$  java acct.RaceCondition 500000
+Final balance: -30470
+bash-3.2$  java acct.RaceCondition 500000
+Final balance: -26171
+bash-3.2$ javac acct2/*.java
+bash-3.2$ java acct2.RaceCondition 500000
+Final balance: 0
+bash-3.2$ java acct2.RaceCondition 500000
+Final balance: 0
+bash-3.2$ java acct2.RaceCondition 500000
+Final balance: 0
+bash-3.2$ javac acct3/*.java
+bash-3.2$ java acct3.RaceCondition 500000
+Final balance: 0
+bash-3.2$ java acct3.RaceCondition 500000
+Final balance: 0
+bash-3.2$ java acct3.RaceCondition 500000
+Final balance: 0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc2135ab" class="outline-4">
+<h4 id="orgc2135ab">Quellcode (Version ohne Synchronisation &#x2013; acct)</h4>
+<div class="outline-text-4" id="text-orgc2135ab">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">package</span> <span style="color: #D0372D;">acct</span>;
+
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Account</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">balance</span> = 0;                                      <span style="color: #036A07;">/** line 1 **/</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Miser</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span>       <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">deposit                           /** line 2 **/</span>
+    <span style="color: #006699;">Miser</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.howMany = howMany; <span style="color: #7388D6;">}</span>
+
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">howMany</span>; i++<span style="color: #909183;">)</span> 
+            Account.balance++;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">how many times to increment</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Spendthrift</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">withdraw                          /** line 3 **/</span>
+    <span style="color: #006699;">Spendthrift</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.howMany = howMany; <span style="color: #7388D6;">}</span>
+
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">howMany</span>; i++<span style="color: #909183;">)</span> 
+            Account.balance--;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">how many times to decrement</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #036A07;">/************************************************************************/</span>
+
+<span style="color: #0000FF;">package</span> <span style="color: #D0372D;">acct</span>;
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">RaceCondition</span> <span style="color: #707183;">{</span>                                            <span style="color: #036A07;">/** line 4 **/</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>args.length &lt; 1<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            System.err.println<span style="color: #709870;">(</span><span style="color: #008000;">"RunCondition &lt;times to iterate&gt;"</span><span style="color: #709870;">)</span>;
+            <span style="color: #0000FF;">return</span>;
+        <span style="color: #909183;">}</span>
+        <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span> = Integer.parseInt<span style="color: #909183;">(</span>args<span style="color: #709870;">[</span>0<span style="color: #709870;">]</span><span style="color: #909183;">)</span>;
+        <span style="color: #6434A3;">Miser</span> <span style="color: #BA36A5;">miser</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Miser</span><span style="color: #909183;">(</span>n<span style="color: #909183;">)</span>;                                     <span style="color: #036A07;">/** line 5 **/</span>
+        <span style="color: #6434A3;">Spendthrift</span> <span style="color: #BA36A5;">spendthrift</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Spendthrift</span><span style="color: #909183;">(</span>n<span style="color: #909183;">)</span>;                   <span style="color: #036A07;">/** line 6 **/</span>
+        miser.start<span style="color: #909183;">()</span>;       <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">start Miser                             /** line 7 **/</span>
+        spendthrift.start<span style="color: #909183;">()</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">start Spendthrift */                    /** line 8 **/</span>
+        <span style="color: #0000FF;">try</span> <span style="color: #909183;">{</span>                                                          
+            miser.join<span style="color: #709870;">()</span>;       <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">wait for Miser to terminate          /** line 9 **/</span>
+            spendthrift.join<span style="color: #709870;">()</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">wait for Spendthrift to terminate    /** 1ine 10 **/</span>
+        <span style="color: #909183;">}</span> <span style="color: #0000FF;">catch</span><span style="color: #909183;">(</span><span style="color: #6434A3;">Exception</span> <span style="color: #BA36A5;">e</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span> System.err.println<span style="color: #709870;">(</span>e<span style="color: #709870;">)</span>; <span style="color: #909183;">}</span>
+        System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"Final balance: "</span> + Account.balance<span style="color: #909183;">)</span>;     
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org26b67bc" class="outline-4">
+<h4 id="org26b67bc">Quellcode (Version mit <code>synchronized blocks</code> &#x2013; acct2)</h4>
+<div class="outline-text-4" id="text-org26b67bc">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #036A07;">/*** Fixing the miser/spendthrift problem with explicit thread synchronization. ***/</span>
+
+<span style="color: #0000FF;">package</span> <span style="color: #D0372D;">acct2</span>;
+
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Account</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">balance</span> = 0;                            <span style="color: #036A07;">/** line 1 **/</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">Object</span> <span style="color: #BA36A5;">lock</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Object</span><span style="color: #7388D6;">()</span>;           <span style="color: #036A07;">/** line 2 **/</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Miser</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span>       <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">deposit                 /** line 3 **/</span>
+    <span style="color: #006699;">Miser</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.howMany = howMany; <span style="color: #7388D6;">}</span>
+
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">howMany</span>; i++<span style="color: #909183;">)</span> 
+            <span style="color: #0000FF;">synchronized</span><span style="color: #909183;">(</span>Account.lock<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>                      <span style="color: #036A07;">/** line 4 **/</span>        
+                Account.balance++;                            <span style="color: #036A07;">/** line 5 **/</span>
+            <span style="color: #909183;">}</span>
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span>;    
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Spendthrift</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">withdraw                /** line 6 **/</span>
+    <span style="color: #006699;">Spendthrift</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.howMany = howMany; <span style="color: #7388D6;">}</span>
+
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">howMany</span>; i++<span style="color: #909183;">)</span> 
+            <span style="color: #0000FF;">synchronized</span><span style="color: #909183;">(</span>Account.lock<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>                      <span style="color: #036A07;">/** line 7 **/</span>
+                Account.balance--;                            <span style="color: #036A07;">/** line 8 **/</span>
+            <span style="color: #909183;">}</span>
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org33a5299" class="outline-4">
+<h4 id="org33a5299">Quellcode (Version mit <code>AtomicInteger</code> &#x2013; acct3)</h4>
+<div class="outline-text-4" id="text-org33a5299">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #036A07;">/*** Fixing the miser/spendthrift problem with a thread-safe data type **/</span>
+
+<span style="color: #0000FF;">package</span> <span style="color: #D0372D;">acct3</span>;
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #D0372D;">concurrent</span>.<span style="color: #D0372D;">atomic</span>.<span style="color: #6434A3;">AtomicInteger</span>;                     <span style="color: #036A07;">/** line 1 **/</span>
+
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Account</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">AtomicInteger</span> <span style="color: #BA36A5;">balance</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">AtomicInteger</span><span style="color: #7388D6;">()</span>;        <span style="color: #036A07;">/** line 2 **/</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Miser</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span>       <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">deposit</span>
+    <span style="color: #006699;">Miser</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.howMany = howMany; <span style="color: #7388D6;">}</span>
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">howMany</span>; i++<span style="color: #909183;">)</span>                  
+            Account.balance.incrementAndGet<span style="color: #909183;">()</span>;                        <span style="color: #036A07;">/** line 3 **/</span>
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span>;
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Spendthrift</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">withdraw</span>
+    <span style="color: #006699;">Spendthrift</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.howMany = howMany; <span style="color: #7388D6;">}</span>
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; <span style="color: #6434A3;">howMany</span>; i++<span style="color: #909183;">)</span> 
+            Account.balance.decrementAndGet<span style="color: #909183;">()</span>;                        <span style="color: #036A07;">/** line 4 **/</span>
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">howMany</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org28f19eb" class="outline-3">
+<h3 id="org28f19eb">Thread-Synchronisation für Kooperation</h3>
+<div class="outline-text-3" id="text-org28f19eb">
+<ul class="org-ul">
+<li>Bisher hauptsächlich konkurrierende Threads betrachtet.</li>
+<li>Kooperierende Threads benötigen auch Synchronisationsmechanismen</li>
+<li>Javas <code>synchronized</code>-Block realisiert einen <i>Monitor</i>, der sowohl
+wechselseitigen Ausschluss für die Koordination konkurrierender aber
+auch kooperierender Threads unterstützt.</li>
+<li><p>
+Musterbeispiel kooperierender Prozesse: eine Warteschlange mit
+beliebig vielen Erzeugern und Verbrauchern (consumer-producer-problem):
+</p>
+<pre class="example">
+                back                   front
+                 \                     /
+         insert +---+---+---+---+---+---+ remove
+producer-------&gt;| 6 | 8 | 4 | 9 | 3 | 7 |-------&gt;consumer
+   ...	        +---+---+---+---+---+---+   ...  ## any number of producers/consumers
+		  A queue of six items
+</pre></li>
+</ul>
+<ul class="org-ul">
+<li>Vereinfachte Sicht: 
+<ul class="org-ul">
+<li>Zwei Threads bearbeiten eine geteilte Datenstruktur: der eine
+(<i>Erzeuger</i>) fügt Elemente in die Datenstruktur
+(z.&nbsp;B. eine Warteschlange) ein, während der andere
+(<i>Verbraucher</i>) Elemente entnimmt.</li>
+<li>Ist die Warteschlange leer, muss der Verbraucher warten, bis der
+Erzeuger wieder Elemente hinzugefügt hat.</li>
+<li>Ein Erzeuger weckt nach dem Einfügen eines Elements einen
+eventuell wartenden Verbraucher auf.</li>
+<li>Ist die Warteschlange voll, wartet der Erzeuger bis der
+Verbraucher wieder ein Element entnommen hat.</li>
+<li>Ein Verbraucher weckt nach der Entnahme eines Elements einen
+eventuell wartenden Erzeuger auf. .</li>
+</ul></li>
+</ul>
+<ul class="org-ul">
+<li><p>
+Der Einfachheit halber betrachten wir einen Stapel (<i>stack</i>)
+anstelle einer Warteschlange:
+</p>
+<pre class="example">
+      +---+
+      | 7 |&lt;-------top 
+      +---+
+      | 3 |
+      +---+
+      | 9 |
+      +---+
+       ...
+
+</pre></li>
+</ul>
+</div>
+<div id="outline-container-orgba6ed20" class="outline-4">
+<h4 id="orgba6ed20">Thread-sichere Implementierung des Stapels</h4>
+<div class="outline-text-4" id="text-orgba6ed20">
+<p>
+Java-Quellcode ist in <a href="./Working-Files/Chapter-6/StackTS.java">StackTS.java</a> zu finden.
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #036A07;">/** javac StackTS.java</span>
+<span style="color: #036A07;">    java MainTS</span>
+
+<span style="color: #036A07;">    Kill at the command-line with Control-C.</span>
+<span style="color: #036A07;">*/</span>
+
+<span style="color: #036A07;">/** A thread-safe producer/consumer application with thread</span>
+<span style="color: #036A07;">    coordination and cooperation.</span>
+<span style="color: #036A07;">*/</span>
+
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #6434A3;">Random</span>;
+
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">StackTS</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #0000FF;">static</span> <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">capacity</span> = 8;                      
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">top</span> = -1; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">empty stack when top == -1</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span><span style="color: #7388D6;">[</span> <span style="color: #7388D6;">]</span> <span style="color: #BA36A5;">stack</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">int</span><span style="color: #7388D6;">[</span>capacity<span style="color: #7388D6;">]</span>;
+
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">When an entire method is synchronized, the implicit lock is the current object</span>
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">--'this' in Java.</span>
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">Hence, methods push and pop are effectively locked together: only one may be</span>
+    <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">accessed at a time.</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">synchronized</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">push</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">Integer</span> <span style="color: #BA36A5;">n</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>             <span style="color: #036A07;">/** line 1 **/</span>
+        <span style="color: #0000FF;">while</span> <span style="color: #909183;">(</span><span style="color: #709870;">(</span>top + 1<span style="color: #709870;">)</span> == capacity<span style="color: #909183;">)</span> <span style="color: #909183;">{</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">full?           /** line 2 **/</span>
+            <span style="color: #0000FF;">try</span> <span style="color: #709870;">{</span>
+                wait<span style="color: #907373;">()</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">if so, wait for a pop           /** line 3 **/</span>
+            <span style="color: #709870;">}</span> <span style="color: #0000FF;">catch</span><span style="color: #709870;">(</span><span style="color: #6434A3;">InterruptedException</span> <span style="color: #BA36A5;">e</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span> <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+        log<span style="color: #909183;">(</span>n + <span style="color: #008000;">" pushed at "</span> + <span style="color: #709870;">(</span>top + 1<span style="color: #709870;">)</span><span style="color: #909183;">)</span>;                <span style="color: #036A07;">/** line 4 **/</span>
+        stack<span style="color: #909183;">[</span>++top<span style="color: #909183;">]</span> = n;                                  <span style="color: #036A07;">/** line 5 **/</span>
+        notifyAll<span style="color: #909183;">()</span>;                                       <span style="color: #036A07;">/** line 6 **/</span>
+    <span style="color: #7388D6;">}</span>
+
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">synchronized</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">pop</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>                       <span style="color: #036A07;">/** line 7 **/</span>
+        <span style="color: #0000FF;">while</span> <span style="color: #909183;">(</span>top &lt; 0<span style="color: #909183;">)</span> <span style="color: #909183;">{</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">empty?                        /** line 8 **/</span>
+            <span style="color: #0000FF;">try</span> <span style="color: #709870;">{</span>
+                wait<span style="color: #907373;">()</span>;                                    <span style="color: #036A07;">/** line 9 **/</span>
+            <span style="color: #709870;">}</span> <span style="color: #0000FF;">catch</span><span style="color: #709870;">(</span><span style="color: #6434A3;">InterruptedException</span> <span style="color: #BA36A5;">e</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span> <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+        log<span style="color: #909183;">(</span>stack<span style="color: #709870;">[</span>top<span style="color: #709870;">]</span> + <span style="color: #008000;">" popped at "</span> + top<span style="color: #909183;">)</span>;             <span style="color: #036A07;">/** line 10 **/</span>
+        top--;                                             <span style="color: #036A07;">/** line 11 **/</span>
+        notifyAll<span style="color: #909183;">()</span>;                                       <span style="color: #036A07;">/** line 12 **/</span>
+    <span style="color: #7388D6;">}</span>
+
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">log</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">msg</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        System.out.println<span style="color: #909183;">(</span>msg<span style="color: #909183;">)</span>;
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Pusher</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">Random</span> <span style="color: #BA36A5;">rand</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Random</span><span style="color: #7388D6;">()</span>;
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">StackTS</span> <span style="color: #BA36A5;">stack</span>;
+
+    <span style="color: #006699;">Pusher</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">StackTS</span> <span style="color: #BA36A5;">stack</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.stack = stack; <span style="color: #7388D6;">}</span>           <span style="color: #036A07;">/** line 12 **/</span>
+    
+    <span style="color: #D0372D;">@Override</span> 
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">while</span> <span style="color: #909183;">(</span><span style="color: #D0372D;">true</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>                                      <span style="color: #036A07;">/** line 13 **/</span>
+            stack.push<span style="color: #709870;">(</span>rand.nextInt<span style="color: #907373;">(</span>100<span style="color: #907373;">)</span><span style="color: #709870;">)</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">0 through 99</span>
+            <span style="color: #0000FF;">try</span> <span style="color: #709870;">{</span>
+                Thread.sleep<span style="color: #907373;">(</span>rand.nextInt<span style="color: #6276BA;">(</span>200<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">sleep 0 to 199 milliseconds</span>
+            <span style="color: #709870;">}</span>  <span style="color: #0000FF;">catch</span><span style="color: #709870;">(</span><span style="color: #6434A3;">InterruptedException</span> <span style="color: #BA36A5;">e</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span> <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Popper</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">Thread</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">Random</span> <span style="color: #BA36A5;">rand</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Random</span><span style="color: #7388D6;">()</span>;
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">StackTS</span> <span style="color: #BA36A5;">stack</span>;
+    
+    <span style="color: #006699;">Popper</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">StackTS</span> <span style="color: #BA36A5;">stack</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">this</span>.stack = stack; <span style="color: #7388D6;">}</span>            <span style="color: #036A07;">/** line 14 **/</span>
+    
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">while</span> <span style="color: #909183;">(</span><span style="color: #D0372D;">true</span><span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            stack.pop<span style="color: #709870;">()</span>;                                     <span style="color: #036A07;">/** line 15 **/</span>
+            <span style="color: #0000FF;">try</span> <span style="color: #709870;">{</span>
+                Thread.sleep<span style="color: #907373;">(</span>rand.nextInt<span style="color: #6276BA;">(</span>100<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>;
+            <span style="color: #709870;">}</span> <span style="color: #0000FF;">catch</span><span style="color: #709870;">(</span><span style="color: #6434A3;">InterruptedException</span> <span style="color: #BA36A5;">e</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span> <span style="color: #709870;">}</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">MainTS</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #6434A3;">StackTS</span> <span style="color: #BA36A5;">stack</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">StackTS</span><span style="color: #909183;">()</span>;                       <span style="color: #036A07;">/** line 16 **/</span>
+        <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Popper</span><span style="color: #909183;">(</span>stack<span style="color: #909183;">)</span>.start<span style="color: #909183;">()</span>;                           <span style="color: #036A07;">/** line 17 **/</span>
+        <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Pusher</span><span style="color: #909183;">(</span>stack<span style="color: #909183;">)</span>.start<span style="color: #909183;">()</span>;                           <span style="color: #036A07;">/** line 18 **/</span>
+        <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Pusher</span><span style="color: #909183;">(</span>stack<span style="color: #909183;">)</span>.start<span style="color: #909183;">()</span>;                           <span style="color: #036A07;">/** line 19 **/</span>
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9a1d8cd" class="outline-4">
+<h4 id="org9a1d8cd">Benutzung von der Kommandozeile</h4>
+<div class="outline-text-4" id="text-org9a1d8cd">
+<div class="org-src-container">
+<pre class="src src-shell">bash-3.2$ java MainTS
+82 pushed at 0
+82 popped at 0
+68 pushed at 0
+15 pushed at 1
+15 popped at 1
+31 pushed at 1
+31 popped at 1
+68 popped at 0
+46 pushed at 0
+31 pushed at 1
+31 popped at 1
+61 pushed at 1
+75 pushed at 2
+75 popped at 2
+82 pushed at 2
+82 popped at 2
+80 pushed at 2
+72 pushed at 3
+72 popped at 3
+24 pushed at 3
+12 pushed at 4
+12 popped at 4
+24 popped at 3
+94 pushed at 3
+1 pushed at 4
+1 popped at 4
+...
+  ^C ^Cbash-3.2$ 
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgec8dc6c" class="outline-3">
+<h3 id="orgec8dc6c">Zusammenfassung: Thread-Koordination, -Kooperation</h3>
+<div class="outline-text-3" id="text-orgec8dc6c">
+<ul class="org-ul">
+<li>Konstrukte für die Thread-Koordination reichen von expliziten Mutexs
+im Quellcode bis zu thread-sicheren Typen wie Java's <code>AtomicInteger</code>.
+<ul class="org-ul">
+<li>Darüber hinaus gibt es thread-sichere Datenstrukturen: Listen und Hashmaps</li>
+</ul></li>
+<li>Thread-Synchronisation in Form der Koordination dient der Vermeidung
+von Wettläufen und Verklemmungen.</li>
+<li>Thread-Synchronisation in Form der Kooperation dient darüber hinaus
+der Effizienzsteigerung.
+<ul class="org-ul">
+<li>Ein Thread, der in einem nicht-aktiven Zustand wartet, ist besser
+als ein Thread der Ressourcen benötigt, um eine Sperre zu erlangen.</li>
+<li>Das <code>StackTF</code>-Beispiel in Java demonstriert dies.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org7c7b128" class="outline-2">
+<h2 id="org7c7b128">Thread-Sicherheit &#x2013; Höherwertige Concurrent Types in Java</h2>
+<div class="outline-text-2" id="text-org7c7b128">
+<p>
+Die Ausführungen in diesem Kapitel orientieren sich an <a class='org-ref-reference' href="#Kalin2015">Kalin2015</a>.
+</p>
+</div>
+<div id="outline-container-org509a977" class="outline-3">
+<h3 id="org509a977">Überblick</h3>
+<div class="outline-text-3" id="text-org509a977">
+</div>
+<div id="outline-container-org67f6895" class="outline-4">
+<h4 id="org67f6895"><code>java.util.concurrent.atomic</code></h4>
+<div class="outline-text-4" id="text-org67f6895">
+<ul class="org-ul">
+<li>Das Toolkit unterstützt thread-sichere Programmierung für Zähler
+(o.&nbsp;ä.) ohne explizite Sperren. Zu den Typen gehören:
+<ul class="org-ul">
+<li><code>AtomicInteger</code></li>
+<li><code>AtomicIntegerArray</code></li>
+<li><code>AtomicLong</code></li>
+<li><code>AtomicLongArray</code></li>
+<li><p>
+Beispiel für mögliche Implementierung eines <i>atomic counter</i>:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">final</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Counter</span> <span style="color: #707183;">{</span> 
+   <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">value</span> = 0;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">initialized for emphasis</span>
+   <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">synchronized</span> <span style="color: #6434A3;">long</span> <span style="color: #006699;">getValue</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span> <span style="color: #0000FF;">return</span> value; <span style="color: #7388D6;">}</span>
+   <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">synchronized</span> <span style="color: #6434A3;">long</span> <span style="color: #006699;">increment</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+      <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>value == <span style="color: #D0372D;">Long</span>.MAX_VALUE<span style="color: #909183;">)</span>
+        <span style="color: #0000FF;">throw</span> <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">IllegalStateException</span><span style="color: #909183;">(</span><span style="color: #008000;">"Counter overflow"</span><span style="color: #909183;">)</span>;
+      <span style="color: #0000FF;">return</span> ++value;
+   <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org161caee" class="outline-4">
+<h4 id="org161caee"><code>java.util.concurrent.ConcurrentHashMap</code></h4>
+<div class="outline-text-4" id="text-org161caee">
+<ul class="org-ul">
+<li>Funktioniert wie eine gewöhnliche <code>Hashtable</code> nur sehr effizient.
+<ul class="org-ul">
+<li>Die Map wird in Teile aufgespalten, die separat gesperrt werden können.</li>
+<li>Zwei Schreiboperationen können parallel ausgeführt werden, solange
+unterschiedliche Partitionen betroffen sind.</li>
+<li>Leseoperationen werden ohne Blockierung ausgeführt.</li>
+<li>Die Map kann nicht als ganze gesperrt werden.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2c5cf7a" class="outline-4">
+<h4 id="org2c5cf7a"><code>java.util.concurrent.CopyOnWriteArrayList</code></h4>
+<div class="outline-text-4" id="text-org2c5cf7a">
+<ul class="org-ul">
+<li>Funktioniert wie eine persistente Datenstruktur in Clojure,
+d.&nbsp;h. Änderungsoperationen erzeugen eine Kopie des Arrays.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd264abc" class="outline-4">
+<h4 id="orgd264abc">Interface <code>java.util.concurrent.BlockingQueue</code></h4>
+<div class="outline-text-4" id="text-orgd264abc">
+<ul class="org-ul">
+<li>Leseoperation wartet, falls die Warteschlange leer ist, bevor sie
+das erste Element entnimmt.</li>
+<li>Beispielimplementierungen: <code>ArrayBlockingQueue</code> und <code>PriorityBlockingQueue</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcfd4e92" class="outline-4">
+<h4 id="orgcfd4e92">Executors und Thread-pools</h4>
+<div class="outline-text-4" id="text-orgcfd4e92">
+<ul class="org-ul">
+<li>Das <code>Executor</code>-Interface stellt eine Methode, <code>execute</code>, zur
+Verfügung, mit deren Hilfe die Thread-Erzeugung optimiert werden
+kann, indem ein Thread aus einem Pool existierender Threads
+gestartet wird.</li>
+<li>Thread-pools
+<ul class="org-ul">
+<li>Die meisten <code>Executor</code>-Implementierungen, benutzen Thread-pools, die
+aus so genannten <i>worker threads</i> bestehen.
+<ul class="org-ul">
+<li>Ein Worker kann für die Ausführung verschiedener Aufgaben
+wiederverwendet werden.</li>
+<li>Das kontinuierliche Erzeugen und Zerstören von Threads wird
+eingespart.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org264b6ed" class="outline-5">
+<h5 id="org264b6ed">Fork/Join Framework</h5>
+<div class="outline-text-5" id="text-org264b6ed">
+<ul class="org-ul">
+<li>Geeignet zur Bearbeitung rekursiver Strukturen, z.&nbsp;B. Bäume.</li>
+<li>Aufgaben werden an Workers aus einem Thread-Pool verteilt.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5f66b8c" class="outline-3">
+<h3 id="org5f66b8c">Beispiel für die Nuzung des Fork-Join-Frameworks</h3>
+<div class="outline-text-3" id="text-org5f66b8c">
+</div>
+<div id="outline-container-org724f62a" class="outline-4">
+<h4 id="org724f62a">Das Programm <code>FileSearcher</code></h4>
+<div class="outline-text-4" id="text-org724f62a">
+<ul class="org-ul">
+<li>Beispiel für die Zerlegung eines Problems in Teilprobleme, die auf
+Threads verteilt werden, die auf verschiedenen Prozessoren laufen.
+<ul class="org-ul">
+<li>Das Thread-management ist hinter einer API verborgen.</li>
+<li>Teilaufgaben werden durch <code>fork</code>-Aufrufe aktiviert.</li>
+<li>Teilergebnisse werden durch <code>join</code>-Aufrufe zusammengeführt.</li>
+</ul></li>
+<li>Das Beispielprogramm <code>FileSearcher</code> durchsucht einen Verzeichnisbaum
+nach Dateien mit einer bestimmten Dateiendung.
+<ul class="org-ul">
+<li>Das Programm gibt eine Liste der gefundenen Dateinamen zurück.</li>
+</ul></li>
+<li>Basisfall und rekursiver Fall in <code>FileSearcher</code>:
+<dl class="org-dl">
+<dt>Basisfall</dt><dd>Ein Thread findet eine Datei (kein Verzeichnis) mit
+der gesuchten Endung und fügt ihren Namen der
+Ergebnisliste hinzu..</dd>
+<dt>rekursiver Fall</dt><dd>Ein Thread findet ein Unterverzeichnis, das
+parallel durchsucht werden könnte.</dd>
+</dl></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7913719" class="outline-4">
+<h4 id="org7913719">Quellcode von  <a href="./Working-Files/Chapter-7/FileSearcher.java">FileSearcher.java</a></h4>
+<div class="outline-text-4" id="text-org7913719">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #036A07;">/** javac FileSearcher.java</span>
+<span style="color: #036A07;">    java MainFS</span>
+
+<span style="color: #036A07;">    The program searches from the user's home directory for</span>
+<span style="color: #036A07;">    files extending with '.txt' as the extension. The list of</span>
+<span style="color: #036A07;">    such files is printed to the screen.</span>
+<span style="color: #036A07;">*/</span>
+
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">io</span>.<span style="color: #6434A3;">File</span>;
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #6434A3;">ArrayList</span>;
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #6434A3;">List</span>;
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #6434A3;">Collection</span>;
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #D0372D;">concurrent</span>.<span style="color: #6434A3;">RecursiveTask</span>;                               <span style="color: #036A07;">/** line 0 **/</span>
+ 
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">FileSearcher</span> <span style="color: #0000FF;">extends</span> <span style="color: #6434A3;">RecursiveTask</span><span style="color: #707183;">&lt;</span><span style="color: #6434A3;">List</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #7388D6;">&gt;</span><span style="color: #707183;">&gt;</span> <span style="color: #707183;">{</span>          <span style="color: #036A07;">/** line 1 **/</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">path</span>;
+    <span style="color: #0000FF;">private</span> <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">extension</span>;
+ 
+    <span style="color: #0000FF;">public</span> <span style="color: #006699;">FileSearcher</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">path</span>, <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">extension</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>                 <span style="color: #036A07;">/** line 2 **/</span>
+        <span style="color: #0000FF;">this</span>.path = path;
+        <span style="color: #0000FF;">this</span>.extension = extension;
+    <span style="color: #7388D6;">}</span>
+    
+    <span style="color: #D0372D;">@Override</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">List</span><span style="color: #7388D6;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #7388D6;">&gt;</span> <span style="color: #006699;">compute</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>                                      <span style="color: #036A07;">/** line 3 **/</span>
+        <span style="color: #6434A3;">List</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #909183;">&gt;</span> <span style="color: #BA36A5;">listOfFileNames</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ArrayList</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #909183;">&gt;()</span>;
+        <span style="color: #6434A3;">File</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">files</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">File</span><span style="color: #909183;">(</span>path<span style="color: #909183;">)</span>.listFiles<span style="color: #909183;">()</span>;                      <span style="color: #036A07;">/** line 4 **/</span>
+        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>files == <span style="color: #D0372D;">null</span><span style="color: #909183;">)</span> <span style="color: #0000FF;">return</span> listOfFileNames; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">base case          /** line 5 **/</span>
+
+        <span style="color: #6434A3;">List</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">FileSearcher</span><span style="color: #909183;">&gt;</span> <span style="color: #BA36A5;">tasks</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ArrayList</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">FileSearcher</span><span style="color: #909183;">&gt;()</span>;        <span style="color: #036A07;">/** line 6 **/</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">File</span> <span style="color: #BA36A5;">file</span> : files<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>                                        <span style="color: #036A07;">/** line 7 **/</span>
+            <span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">absolutePath</span> = file.getAbsolutePath<span style="color: #709870;">()</span>;                <span style="color: #036A07;">/** line 8 **/</span>
+            <span style="color: #0000FF;">if</span> <span style="color: #709870;">(</span>file.isDirectory<span style="color: #907373;">()</span><span style="color: #709870;">)</span> <span style="color: #709870;">{</span>                                    <span style="color: #036A07;">/** line 9 **/</span>
+                <span style="color: #6434A3;">FileSearcher</span> <span style="color: #BA36A5;">task</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">FileSearcher</span><span style="color: #907373;">(</span>absolutePath, extension<span style="color: #907373;">)</span>; <span style="color: #036A07;">/** line 10 **/</span>
+                task.fork<span style="color: #907373;">()</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">recursive case                          /** 1ine 11 **/</span>
+                tasks.add<span style="color: #907373;">(</span>task<span style="color: #907373;">)</span>;                                        <span style="color: #036A07;">/** line 12 **/</span>
+            <span style="color: #709870;">}</span>
+            <span style="color: #0000FF;">else</span> <span style="color: #0000FF;">if</span> <span style="color: #709870;">(</span>file.getName<span style="color: #907373;">()</span>.endsWith<span style="color: #907373;">(</span>extension<span style="color: #907373;">)</span><span style="color: #709870;">)</span>                <span style="color: #036A07;">/** line 13 **/</span>
+                listOfFileNames.add<span style="color: #709870;">(</span>absolutePath<span style="color: #709870;">)</span>;
+        <span style="color: #909183;">}</span>
+        assembleResults<span style="color: #909183;">(</span>listOfFileNames, tasks<span style="color: #909183;">)</span>;                        <span style="color: #036A07;">/** line 14 **/</span>
+        <span style="color: #0000FF;">return</span> listOfFileNames;                                         <span style="color: #036A07;">/** line 15 **/</span>
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">assembleResults</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">List</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #909183;">&gt;</span> <span style="color: #BA36A5;">list</span>, <span style="color: #6434A3;">List</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">FileSearcher</span><span style="color: #909183;">&gt;</span> <span style="color: #BA36A5;">tasks</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">FileSearcher</span> <span style="color: #BA36A5;">task</span> : tasks<span style="color: #909183;">)</span> <span style="color: #909183;">{</span>
+            <span style="color: #6434A3;">Collection</span><span style="color: #709870;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #709870;">&gt;</span> <span style="color: #BA36A5;">results</span> = task.join<span style="color: #709870;">()</span>;                  <span style="color: #036A07;">/** line 16 **/</span>
+            list.addAll<span style="color: #709870;">(</span>results<span style="color: #709870;">)</span>;                                      <span style="color: #036A07;">/** line 17 **/</span>
+        <span style="color: #909183;">}</span>
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">MainFS</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #6434A3;">List</span><span style="color: #909183;">&lt;</span><span style="color: #6434A3;">String</span><span style="color: #909183;">&gt;</span> <span style="color: #BA36A5;">list</span> = 
+           <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">FileSearcher</span><span style="color: #909183;">(</span>System.getProperty<span style="color: #709870;">(</span><span style="color: #008000;">"user.home"</span><span style="color: #709870;">)</span>, <span style="color: #008000;">".txt"</span><span style="color: #909183;">)</span>.compute<span style="color: #909183;">()</span>;  <span style="color: #036A07;">/** line 18 **/</span>
+        System.out.println<span style="color: #909183;">(</span><span style="color: #008000;">"Files with extension .txt:"</span><span style="color: #909183;">)</span>;
+        <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">string</span> : list<span style="color: #909183;">)</span> System.out.println<span style="color: #909183;">(</span>string<span style="color: #909183;">)</span>;          <span style="color: #036A07;">/** line 19 **/</span>
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc614505" class="outline-4">
+<h4 id="orgc614505">Demo</h4>
+<div class="outline-text-4" id="text-orgc614505">
+<p>
+!!! live demo !!!
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6323cff" class="outline-2">
+<h2 id="org6323cff"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Kalin2015">[Kalin2015]</a> <a name="Kalin2015"></a>Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </li>
+</ul></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Johannes Brauer</p>
+<p class="date">Created: 2019-07-19 Fri 16:45</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

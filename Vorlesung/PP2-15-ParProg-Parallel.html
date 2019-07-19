@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+<!-- 2019-07-19 Fri 17:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parallelprogrammierung &#x2013; Parallele Algorithmen</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Johannes Brauer" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Parallelprogrammierung &#x2013; Parallele Algorithmen
+<br />
+<span class="subtitle">Programmierparadigmen</span>
+</h1>
+<div id="outline-container-org121fdf9" class="outline-2">
+<h2 id="org121fdf9">Ziele</h2>
+<div class="outline-text-2" id="text-org121fdf9">
+<ul class="org-ul">
+<li>Einstieg in das Thema parallele Algorithmen gewinnen</li>
+<li>Beispiele paralleler Programme kennenlernen</li>
+<li>Beurteilen möglicher Geschwindigkeitsgewinne durch Parallelisierung
+von Berechnungen</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0870304" class="outline-2">
+<h2 id="org0870304">Grundlagen</h2>
+<div class="outline-text-2" id="text-org0870304">
+</div>
+<div id="outline-container-orged4bf44" class="outline-3">
+<h3 id="orged4bf44">Parallelität jenseits von Nebenläufigkeit</h3>
+<div class="outline-text-3" id="text-orged4bf44">
+<ul class="org-ul">
+<li>Bisher stand die Beherrschung der Probleme, die bei nebenläufigen
+Prozessen auftreten im Vordergrund.</li>
+<li>Jetzt wird der Fokus auf die Parallelprogrammierung gelegt.</li>
+<li>Gründe (teilweise schon genannt):
+<ul class="org-ul">
+<li>Jeder Arbeitsplatzrechner ist heute ein Parallelrechner.
+<ul class="org-ul">
+<li>Wie können die sich daraus ergebenden Möglichkeiten genutzt werden?</li>
+</ul></li>
+<li>Arbeitsplatzrechner verfügen meist auch über Grafikprozessoren
+(graphics-processing units, GPUs), die mithilfe spezieller
+Bibliothe&#x00ad;ken auch für Nicht-Grafik-Anwendungen genutzt werden
+können.</li>
+</ul></li>
+<li>Parallele Algorithmen können sowohl gemeinsamen, geteilten Speicher
+oder auch verteilten Speicher nutzen.
+<ul class="org-ul">
+<li>Die entscheidende Frage lautet, wie müssen Programme geschrie&#x00ad;ben
+werden, damit sie parallele Algorithmen nutzen können.</li>
+<li>Unterstützung durch Werkzeuge (Bibliotheken, Compiler etc.) ist
+dabei hilfreich oder sogar notwendig.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcb4eb96" class="outline-3">
+<h3 id="orgcb4eb96">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
+<div class="outline-text-3" id="text-orgcb4eb96">
+<p>
+(vgl. u.&nbsp;a. <a class='org-ref-reference' href="#Wali2016">Wali2016</a>)
+</p>
+<ul class="org-ul">
+<li>bekannte Standardfunktion höherer Ordung, wie sie in jeder
+funktionalen Programmiersprache zur Verfügung steht</li>
+<li><code>map</code> wendet eine Funktion auf jedes Element einer Sequenz
+(Collection) an.</li>
+<li>idealer Kandidat für Parallelisierung</li>
+<li>Den Ablauf eines Algorithmus zu parallelisieren verursacht immer
+auch Verwaltungsaufwand (overhead).</li>
+<li>Deswegen lohnt die Parallelisierung von <code>map</code> in der Regel nur, wenn
+die auf die Elemente der Sequenz anzuwendende Funktion eine
+zeitintensive Berechnung ist.</li>
+</ul>
+</div>
+<div id="outline-container-org95e3139" class="outline-4">
+<h4 id="org95e3139">Clojure <code>pmap</code></h4>
+<div class="outline-text-4" id="text-org95e3139">
+<ul class="org-ul">
+<li><p>
+Mit <code>(pmap f coll)</code> wird <code>pmap</code> genauso aufgerufen wie <code>map</code>:
+</p>
+<pre class="example">
+user&gt; (pmap inc [1 2 3 4 5])
+;; =&gt; (2 3 4 5 6)
+</pre></li>
+<li><p>
+„Simulation“ einer zeitaufwändigen Berechnung:
+</p>
+<pre class="example">
+(defn square-slowly [x]
+  (Thread/sleep 2000)
+  (* x x))
+</pre></li>
+<li><p>
+Anwendung von <code>square-slowly</code> mit <code>map</code>
+</p>
+<pre class="example">
+user&gt; (time (doall (map square-slowly (repeat 3 10))))
+"Elapsed time: 6017.028608 msecs"
+;; =&gt; (100 100 100)
+</pre></li>
+<li>Der Aufruf von <code>doall</code> erzwingt, dass die standardmäßig von <code>map</code>
+erzeugte <i>lazy sequence</i> auch materialisiert wird.</li>
+<li><p>
+Mit der Verwendung von <code>pmap</code> wird die Laufzeit gedrittelt:
+</p>
+<pre class="example">
+user&gt; (time (doall (pmap square-slowly (repeat 3 10))))
+"Elapsed time: 2004.683838 msecs"
+;; =&gt; (100 100 100)
+</pre></li>
+</ul>
+</div>
+<div id="outline-container-orga3f323b" class="outline-5">
+<h5 id="orga3f323b">Implementierung von pmap</h5>
+<div class="outline-text-5" id="text-orga3f323b">
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">pmap</span>
+  <span style="color: #036A07;">"Like map, except f is applied in parallel. Semi-lazy in that the</span>
+<span style="color: #036A07;">  parallel computation stays ahead of the consumption, but doesn't</span>
+<span style="color: #036A07;">  realize the entire result unless required. Only useful for</span>
+<span style="color: #036A07;">  computationally intensive functions where the time of f dominates</span>
+<span style="color: #036A07;">  the coordination overhead."</span>
+  <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:added</span> <span style="color: #008000;">"1.0"</span>
+   <span style="color: #D0372D;">:static</span> <span style="color: #D0372D;">true</span><span style="color: #7388D6;">}</span>
+  <span style="color: #7388D6;">(</span><span style="color: #909183;">[</span>f coll<span style="color: #909183;">]</span>
+   <span style="color: #909183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #709870;">[</span>n <span style="color: #907373;">(</span>+ 2 <span style="color: #6276BA;">(</span><span style="color: #0000FF;">..</span> Runtime getRuntime availableProcessors<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>
+         rets <span style="color: #907373;">(</span><span style="color: #006FE0;">map</span> #<span style="color: #6276BA;">(</span><span style="color: #006FE0;">future</span> <span style="color: #858580;">(</span>f <span style="color: #BA36A5;">%</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span> coll<span style="color: #907373;">)</span>
+         step <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #006699;">step</span> <span style="color: #6276BA;">[</span><span style="color: #858580;">[</span>x &amp; xs <span style="color: #D0372D;">:as</span> vs<span style="color: #858580;">]</span> fs<span style="color: #6276BA;">]</span>
+                <span style="color: #6276BA;">(</span><span style="color: #006FE0;">lazy-seq</span>
+                 <span style="color: #858580;">(</span><span style="color: #0000FF;">if-let</span> <span style="color: #80A880;">[</span>s <span style="color: #887070;">(</span><span style="color: #006FE0;">seq</span> fs<span style="color: #887070;">)</span><span style="color: #80A880;">]</span>
+                   <span style="color: #80A880;">(</span><span style="color: #006FE0;">cons</span> <span style="color: #887070;">(</span><span style="color: #006FE0;">deref</span> x<span style="color: #887070;">)</span> <span style="color: #887070;">(</span>step xs <span style="color: #707183;">(</span><span style="color: #006FE0;">rest</span> s<span style="color: #707183;">)</span><span style="color: #887070;">)</span><span style="color: #80A880;">)</span>
+                   <span style="color: #80A880;">(</span><span style="color: #006FE0;">map</span> deref vs<span style="color: #80A880;">)</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
+     <span style="color: #709870;">(</span>step rets <span style="color: #907373;">(</span><span style="color: #006FE0;">drop</span> n rets<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #909183;">[</span>f coll &amp; colls<span style="color: #909183;">]</span>
+   <span style="color: #909183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #709870;">[</span>step <span style="color: #907373;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #006699;">step</span> <span style="color: #6276BA;">[</span>cs<span style="color: #6276BA;">]</span>
+                <span style="color: #6276BA;">(</span><span style="color: #006FE0;">lazy-seq</span>
+                 <span style="color: #858580;">(</span><span style="color: #0000FF;">let</span> <span style="color: #80A880;">[</span>ss <span style="color: #887070;">(</span><span style="color: #006FE0;">map</span> seq cs<span style="color: #887070;">)</span><span style="color: #80A880;">]</span>
+                   <span style="color: #80A880;">(</span><span style="color: #0000FF;">when</span> <span style="color: #887070;">(</span><span style="color: #006FE0;">every?</span> identity ss<span style="color: #887070;">)</span>
+                     <span style="color: #887070;">(</span><span style="color: #006FE0;">cons</span> <span style="color: #707183;">(</span><span style="color: #006FE0;">map</span> first ss<span style="color: #707183;">)</span> <span style="color: #707183;">(</span>step <span style="color: #7388D6;">(</span><span style="color: #006FE0;">map</span> rest ss<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span><span style="color: #887070;">)</span><span style="color: #80A880;">)</span><span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
+     <span style="color: #709870;">(</span><span style="color: #006FE0;">pmap</span> #<span style="color: #907373;">(</span><span style="color: #006FE0;">apply</span> f <span style="color: #BA36A5;">%</span><span style="color: #907373;">)</span> <span style="color: #907373;">(</span>step <span style="color: #6276BA;">(</span><span style="color: #006FE0;">cons</span> coll colls<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li><p>
+<code>pmap</code> verwendet einen Thread-pool der Größe
+</p>
+<pre class="example">
+(.. Runtime getRuntime availableProcessors).
+</pre></li>
+<li>Threads werden „auf Vorrat“ erzeugt, bleiben am Leben und können
+wiederverwendet werden.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org546d5fd" class="outline-4">
+<h4 id="org546d5fd">Explizite Parallelisierung</h4>
+<div class="outline-text-4" id="text-org546d5fd">
+<ul class="org-ul">
+<li>Neben der Funktion <code>pmap</code>, die die Parallelisierung implizit
+vornimmt kennt Clojure noch zwei weitere Funktionen:
+<dl class="org-dl">
+<dt>pvalues</dt><dd>wertet die Ausdrücke, die als Argumente übergeben
+werden, parallel aus</dd>
+<dt>pcall</dt><dd><p>
+erwartet Thunks (parameterlose Funktionen) als Argumente
+und führt sie parallel aus. 
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">user&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">time</span> <span style="color: #7388D6;">(</span><span style="color: #0000FF;">doall</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">pvalues</span> 
+                      <span style="color: #709870;">(</span>square-slowly 10<span style="color: #709870;">)</span> 
+                      <span style="color: #709870;">(</span>square-slowly 10<span style="color: #709870;">)</span>
+                      <span style="color: #709870;">(</span>square-slowly 10<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #008000;">"Elapsed time: 2006.196172 msecs"</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (100 100 100)</span>
+user&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">time</span> <span style="color: #7388D6;">(</span><span style="color: #0000FF;">doall</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">pcalls</span> #<span style="color: #709870;">(</span>square-slowly 10<span style="color: #709870;">)</span>
+                           #<span style="color: #709870;">(</span>square-slowly 10<span style="color: #709870;">)</span>
+                           #<span style="color: #709870;">(</span>square-slowly 10<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #008000;">"Elapsed time: 2002.614955 msecs"</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; (100 100 100)</span>
+</pre>
+</div></dd>
+</dl></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf44cc02" class="outline-2">
+<h2 id="orgf44cc02">Parallelität und Performance</h2>
+<div class="outline-text-2" id="text-orgf44cc02">
+<ul class="org-ul">
+<li>Die bisherigen Beispiele paralleler Berechnungen waren sehr einfach
+bzw. naheliegend (mapping).</li>
+<li>Soll z.&nbsp;B. die Summe einer Liste von Zahlen parallelisiert
+werden, braucht man eine weiter gehende Strategie.</li>
+<li>Will man eine Berechnung parallelisieren, müssen zwei Fragen
+beantwortet werden:
+<ol class="org-ol">
+<li>Wie sieht eine geeignete Parallelisierungsstragtegie aus
+bzw. gibt es überhaupt eine?</li>
+<li>Welche Geschwindigkeitsgewinne können erzielt werden?</li>
+</ol></li>
+</ul>
+</div>
+<div id="outline-container-org69c8adc" class="outline-3">
+<h3 id="org69c8adc">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
+<div class="outline-text-3" id="text-org69c8adc">
+</div>
+<div id="outline-container-org045da98" class="outline-4">
+<h4 id="org045da98">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
+<div class="outline-text-4" id="text-org045da98">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #036A07;">/** A Java program to illustrate the potential speedup of parallelism, in this</span>
+<span style="color: #036A07;">    case for sorting: the program uses the new (as of Java 8) Arrays.parallelSort</span>
+<span style="color: #036A07;">    method, and also the Arrays.parallelSetAll method for parallel initialization</span>
+<span style="color: #036A07;">    of the roughly 4M array of integers.</span>
+
+<span style="color: #036A07;">    As noted, Java 8 or greater is requied.</span>
+<span style="color: #036A07;">*/</span>
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #6434A3;">Random</span>;
+<span style="color: #0000FF;">import</span> <span style="color: #D0372D;">java</span>.<span style="color: #D0372D;">util</span>.<span style="color: #6434A3;">Arrays</span>;
+
+<span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">ParallelSort</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span><span style="color: #7388D6;">[</span> <span style="color: #7388D6;">]</span> <span style="color: #BA36A5;">array2Sort</span>;
+    
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ParallelSort</span><span style="color: #909183;">()</span>.doIt<span style="color: #909183;">()</span>;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">doIt</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">arraySize</span> = 1024 * 1024 * 4;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">about 4M: 4,194,304     /** line 1 **/</span>
+
+        <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** serial sort</span>
+        init<span style="color: #909183;">(</span>arraySize<span style="color: #909183;">)</span>;
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">serial</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">false</span><span style="color: #909183;">)</span>;                        <span style="color: #036A07;">/** line 2 **/</span>
+
+        <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** parallel sort</span>
+        init<span style="color: #909183;">(</span>arraySize<span style="color: #909183;">)</span>;
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">parallel</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">true</span><span style="color: #909183;">)</span>;                       <span style="color: #036A07;">/** line 3 **/</span>
+
+        <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** report</span>
+        log<span style="color: #909183;">(</span><span style="color: #008000;">"Serial sort of array of size:   "</span> + arraySize<span style="color: #909183;">)</span>;
+        log<span style="color: #909183;">(</span><span style="color: #008000;">"Elapsed time: "</span> + serial<span style="color: #909183;">)</span>;
+        log<span style="color: #909183;">(</span><span style="color: #008000;">""</span><span style="color: #909183;">)</span>;
+
+        log<span style="color: #909183;">(</span><span style="color: #008000;">"Parallel sort of array of size: "</span> + arraySize<span style="color: #909183;">)</span>; 
+        log<span style="color: #909183;">(</span><span style="color: #008000;">"Elapsed time: "</span> + parallel<span style="color: #909183;">)</span>;
+
+        log<span style="color: #909183;">(</span><span style="color: #008000;">""</span><span style="color: #909183;">)</span>;
+        <span style="color: #6434A3;">double</span> <span style="color: #BA36A5;">ratio</span> = <span style="color: #909183;">(</span><span style="color: #6434A3;">double</span><span style="color: #909183;">)</span> serial / <span style="color: #909183;">(</span><span style="color: #6434A3;">double</span><span style="color: #909183;">)</span> parallel;
+        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>parallel &lt; <span style="color: #6434A3;">serial</span><span style="color: #909183;">)</span> 
+            log<span style="color: #909183;">(</span><span style="color: #008000;">"Speedup:  "</span> + ratio<span style="color: #909183;">)</span>;
+        <span style="color: #0000FF;">else</span>
+            log<span style="color: #909183;">(</span><span style="color: #008000;">"Slowdown: "</span> + ratio<span style="color: #909183;">)</span>;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">init</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">size</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        array2Sort = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">int</span><span style="color: #909183;">[</span>size<span style="color: #909183;">]</span>;
+        <span style="color: #036A07;">/** parallel initialization of array elements **/</span>
+        Arrays.parallelSetAll<span style="color: #909183;">(</span>array2Sort,                                  <span style="color: #036A07;">/** line 4 **/</span> 
+                              i-&gt;<span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Random</span><span style="color: #709870;">()</span>.nextInt<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;                  <span style="color: #036A07;">/** line 5 **/</span>
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">long</span> <span style="color: #006699;">sortArray</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">array</span>, <span style="color: #6434A3;">boolean</span> <span style="color: #BA36A5;">parallel</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">start</span> = System.currentTimeMillis<span style="color: #909183;">()</span>;
+        <span style="color: #036A07;">/** parallel version of merge-sort **/</span>
+        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>parallel<span style="color: #909183;">)</span> Arrays.parallelSort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                          <span style="color: #036A07;">/** line 6 **/</span>
+        <span style="color: #036A07;">/** variant of quicksort ('dual pivot') **/</span>
+        <span style="color: #0000FF;">else</span> Arrays.sort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                                           <span style="color: #036A07;">/** line 7 **/</span>
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">stop</span> = System.currentTimeMillis<span style="color: #909183;">()</span>;
+        <span style="color: #0000FF;">return</span> stop - start;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">log</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span> <span style="color: #BA36A5;">msg</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        System.out.println<span style="color: #909183;">(</span>msg<span style="color: #909183;">)</span>;
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8021fc6" class="outline-4">
+<h4 id="org8021fc6">Benutzung von der Kommandozeile</h4>
+<div class="outline-text-4" id="text-org8021fc6">
+<div class="org-src-container">
+<pre class="src src-sh">bash-3.2$ java ParallelSort
+Serial sort of array of size:   4194304
+Elapsed time: 824
+
+Parallel sort of array of size: 4194304
+Elapsed time: 358
+
+Speedup:  2.3016759776536313
+bash-3.2$ java ParallelSort
+Serial sort of array of size:   4194304
+Elapsed time: 710
+
+Parallel sort of array of size: 4194304
+Elapsed time: 258
+
+Speedup:  2.751937984496124
+bash-3.2$ java ParallelSort
+Serial sort of array of size:   4194304
+Elapsed time: 807
+
+Parallel sort of array of size: 4194304
+Elapsed time: 295
+
+Speedup:  2.7355932203389832
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org9e1ac88" class="outline-3">
+<h3 id="org9e1ac88">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
+<div class="outline-text-3" id="text-org9e1ac88">
+<ul class="org-ul">
+<li>Das Gesetz, benannt nach einem früheren IBM-Ingenieur, der später
+eine eigene Großrechnerfirma gründete, beschreibt die theoretische
+Grenze für die mögliche Geschwindigkeitsgewinnen durch parallele Berechnungen.
+<ul class="org-ul">
+<li>Das Gesetz kann die Intuition über Geschwindigkeitssteigerung schärfen.</li>
+</ul></li>
+<li>Beispielproblem: 
+<ul class="org-ul">
+<li>Berechne das arithmetische Mittel von 4M Gleitkommazahlen auf
+einer Einprozessormaschine <i>M1</i>; das Problem heiße <i>P</i>.</li>
+<li>Berechne die Geschwindigkeitssteigerung, die für <i>P</i> mit einer
+Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
+<li>Annahme: <i>M1</i> und <i>M4</i> unterscheiden sich nur in der Anzahl der Prozessoren.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org50a638f" class="outline-4">
+<h4 id="org50a638f">Schrittweise Anwendung des Gesetzes:</h4>
+<div class="outline-text-4" id="text-org50a638f">
+<ol class="org-ol">
+<li>Berechne die Antwortzeit für <i>P</i> auf <i>M1</i>: \(RT1\)</li>
+<li>Berechne die Antwortzeit für <i>P</i> auf <i>M4</i>: \(RT4\)</li>
+<li>Berechne das Verhältnis: \(\frac{RT1}{RT4}\)
+<ul class="org-ul">
+<li>Wenn \(\frac{RT1}{RT4} = 1\), keine Geschwindigkeitssteigerung</li>
+<li>Wenn \(\frac{RT1}{RT4} < 1\), Verlangsamung</li>
+<li>If \(\frac{RT1}{RT4} > 1\), Geschwindigkeitssteigerung.</li>
+</ul></li>
+<li>Normalisiere der Einfachheit halber \(RT1\) zu 1 Zeiteinheit.</li>
+<li>Spalte \(RT4\) in zwei Teile auf: 
+<ul class="org-ul">
+<li>\(optimiert\): hier parallelisiert</li>
+<li>\(unoptimiert\): hier seriell</li>
+<li>Der Teil \(unoptimiert\) von \(RT4\) umfasst Aktivitäten, die seriell
+ablaufen müssen.
+<ul class="org-ul">
+<li>Die Datenmenge muss partitioniert und an Arbeiter (Threads oder
+Prozesse) verteilt werden; die Ergebnisse der Arbeiter müssen
+zusammen gefasst werden &#x2026;</li>
+</ul></li>
+<li>Der Teil \(optimiert\) von \(RT4\) profitiert von der Parallelisierung.</li>
+</ul></li>
+</ol>
+<ul class="org-ul">
+<li><ul class="org-ul">
+<li>\[Speedup = \frac{RT1}{RT4} = \frac{1}{unenhanced + enhanced}\]</li>
+<li>Die Größe \(optimiert\) hängt von zwei Faktoren ab:
+<ol class="org-ol">
+<li>Welchen Anteil der Zeit arbeitet <i>M4</i> im Parallelmodus bei der
+Lösung von  <i>P</i>?</li>
+<li>Wieviel schneller ist <i>M4</i> im Parallelmodus als <i>M1</i> im Seriellmodus?</li>
+</ol></li>
+<li>Annahmen:
+<ol class="org-ol">
+<li><i>M4</i> ist im Parallelmodus viermal schneller als <i>M1</i>.</li>
+<li><i>M4</i> arbeitet 80% der Zeit im Parallelmodus bei der Lösung
+von <i>P</i>.</li>
+</ol></li>
+<li>\[Zeitgewinn = \frac{RT1}{RT4} = \frac{1}{unoptimiert + optimiert} = \frac{1}{0.2 + \frac{0,8}{4,0}} = 2,5\]</li>
+<li>Unter den gegebenen Bedingungen ist <i>M4</i> um den Faktor \(2,5\)
+schneller als <i>M1</i>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5b0bd4d" class="outline-4">
+<h4 id="org5b0bd4d">Fazit</h4>
+<div class="outline-text-4" id="text-org5b0bd4d">
+<ul class="org-ul">
+<li>Amdahls Gesetz verdeutlicht, dass naive Annahmen über mögliche
+Geschwindigkeitssteigerungen bei der Parallelisierung von
+Berechnungen verfehlt sind.</li>
+<li><p>
+Zahlenbeispiele:
+(aus <a class='org-ref-reference' href="#Kalin2015">Kalin2015</a>)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Machine</th>
+<th scope="col" class="org-right">Fraction in local speedup</th>
+<th scope="col" class="org-right">Local speedup</th>
+<th scope="col" class="org-right">Global speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">M4</td>
+<td class="org-right">0.8</td>
+<td class="org-right">4.0</td>
+<td class="org-right">2.5</td>
+</tr>
+
+<tr>
+<td class="org-left">M8</td>
+<td class="org-right">0.7</td>
+<td class="org-right">8.0</td>
+<td class="org-right">2.6</td>
+</tr>
+
+<tr>
+<td class="org-left">M12</td>
+<td class="org-right">0.6</td>
+<td class="org-right">12.0</td>
+<td class="org-right"><b>2.2</b></td>
+</tr>
+
+<tr>
+<td class="org-left">M16</td>
+<td class="org-right">0.5</td>
+<td class="org-right">16.0</td>
+<td class="org-right">1.9</td>
+</tr>
+
+<tr>
+<td class="org-left">M20</td>
+<td class="org-right">0.4</td>
+<td class="org-right">20.0</td>
+<td class="org-right">1.6</td>
+</tr>
+
+<tr>
+<td class="org-left">M24</td>
+<td class="org-right">0.3</td>
+<td class="org-right">24.0</td>
+<td class="org-right">1.4</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4f380ac" class="outline-2">
+<h2 id="org4f380ac">Empfehlungen</h2>
+<div class="outline-text-2" id="text-org4f380ac">
+</div>
+<div id="outline-container-org75b456b" class="outline-3">
+<h3 id="org75b456b">Parallelprogrammierung mit Scala</h3>
+<div class="outline-text-3" id="text-org75b456b">
+<ul class="org-ul">
+<li>Coursera MOOC: <a href="https://www.coursera.org/learn/parprog1">Parallel programming (Scala)</a> (kostenlos)</li>
+<li>Themen (u.&nbsp;{a.}):
+<ul class="org-ul">
+<li>Das <code>parallel</code>-Konstrukt von Scala</li>
+<li>Das <code>task</code>-Konstrukt von Scala</li>
+<li>Mess-Methodik für die Laufzeit parallelisierter Berechnungen</li>
+<li>ScalaMeter</li>
+<li>Datenparallelität</li>
+<li>Parallelisierung von fold/reduce</li>
+<li>Datenstrukturen für parallele Berechnungen</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgadf46c4" class="outline-3">
+<h3 id="orgadf46c4">Clojure</h3>
+<div class="outline-text-3" id="text-orgadf46c4">
+</div>
+<div id="outline-container-org7e3b3b6" class="outline-4">
+<h4 id="org7e3b3b6">Parallelität mit Reducers</h4>
+<div class="outline-text-4" id="text-org7e3b3b6">
+<p>
+Zum Beispiel in 
+</p>
+<ul class="org-ul">
+<li><a href="https://clojure.org/news/2012/05/08/reducers">Reducers - A Library and Model for Collection Processing</a></li>
+<li><a href="https://www.braveclojure.com/quests/reducers/know-your-reducers/">PARALLEL PROGRAMMING in CLOJURE with REDUCERS</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org147c77c" class="outline-4">
+<h4 id="org147c77c">Komunikation mit core.async</h4>
+<div class="outline-text-4" id="text-org147c77c">
+<p>
+Zum Beispiel in 
+</p>
+<ul class="org-ul">
+<li><a href="https://clojure.org/news/2013/06/28/clojure-clore-async-channels">Clojure core.async Channels</a></li>
+<li><a href="https://www.braveclojure.com/core-async/">Mastering Concurrent Processes with core.async</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2de7359" class="outline-2">
+<h2 id="org2de7359"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Wali2016">[Wali2016]</a> <a name="Wali2016"></a>Wali, Mastering Clojure : understand the philosophy of the Clojure  language and dive into its inner workings to unlock  its advanced features, methodologies, and  constructs, Packt Publishing (2016).</li>
+<li><a id="Kalin2015">[Kalin2015]</a> <a name="Kalin2015"></a>Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </li>
+</ul></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Johannes Brauer</p>
+<p class="date">Created: 2019-07-19 Fri 17:02</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

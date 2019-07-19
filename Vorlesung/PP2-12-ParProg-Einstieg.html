@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+<!-- 2019-07-19 Fri 16:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parallelprogrammierung &#x2013; Einstieg</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Johannes Brauer" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
+<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Parallelprogrammierung &#x2013; Einstieg
+<br />
+<span class="subtitle">Programmierparadigmen</span>
+</h1>
+
+<div id="outline-container-orgb922311" class="outline-2">
+<h2 id="orgb922311">Ziele</h2>
+<div class="outline-text-2" id="text-orgb922311">
+<ul class="org-ul">
+<li>Kennenlernen der Grundbegriffe der Parallelprogrammierung</li>
+<li>Unterscheiden lernen zwischen Nebenläufigkeit und Parallelität</li>
+<li>Überblick gewinnen über Formen der Unterstützung von
+Parallelprogrammierung durch Hardware und Software</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbaa4046" class="outline-2">
+<h2 id="orgbaa4046">Warum Parallelprogrammierung?</h2>
+<div class="outline-text-2" id="text-orgbaa4046">
+</div>
+<div id="outline-container-orgd05f0bd" class="outline-3">
+<h3 id="orgd05f0bd">Technische Gründe</h3>
+<div class="outline-text-3" id="text-orgd05f0bd">
+<ul class="org-ul">
+<li>Erhöhung der Rechenleistung durch Erhöhung der Taktfrequenzen stösst
+technisch an Grenzen.</li>
+<li>Mooresche Gesetz gilt aber noch.</li>
+<li>Folge: Prozessoren mit mehreren Kernen.</li>
+<li>Leistungssteigerung durch Parallelarbeit</li>
+<li>Geschwindigkeitssteigerung bei \(n\) Kernen theoretisch n-fach
+<ul class="org-ul">
+<li>praktisch nicht erreichbar</li>
+<li>Anwendungsentwicklung auf Parallelprogrammierung nicht vorbereitet</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7d53016" class="outline-3">
+<h3 id="org7d53016">Computer im Wandel der Jahrzehnte</h3>
+<div class="outline-text-3" id="text-org7d53016">
+
+<div class="figure">
+<p><img src="./Abbildungen/computervon60Jahrenundjetzt.jpg" alt="computervon60Jahrenundjetzt.jpg" width="400px" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Ein iPhone enthält ca. 1 Milliarde Transistoren.</li>
+<li>Um diese Rechenleistung mit der Technologie der 1950er Jahre zu
+bauen, bräuchte es:
+<ul class="org-ul">
+<li>1 Milliarde Elektronenröhren</li>
+<li>170 vehicle assembly buildings, um sie unterzubringen</li>
+<li>1 Terawatt Leistung, um sie zu betreiben</li>
+<li>das entspräche 500 2-Gigawatt-Kernkraftwerken für ca. 50 Milliarden Euro</li>
+<li>das entspräche dem Weltbruttosozialprodukt von 60 Jahren</li>
+</ul></li>
+<li>Smartphones realisieren eine Steigerung der Rechenleistung um den
+Faktor \(10^{22}\) verglichen mit der Technologie vor 60 Jahren.</li>
+</ul>
+
+<p>
+Welche Fortschritte gibt es in dieser Zeit in der Software?
+</p>
+</div>
+<div id="outline-container-org6f13d78" class="outline-4">
+<h4 id="org6f13d78">Geschichte der Rechensysteme</h4>
+<div class="outline-text-4" id="text-org6f13d78">
+<p>
+(vgl. <a class='org-ref-reference' href="#Bengel2015">Bengel2015</a>)
+</p>
+<dl class="org-dl">
+<dt>1970 &#x2013; Stapelverarbeitung</dt><dd><ul class="org-ul">
+<li>Einlesen von Aufträgen (jobs) und Bearbeitung durch die Maschine</li>
+<li>Job-Scheduler bestimmt die Abarbeitungsreihenfolge</li>
+<li><i>non-blocking IO</i> kommt zum Einsatz (Nebenläufigkeit)</li>
+</ul></dd>
+<dt>1975 &#x2013; Timesharing-Systeme</dt><dd><ul class="org-ul">
+<li>interaktives Arbeiten mittels Kommandozeilen-Befehlen</li>
+<li>Mehrbenutzerbetrieb</li>
+<li>Zuteilung von Zeitscheiben</li>
+</ul></dd>
+<dt>1980 &#x2013; Personal Computer und Workstation</dt><dd><ul class="org-ul">
+<li>hohe Rechenleistung am Arbeitsplatz</li>
+<li>Rückkehr zum Einbenutzerbetrieb</li>
+<li>Kommandozeile + graphische Benutzungsoberflächen</li>
+<li>Insellösungen &#x2013; kein Zugriff auf gemeinsame Betriebsmittel</li>
+<li>Notlösung: peer-to-peer-Netze</li>
+</ul></dd>
+</dl>
+<dl class="org-dl">
+<dt>1985 &#x2013; Client-Server-Systeme</dt><dd><ul class="org-ul">
+<li>Zentralisierung bestimmter Dienste auf dedizierten Rechnern (server)</li>
+<li>neue Betriebssystemkonzepte für Netzwerknutzung erforderlich</li>
+</ul></dd>
+<dt>1990 &#x2013; Cluster-Systeme</dt><dd><ul class="org-ul">
+<li>auch <i>Verteilte Systeme</i></li>
+<li>mehrere Rechner bzw. Multiprozessorsysteme teilen sich die Dienstserbringung</li>
+<li>zur Erhöhung von Leistung und Ausfallsicherheit</li>
+<li>Load Balancing Cluster / Serverfarmen</li>
+<li>High Performance Computing (HPC) Cluster
+<ul class="org-ul">
+<li>Geschwindigkeitssteigerung durch Parallelisierung von Aufgaben</li>
+<li>bei Ausfall eines Systems übernimmt ein anderes Cluster-Mitglied
+dessen Aufgaben</li>
+</ul></li>
+</ul></dd>
+<dt>1995 &#x2013; Peer-to-Peer-Systeme</dt><dd><ul class="org-ul">
+<li>jede Maschine kann Client und Server sein</li>
+<li>höhere Ausfallsicherheit</li>
+</ul></dd>
+</dl>
+<dl class="org-dl">
+<dt>2005 &#x2013; Cloud-Systeme oder Cloud-Computing</dt><dd><ul class="org-ul">
+<li>Rezentralisierung der Rechenleistung durch Virtualisierung</li>
+<li>Zugriff auf Ressourcen über Internet oder Intranet</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orga8e06c2" class="outline-4">
+<h4 id="orga8e06c2">Geschichte der Technologie von Prozessoren und Speicherchips</h4>
+<div class="outline-text-4" id="text-orga8e06c2">
+<ul class="org-ul">
+<li>Mooresches Gesetz von 1965: Verdoppelung der Anzahl der Transistoren
+auf einem Chip ca. alle 18 Monate &#x2013; gilt noch heute</li>
+<li>Entwicklung der Mikroprozessoren am Beispiel von Intel
+<ul class="org-ul">
+<li>1971: Intel 4004, Transistoren: 2300, Taktrate: 108 kHz</li>
+<li>1999: Pentium III, Transistoren: 9.500.000, Taktrate: bis 1 GHz</li>
+<li>2000 bis 2008: Pentium 4, Transistoren: 42.000.000, Taktrate: bis
+3,8 GHz</li>
+</ul></li>
+<li>Speicherkapazität pro Chip
+<ul class="org-ul">
+<li>1970: 1 Kilobit</li>
+<li>heute: 1 Gigabit</li>
+</ul></li>
+<li>Preisverfall bei MIPS und Kosten pro Bit</li>
+</ul>
+<ul class="org-ul">
+<li>Enwicklung der Mikroprozessortechnik</li>
+</ul>
+
+<div class="figure">
+<p><img src="./Abbildungen/CPU-Moore.png" alt="CPU-Moore.png" width="400px" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org494527e" class="outline-2">
+<h2 id="org494527e">Worüber reden wir?</h2>
+<div class="outline-text-2" id="text-org494527e">
+</div>
+<div id="outline-container-org650222b" class="outline-3">
+<h3 id="org650222b">Nebenläufigkeit versus Parallelität</h3>
+<div class="outline-text-3" id="text-org650222b">
+<ul class="org-ul">
+<li><b>Nebenläufigkeit</b> (concurrency) = Handhabung mehrerer unabhängiger
+Aufgaben während einer Zeitspanne, z.&nbsp;B. in Anwendungen mit
+Benutzungsoberfläche oder Netzwerkanwendungen.
+<ul class="org-ul">
+<li>Die Aufgaben konkurrieren dabei um Ressourcen.</li>
+<li>Die Resultate nebenläufiger Aufgaben beeinflussen häufig das
+Verhalten anderer nebenläufiger Aufgaben.</li>
+<li>Folge: potentieller Nicht-Determinismus</li>
+</ul></li>
+<li><b>Parallelität</b> = Aufteilung einer Aufgabe in mehrere Teilaufgaben,
+die zur gleichen Zeit ablaufen.
+<ul class="org-ul">
+<li>Gewöhnlich arbeiten die Teilaufgaben auf ein gemeinsames Ziel hin,
+beinflussen sich daher in der Regel nicht.</li>
+<li>Folge: Determinismus bleibt erhalten.</li>
+<li>Parallele Algorithmen (Parallelisierung von Algorithmen) stellen
+ein Teilgebiet der Algorithmik dar und ist hier nur Randthema.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbb3d1ec" class="outline-3">
+<h3 id="orgbb3d1ec">Parallelität in der Nebenläufigkeit</h3>
+<div class="outline-text-3" id="text-orgbb3d1ec">
+<ul class="org-ul">
+<li>Die Bearbeitung nebenläufiger, also in der gleichen Zeitspanne
+ablaufender Aufgaben kann auf zwei Arten erfolgen:
+<ul class="org-ul">
+<li>echt parallel oder</li>
+<li>quasi-parallel (überlappend)</li>
+</ul></li>
+<li><b>Beispiel</b></li>
+</ul>
+<pre class="example">
+      client requests  +------------+   ## Task1: verarbeite Request1
+    ------------------&gt;| web server |   ## Task2: verarbeite Request2
+                       +------------+      ...
+</pre>
+<ul class="org-ul">
+<li><p>
+<b>1. Szenario</b>: Einprozessormaschine mit Zeitscheiben-Scheduling
+</p>
+<ul class="org-ul">
+<li>Jeder Task steht ein festes Zeitquantum zur Verfügung bevor
+ihr der Prozessor entzogen wird:</li>
+</ul>
+<pre class="example">
+            Zeitspanne (ZS): Startzeitpunkt bis Endzeitpunt
+Startzeitpunkt                                    Endzeitpunt
+         |                                         |
+         +-----------------------------------------+   ## Jeder Stern * steht für einen
+          \             /\         /\             /       Takt der Systemuhr
+           ****Task1****  **Task2**  ****Task1****     ## Task1 (16 Takte) und Task2 
+                                                         (4 Takte) teilen Prozessor
+</pre></li>
+</ul>
+<ul class="org-ul">
+<li>Task1 und Task2 werden während der Zeitspanne ZS nebenläufig (überlappend) aber
+nicht parallel verarbeitet.</li>
+<li>Nebenläufigkeit ohne Parallelität</li>
+</ul>
+<ul class="org-ul">
+<li><p>
+<b>2. Szenario:</b> eine Zwei-Prozessormaschine
+</p>
+<pre class="example">
+                 Zeitspanne 
+Startzeitpunkt                Endzeitpunt
+         |                       |
+         +-----------------------+
+          \                     /
+           ********Task1********      ### Ausführung auf Prozessor1
+		   \         /
+		    **Task2**         ### Ausführung auf Prozessor2
+</pre>
+<ul class="org-ul">
+<li>Task1 und Task2 werden während der Zeitspanne nebenläufig <b>und</b>
+parallel (für 4 Zeitschritte) verarbeitet.</li>
+<li>Der Durchsatz der Maschine wird verbessert:
+<ul class="org-ul">
+<li>1. Szenario erfordert 20 Takte ingesamt.</li>
+<li>2. Szenario erfordert 16 Takte.</li>
+</ul></li>
+<li>Der Zeitaufwand für die einzelne Task bleibt gleich.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org11ac9f1" class="outline-3">
+<h3 id="org11ac9f1">Probleme</h3>
+<div class="outline-text-3" id="text-org11ac9f1">
+<ul class="org-ul">
+<li>Das Schreiben nebenläufiger Programme gehört zu den schwierigsten
+Aufgaben, denen Programmierer begegnen.
+<ul class="org-ul">
+<li>Ihr Verhalten ist schwer zu erklären bzw. vorherzusagen.</li>
+<li>Sind häufig nicht-deterministisch.</li>
+<li>Können Verklemmungen (dealocks) verursachen.</li>
+<li>Können Wettlaufsituationen (race conditions) verursachen.</li>
+<li>Teilaufgaben können „verhungern“.</li>
+</ul></li>
+<li>Fehlverhalten schwer zu entdecken (zu reproduzieren).</li>
+<li>Mutation ist die Ursache vieler Probleme.</li>
+
+<li>Alltagsbeispiele:
+<ul class="org-ul">
+<li>Toilette in der WG</li>
+<li>Schalterhalle einer Bank</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeb3d858" class="outline-2">
+<h2 id="orgeb3d858">Mehrprozessorsysteme</h2>
+<div class="outline-text-2" id="text-orgeb3d858">
+<p>
+(Die Ausführungen in diesem lehnen sich an ein Vorlesungsskript von
+Uwe Neuhaus an)
+</p>
+</div>
+<div id="outline-container-org4cee93e" class="outline-3">
+<h3 id="org4cee93e">Prinzip</h3>
+<div class="outline-text-3" id="text-org4cee93e">
+<ul class="org-ul">
+<li>Mehrprozessorsysteme besitzen mehrere, eng gekoppelte Prozessoren</li>
+<li>Eng gekoppelt &#x2013; Prozessoren nutzen gemeinsam Hauptspeicher und
+Systemtakt. Die Kommunikation zwischen den Prozessoren findet
+üblicherweise über den gemeinsam genutzten Speicher statt.</li>
+<li>Vorteile von Mehrprozessorsystemen: Erhöhter Durchsatz
+<ul class="org-ul">
+<li>Verbessertes Preis/Leistungsverhältnis</li>
+<li>Höhere Zuverlässigkeit
+<ul class="org-ul">
+<li>stufenweiser Leistungsverlust(gracefuldegradation)</li>
+<li>Ausfallsicherheit(fail-softsystems)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org337ba70" class="outline-3">
+<h3 id="org337ba70">Varianten</h3>
+<div class="outline-text-3" id="text-org337ba70">
+<dl class="org-dl">
+<dt>Symmetric multiprocessing (SMP)</dt><dd><ul class="org-ul">
+<li>Auf jedem Prozessor läuft das identische Betriebssystem</li>
+<li>Mehrere Prozesse können ohne Leistungsverlust ablaufen</li>
+<li>Die meisten modernen Betriebssysteme unterstützen SMP</li>
+</ul></dd>
+<dt>Asymmetric multiprocessing</dt><dd><ul class="org-ul">
+<li>Jeder Prozessor hat eine spezielle Aufgabe. Ein Master-Prozessor
+verteilt Aufgaben an die anderen (möglicherweise spezialisierten)
+ Slave- Prozessoren.</li>
+<li>Beispiel: Grafikprozessoren</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgd3d69ba" class="outline-3">
+<h3 id="orgd3d69ba">Architektur bei symmetrischen Mehrprozessorsystemen</h3>
+<div class="outline-text-3" id="text-orgd3d69ba">
+
+<div class="figure">
+<p><img src="./Abbildungen/mehrprozessorarchitektur.png" alt="mehrprozessorarchitektur.png" width="600px" />
+</p>
+</div>
+
+<p>
+<b>Achtung</b>: Zugriff auf den Hauptspeicher über gemeinsamen Bus kann zum
+Flaschenhals werden.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org38fab88" class="outline-3">
+<h3 id="org38fab88">Rechnerarchitekturen für parallele und verteilte Systeme</h3>
+<div class="outline-text-3" id="text-org38fab88">
+<p>
+(vgl. <a class='org-ref-reference' href="#Bengel2015">Bengel2015</a>, <a class='org-ref-reference' href="#Kalin2015">Kalin2015</a>)
+</p>
+</div>
+<div id="outline-container-orgc642613" class="outline-4">
+<h4 id="orgc642613">Taxonomie von parallelen Rechnerarchitekturen nach Flynn</h4>
+<div class="outline-text-4" id="text-orgc642613">
+<p>
+(vgl. <a class='org-ref-reference' href="#Flynn1972">Flynn1972</a>)
+</p>
+<ul class="org-ul">
+<li>Anmerkungen:
+<ul class="org-ul">
+<li>Die Taxonomie sagt nichts darüber aus, ob die Architektur ein
+einzelnes oder ein verteiltes System beschreibt.</li>
+<li>TDie Taxonomie ist schon recht alt, wird aber als Referenz nach
+wie vor benutzt.</li>
+</ul></li>
+<li>Abkürzungen:<br />
+D = Daten<br />
+I = Befehle (Instruktionen)<br />
+P = Prozessor<br />
+S steht für <i>single</i>, M für <i>multiple</i>.
+<ul class="org-ul">
+<li>Parallelität im Sinne dieser Taxonomie erfordert immer mehrere
+Prozessoren (P).</li>
+</ul></li>
+</ul>
+<dl class="org-dl">
+<dt>SISD: single instruction, single data</dt><dd><ul class="org-ul">
+<li>keine Form von Parallelität</li>
+</ul></dd>
+</dl>
+<pre class="example">
+   +----------+    +---+    +----------+
+   | D source |---&gt;| P |&lt;---| I source |                 
+   +----------+    +---+    +----------+
+</pre>
+<dl class="org-dl">
+<dt>SIMD: single instruction, multiple data</dt><dd><ul class="org-ul">
+<li>Unterstützung in verschiedenen Programmiersprachen</li>
+<li>heutzutage besonders relevant</li>
+</ul></dd>
+</dl>
+<pre class="example">
+   +----------+    +---+
+   | D source |---&gt;| P |&lt;---+
+   +----------+    +---+    |
+   +----------+    +---+    |  +----------+
+   | D source |---&gt;| P |&lt;---+--| I source |               
+   +----------+    +---+    |  +----------+
+   +----------+    +---+    |
+   | D source |---&gt;| P |&lt;---+
+   +----------+    +---+
+</pre>
+<dl class="org-dl">
+<dt>MISD: multiple instruction, single data</dt><dd><ul class="org-ul">
+<li>kaum praktische Bedeutung</li>
+</ul></dd>
+</dl>
+<pre class="example">
+                      +---+    +----------+
+                 +---&gt;| P |&lt;---| I source |
+                 |    +---+    +----------+
+   +----------+  |    +---+    +----------+
+   | D source |--+---&gt;| P |&lt;---| I source |               
+   +----------+  |    +---+    +----------+ 
+                 |    +---+    +----------+
+                 +---&gt;| P |&lt;---| I source | 
+                      +---+    +----------+
+</pre>
+<dl class="org-dl">
+<dt>MIMD: multiple instruction, multiple data</dt><dd><ul class="org-ul">
+<li>am ehesten in verteilten Systemen anzutreffen</li>
+</ul></dd>
+</dl>
+<pre class="example">
+   +----------+    +---+    +----------+
+   | D source |---&gt;| P |&lt;---| I source |
+   +----------+    +---+    +----------+
+   +----------+    +---+    +----------+
+   | D source |---&gt;| P |&lt;---| I source |                  
+   +----------+    +---+    +----------+
+   +----------+    +---+    +----------+
+   | D source |---&gt;| P |&lt;---| I source |
+   +----------+    +---+    +----------+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb4b294f" class="outline-4">
+<h4 id="orgb4b294f">Ausprägungen</h4>
+<div class="outline-text-4" id="text-orgb4b294f">
+</div>
+<div id="outline-container-org26bc9f5" class="outline-5">
+<h5 id="org26bc9f5">Eng gekoppelte Multiprozessoren und Multicore-Prozessoren</h5>
+<div class="outline-text-5" id="text-org26bc9f5">
+<ul class="org-ul">
+<li>mehrere Prozesse können <i>echt</i> parallel ablaufen (auf
+Einprozessorsystemen hingegen nur Quasi-Parallelität)</li>
+<li>gemeinsamer Hauptspeicher</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgffec2d7" class="outline-5">
+<h5 id="orgffec2d7">Vektorrechner</h5>
+<div class="outline-text-5" id="text-orgffec2d7">
+<ul class="org-ul">
+<li>Ausführung einer Berechnung gleichzeitig auf vielen Daten</li>
+<li>Anordnung der Daten als Vektor bzw. Matrix</li>
+<li>Beispiel für SIMD-Architektur</li>
+<li>High-Performance-Computing</li>
+<li>bekannt geworden ursprünglich durch Cray-Supercomputer (seit 1978)</li>
+<li>genutzt z. B. für Simulationen (Meteorologie)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdbe0d68" class="outline-5">
+<h5 id="orgdbe0d68">Allzweckberechnungen auf Grafikprozessoren (GPGPU)</h5>
+<div class="outline-text-5" id="text-orgdbe0d68">
+<ul class="org-ul">
+<li>ursprünglich bestehend aus beschränkt programmierbaren
+Spezialprozessoren für Fließkommaoperationen</li>
+<li>inzwischen frei programmierbare Prozessoren (tausende von Kernen),
+dadurch</li>
+<li>nutzbar nicht nur für Grafikanwendungen</li>
+<li>Verwendbarkeit in höheren Programmiersprachen durch spezielle
+Bibliotheken wie z. B. CUDA von Nvidia</li>
+<li>Beispiel für SIMD-Architektur</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcd3bade" class="outline-5">
+<h5 id="orgcd3bade">Lose gekoppelte Multiprozessoren</h5>
+<div class="outline-text-5" id="text-orgcd3bade">
+<ul class="org-ul">
+<li>kein gemeinsamer Speicher</li>
+<li>Synchronisation und Kommunikation durch Nachrichtenaustausch</li>
+<li>Ziele: Erhöhung der Leistung, Erhöhung der Verfügbarkeit</li>
+<li>MIMD möglich</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgab0dda7" class="outline-2">
+<h2 id="orgab0dda7">Prozesse und Threads</h2>
+<div class="outline-text-2" id="text-orgab0dda7">
+<p>
+(Die Ausführungen in diesem lehnen sich an ein Vorlesungsskript von
+Uwe Neuhaus an)
+</p>
+<dl class="org-dl">
+<dt>Prozess</dt><dd><ul class="org-ul">
+<li>ein in Ausführung befindliches Programm</li>
+<li>benötigt Ressourcen: Prozessor, Speicher (Programmcode, Daten,
+Stack), Dateien, E/A-Geräte</li>
+<li>bislang betrachtet: sequentiell arbeitende Prozesse (nur ein Ausführungsstrang)</li>
+</ul></dd>
+<dt>Thread</dt><dd><ul class="org-ul">
+<li>ein Ausführungsstrang innerhalb eines Prozesses</li>
+<li>benötigt: Prozessor, eigenen Stack</li>
+<li>nutzt: Programmcode, Daten, Dateien, E/A-Geräte des Prozesses</li>
+<li>Mehrere Threads innerhalb eines Prozesses möglich</li>
+</ul></dd>
+</dl>
+
+<div class="figure">
+<p><img src="./Abbildungen/prozessthreads.png" alt="prozessthreads.png" width="400px" />
+</p>
+</div>
+</div>
+<div id="outline-container-org00153f4" class="outline-3">
+<h3 id="org00153f4">Beispiele für Multithreading</h3>
+<div class="outline-text-3" id="text-org00153f4">
+<ul class="org-ul">
+<li>Anwendungen mit graphischer Benutzeroberfläche, z.&nbsp;B. Textverarbeitung:
+<ul class="org-ul">
+<li>Texteingabe</li>
+<li>Rechtschreibprüfung</li>
+<li>Ausdruck</li>
+</ul></li>
+<li>Serversoftware, z.&nbsp;B. Webserver, DB-Server:
+<ul class="org-ul">
+<li>Administration</li>
+<li>Simultane Bearbeitung vieler Anfragen</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga548bd4" class="outline-3">
+<h3 id="orga548bd4">Vorteile von Multithreading</h3>
+<div class="outline-text-3" id="text-orga548bd4">
+<dl class="org-dl">
+<dt>Kürzere Antwortzeiten</dt><dd>Bei interaktiven Anwendungen kann auch auf
+Benutzereingaben reagiert werden, während andere, langandauernde
+Aufgaben durchgeführt werden.</dd>
+<dt>Gemeinsame Nutzung von Ressourcen</dt><dd>Auf gemeinsamen Speicher sowie
+gemeinsame Dateien und E/A-Geräte kann ohne weiteren Aufwand
+zugegriffen werden.</dd>
+<dt>Wirtschaftlichkeit</dt><dd>Die Erzeugung eines neuen Threads und der
+Wechsel zwischen zwei Threads eines Prozesses verursacht
+erheblich weniger Auf- wand (im Vergleich zur
+Prozesserzeugung/zum Prozesswechsel).</dd>
+<dt>Nutzung von Multiprozessorarchitekturen</dt><dd>Auch ein einziger
+multithreading Prozess kann gleichzeitig mehrere Prozessoren
+nutzen.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgdf105b2" class="outline-3">
+<h3 id="orgdf105b2">Anwender- und Kernel-Threads</h3>
+<div class="outline-text-3" id="text-orgdf105b2">
+<dl class="org-dl">
+<dt>Anwender-Threads</dt><dd>Erzeugung, Scheduling und Verwaltung der Threads
+erfolgt über spezielle Programm-Bibliotheken auf Ebene des
+Anwendungs&#x00ad;programms. Für den Kernel besteht das Programm aus
+einem einzigen, single-threaded Prozess.
+<dl class="org-dl">
+<dt>Vorteil</dt><dd>effizient (Kernel muss nicht eingreifen)</dd>
+<dt>Nachteil</dt><dd>Muss ein Thread warten, müssen es alle.</dd>
+</dl></dd>
+<dt>Kernel-Threads</dt><dd>Erzeugung, Scheduling und Verwaltung der Threads
+werden durch das Betriebssystem unterstützt.
+<dl class="org-dl">
+<dt>Vorteile</dt><dd>Verteilung auf mehrere Prozessoren möglich; ein
+wartender Thread behindert die anderen Threads nicht.</dd>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org82b4a7c" class="outline-3">
+<h3 id="org82b4a7c">Multithreading-Modelle</h3>
+<div class="outline-text-3" id="text-org82b4a7c">
+<dl class="org-dl">
+<dt>Many-to-One-Modell</dt><dd><ul class="org-ul">
+<li>Mehrere Anwender-Threads werden auf einen Kernel-Thread abgebildet.</li>
+<li>Beispiele: Green-Thread-Library bei Solaris 2, POSIX Pthread-
+Library, Betriebssysteme ohne Thread-Unterstützung</li>
+</ul></dd>
+<dt>One-to-One-Modell</dt><dd><ul class="org-ul">
+<li>Jeder Thread eines Anwendungsprogramms wird auf genau einen
+Kernel-Thread abgebildet</li>
+<li>Beispiele: Windows NT, Windows 2000, OS/2</li>
+</ul></dd>
+<dt>Many-to-Many-Modell</dt><dd><ul class="org-ul">
+<li>Die Threads der Anwendungsprogramme werden auf eine Anzahl von Kernel-Threads gemultiplext.</li>
+<li>Beispiele: IRIX, HP-UX, Tru64 UNIX</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgd7bbbe0" class="outline-3">
+<h3 id="orgd7bbbe0">Multithreading-Modelle: Many-to-One</h3>
+<div class="outline-text-3" id="text-orgd7bbbe0">
+
+<div class="figure">
+<p><img src="./Abbildungen/manytoone.png" alt="manytoone.png" width="400px" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org133d1d1" class="outline-3">
+<h3 id="org133d1d1">Multithreading-Modelle: One-to-One</h3>
+<div class="outline-text-3" id="text-org133d1d1">
+
+<div class="figure">
+<p><img src="./Abbildungen/onetoone.png" alt="onetoone.png" width="400px" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5912015" class="outline-3">
+<h3 id="org5912015">Multithreading-Modelle: Many-to-Many</h3>
+<div class="outline-text-3" id="text-org5912015">
+
+<div class="figure">
+<p><img src="./Abbildungen/manytomany.png" alt="manytomany.png" width="400px" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd825c8e" class="outline-3">
+<h3 id="orgd825c8e">Scheduling</h3>
+<div class="outline-text-3" id="text-orgd825c8e">
+<ul class="org-ul">
+<li>Scheduling in modernen Systemem: Die Zuteilung des Prozessors zu
+einem Prozess bedeutet die Zuteilung des Prozessors zu einem seiner Threads.</li>
+</ul>
+<pre class="example">
+  Process1    scheduled   +----------+
+    Thread11-------------&gt;|processor3|
+    Thread12              +----------+
+
+  Process2
+    Thread21
+    Thread22  scheduled   +----------+
+    Thread23-------------&gt;|processor7|
+                          +----------+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7c412dd" class="outline-2">
+<h2 id="org7c412dd">weitere verwendete Literatur</h2>
+<div class="outline-text-2" id="text-org7c412dd">
+<ul class="org-ul">
+<li><a class='org-ref-reference' href="#CACM2017">CACM2017</a></li>
+<li><a class='org-ref-reference' href="#CACM2016">CACM2016</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org454503d" class="outline-2">
+<h2 id="org454503d"><h2>Literaturverzeichnis</h2>
+<ul class='org-ref-bib'><li><a id="Bengel2015">[Bengel2015]</a> <a name="Bengel2015"></a>Günther Bengel, Christian Baun, Marcel Kunze & Karl-Uwe Stucky, Masterkurs Parallele und Verteilte Systeme, Springer Fachmedien Wiesbaden (2015).</li>
+<li><a id="Kalin2015">[Kalin2015]</a> <a name="Kalin2015"></a>Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </li>
+<li><a id="Flynn1972">[Flynn1972]</a> <a name="Flynn1972"></a>Flynn, Some Computer Organizations and Their Effectiveness, <i>IEEE Trans. Comput.</i>, <b>21(9)</b>, 948-960 (1972). <a href="http://dx.doi.org/10.1109/TC.1972.5009071">link</a>. <a href="http://dx.doi.org/10.1109/TC.1972.5009071">doi</a>.</li>
+<li><a id="CACM2017">[CACM2017]</a> <a name="CACM2017"></a>Practical Parallelism, (2017), zuletzt aufgerufen am 26.09.2017: <a href="https://cacm.acm.org/careers/219104-practical-parallelism/fulltext">https://cacm.acm.org/careers/219104-practical-parallelism/fulltext</a> </li>
+<li><a id="CACM2016">[CACM2016]</a> <a name="CACM2016"></a>Parallel Programming Made Easy, (2017), zuletzt aufgerufen am 26.09.2017: <a href="https://cacm.acm.org/careers/203794-parallel-programming-made-easy/fulltext">https://cacm.acm.org/careers/203794-parallel-programming-made-easy/fulltext</a> </li>
+</ul></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Johannes Brauer</p>
+<p class="date">Created: 2019-07-19 Fri 16:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
