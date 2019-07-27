@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Funktionale versus objektorientierte Programmierung</title>
-<meta name="author" content="(Johannes Brauer)"/>
+<meta name="author" content="Johannes Brauer"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
@@ -23,17 +23,18 @@
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Funktionale versus objektorientierte Programmierung</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2018-12-15 Sat 11:13</p>
+<section id="sec-title-slide">
+<h1 class="title">Funktionale versus objektorientierte Programmierung</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
 <section>
-<section id="orgd6bdb78">
-<h2 id="orgd6bdb78">Ziele</h2>
+<section id="slide-orgd1af047">
+<h2 id="orgd1af047">Ziele</h2>
 <ul>
 <li>Erkennen von Zusammenhängen zwischen verschiedenen
 Programmierparadigmen, insbesondere zwischen der funktionalen und
@@ -46,21 +47,25 @@ der objektorientierte Programmierung</li>
 </section>
 </section>
 <section>
-<section id="org1a6daaf">
-<h2 id="org1a6daaf">Funktionale versus objektorientierte Programmierung</h2>
-<div class="outline-text-2" id="text-org1a6daaf">
-</div>
+<section id="slide-orgd3b2f86">
+<h2 id="orgd3b2f86">Funktionale versus objektorientierte Programmierung</h2>
+<blockquote>
+<p>
+Object oriented programs are offered as alternatives to correct ones…
+— Edsger W. Dijkstra, pioneer of computer science
+</p>
+</blockquote>
 </section>
-<section id="orgb280f34">
-<h3 id="orgb280f34">Ein wenig Historie</h3>
+<section id="slide-org3016189">
+<h3 id="org3016189">Ein wenig Historie</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/programmierung.png" alt="programmierung.png" width="700px" />
 </p>
 </div>
 </section>
-<section id="org66a00b8">
-<h4 id="org66a00b8">1936</h4>
+<section id="slide-org2134414">
+<h4 id="org2134414">1936</h4>
 
 <div class="figure">
 <p><img src="./Abbildungen/alan-turing.jpg" alt="alan-turing.jpg" width="200px" />
@@ -76,8 +81,8 @@ der objektorientierte Programmierung</li>
 
 </ul>
 </section>
-<section id="org003ae71">
-<h4 id="org003ae71">1945</h4>
+<section id="slide-org19926a2">
+<h4 id="org19926a2">1945</h4>
 <ul>
 <li>Turing schreibt Code. 
 <ul>
@@ -92,16 +97,16 @@ der objektorientierte Programmierung</li>
 
 </ul>
 </section>
-<section id="org5a76674">
-<h4 id="org5a76674">1953 Fortran</h4>
+<section id="slide-org9783928">
+<h4 id="org9783928">1953 Fortran</h4>
 
 <div class="figure">
 <p><img src="./Abbildungen/Fortran.png" alt="Fortran.png" />
 </p>
 </div>
 </section>
-<section id="org78d57b6">
-<h4 id="org78d57b6"></h4>
+<section id="slide-orge15584b">
+<h4 id="orge15584b"></h4>
 
 <div class="figure">
 <p><img src="./Abbildungen/McCarthy.jpg" alt="McCarthy.jpg" />
@@ -113,24 +118,24 @@ Funktionale Programmierung
 </p>
 
 </section>
-<section id="orgf8a08c0">
-<h4 id="orgf8a08c0">1960</h4>
+<section id="slide-org57009c9">
+<h4 id="org57009c9">1960</h4>
 <ul>
 <li>Anzahl der Computer weltweit: \(O(1E2)\).</li>
 <li>Anzahl der Programmierer weltweit: \(O(1E3)\).</li>
 
 </ul>
 </section>
-<section id="org2d4173d">
-<h4 id="org2d4173d">1965</h4>
+<section id="slide-orgf472713">
+<h4 id="orgf472713">1965</h4>
 <ul>
 <li>Anzahl der Computer weltweit: \(O(1E4)\).</li>
 <li>Anzahl der Programmierer weltweit: \(O(1E5)\).</li>
 
 </ul>
 </section>
-<section id="org3f1065e">
-<h4 id="org3f1065e">1966 Simula 1967</h4>
+<section id="slide-org760c1e6">
+<h4 id="org760c1e6">1966 Simula 1967</h4>
 <p>
 Ole-Johan Dahl, Kristen Nygard:
 </p>
@@ -146,8 +151,8 @@ Objektorientierte Programmierung
 </p>
 
 </section>
-<section id="orge96e036">
-<h4 id="orge96e036">1968</h4>
+<section id="slide-orgefd1bc6">
+<h4 id="orgefd1bc6">1968</h4>
 <p>
 Edsger Dijkstra:
 </p>
@@ -176,8 +181,8 @@ Strukturierte Programmierung
 </p>
 
 </section>
-<section id="org7b3f720">
-<h3 id="org7b3f720">Drei Paradigmen</h3>
+<section id="slide-org3f8b994">
+<h3 id="org3f8b994">Drei Paradigmen</h3>
 <ul>
 <li>1968 &#x2013; Strukturierte Programmierung. Edsger Dijkstra zeigt, wie der
 Gebrauch von <code>GOTO</code>-Anweisungen durch <code>if/then/else</code> und <code>while</code>
@@ -199,8 +204,8 @@ Drei Paradigmen, drei Einschränkungen
 </p>
 
 </section>
-<section id="org8ab74c0">
-<h4 id="org8ab74c0">1970</h4>
+<section id="slide-org3afd8bf">
+<h4 id="org3afd8bf">1970</h4>
 <ul>
 <li>Anzahl der Computer weltweit: \(O(1E5)\).</li>
 <li>Anzahl der Programmierer weltweit: \(O(1E6)\).</li>
@@ -208,15 +213,15 @@ Drei Paradigmen, drei Einschränkungen
 </ul>
 
 </section>
-<section id="orgce2ff8b">
-<h3 id="orgce2ff8b">Was bringt die funktionale Programmierung?</h3>
+<section id="slide-orgd522f81">
+<h3 id="orgd522f81">Was bringt die funktionale Programmierung?</h3>
 <ul>
 <li>Worin besteht der Kerngedanke der funktionalen Programmierung?</li>
 
 </ul>
 </section>
-<section id="org6e89e65">
-<h3 id="org6e89e65">Fehlen der Mutation</h3>
+<section id="slide-org4e6f00c">
+<h3 id="org4e6f00c">Fehlen der Mutation</h3>
 <ul>
 <li>Wie kann das „Fehlen von Etwas” ein wichtiges Feature eines
 Programmierparadigmas sein?</li>
@@ -231,8 +236,8 @@ Sharing und Aliasing werden irrelevant.</li>
 </ul>
 
 </section>
-<section id="org6399f0a">
-<h4 id="org6399f0a">Beispiel: Sortieren eines Vektors</h4>
+<section id="slide-org55bc063">
+<h4 id="org55bc063">Beispiel: Sortieren eines Vektors</h4>
 <div class="small">
 <div class="org-src-container">
 
@@ -260,8 +265,8 @@ oder</li>
 </ul>
 
 </section>
-<section id="org23c2f5c">
-<h4 id="org23c2f5c">Beispiel: Funktion append</h4>
+<section id="slide-orgeb92945">
+<h4 id="orgeb92945">Beispiel: Funktion append</h4>
 <div class="small">
 <div class="org-src-container">
 
@@ -288,7 +293,7 @@ Algorithmen erheblich.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Auch die Funktion <code>rest</code> teilt „dankenswerterweise” ihr Ergebnis
 mit ihrer Argumentliste (bis auf das erste Element).</li>
@@ -300,8 +305,8 @@ alte Objekte genutzt oder neue Objekte erzeugt werden.</li>
 </ul>
 
 </section>
-<section id="org0aecc41">
-<h4 id="org0aecc41">Beispiel: Ein Java-Programm</h4>
+<section id="slide-orgfe736f2">
+<h4 id="orgfe736f2">Beispiel: Ein Java-Programm</h4>
 <ul>
 <li><p>
 Ein inzwischen behobenes Sicherheitsproblem in einer Java library:
@@ -336,14 +341,14 @@ Ein inzwischen behobenes Sicherheitsproblem in einer Java library:
 </ul>
 
 </section>
-<section id="orgb8caae5">
-<h3 id="orgb8caae5">Integration von Daten und Funktionen &#x2013; Übergang zum Objektbegriff</h3>
+<section id="slide-org4285e0c">
+<h3 id="org4285e0c">Integration von Daten und Funktionen &#x2013; Übergang zum Objektbegriff</h3>
 <p>
 (bereits in EidP behandelt!)
 </p>
 </section>
-<section id="orgfcc9f57">
-<h4 id="orgfcc9f57">Funktionen mit Funktionen als Resultat</h4>
+<section id="slide-orgf5104f8">
+<h4 id="orgf5104f8">Funktionen mit Funktionen als Resultat</h4>
 <p>
 Beispiele aus dem letzten Semester:
 </p>
@@ -376,8 +381,8 @@ Welches Resultat liefert eine Anwendung der Funktion <code>dot</code>?
 
 </ul>
 </section>
-<section id="org7c9bf99">
-<h4 id="org7c9bf99">Was ist ein Objekt?</h4>
+<section id="slide-orgf41e244">
+<h4 id="orgf41e244">Was ist ein Objekt?</h4>
 <ul>
 <li>Objekte im Sinne der „objektorientierten Programmierung” sind
 nichts weiter als Funktionen mit „internen” Daten.</li>
@@ -386,8 +391,8 @@ So gesehen liefert ein Ausdruck der Art
 </p>
 <pre class="example">
 (def inc-obj (inc 3))
-
 </pre>
+
 <p>
 ein Objekt (eine Funktion) mit dem internen Datum (Zustand) <b>3</b>.
 </p></li>
@@ -401,8 +406,8 @@ Zustandsgrößen und einer Methode.</li>
 
 </ul>
 </section>
-<section id="org874cb82">
-<h4 id="org874cb82">Ein etwas interessanteres Objekt</h4>
+<section id="slide-org0e0f1fb">
+<h4 id="org0e0f1fb">Ein etwas interessanteres Objekt</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">person</span>
@@ -430,7 +435,7 @@ Zustandsgrößen und einer Methode.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>„In Wirklichkeit” liefert ein Aufruf der Funktion <code>person</code> eine
 Verteilfunktion, die anhand ihres Parameters <code>nachricht</code> ermittelt,
@@ -439,8 +444,8 @@ welche der Methoden aufzurufen ist.</li>
 </ul>
 
 </section>
-<section id="orgcdc243a">
-<h4 id="orgcdc243a">Anwendungen des <code>person</code>-Objekts</h4>
+<section id="slide-orgd65e72e">
+<h4 id="orgd65e72e">Anwendungen des <code>person</code>-Objekts</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Objekterzeugung:</span>
@@ -454,8 +459,8 @@ welche der Methoden aufzurufen ist.</li>
 </div>
 
 </section>
-<section id="orga1dab5a">
-<h4 id="orga1dab5a">Java-Klasse <code>Person</code></h4>
+<section id="slide-org96cc711">
+<h4 id="org96cc711">Java-Klasse <code>Person</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"> <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Person</span>
@@ -489,8 +494,8 @@ welche der Methoden aufzurufen ist.</li>
 </div>
 
 </section>
-<section id="org696ed40">
-<h4 id="org696ed40">Zusammenfassung</h4>
+<section id="slide-orgfec020d">
+<h4 id="orgfec020d">Zusammenfassung</h4>
 <ul>
 <li>Für die objektorientierte Programmierung bedarf es keiner speziellen
 Programmiersprachen.</li>
@@ -517,18 +522,18 @@ aufzurufen ist.</li>
 
 </ul>
 </section>
-<section id="orgcd64366">
-<h3 id="orgcd64366">Erweiterbarkeit von Programmen</h3>
-<div class="outline-text-3" id="text-orgcd64366">
+<section id="slide-org1918038">
+<h3 id="org1918038">Erweiterbarkeit von Programmen</h3>
+<div class="outline-text-3" id="text-org1918038">
 </div>
 </section>
-<section id="orgdd7cc3a">
-<h4 id="orgdd7cc3a">Identifizierung des Problems</h4>
-<div class="outline-text-4" id="text-orgdd7cc3a">
+<section id="slide-org7bcecfd">
+<h4 id="org7bcecfd">Identifizierung des Problems</h4>
+<div class="outline-text-4" id="text-org7bcecfd">
 </div>
 </section>
-<section id="org1ffd257">
-<h5 id="org1ffd257">Objektorientierte Programmierung &#x2026;</h5>
+<section id="slide-org321ca2f">
+<h5 id="org321ca2f">Objektorientierte Programmierung &#x2026;</h5>
 <ul>
 <li>&#x2026; ist gekennzeichnet durch dynamische Bindung und Polymorphie.</li>
 <li><p>
@@ -564,8 +569,8 @@ Empfängerobjekts bestimmt.</li>
 
 </ul>
 </section>
-<section id="org164406f">
-<h5 id="org164406f">Funktionale Programmierung &#x2026;</h5>
+<section id="slide-orgc9e4946">
+<h5 id="orgc9e4946">Funktionale Programmierung &#x2026;</h5>
 <ul>
 <li><p>
 &#x2026; ist gekennzeichnet durch Funktionen als Werte erster Ordnung und
@@ -592,11 +597,11 @@ Figur-Funktionen müssen angepasst werden.</li>
 
 </ul>
 </section>
-<section id="org31903df">
-<h4 id="org31903df">Objektorientierte versus funktionale Zerlegung</h4>
+<section id="slide-org48396ed">
+<h4 id="org48396ed">Objektorientierte versus funktionale Zerlegung</h4>
 <ul>
 <li>Rückgriff auf das Problem der Verarbeitung einer kleinen „Sprache”
-über arithmetische Ausdrücke (vgl. <a href="./Aufgaben/aufgaben.html#aufgabemustervergleich">Aufgabe Mustervergleich</a>).</li>
+über arithmetische Ausdrücke (vgl. <a href="./Aufgaben/aufgaben.html#/slide-aufgabemustervergleich">Aufgabe Mustervergleich</a>).</li>
 <li>In der funktionalen Programmierung werden üblicherweise Programme
 durch Zerlegung in Funktionen für die auszuführenden Operationen zerlegt.</li>
 <li>In der objektorientierten Programmierung werden Programme in Klassen
@@ -608,8 +613,8 @@ stehen.</li>
 
 </ul>
 </section>
-<section id="problemarithmeischeausdruecke">
-<h5 id="problemarithmeischeausdruecke"><a id="orgd945463"></a>Problemspezifikation</h5>
+<section id="slide-problemarithmeischeausdruecke">
+<h5 id="problemarithmeischeausdruecke">Problemspezifikation</h5>
 <ul>
 <li>Die arithmetischen Ausdrücke bestehen aus ganzzahligen Werten,
 Negationen und Additionen.</li>
@@ -677,8 +682,8 @@ werden.</li>
 
 </ul>
 </section>
-<section id="org8148250">
-<h5 id="org8148250">Funktionale Lösung in ML</h5>
+<section id="slide-orgdc8a73f">
+<h5 id="orgdc8a73f">Funktionale Lösung in ML</h5>
 <ul>
 <li>Die drei Datenarten werden an einer Stelle definiert.</li>
 <li>Die Implementierung der Operationen erfolgt „spaltenweise”.</li>
@@ -717,8 +722,8 @@ werden.</li>
 </pre>
 </div>
 </section>
-<section id="orgfa588d5">
-<h5 id="orgfa588d5">Eine objektorientierte Lösung &#x2026;</h5>
+<section id="slide-org9578cc2">
+<h5 id="org9578cc2">Eine objektorientierte Lösung &#x2026;</h5>
 <ul>
 <li>&#x2026; sollte die folgenden Regeln beachten:
 <ul>
@@ -732,9 +737,9 @@ werden.</li>
 
 </ul></li>
 <li><p>
-Teil 1 von <a href="./Aufgaben/aufgaben.html#aufgabeoopversusfp">Aufgabe (OOP versus FP)</a>
+Teil 1 von <a href="./Aufgaben/aufgaben.html#/slide-aufgabeoopversusfp">Aufgabe (OOP versus FP)</a>
 </p>
-<blockquote nil>
+<blockquote>
 <p>
 Implementieren die das geschilderte Problem in einer
 objektorientierten Sprache Ihrer Wahl!
@@ -743,8 +748,8 @@ objektorientierten Sprache Ihrer Wahl!
 
 </ul>
 </section>
-<section id="org3aa048b">
-<h5 id="org3aa048b">Zwischenbilanz</h5>
+<section id="slide-org9c583de">
+<h5 id="org9c583de">Zwischenbilanz</h5>
 <ul>
 <li>Welche Lösung ist die bessere?</li>
 <li>Oft eine Frage der persönlichen Sichtweise, ob es „natürlicher”
@@ -761,12 +766,12 @@ berücksichtigenden Fälle.</li>
 
 </ul>
 </section>
-<section id="org0e7ab61">
-<h5 id="org0e7ab61">Erweiterung des Programms um neue Datenvarianten und Operationen</h5>
+<section id="slide-orgda14553">
+<h5 id="orgda14553">Erweiterung des Programms um neue Datenvarianten und Operationen</h5>
 <ul>
 <li>Die Vor- und Nachteile der betrachteten Paradigmen werden
 deutlicher, wenn das Programm erweitert werden muss.</li>
-<li>Teil 2 von <a href="./Aufgaben/aufgaben.html#aufgabeoopversusfp">Aufgabe (OOP versus FP)</a>
+<li>Teil 2 von <a href="./Aufgaben/aufgaben.html#/slide-aufgabeoopversusfp">Aufgabe (OOP versus FP)</a>
 <ol>
 <li>Erweitern Sie beide Varianten des Programms um die neue Operation
 <code>noNegConstants</code>, die alle negativen Konstanten in positive
@@ -782,19 +787,19 @@ Matrix eine neue Zeile hinzu.)</li>
 </section>
 </section>
 <section>
-<section id="org0ecfbf7">
-<h2 id="org0ecfbf7">Funktionale Entwurfsmuster</h2>
+<section id="slide-org4d1a4e4">
+<h2 id="org4d1a4e4">Funktionale Entwurfsmuster</h2>
 </section>
-<section id="orgd6fd32e">
-<h3 id="orgd6fd32e">Vorbemerkungen</h3>
+<section id="slide-org53a3b8d">
+<h3 id="org53a3b8d">Vorbemerkungen</h3>
 <ul>
 <li>Welche Entwurfsmuster kennen Sie?</li>
 <li>Wozu dienen Entwurfsmuster?</li>
-<li>Das berühmte Buch: <a class='org-ref-reference' href="#E.-Gamma:1995pd">E.-Gamma:1995pd</a></li>
+<li>Das berühmte Buch: <a class="org-ref-reference" href="#/slide-bibliography">[E.-Gamma:1995pd]</a></li>
 <li><p>
 These:
 </p>
-<blockquote nil>
+<blockquote>
 <p>
 Jedes Entwurfsmuster offenbart einen Mangel der verwendeten Programmiersprache.
 </p>
@@ -802,14 +807,14 @@ Jedes Entwurfsmuster offenbart einen Mangel der verwendeten Programmiersprache.
 <p>
 So fand <a href="https://en.wikipedia.org/wiki/Peter_Norvig">Peter Norvig</a> heraus, dass 16 der 23 Entwurfsmuster aus dem oben
 genannten Buch in Sprachen wie Lisp verschwinden bzw. sich stark
-vereinfachen lassen (<a class='org-ref-reference' href="#Norvig1998">Norvig1998</a>).
+vereinfachen lassen (<a class="org-ref-reference" href="#/slide-bibliography">[Norvig1998]</a>).
 </p></li>
 <li>Mehrere Entwurfsmuster behandeln bzw. implizieren Zustandsänderungen
 und sind daher nicht auf die funktionale Programmierung übertragbar.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Viele (objektorientierte) Entwurfsmuster sind in funktionalen
 Sprachen Idiome. So wird das Iterator-Muster in Sprachen wie LISP oder
@@ -829,7 +834,7 @@ verwandelt. Funktion werden in Objekte „verpackt“.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Damit werden häufig natürliche Konzepte der funktionalen
 Programmierung für die Objektorientierung passend gemacht, häufig
@@ -837,17 +842,17 @@ auf Kosten von Lesbarkeit und Prägnanz.</li>
 
 </ul>
 </section>
-<section id="org30e48dd">
-<h3 id="org30e48dd">Konkrete Muster</h3>
-<div class="outline-text-3" id="text-org30e48dd">
+<section id="slide-orgeb59be9">
+<h3 id="orgeb59be9">Konkrete Muster</h3>
+<div class="outline-text-3" id="text-orgeb59be9">
 </div>
 </section>
-<section id="org2a329a4">
-<h4 id="org2a329a4">Das Befehlsmuster (command pattern)</h4>
+<section id="slide-orgeb4eef8">
+<h4 id="orgeb4eef8">Das Befehlsmuster (command pattern)</h4>
 <p>
 Zitiert aus <a href="https://www.philipphauer.de/study/se/design-pattern.php">Philipp Hauer: Design Pattern</a>:
 </p>
-<blockquote nil>
+<blockquote>
 <p>
 Das Command Design Pattern ermöglicht die Modularisierung von Befehlen
 und Aufrufen. Auf elegante Weise können Befehle rückgängig gemacht,
@@ -860,8 +865,8 @@ protokolliert oder in einer Warteschlange gelegt werden.
 </p>
 </div>
 </section>
-<section id="org0adf867">
-<h5 id="org0adf867">Beispiel</h5>
+<section id="slide-orgd47db4c">
+<h5 id="orgd47db4c">Beispiel</h5>
 <ul>
 <li>Es werden verschiedene Commands betrachtet, die eine
 Nachricht verarbeiten.</li>
@@ -882,7 +887,7 @@ Basis: ein Interface
 
 </ul>
 </section>
-<section >
+<section>
 <ol>
 <li><p>
 für das Logging
@@ -906,7 +911,7 @@ für das Logging
 
 </ol>
 </section>
-<section >
+<section>
 <ol>
 <li value="2"><p>
 Speichern der Nachricht
@@ -930,7 +935,7 @@ Speichern der Nachricht
 
 </ol>
 </section>
-<section >
+<section>
 <ol>
 <li value="3"><p>
 Versenden per Email
@@ -954,7 +959,7 @@ Versenden per Email
 
 </ol>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Ein Objekt, das diese Commands ausführen kann:
@@ -989,21 +994,21 @@ Ausführung einer Liste von Commands durch den <code>Executor</code>
 </div>
 
 </div></li>
-<li>Wie in <a class='org-ref-reference' href="#E.-Gamma:1995pd">E.-Gamma:1995pd</a> gefordert, werden Funktionen (die
+<li>Wie in <a class="org-ref-reference" href="#/slide-bibliography">[E.-Gamma:1995pd]</a> gefordert, werden Funktionen (die
 auszuführenden Aktionen) in Objekte verpackt (die Commands, die
 diese Aktionen ausführen).</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Diese Indirektion hat keinen Vorteil, außer Funktionen in strikt
 objektorientierter Weise behandeln zu können.</li>
 
 </ul>
 </section>
-<section id="orgd4711e5">
-<h5 id="orgd4711e5">Die funktionale Version</h5>
+<section id="slide-org9f100f7">
+<h5 id="org9f100f7">Die funktionale Version</h5>
 <ul>
 <li>Durch die Einführung von Lambda-Ausdrücken in <b>Java 8</b> ist es
 möglich, beide Paradigmen (OO und FP) nahtlos miteinander zu verknüpfen.</li>
@@ -1031,7 +1036,7 @@ statische Methoden implementierte Funktionen geschrieben werden:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Das „Signal-Rausch-Verhältnis” des Codes wird deutlich verbessert,
 wenn man als Signal den Rumpf der Funktionen und als Rauschen den
@@ -1055,7 +1060,7 @@ akzeptiert:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Die Funktionen können nun wieder in eine Liste gepackt und wie zuvor
@@ -1081,12 +1086,12 @@ eine Liste von <code>Runnables</code> gepackt werden können.</li>
 
 </ul>
 </section>
-<section id="orge0f5356">
-<h4 id="orge0f5356">Das Strategiemuster (strategy pattern)</h4>
+<section id="slide-org170b666">
+<h4 id="org170b666">Das Strategiemuster (strategy pattern)</h4>
 <p>
 Zitiert aus <a href="https://www.philipphauer.de/study/se/design-pattern.php">Philipp Hauer: Design Pattern</a>:
 </p>
-<blockquote nil>
+<blockquote>
 <p>
 Das Strategy Design Pattern ermöglicht einer Klasse das flexible
 Wechseln von alternativen Verhalten.
@@ -1098,8 +1103,8 @@ Wechseln von alternativen Verhalten.
 </p>
 </div>
 </section>
-<section id="org2371212">
-<h5 id="org2371212">Beispiel</h5>
+<section id="slide-orgbb7a22c">
+<h5 id="orgbb7a22c">Beispiel</h5>
 <ul>
 <li>Das Ziel des Strategiemusters besteht in der Verallgemeinerung einer
 Prozedur durch Verwendung verschiedener austauschbarer Algorithmen.</li>
@@ -1131,7 +1136,7 @@ abstrahiert:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Danach ist es möglich, eine Klasse zu entwerfen, die eine allgemeine
 Prozedur für die Publikation eines Textes implementiert.</li>
@@ -1160,7 +1165,7 @@ formatiert werden soll, kapselt:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><b>Drei verschiedene Strategie-Implementierungen:</b>
 <ol>
@@ -1188,7 +1193,7 @@ die einfachste Variante: der Text wird unverändert ausgedruckt.
 
 </ul>
 </section>
-<section >
+<section>
 <ol>
 <li value="2"><p>
 Der Text wird Zeile für Zeile nach Fehlermeldungen
@@ -1214,7 +1219,7 @@ in Großbuchstaben ausgedruckt.
 
 </ol>
 </section>
-<section >
+<section>
 <ol>
 <li value="3"><p>
 Text wird in Kleinbuchstaben ausgedruckt, sofern er kürzer
@@ -1239,7 +1244,7 @@ als zwanzig Zeichen ist.
 
 </ol>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Nun kann ein <code>TextEditor</code>-Exemplar angelegt und dabei mit einem
@@ -1262,8 +1267,8 @@ der <code>publishText</code>-Methode der <code>Textformatter</code>-Klasse. Der 
 
 </ul>
 </section>
-<section id="org742e01d">
-<h5 id="org742e01d">Die funktionale Version</h5>
+<section id="slide-orgcae44e7">
+<h5 id="orgcae44e7">Die funktionale Version</h5>
 <ul>
 <li>Die beiden durch den <code>Textformatter</code> definierten Verhaltensweisen
 können problemlos in Form von zwei Funktionen an die
@@ -1290,7 +1295,7 @@ desselben Typs verwandelt
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Benutzung von <code>publishText</code> als <code>PlainTextFormatter</code>:
@@ -1319,7 +1324,7 @@ Benutzung von <code>publishText</code> als <code>ErrorTextFormatter</code>:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><b>Möglicher Einwand:</b> Die Implementierung des <code>TextFormatter</code> als
 Klasse ermöglicht einfacher, eine Bibliothek von Strategien zu
@@ -1352,7 +1357,7 @@ Funktionales Gegenmodell:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Benutzung der Klasse <code>TextUtil</code>: Anstelle der anonymen Funktionen
@@ -1375,12 +1380,12 @@ Strategie-Klasse.</li>
 
 </ul>
 </section>
-<section id="org33610b5">
-<h4 id="org33610b5">Das Beobachtermuster (observer pattern)</h4>
+<section id="slide-org34c3b84">
+<h4 id="org34c3b84">Das Beobachtermuster (observer pattern)</h4>
 <p>
 Zitiert aus <a href="https://www.philipphauer.de/study/se/design-pattern.php">Philipp Hauer: Design Pattern</a>:
 </p>
-<blockquote nil>
+<blockquote>
 <p>
 Das Observer Entwurfsmuster ist für Situationen geeignet, in denen ein
 oder mehrere Objekte benachrichtigt werden müssen, sobald sich der
@@ -1393,8 +1398,8 @@ Zustand eines bestimmten Objekts ändert.
 </p>
 </div>
 </section>
-<section id="org11bea9b">
-<h5 id="org11bea9b">Beispiel</h5>
+<section id="slide-orge7efa07">
+<h5 id="orge7efa07">Beispiel</h5>
 <ul>
 <li>Das Entwurfsmuster erlaubt einem oder mehreren Objekten, über
 auftretende Ereignisse informiert zu werden.</li>
@@ -1417,7 +1422,7 @@ in der <code>onEvent</code>-Methode die erforderliche Reaktion festlegen.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Das Gegenstück zu einem beobachtenden Objekt ist das beobachtete
 (beobachtbare, zu beobachtende):
@@ -1450,7 +1455,7 @@ Nachricht über ein aufgetretenes Ereignis sendet:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Zwei (herkömmliche) Varianten, ein <code>Observer</code>-Objekt zu implementieren:
 <ol>
@@ -1476,7 +1481,7 @@ durch eine anonyme, innere Klasse:
 
 </ul>
 </section>
-<section >
+<section>
 <ol>
 <li value="2"><p>
 durch die direkte Implementierung des <code>Listener</code>-Interface:
@@ -1520,8 +1525,8 @@ verwandelt werden: Klassen, die die Aktionen einwickeln.</li>
 
 </ul>
 </section>
-<section id="org24977ca">
-<h5 id="org24977ca">Die funktionale Version</h5>
+<section id="slide-orgd697076">
+<h5 id="orgd697076">Die funktionale Version</h5>
 <ul>
 <li><p>
 Schritt 1: Ersetzen des <code>Listener</code>-Interface durch das semantisch
@@ -1549,7 +1554,7 @@ Schritt 1: Ersetzen des <code>Listener</code>-Interface durch das semantisch
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Schritt 2:
 <ul>
@@ -1574,18 +1579,16 @@ observable.sendEvent<span style="color: #707183;">(</span> <span style="color: #
 </section>
 </section>
 <section>
-<section id="org01d84c6">
-<h2 id="org01d84c6"><h2>Literaturverzeichnis</h2>
+<section id="slide-bibliography">
+<h2 id="bibliography">Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="E.-Gamma:1995pd">[E.-Gamma:1995pd]</a> <a name="E.-Gamma:1995pd"></a>Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides, Design Patterns: Elements of Reusable Object-Oriented Software, Addison-Wesley (1995).</li>
 <li><a id="Norvig1998">[Norvig1998]</a> <a name="Norvig1998"></a>Peter Norvig, Design Patterns in Dynamic Languages, (1998), zuletzt aufgerufen am 10.09.2018: <a href="http://www.norvig.com/design-patterns/">http://www.norvig.com/design-patterns/</a> </li>
-</ul></h2>
+</ul>
 </section>
 </section>
 </div>
 </div>
-<script src="./reveal.js/lib/js/head.min.js"></script>
 <script src="./reveal.js/js/reveal.js"></script>
-
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -1593,22 +1596,22 @@ Reveal.initialize({
 
 controls: true,
 progress: true,
-history: false,
+history: true,
 center: true,
 slideNumber: 'c',
 rollingLinks: false,
 keyboard: true,
+mouseWheel: false,
+fragmentInURL: true,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
 overview: true,
 margin: 0.05,
 
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transition: Reveal.getQueryHash().transition || 'slide', // see README of reveal.js for options
 transitionSpeed: 'default',
-multiplex: {
-    secret: '', // null if client
-    id: '', // id, obtained from socket.io server
-    url: '' // Location of socket.io server
-},
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
@@ -1617,7 +1620,8 @@ dependencies: [
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
-,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
+
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }   ] , menu: {hideMissingTitles: true}});
 </script>
 </body>
 </html>

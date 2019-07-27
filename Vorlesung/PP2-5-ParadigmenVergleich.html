@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-12-15 Sat 11:15 -->
+<!-- 2019-07-27 Sat 18:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Funktionale versus objektorientierte Programmierung</title>
@@ -161,6 +161,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -197,7 +210,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -267,9 +280,9 @@ for the JavaScript code in this tag.
 <br />
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
-<div id="outline-container-org166d205" class="outline-2">
-<h2 id="org166d205">Ziele</h2>
-<div class="outline-text-2" id="text-org166d205">
+<div id="outline-container-org3ae92b0" class="outline-2">
+<h2 id="org3ae92b0">Ziele</h2>
+<div class="outline-text-2" id="text-org3ae92b0">
 <ul class="org-ul">
 <li>Erkennen von Zusammenhängen zwischen verschiedenen
 Programmierparadigmen, insbesondere zwischen der funktionalen und
@@ -280,22 +293,28 @@ der objektorientierte Programmierung</li>
 </div>
 </div>
 
-<div id="outline-container-orgd5ed998" class="outline-2">
-<h2 id="orgd5ed998">Funktionale versus objektorientierte Programmierung</h2>
-<div class="outline-text-2" id="text-orgd5ed998">
+<div id="outline-container-orgc211e52" class="outline-2">
+<h2 id="orgc211e52">Funktionale versus objektorientierte Programmierung</h2>
+<div class="outline-text-2" id="text-orgc211e52">
+<blockquote>
+<p>
+Object oriented programs are offered as alternatives to correct ones…
+— Edsger W. Dijkstra, pioneer of computer science
+</p>
+</blockquote>
 </div>
-<div id="outline-container-org7f85fd3" class="outline-3">
-<h3 id="org7f85fd3">Ein wenig Historie</h3>
-<div class="outline-text-3" id="text-org7f85fd3">
+<div id="outline-container-orgae80961" class="outline-3">
+<h3 id="orgae80961">Ein wenig Historie</h3>
+<div class="outline-text-3" id="text-orgae80961">
 
 <div class="figure">
 <p><img src="./Abbildungen/programmierung.png" alt="programmierung.png" width="700px" />
 </p>
 </div>
 </div>
-<div id="outline-container-org8674059" class="outline-4">
-<h4 id="org8674059">1936</h4>
-<div class="outline-text-4" id="text-org8674059">
+<div id="outline-container-orgad5553f" class="outline-4">
+<h4 id="orgad5553f">1936</h4>
+<div class="outline-text-4" id="text-orgad5553f">
 
 <div class="figure">
 <p><img src="./Abbildungen/alan-turing.jpg" alt="alan-turing.jpg" width="200px" />
@@ -311,9 +330,9 @@ der objektorientierte Programmierung</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org14bd494" class="outline-4">
-<h4 id="org14bd494">1945</h4>
-<div class="outline-text-4" id="text-org14bd494">
+<div id="outline-container-orgcda3839" class="outline-4">
+<h4 id="orgcda3839">1945</h4>
+<div class="outline-text-4" id="text-orgcda3839">
 <ul class="org-ul">
 <li>Turing schreibt Code. 
 <ul class="org-ul">
@@ -327,9 +346,9 @@ der objektorientierte Programmierung</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5977e96" class="outline-4">
-<h4 id="org5977e96">1953 Fortran</h4>
-<div class="outline-text-4" id="text-org5977e96">
+<div id="outline-container-orgbde89ec" class="outline-4">
+<h4 id="orgbde89ec">1953 Fortran</h4>
+<div class="outline-text-4" id="text-orgbde89ec">
 
 <div class="figure">
 <p><img src="./Abbildungen/Fortran.png" alt="Fortran.png" />
@@ -337,9 +356,9 @@ der objektorientierte Programmierung</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc0c7b5" class="outline-4">
-<h4 id="orgdc0c7b5"></h4>
-<div class="outline-text-4" id="text-orgdc0c7b5">
+<div id="outline-container-org95f220e" class="outline-4">
+<h4 id="org95f220e"></h4>
+<div class="outline-text-4" id="text-org95f220e">
 
 <div class="figure">
 <p><img src="./Abbildungen/McCarthy.jpg" alt="McCarthy.jpg" />
@@ -352,27 +371,27 @@ Funktionale Programmierung
 </div>
 </div>
 
-<div id="outline-container-orgd842931" class="outline-4">
-<h4 id="orgd842931">1960</h4>
-<div class="outline-text-4" id="text-orgd842931">
+<div id="outline-container-orgfadb3e5" class="outline-4">
+<h4 id="orgfadb3e5">1960</h4>
+<div class="outline-text-4" id="text-orgfadb3e5">
 <ul class="org-ul">
 <li>Anzahl der Computer weltweit: \(O(1E2)\).</li>
 <li>Anzahl der Programmierer weltweit: \(O(1E3)\).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org444ea97" class="outline-4">
-<h4 id="org444ea97">1965</h4>
-<div class="outline-text-4" id="text-org444ea97">
+<div id="outline-container-org603ca20" class="outline-4">
+<h4 id="org603ca20">1965</h4>
+<div class="outline-text-4" id="text-org603ca20">
 <ul class="org-ul">
 <li>Anzahl der Computer weltweit: \(O(1E4)\).</li>
 <li>Anzahl der Programmierer weltweit: \(O(1E5)\).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdc8d557" class="outline-4">
-<h4 id="orgdc8d557">1966 Simula 1967</h4>
-<div class="outline-text-4" id="text-orgdc8d557">
+<div id="outline-container-orgf7e4835" class="outline-4">
+<h4 id="orgf7e4835">1966 Simula 1967</h4>
+<div class="outline-text-4" id="text-orgf7e4835">
 <p>
 Ole-Johan Dahl, Kristen Nygard:
 </p>
@@ -389,9 +408,9 @@ Objektorientierte Programmierung
 </div>
 </div>
 
-<div id="outline-container-orgca62a31" class="outline-4">
-<h4 id="orgca62a31">1968</h4>
-<div class="outline-text-4" id="text-orgca62a31">
+<div id="outline-container-org915d68a" class="outline-4">
+<h4 id="org915d68a">1968</h4>
+<div class="outline-text-4" id="text-org915d68a">
 <p>
 Edsger Dijkstra:
 </p>
@@ -422,9 +441,9 @@ Strukturierte Programmierung
 </div>
 </div>
 
-<div id="outline-container-orgad65bfb" class="outline-3">
-<h3 id="orgad65bfb">Drei Paradigmen</h3>
-<div class="outline-text-3" id="text-orgad65bfb">
+<div id="outline-container-org7c872b9" class="outline-3">
+<h3 id="org7c872b9">Drei Paradigmen</h3>
+<div class="outline-text-3" id="text-org7c872b9">
 <ul class="org-ul">
 <li>1968 &#x2013; Strukturierte Programmierung. Edsger Dijkstra zeigt, wie der
 Gebrauch von <code>GOTO</code>-Anweisungen durch <code>if/then/else</code> und <code>while</code>
@@ -445,9 +464,9 @@ Drei Paradigmen, drei Einschränkungen
 </p>
 </div>
 
-<div id="outline-container-org5cef09d" class="outline-4">
-<h4 id="org5cef09d">1970</h4>
-<div class="outline-text-4" id="text-org5cef09d">
+<div id="outline-container-org0019f6e" class="outline-4">
+<h4 id="org0019f6e">1970</h4>
+<div class="outline-text-4" id="text-org0019f6e">
 <ul class="org-ul">
 <li>Anzahl der Computer weltweit: \(O(1E5)\).</li>
 <li>Anzahl der Programmierer weltweit: \(O(1E6)\).</li>
@@ -456,17 +475,17 @@ Drei Paradigmen, drei Einschränkungen
 </div>
 </div>
 
-<div id="outline-container-org2fc6dfc" class="outline-3">
-<h3 id="org2fc6dfc">Was bringt die funktionale Programmierung?</h3>
-<div class="outline-text-3" id="text-org2fc6dfc">
+<div id="outline-container-orgc09e9ed" class="outline-3">
+<h3 id="orgc09e9ed">Was bringt die funktionale Programmierung?</h3>
+<div class="outline-text-3" id="text-orgc09e9ed">
 <ul class="org-ul">
 <li>Worin besteht der Kerngedanke der funktionalen Programmierung?</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge2aa7ed" class="outline-3">
-<h3 id="orge2aa7ed">Fehlen der Mutation</h3>
-<div class="outline-text-3" id="text-orge2aa7ed">
+<div id="outline-container-org7baf65e" class="outline-3">
+<h3 id="org7baf65e">Fehlen der Mutation</h3>
+<div class="outline-text-3" id="text-org7baf65e">
 <ul class="org-ul">
 <li>Wie kann das „Fehlen von Etwas” ein wichtiges Feature eines
 Programmierparadigmas sein?</li>
@@ -480,9 +499,9 @@ Sharing und Aliasing werden irrelevant.</li>
 </ul>
 </div>
 
-<div id="outline-container-org9854922" class="outline-4">
-<h4 id="org9854922">Beispiel: Sortieren eines Vektors</h4>
-<div class="outline-text-4" id="text-org9854922">
+<div id="outline-container-orgf0edd7b" class="outline-4">
+<h4 id="orgf0edd7b">Beispiel: Sortieren eines Vektors</h4>
+<div class="outline-text-4" id="text-orgf0edd7b">
 <div class="small">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">sort-pair</span>
@@ -508,9 +527,9 @@ oder</li>
 </div>
 </div>
 
-<div id="outline-container-org03cae43" class="outline-4">
-<h4 id="org03cae43">Beispiel: Funktion append</h4>
-<div class="outline-text-4" id="text-org03cae43">
+<div id="outline-container-org80003f1" class="outline-4">
+<h4 id="org80003f1">Beispiel: Funktion append</h4>
+<div class="outline-text-4" id="text-org80003f1">
 <div class="small">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">append</span> 
@@ -545,9 +564,9 @@ alte Objekte genutzt oder neue Objekte erzeugt werden.</li>
 </div>
 </div>
 
-<div id="outline-container-org52eb0f3" class="outline-4">
-<h4 id="org52eb0f3">Beispiel: Ein Java-Programm</h4>
-<div class="outline-text-4" id="text-org52eb0f3">
+<div id="outline-container-orgfd73736" class="outline-4">
+<h4 id="orgfd73736">Beispiel: Ein Java-Programm</h4>
+<div class="outline-text-4" id="text-orgfd73736">
 <ul class="org-ul">
 <li><p>
 Ein inzwischen behobenes Sicherheitsproblem in einer Java library:
@@ -582,16 +601,16 @@ Ein inzwischen behobenes Sicherheitsproblem in einer Java library:
 </div>
 </div>
 
-<div id="outline-container-orgddc23bd" class="outline-3">
-<h3 id="orgddc23bd">Integration von Daten und Funktionen &#x2013; Übergang zum Objektbegriff</h3>
-<div class="outline-text-3" id="text-orgddc23bd">
+<div id="outline-container-orgdb36b6c" class="outline-3">
+<h3 id="orgdb36b6c">Integration von Daten und Funktionen &#x2013; Übergang zum Objektbegriff</h3>
+<div class="outline-text-3" id="text-orgdb36b6c">
 <p>
 (bereits in EidP behandelt!)
 </p>
 </div>
-<div id="outline-container-org82ef5cb" class="outline-4">
-<h4 id="org82ef5cb">Funktionen mit Funktionen als Resultat</h4>
-<div class="outline-text-4" id="text-org82ef5cb">
+<div id="outline-container-org5038c32" class="outline-4">
+<h4 id="org5038c32">Funktionen mit Funktionen als Resultat</h4>
+<div class="outline-text-4" id="text-org5038c32">
 <p>
 Beispiele aus dem letzten Semester:
 </p>
@@ -622,9 +641,9 @@ Welches Resultat liefert eine Anwendung der Funktion <code>dot</code>?
 </ul>
 </div>
 </div>
-<div id="outline-container-org2c30e60" class="outline-4">
-<h4 id="org2c30e60">Was ist ein Objekt?</h4>
-<div class="outline-text-4" id="text-org2c30e60">
+<div id="outline-container-org4c0c12c" class="outline-4">
+<h4 id="org4c0c12c">Was ist ein Objekt?</h4>
+<div class="outline-text-4" id="text-org4c0c12c">
 <ul class="org-ul">
 <li>Objekte im Sinne der „objektorientierten Programmierung” sind
 nichts weiter als Funktionen mit „internen” Daten.</li>
@@ -633,8 +652,8 @@ So gesehen liefert ein Ausdruck der Art
 </p>
 <pre class="example">
 (def inc-obj (inc 3))
-
 </pre>
+
 <p>
 ein Objekt (eine Funktion) mit dem internen Datum (Zustand) <b>3</b>.
 </p></li>
@@ -648,9 +667,9 @@ Zustandsgrößen und einer Methode.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9c9afd4" class="outline-4">
-<h4 id="org9c9afd4">Ein etwas interessanteres Objekt</h4>
-<div class="outline-text-4" id="text-org9c9afd4">
+<div id="outline-container-org8812082" class="outline-4">
+<h4 id="org8812082">Ein etwas interessanteres Objekt</h4>
+<div class="outline-text-4" id="text-org8812082">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">person</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>name vorname<span style="color: #909183;">]</span>
@@ -682,9 +701,9 @@ welche der Methoden aufzurufen ist.</li>
 </div>
 </div>
 
-<div id="outline-container-org83b185e" class="outline-4">
-<h4 id="org83b185e">Anwendungen des <code>person</code>-Objekts</h4>
-<div class="outline-text-4" id="text-org83b185e">
+<div id="outline-container-orgbca14f5" class="outline-4">
+<h4 id="orgbca14f5">Anwendungen des <code>person</code>-Objekts</h4>
+<div class="outline-text-4" id="text-orgbca14f5">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Objekterzeugung:</span>
 <span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">p1</span> <span style="color: #7388D6;">(</span>person <span style="color: #008000;">"Gans"</span> <span style="color: #008000;">"Gustav"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
@@ -698,9 +717,9 @@ welche der Methoden aufzurufen ist.</li>
 </div>
 </div>
 
-<div id="outline-container-org047fcad" class="outline-4">
-<h4 id="org047fcad">Java-Klasse <code>Person</code></h4>
-<div class="outline-text-4" id="text-org047fcad">
+<div id="outline-container-orgf2f2bec" class="outline-4">
+<h4 id="orgf2f2bec">Java-Klasse <code>Person</code></h4>
+<div class="outline-text-4" id="text-orgf2f2bec">
 <div class="org-src-container">
 <pre class="src src-java"> <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Person</span>
 <span style="color: #707183;">{</span>
@@ -734,9 +753,9 @@ welche der Methoden aufzurufen ist.</li>
 </div>
 </div>
 
-<div id="outline-container-org2481d55" class="outline-4">
-<h4 id="org2481d55">Zusammenfassung</h4>
-<div class="outline-text-4" id="text-org2481d55">
+<div id="outline-container-org0fee50f" class="outline-4">
+<h4 id="org0fee50f">Zusammenfassung</h4>
+<div class="outline-text-4" id="text-org0fee50f">
 <ul class="org-ul">
 <li>Für die objektorientierte Programmierung bedarf es keiner speziellen
 Programmiersprachen.</li>
@@ -762,17 +781,17 @@ aufzurufen ist.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org476512b" class="outline-3">
-<h3 id="org476512b">Erweiterbarkeit von Programmen</h3>
-<div class="outline-text-3" id="text-org476512b">
+<div id="outline-container-org0d4d87a" class="outline-3">
+<h3 id="org0d4d87a">Erweiterbarkeit von Programmen</h3>
+<div class="outline-text-3" id="text-org0d4d87a">
 </div>
-<div id="outline-container-orge7601b6" class="outline-4">
-<h4 id="orge7601b6">Identifizierung des Problems</h4>
-<div class="outline-text-4" id="text-orge7601b6">
+<div id="outline-container-org2a4b888" class="outline-4">
+<h4 id="org2a4b888">Identifizierung des Problems</h4>
+<div class="outline-text-4" id="text-org2a4b888">
 </div>
-<div id="outline-container-org2448a63" class="outline-5">
-<h5 id="org2448a63">Objektorientierte Programmierung &#x2026;</h5>
-<div class="outline-text-5" id="text-org2448a63">
+<div id="outline-container-orgbe98add" class="outline-5">
+<h5 id="orgbe98add">Objektorientierte Programmierung &#x2026;</h5>
+<div class="outline-text-5" id="text-orgbe98add">
 <ul class="org-ul">
 <li>&#x2026; ist gekennzeichnet durch dynamische Bindung und Polymorphie.</li>
 <li><p>
@@ -805,9 +824,9 @@ Empfängerobjekts bestimmt.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge42dd4a" class="outline-5">
-<h5 id="orge42dd4a">Funktionale Programmierung &#x2026;</h5>
-<div class="outline-text-5" id="text-orge42dd4a">
+<div id="outline-container-orgc1d09be" class="outline-5">
+<h5 id="orgc1d09be">Funktionale Programmierung &#x2026;</h5>
+<div class="outline-text-5" id="text-orgc1d09be">
 <ul class="org-ul">
 <li><p>
 &#x2026; ist gekennzeichnet durch Funktionen als Werte erster Ordnung und
@@ -833,9 +852,9 @@ Figur-Funktionen müssen angepasst werden.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org2f43664" class="outline-4">
-<h4 id="org2f43664">Objektorientierte versus funktionale Zerlegung</h4>
-<div class="outline-text-4" id="text-org2f43664">
+<div id="outline-container-orgac00538" class="outline-4">
+<h4 id="orgac00538">Objektorientierte versus funktionale Zerlegung</h4>
+<div class="outline-text-4" id="text-orgac00538">
 <ul class="org-ul">
 <li>Rückgriff auf das Problem der Verarbeitung einer kleinen „Sprache”
 über arithmetische Ausdrücke (vgl. <a href="./Aufgaben/aufgaben.html#aufgabemustervergleich">Aufgabe Mustervergleich</a>).</li>
@@ -849,8 +868,8 @@ und inwieweit diese mit dem verwendeten Paradigma in Verbindung
 stehen.</li>
 </ul>
 </div>
-<div id="outline-container-org17cb801" class="outline-5">
-<h5 id="problemarithmeischeausdruecke"><a id="org17cb801"></a>Problemspezifikation</h5>
+<div id="outline-container-org8650330" class="outline-5">
+<h5 id="problemarithmeischeausdruecke">Problemspezifikation</h5>
 <div class="outline-text-5" id="text-problemarithmeischeausdruecke">
 <ul class="org-ul">
 <li>Die arithmetischen Ausdrücke bestehen aus ganzzahligen Werten,
@@ -918,9 +937,9 @@ werden.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7397645" class="outline-5">
-<h5 id="org7397645">Funktionale Lösung in ML</h5>
-<div class="outline-text-5" id="text-org7397645">
+<div id="outline-container-org333e1ca" class="outline-5">
+<h5 id="org333e1ca">Funktionale Lösung in ML</h5>
+<div class="outline-text-5" id="text-org333e1ca">
 <ul class="org-ul">
 <li>Die drei Datenarten werden an einer Stelle definiert.</li>
 <li>Die Implementierung der Operationen erfolgt „spaltenweise”.</li>
@@ -958,9 +977,9 @@ werden.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org6525264" class="outline-5">
-<h5 id="org6525264">Eine objektorientierte Lösung &#x2026;</h5>
-<div class="outline-text-5" id="text-org6525264">
+<div id="outline-container-orge4e5306" class="outline-5">
+<h5 id="orge4e5306">Eine objektorientierte Lösung &#x2026;</h5>
+<div class="outline-text-5" id="text-orge4e5306">
 <ul class="org-ul">
 <li>&#x2026; sollte die folgenden Regeln beachten:
 <ul class="org-ul">
@@ -984,9 +1003,9 @@ objektorientierten Sprache Ihrer Wahl!
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc90f8ca" class="outline-5">
-<h5 id="orgc90f8ca">Zwischenbilanz</h5>
-<div class="outline-text-5" id="text-orgc90f8ca">
+<div id="outline-container-orgbc1aa1b" class="outline-5">
+<h5 id="orgbc1aa1b">Zwischenbilanz</h5>
+<div class="outline-text-5" id="text-orgbc1aa1b">
 <ul class="org-ul">
 <li>Welche Lösung ist die bessere?</li>
 <li>Oft eine Frage der persönlichen Sichtweise, ob es „natürlicher”
@@ -1003,9 +1022,9 @@ berücksichtigenden Fälle.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf38761c" class="outline-5">
-<h5 id="orgf38761c">Erweiterung des Programms um neue Datenvarianten und Operationen</h5>
-<div class="outline-text-5" id="text-orgf38761c">
+<div id="outline-container-org9f93784" class="outline-5">
+<h5 id="org9f93784">Erweiterung des Programms um neue Datenvarianten und Operationen</h5>
+<div class="outline-text-5" id="text-org9f93784">
 <ul class="org-ul">
 <li>Die Vor- und Nachteile der betrachteten Paradigmen werden
 deutlicher, wenn das Programm erweitert werden muss.</li>
@@ -1025,17 +1044,17 @@ Matrix eine neue Zeile hinzu.)</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgeceda71" class="outline-2">
-<h2 id="orgeceda71">Funktionale Entwurfsmuster</h2>
-<div class="outline-text-2" id="text-orgeceda71">
+<div id="outline-container-orga56b888" class="outline-2">
+<h2 id="orga56b888">Funktionale Entwurfsmuster</h2>
+<div class="outline-text-2" id="text-orga56b888">
 </div>
-<div id="outline-container-orgdd168de" class="outline-3">
-<h3 id="orgdd168de">Vorbemerkungen</h3>
-<div class="outline-text-3" id="text-orgdd168de">
+<div id="outline-container-org725a7cc" class="outline-3">
+<h3 id="org725a7cc">Vorbemerkungen</h3>
+<div class="outline-text-3" id="text-org725a7cc">
 <ul class="org-ul">
 <li>Welche Entwurfsmuster kennen Sie?</li>
 <li>Wozu dienen Entwurfsmuster?</li>
-<li>Das berühmte Buch: <a class='org-ref-reference' href="#E.-Gamma:1995pd">E.-Gamma:1995pd</a></li>
+<li>Das berühmte Buch: <a class="org-ref-reference" href="#/slide-bibliography">[E.-Gamma:1995pd]</a></li>
 <li><p>
 These:
 </p>
@@ -1047,7 +1066,7 @@ Jedes Entwurfsmuster offenbart einen Mangel der verwendeten Programmiersprache.
 <p>
 So fand <a href="https://en.wikipedia.org/wiki/Peter_Norvig">Peter Norvig</a> heraus, dass 16 der 23 Entwurfsmuster aus dem oben
 genannten Buch in Sprachen wie Lisp verschwinden bzw. sich stark
-vereinfachen lassen (<a class='org-ref-reference' href="#Norvig1998">Norvig1998</a>).
+vereinfachen lassen (<a class="org-ref-reference" href="#/slide-bibliography">[Norvig1998]</a>).
 </p></li>
 <li>Mehrere Entwurfsmuster behandeln bzw. implizieren Zustandsänderungen
 und sind daher nicht auf die funktionale Programmierung übertragbar.</li>
@@ -1076,13 +1095,13 @@ auf Kosten von Lesbarkeit und Prägnanz.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9efcf71" class="outline-3">
-<h3 id="org9efcf71">Konkrete Muster</h3>
-<div class="outline-text-3" id="text-org9efcf71">
+<div id="outline-container-org6748e57" class="outline-3">
+<h3 id="org6748e57">Konkrete Muster</h3>
+<div class="outline-text-3" id="text-org6748e57">
 </div>
-<div id="outline-container-orgfc3a660" class="outline-4">
-<h4 id="orgfc3a660">Das Befehlsmuster (command pattern)</h4>
-<div class="outline-text-4" id="text-orgfc3a660">
+<div id="outline-container-org11db829" class="outline-4">
+<h4 id="org11db829">Das Befehlsmuster (command pattern)</h4>
+<div class="outline-text-4" id="text-org11db829">
 <p>
 Zitiert aus <a href="https://www.philipphauer.de/study/se/design-pattern.php">Philipp Hauer: Design Pattern</a>:
 </p>
@@ -1099,9 +1118,9 @@ protokolliert oder in einer Warteschlange gelegt werden.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfb30058" class="outline-5">
-<h5 id="orgfb30058">Beispiel</h5>
-<div class="outline-text-5" id="text-orgfb30058">
+<div id="outline-container-org84cb9a0" class="outline-5">
+<h5 id="org84cb9a0">Beispiel</h5>
+<div class="outline-text-5" id="text-org84cb9a0">
 <ul class="org-ul">
 <li>Es werden verschiedene Commands betrachtet, die eine
 Nachricht verarbeiten.</li>
@@ -1211,7 +1230,7 @@ Ausführung einer Liste von Commands durch den <code>Executor</code>
 </div>
 
 </div></li>
-<li>Wie in <a class='org-ref-reference' href="#E.-Gamma:1995pd">E.-Gamma:1995pd</a> gefordert, werden Funktionen (die
+<li>Wie in <a class="org-ref-reference" href="#/slide-bibliography">[E.-Gamma:1995pd]</a> gefordert, werden Funktionen (die
 auszuführenden Aktionen) in Objekte verpackt (die Commands, die
 diese Aktionen ausführen).</li>
 </ul>
@@ -1221,9 +1240,9 @@ objektorientierter Weise behandeln zu können.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd07a4e8" class="outline-5">
-<h5 id="orgd07a4e8">Die funktionale Version</h5>
-<div class="outline-text-5" id="text-orgd07a4e8">
+<div id="outline-container-org76f7ad7" class="outline-5">
+<h5 id="org76f7ad7">Die funktionale Version</h5>
+<div class="outline-text-5" id="text-org76f7ad7">
 <ul class="org-ul">
 <li>Durch die Einführung von Lambda-Ausdrücken in <b>Java 8</b> ist es
 möglich, beide Paradigmen (OO und FP) nahtlos miteinander zu verknüpfen.</li>
@@ -1293,9 +1312,9 @@ eine Liste von <code>Runnables</code> gepackt werden können.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org959d9e9" class="outline-4">
-<h4 id="org959d9e9">Das Strategiemuster (strategy pattern)</h4>
-<div class="outline-text-4" id="text-org959d9e9">
+<div id="outline-container-orge7db181" class="outline-4">
+<h4 id="orge7db181">Das Strategiemuster (strategy pattern)</h4>
+<div class="outline-text-4" id="text-orge7db181">
 <p>
 Zitiert aus <a href="https://www.philipphauer.de/study/se/design-pattern.php">Philipp Hauer: Design Pattern</a>:
 </p>
@@ -1311,9 +1330,9 @@ Wechseln von alternativen Verhalten.
 </p>
 </div>
 </div>
-<div id="outline-container-org2d0c459" class="outline-5">
-<h5 id="org2d0c459">Beispiel</h5>
-<div class="outline-text-5" id="text-org2d0c459">
+<div id="outline-container-org214821c" class="outline-5">
+<h5 id="org214821c">Beispiel</h5>
+<div class="outline-text-5" id="text-org214821c">
 <ul class="org-ul">
 <li>Das Ziel des Strategiemusters besteht in der Verallgemeinerung einer
 Prozedur durch Verwendung verschiedener austauschbarer Algorithmen.</li>
@@ -1452,9 +1471,9 @@ der <code>publishText</code>-Methode der <code>Textformatter</code>-Klasse. Der 
 </ul>
 </div>
 </div>
-<div id="outline-container-org77b6ed0" class="outline-5">
-<h5 id="org77b6ed0">Die funktionale Version</h5>
-<div class="outline-text-5" id="text-org77b6ed0">
+<div id="outline-container-org77e4da9" class="outline-5">
+<h5 id="org77e4da9">Die funktionale Version</h5>
+<div class="outline-text-5" id="text-org77e4da9">
 <ul class="org-ul">
 <li>Die beiden durch den <code>Textformatter</code> definierten Verhaltensweisen
 können problemlos in Form von zwei Funktionen an die
@@ -1552,9 +1571,9 @@ Strategie-Klasse.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb503059" class="outline-4">
-<h4 id="orgb503059">Das Beobachtermuster (observer pattern)</h4>
-<div class="outline-text-4" id="text-orgb503059">
+<div id="outline-container-org6703860" class="outline-4">
+<h4 id="org6703860">Das Beobachtermuster (observer pattern)</h4>
+<div class="outline-text-4" id="text-org6703860">
 <p>
 Zitiert aus <a href="https://www.philipphauer.de/study/se/design-pattern.php">Philipp Hauer: Design Pattern</a>:
 </p>
@@ -1571,9 +1590,9 @@ Zustand eines bestimmten Objekts ändert.
 </p>
 </div>
 </div>
-<div id="outline-container-org0ce5ee5" class="outline-5">
-<h5 id="org0ce5ee5">Beispiel</h5>
-<div class="outline-text-5" id="text-org0ce5ee5">
+<div id="outline-container-org6d438f1" class="outline-5">
+<h5 id="org6d438f1">Beispiel</h5>
+<div class="outline-text-5" id="text-org6d438f1">
 <ul class="org-ul">
 <li>Das Entwurfsmuster erlaubt einem oder mehreren Objekten, über
 auftretende Ereignisse informiert zu werden.</li>
@@ -1683,9 +1702,9 @@ verwandelt werden: Klassen, die die Aktionen einwickeln.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfff61f2" class="outline-5">
-<h5 id="orgfff61f2">Die funktionale Version</h5>
-<div class="outline-text-5" id="text-orgfff61f2">
+<div id="outline-container-org569997c" class="outline-5">
+<h5 id="org569997c">Die funktionale Version</h5>
+<div class="outline-text-5" id="text-org569997c">
 <ul class="org-ul">
 <li><p>
 Schritt 1: Ersetzen des <code>Listener</code>-Interface durch das semantisch
@@ -1733,16 +1752,18 @@ observable.sendEvent<span style="color: #707183;">(</span> <span style="color: #
 </div>
 </div>
 </div>
-<div id="outline-container-org31b1914" class="outline-2">
-<h2 id="org31b1914"><h2>Literaturverzeichnis</h2>
+<div id="outline-container-org15e2d1c" class="outline-2">
+<h2 id="bibliography">Literaturverzeichnis</h2>
+<div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="E.-Gamma:1995pd">[E.-Gamma:1995pd]</a> <a name="E.-Gamma:1995pd"></a>Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides, Design Patterns: Elements of Reusable Object-Oriented Software, Addison-Wesley (1995).</li>
 <li><a id="Norvig1998">[Norvig1998]</a> <a name="Norvig1998"></a>Peter Norvig, Design Patterns in Dynamic Languages, (1998), zuletzt aufgerufen am 10.09.2018: <a href="http://www.norvig.com/design-patterns/">http://www.norvig.com/design-patterns/</a> </li>
-</ul></h2>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-12-15 Sat 11:15</p>
+<p class="date">Created: 2019-07-27 Sat 18:11</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
