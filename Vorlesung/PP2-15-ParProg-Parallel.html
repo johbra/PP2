@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-07-19 Fri 17:02 -->
+<!-- 2019-07-27 Sat 15:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelprogrammierung &#x2013; Parallele Algorithmen</title>
@@ -193,17 +193,17 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/bigblow.css"/>
-<link rel="stylesheet" type="text/css" href="styles/bigblow/css/hideshow.css"/>
-<script type="text/javascript" src="styles/bigblow/js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.localscroll-min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/jquery.zclip.min.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/bigblow.js"></script>
-<script type="text/javascript" src="styles/bigblow/js/hideshow.js"></script>
-<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/bigblow.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
 <link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
 <script type="text/javascript">
 /*
@@ -280,9 +280,9 @@ for the JavaScript code in this tag.
 <br />
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
-<div id="outline-container-org121fdf9" class="outline-2">
-<h2 id="org121fdf9">Ziele</h2>
-<div class="outline-text-2" id="text-org121fdf9">
+<div id="outline-container-org0f82c05" class="outline-2">
+<h2 id="org0f82c05">Ziele</h2>
+<div class="outline-text-2" id="text-org0f82c05">
 <ul class="org-ul">
 <li>Einstieg in das Thema parallele Algorithmen gewinnen</li>
 <li>Beispiele paralleler Programme kennenlernen</li>
@@ -291,13 +291,13 @@ von Berechnungen</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0870304" class="outline-2">
-<h2 id="org0870304">Grundlagen</h2>
-<div class="outline-text-2" id="text-org0870304">
+<div id="outline-container-orgd9ba44c" class="outline-2">
+<h2 id="orgd9ba44c">Grundlagen</h2>
+<div class="outline-text-2" id="text-orgd9ba44c">
 </div>
-<div id="outline-container-orged4bf44" class="outline-3">
-<h3 id="orged4bf44">Parallelität jenseits von Nebenläufigkeit</h3>
-<div class="outline-text-3" id="text-orged4bf44">
+<div id="outline-container-org9d619dd" class="outline-3">
+<h3 id="org9d619dd">Parallelität jenseits von Nebenläufigkeit</h3>
+<div class="outline-text-3" id="text-org9d619dd">
 <ul class="org-ul">
 <li>Bisher stand die Beherrschung der Probleme, die bei nebenläufigen
 Prozessen auftreten im Vordergrund.</li>
@@ -324,11 +324,11 @@ dabei hilfreich oder sogar notwendig.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcb4eb96" class="outline-3">
-<h3 id="orgcb4eb96">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
-<div class="outline-text-3" id="text-orgcb4eb96">
+<div id="outline-container-orgfe16051" class="outline-3">
+<h3 id="orgfe16051">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
+<div class="outline-text-3" id="text-orgfe16051">
 <p>
-(vgl. u.&nbsp;a. <a class='org-ref-reference' href="#Wali2016">Wali2016</a>)
+(vgl. u.&nbsp;a. <a class="org-ref-reference" href="#/slide-bibliography">[Wali2016]</a>)
 </p>
 <ul class="org-ul">
 <li>bekannte Standardfunktion höherer Ordung, wie sie in jeder
@@ -343,9 +343,9 @@ die auf die Elemente der Sequenz anzuwendende Funktion eine
 zeitintensive Berechnung ist.</li>
 </ul>
 </div>
-<div id="outline-container-org95e3139" class="outline-4">
-<h4 id="org95e3139">Clojure <code>pmap</code></h4>
-<div class="outline-text-4" id="text-org95e3139">
+<div id="outline-container-orga8ee85a" class="outline-4">
+<h4 id="orga8ee85a">Clojure <code>pmap</code></h4>
+<div class="outline-text-4" id="text-orga8ee85a">
 <ul class="org-ul">
 <li><p>
 Mit <code>(pmap f coll)</code> wird <code>pmap</code> genauso aufgerufen wie <code>map</code>:
@@ -382,9 +382,9 @@ user&gt; (time (doall (pmap square-slowly (repeat 3 10))))
 </pre></li>
 </ul>
 </div>
-<div id="outline-container-orga3f323b" class="outline-5">
-<h5 id="orga3f323b">Implementierung von pmap</h5>
-<div class="outline-text-5" id="text-orga3f323b">
+<div id="outline-container-org5be7fcb" class="outline-5">
+<h5 id="org5be7fcb">Implementierung von pmap</h5>
+<div class="outline-text-5" id="text-org5be7fcb">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">pmap</span>
   <span style="color: #036A07;">"Like map, except f is applied in parallel. Semi-lazy in that the</span>
@@ -425,9 +425,9 @@ wiederverwendet werden.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org546d5fd" class="outline-4">
-<h4 id="org546d5fd">Explizite Parallelisierung</h4>
-<div class="outline-text-4" id="text-org546d5fd">
+<div id="outline-container-orgdb58798" class="outline-4">
+<h4 id="orgdb58798">Explizite Parallelisierung</h4>
+<div class="outline-text-4" id="text-orgdb58798">
 <ul class="org-ul">
 <li>Neben der Funktion <code>pmap</code>, die die Parallelisierung implizit
 vornimmt kennt Clojure noch zwei weitere Funktionen:
@@ -458,9 +458,9 @@ user&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">tim
 </div>
 </div>
 </div>
-<div id="outline-container-orgf44cc02" class="outline-2">
-<h2 id="orgf44cc02">Parallelität und Performance</h2>
-<div class="outline-text-2" id="text-orgf44cc02">
+<div id="outline-container-org1d8627f" class="outline-2">
+<h2 id="org1d8627f">Parallelität und Performance</h2>
+<div class="outline-text-2" id="text-org1d8627f">
 <ul class="org-ul">
 <li>Die bisherigen Beispiele paralleler Berechnungen waren sehr einfach
 bzw. naheliegend (mapping).</li>
@@ -475,13 +475,14 @@ bzw. gibt es überhaupt eine?</li>
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-org69c8adc" class="outline-3">
-<h3 id="org69c8adc">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
-<div class="outline-text-3" id="text-org69c8adc">
+<div id="outline-container-orgdb4973b" class="outline-3">
+<h3 id="orgdb4973b">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
+<div class="outline-text-3" id="text-orgdb4973b">
 </div>
-<div id="outline-container-org045da98" class="outline-4">
-<h4 id="org045da98">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
-<div class="outline-text-4" id="text-org045da98">
+<div id="outline-container-orgd2b5af5" class="outline-4">
+<h4 id="orgd2b5af5">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
+<div class="outline-text-4" id="text-orgd2b5af5">
+<div class="large">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #036A07;">/** A Java program to illustrate the potential speedup of parallelism, in this</span>
 <span style="color: #036A07;">    case for sorting: the program uses the new (as of Java 8) Arrays.parallelSort</span>
@@ -546,11 +547,13 @@ bzw. gibt es überhaupt eine?</li>
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+
 </div>
 </div>
-<div id="outline-container-org8021fc6" class="outline-4">
-<h4 id="org8021fc6">Benutzung von der Kommandozeile</h4>
-<div class="outline-text-4" id="text-org8021fc6">
+</div>
+<div id="outline-container-org18cbda2" class="outline-4">
+<h4 id="org18cbda2">Benutzung von der Kommandozeile</h4>
+<div class="outline-text-4" id="text-org18cbda2">
 <div class="org-src-container">
 <pre class="src src-sh">bash-3.2$ java ParallelSort
 Serial sort of array of size:   4194304
@@ -581,9 +584,9 @@ Speedup:  2.7355932203389832
 </div>
 </div>
 </div>
-<div id="outline-container-org9e1ac88" class="outline-3">
-<h3 id="org9e1ac88">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
-<div class="outline-text-3" id="text-org9e1ac88">
+<div id="outline-container-org4bf6580" class="outline-3">
+<h3 id="org4bf6580">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
+<div class="outline-text-3" id="text-org4bf6580">
 <ul class="org-ul">
 <li>Das Gesetz, benannt nach einem früheren IBM-Ingenieur, der später
 eine eigene Großrechnerfirma gründete, beschreibt die theoretische
@@ -601,9 +604,9 @@ Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org50a638f" class="outline-4">
-<h4 id="org50a638f">Schrittweise Anwendung des Gesetzes:</h4>
-<div class="outline-text-4" id="text-org50a638f">
+<div id="outline-container-org6f4568a" class="outline-4">
+<h4 id="org6f4568a">Schrittweise Anwendung des Gesetzes:</h4>
+<div class="outline-text-4" id="text-org6f4568a">
 <ol class="org-ol">
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M1</i>: \(RT1\)</li>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M4</i>: \(RT4\)</li>
@@ -650,16 +653,16 @@ schneller als <i>M1</i>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5b0bd4d" class="outline-4">
-<h4 id="org5b0bd4d">Fazit</h4>
-<div class="outline-text-4" id="text-org5b0bd4d">
+<div id="outline-container-org0ff1dea" class="outline-4">
+<h4 id="org0ff1dea">Fazit</h4>
+<div class="outline-text-4" id="text-org0ff1dea">
 <ul class="org-ul">
 <li>Amdahls Gesetz verdeutlicht, dass naive Annahmen über mögliche
 Geschwindigkeitssteigerungen bei der Parallelisierung von
 Berechnungen verfehlt sind.</li>
 <li><p>
 Zahlenbeispiele:
-(aus <a class='org-ref-reference' href="#Kalin2015">Kalin2015</a>)
+(aus <a class="org-ref-reference" href="#/slide-bibliography">[Kalin2015]</a>)
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -732,16 +735,16 @@ Zahlenbeispiele:
 </div>
 </div>
 
-<div id="outline-container-org4f380ac" class="outline-2">
-<h2 id="org4f380ac">Empfehlungen</h2>
-<div class="outline-text-2" id="text-org4f380ac">
+<div id="outline-container-org766799b" class="outline-2">
+<h2 id="org766799b">Empfehlungen</h2>
+<div class="outline-text-2" id="text-org766799b">
 </div>
-<div id="outline-container-org75b456b" class="outline-3">
-<h3 id="org75b456b">Parallelprogrammierung mit Scala</h3>
-<div class="outline-text-3" id="text-org75b456b">
+<div id="outline-container-org81fb727" class="outline-3">
+<h3 id="org81fb727">Parallelprogrammierung mit Scala</h3>
+<div class="outline-text-3" id="text-org81fb727">
 <ul class="org-ul">
 <li>Coursera MOOC: <a href="https://www.coursera.org/learn/parprog1">Parallel programming (Scala)</a> (kostenlos)</li>
-<li>Themen (u.&nbsp;{a.}):
+<li>Themen (u.&nbsp;a.):
 <ul class="org-ul">
 <li>Das <code>parallel</code>-Konstrukt von Scala</li>
 <li>Das <code>task</code>-Konstrukt von Scala</li>
@@ -754,13 +757,13 @@ Zahlenbeispiele:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgadf46c4" class="outline-3">
-<h3 id="orgadf46c4">Clojure</h3>
-<div class="outline-text-3" id="text-orgadf46c4">
+<div id="outline-container-org8b0dafb" class="outline-3">
+<h3 id="org8b0dafb">Clojure</h3>
+<div class="outline-text-3" id="text-org8b0dafb">
 </div>
-<div id="outline-container-org7e3b3b6" class="outline-4">
-<h4 id="org7e3b3b6">Parallelität mit Reducers</h4>
-<div class="outline-text-4" id="text-org7e3b3b6">
+<div id="outline-container-orga6bd8d9" class="outline-4">
+<h4 id="orga6bd8d9">Parallelität mit Reducers</h4>
+<div class="outline-text-4" id="text-orga6bd8d9">
 <p>
 Zum Beispiel in 
 </p>
@@ -770,9 +773,9 @@ Zum Beispiel in
 </ul>
 </div>
 </div>
-<div id="outline-container-org147c77c" class="outline-4">
-<h4 id="org147c77c">Komunikation mit core.async</h4>
-<div class="outline-text-4" id="text-org147c77c">
+<div id="outline-container-org34e3288" class="outline-4">
+<h4 id="org34e3288">Komunikation mit core.async</h4>
+<div class="outline-text-4" id="text-org34e3288">
 <p>
 Zum Beispiel in 
 </p>
@@ -785,17 +788,19 @@ Zum Beispiel in
 </div>
 </div>
 
-
-<div id="outline-container-org2de7359" class="outline-2">
-<h2 id="org2de7359"><h2>Literaturverzeichnis</h2>
+<div id="outline-container-orga05d41e" class="outline-2">
+<h2 id="bibliography">Literaturverzeichnis</h2>
+<div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="Wali2016">[Wali2016]</a> <a name="Wali2016"></a>Wali, Mastering Clojure : understand the philosophy of the Clojure  language and dive into its inner workings to unlock  its advanced features, methodologies, and  constructs, Packt Publishing (2016).</li>
 <li><a id="Kalin2015">[Kalin2015]</a> <a name="Kalin2015"></a>Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </li>
-</ul></h2>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-07-19 Fri 17:02</p>
+<p class="email">Email: <a href="mailto:brauer@nordakademie.de">brauer@nordakademie.de</a></p>
+<p class="date">Created: 2019-07-27 Sat 15:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

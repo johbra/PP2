@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Parallelprogrammierung &#x2013; Parallele Algorithmen</title>
-<meta name="author" content="(Johannes Brauer)"/>
+<meta name="author" content="Johannes Brauer"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
@@ -23,17 +23,18 @@
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Parallelprogrammierung &#x2013; Parallele Algorithmen</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-07-19 Fri 16:59</p>
+<section id="sec-title-slide">
+<h1 class="title">Parallelprogrammierung &#x2013; Parallele Algorithmen</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
 <section>
-<section id="org1ae1350">
-<h2 id="org1ae1350">Ziele</h2>
+<section id="slide-orgeef04c5">
+<h2 id="orgeef04c5">Ziele</h2>
 <ul>
 <li>Einstieg in das Thema parallele Algorithmen gewinnen</li>
 <li>Beispiele paralleler Programme kennenlernen</li>
@@ -44,11 +45,11 @@ von Berechnungen</li>
 </section>
 </section>
 <section>
-<section id="org9b29380">
-<h2 id="org9b29380">Grundlagen</h2>
+<section id="slide-orgb351d7f">
+<h2 id="orgb351d7f">Grundlagen</h2>
 </section>
-<section id="org2ca2128">
-<h3 id="org2ca2128">Parallelität jenseits von Nebenläufigkeit</h3>
+<section id="slide-org3e4f527">
+<h3 id="org3e4f527">Parallelität jenseits von Nebenläufigkeit</h3>
 <ul>
 <li>Bisher stand die Beherrschung der Probleme, die bei nebenläufigen
 Prozessen auftreten im Vordergrund.</li>
@@ -78,10 +79,10 @@ dabei hilfreich oder sogar notwendig.</li>
 
 </ul>
 </section>
-<section id="org06309e0">
-<h3 id="org06309e0">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
+<section id="slide-orge3cc990">
+<h3 id="orge3cc990">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
 <p>
-(vgl. u.&nbsp;a. <a class='org-ref-reference' href="#Wali2016">Wali2016</a>)
+(vgl. u.&nbsp;a. <a class="org-ref-reference" href="#/slide-bibliography">[Wali2016]</a>)
 </p>
 <ul>
 <li>bekannte Standardfunktion höherer Ordung, wie sie in jeder
@@ -97,8 +98,8 @@ zeitintensive Berechnung ist.</li>
 
 </ul>
 </section>
-<section id="org5e8554f">
-<h4 id="org5e8554f">Clojure <code>pmap</code></h4>
+<section id="slide-org52119cb">
+<h4 id="org52119cb">Clojure <code>pmap</code></h4>
 <ul>
 <li><p>
 Mit <code>(pmap f coll)</code> wird <code>pmap</code> genauso aufgerufen wie <code>map</code>:
@@ -136,8 +137,8 @@ user&gt; (time (doall (pmap square-slowly (repeat 3 10))))
 
 </ul>
 </section>
-<section id="org483fc74">
-<h5 id="org483fc74">Implementierung von pmap</h5>
+<section id="slide-org5426b39">
+<h5 id="org5426b39">Implementierung von pmap</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">pmap</span>
@@ -178,8 +179,8 @@ wiederverwendet werden.</li>
 
 </ul>
 </section>
-<section id="org926fe92">
-<h4 id="org926fe92">Explizite Parallelisierung</h4>
+<section id="slide-org301af5f">
+<h4 id="org301af5f">Explizite Parallelisierung</h4>
 <ul>
 <li>Neben der Funktion <code>pmap</code>, die die Parallelisierung implizit
 vornimmt kennt Clojure noch zwei weitere Funktionen:
@@ -212,8 +213,8 @@ user&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">tim
 </section>
 </section>
 <section>
-<section id="org341f059">
-<h2 id="org341f059">Parallelität und Performance</h2>
+<section id="slide-orgf0a63ca">
+<h2 id="orgf0a63ca">Parallelität und Performance</h2>
 <ul>
 <li>Die bisherigen Beispiele paralleler Berechnungen waren sehr einfach
 bzw. naheliegend (mapping).</li>
@@ -230,13 +231,14 @@ bzw. gibt es überhaupt eine?</li>
 
 </ul>
 </section>
-<section id="orgc28370c">
-<h3 id="orgc28370c">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
-<div class="outline-text-3" id="text-orgc28370c">
+<section id="slide-org63b4e26">
+<h3 id="org63b4e26">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
+<div class="outline-text-3" id="text-org63b4e26">
 </div>
 </section>
-<section id="orgb11dba6">
-<h4 id="orgb11dba6">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
+<section id="slide-org97ceaf5">
+<h4 id="org97ceaf5">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
+<div class="large">
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #036A07;">/** A Java program to illustrate the potential speedup of parallelism, in this</span>
@@ -302,9 +304,11 @@ bzw. gibt es überhaupt eine?</li>
 <span style="color: #707183;">}</span>
 </pre>
 </div>
+
+</div>
 </section>
-<section id="org676ad36">
-<h4 id="org676ad36">Benutzung von der Kommandozeile</h4>
+<section id="slide-org114ffdd">
+<h4 id="org114ffdd">Benutzung von der Kommandozeile</h4>
 <div class="org-src-container">
 
 <pre  class="src src-sh">bash-3.2$ java ParallelSort
@@ -334,8 +338,8 @@ Speedup:  2.7355932203389832
 </pre>
 </div>
 </section>
-<section id="org6d854d7">
-<h3 id="org6d854d7">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
+<section id="slide-orgca2a930">
+<h3 id="orgca2a930">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
 <ul>
 <li>Das Gesetz, benannt nach einem früheren IBM-Ingenieur, der später
 eine eigene Großrechnerfirma gründete, beschreibt die theoretische
@@ -356,8 +360,8 @@ Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
 
 </ul>
 </section>
-<section id="orga18b29b">
-<h4 id="orga18b29b">Schrittweise Anwendung des Gesetzes:</h4>
+<section id="slide-org8f3d52c">
+<h4 id="org8f3d52c">Schrittweise Anwendung des Gesetzes:</h4>
 <ol>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M1</i>: \(RT1\)</li>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M4</i>: \(RT4\)</li>
@@ -387,7 +391,7 @@ zusammen gefasst werden &#x2026;</li>
 
 </ol>
 </section>
-<section >
+<section>
 <ul>
 <li><ul>
 <li>\[Speedup = \frac{RT1}{RT4} = \frac{1}{unenhanced + enhanced}\]</li>
@@ -413,15 +417,15 @@ schneller als <i>M1</i>.</li>
 
 </ul>
 </section>
-<section id="org5759fe3">
-<h4 id="org5759fe3">Fazit</h4>
+<section id="slide-org42fa28e">
+<h4 id="org42fa28e">Fazit</h4>
 <ul>
 <li>Amdahls Gesetz verdeutlicht, dass naive Annahmen über mögliche
 Geschwindigkeitssteigerungen bei der Parallelisierung von
 Berechnungen verfehlt sind.</li>
 <li><p>
 Zahlenbeispiele:
-(aus <a class='org-ref-reference' href="#Kalin2015">Kalin2015</a>)
+(aus <a class="org-ref-reference" href="#/slide-bibliography">[Kalin2015]</a>)
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -494,16 +498,16 @@ Zahlenbeispiele:
 </section>
 </section>
 <section>
-<section id="orga157b79">
-<h2 id="orga157b79">Empfehlungen</h2>
-<div class="outline-text-2" id="text-orga157b79">
+<section id="slide-org9dcab9b">
+<h2 id="org9dcab9b">Empfehlungen</h2>
+<div class="outline-text-2" id="text-org9dcab9b">
 </div>
 </section>
-<section id="orgf356b3a">
-<h3 id="orgf356b3a">Parallelprogrammierung mit Scala</h3>
+<section id="slide-orgc499c96">
+<h3 id="orgc499c96">Parallelprogrammierung mit Scala</h3>
 <ul>
 <li>Coursera MOOC: <a href="https://www.coursera.org/learn/parprog1">Parallel programming (Scala)</a> (kostenlos)</li>
-<li>Themen (u.&nbsp;{a.}):
+<li>Themen (u.&nbsp;a.):
 <ul>
 <li>Das <code>parallel</code>-Konstrukt von Scala</li>
 <li>Das <code>task</code>-Konstrukt von Scala</li>
@@ -517,13 +521,13 @@ Zahlenbeispiele:
 
 </ul>
 </section>
-<section id="org37a1f18">
-<h3 id="org37a1f18">Clojure</h3>
-<div class="outline-text-3" id="text-org37a1f18">
+<section id="slide-orgbacfc72">
+<h3 id="orgbacfc72">Clojure</h3>
+<div class="outline-text-3" id="text-orgbacfc72">
 </div>
 </section>
-<section id="orga893e71">
-<h4 id="orga893e71">Parallelität mit Reducers</h4>
+<section id="slide-org7f9e00c">
+<h4 id="org7f9e00c">Parallelität mit Reducers</h4>
 <p>
 Zum Beispiel in 
 </p>
@@ -533,8 +537,8 @@ Zum Beispiel in
 
 </ul>
 </section>
-<section id="orged7e972">
-<h4 id="orged7e972">Komunikation mit core.async</h4>
+<section id="slide-orgd2bdbc3">
+<h4 id="orgd2bdbc3">Komunikation mit core.async</h4>
 <p>
 Zum Beispiel in 
 </p>
@@ -544,22 +548,19 @@ Zum Beispiel in
 
 </ul>
 
-
 </section>
 </section>
 <section>
-<section id="org976af5f">
-<h2 id="org976af5f"><h2>Literaturverzeichnis</h2>
+<section id="slide-bibliography">
+<h2 id="bibliography">Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="Wali2016">[Wali2016]</a> <a name="Wali2016"></a>Wali, Mastering Clojure : understand the philosophy of the Clojure  language and dive into its inner workings to unlock  its advanced features, methodologies, and  constructs, Packt Publishing (2016).</li>
 <li><a id="Kalin2015">[Kalin2015]</a> <a name="Kalin2015"></a>Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </li>
-</ul></h2>
+</ul>
 </section>
 </section>
 </div>
 </div>
-<script src="./reveal.js/lib/js/head.min.js"></script>
 <script src="./reveal.js/js/reveal.js"></script>
-
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -567,22 +568,22 @@ Reveal.initialize({
 
 controls: true,
 progress: true,
-history: false,
+history: true,
 center: true,
 slideNumber: 'c',
 rollingLinks: false,
 keyboard: true,
+mouseWheel: false,
+fragmentInURL: true,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
 overview: true,
 margin: 0.05,
 
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transition: Reveal.getQueryHash().transition || 'slide', // see README of reveal.js for options
 transitionSpeed: 'default',
-multiplex: {
-    secret: '', // null if client
-    id: '', // id, obtained from socket.io server
-    url: '' // Location of socket.io server
-},
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
@@ -591,7 +592,8 @@ dependencies: [
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
-,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
+
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }   ] , menu: {hideMissingTitles: true}});
 </script>
 </body>
 </html>

@@ -69,4 +69,19 @@
 .reveal .uebereinander {
     position:absolute;
     left:50px; top:50px;
-                       }
+}
+
+/*****************************
+* Ergänzungen, damit Folien mit simple aussehen, wie vor Version 3.8.9
+*****************************/
+.reveal ol,
+.reveal dl,
+.reveal ul {
+    margin: 0 0 0 0; }
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+    margin-left: 0px; }
+
