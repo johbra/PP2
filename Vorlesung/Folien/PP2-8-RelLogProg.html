@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Relational-logische Programmierung</title>
-<meta name="author" content="(Johannes Brauer)"/>
+<meta name="author" content="Johannes Brauer"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
@@ -23,18 +23,19 @@
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="stylesheet" type="text/css" href="mycss/mystyle.css" />
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Relational-logische Programmierung</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-06-14 Fri 23:10</p>
+<section id="sec-title-slide">
+<h1 class="title">Relational-logische Programmierung</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
 
 <section>
-<section id="orgcb540ab">
-<h2 id="orgcb540ab">Ziele</h2>
+<section id="slide-orgea4365e">
+<h2 id="orgea4365e">Ziele</h2>
 <ul>
 <li>Vermittlung von Grundkenntnissen und Fertigkeiten der
 logischen/prädikativen/relationalen Programmierung</li>
@@ -46,8 +47,8 @@ logischen/prädikativen/relationalen Programmierung</li>
 </section>
 </section>
 <section>
-<section id="org226efec">
-<h2 id="org226efec">Einführung</h2>
+<section id="slide-org10de945">
+<h2 id="org10de945">Einführung</h2>
 <ul>
 <li>Relational-logische Programmierung: Programme spezifizieren
 Relationen zwischen Größen.</li>
@@ -67,7 +68,7 @@ Spezifikationen betrachtet.</li>
 </ul>
 
 </section>
-<section >
+<section>
 
 <ul>
 <li>Konkreter: Ein Axiom der Form:<br />
@@ -87,8 +88,8 @@ bzw. ausgeführt werden.</li>
 </section>
 </section>
 <section>
-<section id="orgd81b5af">
-<h2 id="orgd81b5af">Relationale Programmierung mit Prolog</h2>
+<section id="slide-orgcf93033">
+<h2 id="orgcf93033">Relationale Programmierung mit Prolog</h2>
 <ul>
 <li>Prolog (Programming in Logic) wurde Anfang der 1970er Jahre von dem
 französischen Informatiker Alain Colmerauer entwickelt.</li>
@@ -97,13 +98,13 @@ Basis hinaus entwickelt: Praktische Programmierkonstrukte wie
 arithmetische Operationen, Optimierungshilfmittel und Ein-/Ausgabe
 sind hinzugekommen.</li>
 <li>Die Darstellungen in den folgenden Abschnitten basieren auf
-<a class='org-ref-reference' href="#Bramer2013">Bramer2013</a> und  <a class='org-ref-reference' href="#Clocksin2003">Clocksin2003</a>.</li>
+<a class="org-ref-reference" href="#/slide-bibliography">[Bramer2013]</a> und  <a class="org-ref-reference" href="#/slide-bibliography">[Clocksin2003]</a>.</li>
 
 </ul>
 
 </section>
-<section id="orgabcca9c">
-<h3 id="orgabcca9c">Syntax und Semantik relational-logischer Programme</h3>
+<section id="slide-org1c2b11d">
+<h3 id="org1c2b11d">Syntax und Semantik relational-logischer Programme</h3>
 <ul>
 <li>Die Syntax basiert auf einer Teilmenge der Prädikatenkalküls. Ein
 relational-logisches Programm besteht aus einer Menge von Formeln,
@@ -128,8 +129,8 @@ gleich werden.</li>
 
 </ul>
 </section>
-<section id="org7007934">
-<h3 id="org7007934">Einstiegsbeispiel</h3>
+<section id="slide-orgff362c5">
+<h3 id="orgff362c5">Einstiegsbeispiel</h3>
 <ul>
 <li>Das „Hallo Welt“-Äquivalent für ein Prolog-Programm ist meistens
 eine Wissensdatenbank mit Verwandtschaftsverhältnissen.
@@ -156,8 +157,8 @@ Fakten in Prolog:
 </ul>
 
 </section>
-<section id="orgb20a7bf">
-<h4 id="orgb20a7bf">Start des Prolog-Interpreters</h4>
+<section id="slide-org8c3797b">
+<h4 id="org8c3797b">Start des Prolog-Interpreters</h4>
 <ul>
 <li>Im folgenden wird <a href="http://www.swi-prolog.org">SWI-Prolog</a> benutzt.</li>
 <li>Nach dem Start des Interpreters und der Konsultation der Faktendatei
@@ -184,8 +185,8 @@ false.
 </pre>
 </div>
 </section>
-<section id="org6164972">
-<h4 id="org6164972">Weitere Beispiele für Fragen (Zielausdrücke, goals):</h4>
+<section id="slide-org97eb9d5">
+<h4 id="org97eb9d5">Weitere Beispiele für Fragen (Zielausdrücke, goals):</h4>
 <p>
 Fragen können Variablen benutzen, die stets mit einem Großbuchstaben
 beginnen müssen.
@@ -208,8 +209,8 @@ beginnen müssen.
 </pre>
 </div>
 </section>
-<section id="org8eb5382">
-<h4 id="org8eb5382">Regeln</h4>
+<section id="slide-org4302b52">
+<h4 id="org4302b52">Regeln</h4>
 <p>
 Nehmen wir an, wir möchten auch Anfragen über die
 Schwesterbeziehung in die Datenbasis aufnehmen, um entsprechende
@@ -240,8 +241,8 @@ Fakten neue herzuleiten!</li>
 </ol>
 
 </section>
-<section id="orgfc6be45">
-<h4 id="orgfc6be45">Prolog-Programm mit Schwesterregel</h4>
+<section id="slide-org7f53303">
+<h4 id="org7f53303">Prolog-Programm mit Schwesterregel</h4>
 <p>
 Fakten:
 </p>
@@ -276,8 +277,8 @@ Regeln:
 </div>
 
 </section>
-<section id="org42d6389">
-<h4 id="org42d6389">Beispielanfragen</h4>
+<section id="slide-org42ac01e">
+<h4 id="org42ac01e">Beispielanfragen</h4>
 <div class="smaller">
 <div class="org-src-container">
 
@@ -302,7 +303,7 @@ Das Prolog-System muss
 </ol>
 
 </section>
-<section >
+<section>
 
 <div class="smaller">
 <div class="org-src-container">
@@ -340,7 +341,7 @@ Daher liefert die Anfrage die Antwort:
 </ul>
 
 </section>
-<section >
+<section>
 
 <div class="smaller">
 <div class="org-src-container">
@@ -369,8 +370,8 @@ false.
 
 </div>
 </section>
-<section id="orgc8a5f68">
-<h4 id="orgc8a5f68">modus ponens</h4>
+<section id="slide-org1c9f6b2">
+<h4 id="org1c9f6b2">modus ponens</h4>
 <ul>
 <li>Die oben gezeigten Ableitungen basieren auf dem <i>modus ponens</i>,
 einer Schlussregel der Logik:<br />
@@ -397,13 +398,13 @@ auch <i>B</i> bewiesen.
 
 </ul>
 </section>
-<section id="org8492218">
-<h3 id="org8492218">Basiskonzepte von Prolog</h3>
-<div class="outline-text-3" id="text-org8492218">
+<section id="slide-org9d2352f">
+<h3 id="org9d2352f">Basiskonzepte von Prolog</h3>
+<div class="outline-text-3" id="text-org9d2352f">
 </div>
 </section>
-<section id="org924d505">
-<h4 id="org924d505">Terme</h4>
+<section id="slide-org7353b4e">
+<h4 id="org7353b4e">Terme</h4>
 <ul>
 <li>Alle Daten (einschließlich der Prolog-Programme) in Prolog werden
 durch <i>Terme</i> repräsentiert.</li>
@@ -425,16 +426,16 @@ dem Unterstrich. Ein singulärer Unterstrich bezeichnet die
 
 </ul>
 </section>
-<section id="org6373535">
-<h5 id="org6373535">Übersicht</h5>
+<section id="slide-org69cae77">
+<h5 id="org69cae77">Übersicht</h5>
 
 <div class="figure">
 <p><img src="./Abbildungen/prologterme.png" alt="prologterme.png" width="750px" />
 </p>
 </div>
 </section>
-<section id="org8a0eb21">
-<h5 id="org8a0eb21">Stelligkeit</h5>
+<section id="slide-orga45ff3d">
+<h5 id="orga45ff3d">Stelligkeit</h5>
 <ul>
 <li>In Prolog können zwei Prädikate mit demselben Funktor aber
 unterschiedlicher Stelligkeit definiert werden.</li>
@@ -445,8 +446,8 @@ angibt, dargestellt.</li>
 
 </ul>
 </section>
-<section id="orge858096">
-<h4 id="orge858096">Programme</h4>
+<section id="slide-org4579430">
+<h4 id="org4579430">Programme</h4>
 <ul>
 <li>Ein Prolog-Programm besteht aus einer Menge von Prädikaten.</li>
 <li>Prädikate beschreiben Relationen zwischen ihren Argumenten. Logisch
@@ -463,8 +464,8 @@ Prädikat war.</li>
 
 </ul>
 </section>
-<section id="orgb788eab">
-<h4 id="orgb788eab">Klauseln &#x2013; Regeln</h4>
+<section id="slide-org00112b8">
+<h4 id="org00112b8">Klauseln &#x2013; Regeln</h4>
 <ul>
 <li>Ein Klausel ist entweder ein <i>Fakt</i> oder eine <i>Regel</i>.</li>
 <li>Eine Regel hat die Form:<br />
@@ -488,7 +489,7 @@ gerichtet vom Rumpf zum Kopf.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Z. B. kann die Regel<br />
@@ -505,8 +506,8 @@ wie folgt gelesen werden: <code>Dad</code> (eine Variable) ist <code>father</cod
 
 </ul>
 </section>
-<section id="org91a3ed9">
-<h4 id="org91a3ed9">Klauseln &#x2013; Fakten</h4>
+<section id="slide-orgfb70cab">
+<h4 id="orgfb70cab">Klauseln &#x2013; Fakten</h4>
 <ul>
 <li>Ein Faktum wird so aufgeschrieben:<br />
 <code>Kopf.</code></li>
@@ -517,8 +518,8 @@ Standardprädikat <code>true/0</code> immer wahr ist.</li>
 
 </ul>
 </section>
-<section id="org1bf5eb8">
-<h4 id="org1bf5eb8">Starten von Prolog-Programmen</h4>
+<section id="slide-org0fd1379">
+<h4 id="org0fd1379">Starten von Prolog-Programmen</h4>
 <ul>
 <li>Eingabe von Fragen/Zielausdrücken (queries) am Eingabeprompt des
 Prolog-Interpreters</li>
@@ -539,8 +540,8 @@ Leerzeichen oder Semikolon).</li>
 </ul>
 
 </section>
-<section id="org825cac3">
-<h4 id="org825cac3">Ausführung von Prolog-Programmen</h4>
+<section id="slide-org2de7f7e">
+<h4 id="org2de7f7e">Ausführung von Prolog-Programmen</h4>
 <p>
 Die operationale Semantik von Prolog
 </p>
@@ -559,11 +560,11 @@ Zielausdruck ausgewählt, wird diese auf die Argumente von beiden
 Termen angewendet.</li>
 <li>Daraus folgt, dass es in Prolog keine Unterscheidung zwischen Ein-
 und Ausgabeparametern gibt.
-(Vgl. <a href="PP2-7-RelProgUebrscht.html#beispiel-natuerliche-zahlen">Implementierung von natürlichen Zahlen</a>!)</li>
+(Vgl. <a href="PP2-7-RelProgUebrscht.html#/slide-beispiel-natuerliche-zahlen">Implementierung von natürlichen Zahlen</a>!)</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Sind die Köpfe mehrerer Klauseln mit einem Zielausdruck
 unifizierbar, werden die Alternativen durch <i>Backtracking</i>
@@ -574,14 +575,14 @@ werden (nähere Erläuterung s.&nbsp;u.).</li>
 
 </ul>
 </section>
-<section id="org6cc1d96">
-<h4 id="org6cc1d96">Unifikation</h4>
-<div class="outline-text-4" id="text-org6cc1d96">
+<section id="slide-org2e27dac">
+<h4 id="org2e27dac">Unifikation</h4>
+<div class="outline-text-4" id="text-org2e27dac">
 </div>
 </section>
-<section id="org271ce32">
-<h5 id="org271ce32">Informelle Definition:</h5>
-<blockquote nil>
+<section id="slide-org9bcf2eb">
+<h5 id="org9bcf2eb">Informelle Definition:</h5>
+<blockquote>
 <p>
 Zwei Terme sind unifizierbar, wenn sie identisch sind oder Variablen
 enthalten, die einheitlich mit Termen so belegt werden können, dass
@@ -601,7 +602,7 @@ sie gleich (unifiziert) sind.
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Welche der folgenden Term-Paare sind unifizierbar?
 <ul>
@@ -613,8 +614,8 @@ sie gleich (unifiziert) sind.
 
 </ul>
 </section>
-<section id="org8bd699b">
-<h5 id="org8bd699b">Präzise Definition</h5>
+<section id="slide-org073a420">
+<h5 id="org073a420">Präzise Definition</h5>
 <ol>
 <li>Sind \(t_1\) und \(t_2\) Konstanten, dann sind \(t_1\) und \(t_2\)
 unifizierbar, wenn sie dasselbe Atom oder dieselbe Zahl sind.</li>
@@ -630,8 +631,8 @@ und \(t_2\) unifizierbar, wenn \(t_1\) mit  \(t_2\) belegt wird (und umgekehrt).
 
 </ol>
 </section>
-<section id="org27953dd">
-<h5 id="org27953dd">Anwendungsbeispiele für <code>=/2</code></h5>
+<section id="slide-org31f23cf">
+<h5 id="org31f23cf">Anwendungsbeispiele für <code>=/2</code></h5>
 <div class="org-src-container">
 
 <pre  class="src src-prolog">?- claudia = claudia.
@@ -655,8 +656,8 @@ und \(t_2\) unifizierbar, wenn \(t_1\) mit  \(t_2\) belegt wird (und umgekehrt).
 </pre>
 </div>
 </section>
-<section id="orgad6a784">
-<h4 id="orgad6a784">Standardprädikate</h4>
+<section id="slide-org19af604">
+<h4 id="org19af604">Standardprädikate</h4>
 <ul>
 <li>Es gibt einige vordefinierte Standardprädikate, z. B.
 <ul>
@@ -681,7 +682,7 @@ werden, also <code>3 + 4</code> anstatt <code>+(3, 4)</code>.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Beachte: Der Unifikationsoperator <code>=/2</code> bewirkt keine Auswertung
@@ -703,8 +704,8 @@ Verfügung:
 </ul>
 
 </section>
-<section id="org203365d">
-<h4 id="org203365d">Resolution / Backtracking</h4>
+<section id="slide-org1a9af0b">
+<h4 id="org1a9af0b">Resolution / Backtracking</h4>
 <ul>
 <li>Resolution: Grundlage für eine automatische Beweisführung</li>
 <li>basiert auf dem Prinzip der Unifikation und des automatischen
@@ -725,8 +726,8 @@ alternative Klausel aus.</li>
 
 </ul>
 </section>
-<section id="orgf2517f7">
-<h5 id="orgf2517f7">Beispiel</h5>
+<section id="slide-org88e19f3">
+<h5 id="org88e19f3">Beispiel</h5>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><span style="color: #006699;">father</span>(abraham,isaac).
@@ -752,7 +753,7 @@ daughter(X,haran).
 gezeigt.
 </p>
 </section>
-<section >
+<section>
 <div class="nebeneinander">
 <ol>
 <li>Prolog sucht passende Programmklausel<br />
@@ -785,7 +786,7 @@ erste Programmklausel wird ausgewählt: <code>father(abraham,isaac).</code><br /
 
 </ol>
 </section>
-<section >
+<section>
 <div class="nebeneinander">
 <ol>
 <li value="5">rechtes Teilziel wird ausgewählt und Substitution angewendet: <code>female(lot)</code><br />
@@ -818,7 +819,7 @@ alternative Lösungen zu finden</li>
 
 </ol>
 </section>
-<section >
+<section>
 <div class="nebeneinander">
 <ol>
 <li value="9">Substitution <code>X=milcah</code> wird aufgehoben, nächste Klausel im
@@ -849,17 +850,17 @@ keine Alternativen mehr vorhanden sind.</li>
 
 </ol>
 </section>
-<section id="org0d480af">
-<h3 id="org0d480af">Rekursion</h3>
+<section id="slide-orgee5d75f">
+<h3 id="orgee5d75f">Rekursion</h3>
 <ul>
-<li>Davon, asss Prolog rekursive Regeln erlaubt, wurde schon in bei der
-logischen <a href="PP2-7-RelProgUebrscht.html#beispiel-natuerliche-zahlen">Implementierung von natürlichen Zahlen</a> Gebrauch gemacht.</li>
-<li>Weiteres Beispiel, dass die Notwendigkeit, Regeln rekursiv
+<li>Davon, dass Prolog rekursive Regeln erlaubt, wurde schon in bei der
+logischen <a href="PP2-7-RelProgUebrscht.html#/slide-beispiel-natuerliche-zahlen">Implementierung von natürlichen Zahlen</a> Gebrauch gemacht.</li>
+<li>Weiteres Beispiel, das die Notwendigkeit, Regeln rekursiv
 definieren zu können, deutlich macht.</li>
 <li><p>
 Modifikation des Stammbaum-Beispiels, zunächst ein paar Fakten:
 </p>
-<div class="small">
+<div class="smaller">
 <div class="org-src-container">
 
 <pre  class="src src-prolog">  mutter(klaus, elfriede).
@@ -881,7 +882,7 @@ abkoemmling(klara, elfriede).
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Wie lautet das Prädikat <code>abkoemling(X,Y)</code>?<br />
@@ -915,8 +916,8 @@ Wie lautet das Prädikat <code>abkoemling(X,Y)</code>?<br />
 
 </ul>
 </section>
-<section id="org9bcfad5">
-<h3 id="org9bcfad5">Listen in Prolog</h3>
+<section id="slide-orgda87577">
+<h3 id="orgda87577">Listen in Prolog</h3>
 <ul>
 <li>Listen in Prolog ähneln bis auf die Syntax den aus Racket oder
 Clojure bekannten.
@@ -955,13 +956,13 @@ Beispiele:
 
 </ul>
 </section>
-<section id="orgd3de7e6">
-<h3 id="orgd3de7e6">Beipiele für Listen-Prädikate</h3>
-<div class="outline-text-3" id="text-orgd3de7e6">
+<section id="slide-org2cd5f9a">
+<h3 id="org2cd5f9a">Beipiele für Listen-Prädikate</h3>
+<div class="outline-text-3" id="text-org2cd5f9a">
 </div>
 </section>
-<section id="org15e5624">
-<h4 id="org15e5624"><code>member</code></h4>
+<section id="slide-orgd4204a1">
+<h4 id="orgd4204a1"><code>member</code></h4>
 <ul>
 <li><p>
 Die Frage <code>member(X, L)</code> soll genau dann <code>true</code> liefern, wenn <code>X</code> in
@@ -992,8 +993,8 @@ false.
 </ul>
 
 </section>
-<section id="org80fb02d">
-<h4 id="org80fb02d"><code>count</code></h4>
+<section id="slide-orgddafba7">
+<h4 id="orgddafba7"><code>count</code></h4>
 <ul>
 <li><p>
 <code>count</code> soll die Anzahl der Elemente einer Liste ermitteln.
@@ -1028,8 +1029,8 @@ true.
 
 </ul>
 </section>
-<section id="org73475bb">
-<h5 id="org73475bb">Endrekursive Variante mit akkumulierendem Parameter</h5>
+<section id="slide-org3aeb496">
+<h5 id="org3aeb496">Endrekursive Variante mit akkumulierendem Parameter</h5>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><span style="color: #006699;">acCount</span>(<span style="color: #0000FF;">[</span><span style="color: #BA36A5;">_</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">T</span><span style="color: #0000FF;">]</span>,<span style="color: #BA36A5;">A</span>,<span style="color: #BA36A5;">L</span>) :- <span style="color: #BA36A5;">An</span> is <span style="color: #BA36A5;">A</span>+1, acCount(<span style="color: #BA36A5;">T</span>,<span style="color: #BA36A5;">An</span>,<span style="color: #BA36A5;">L</span>). 
@@ -1063,8 +1064,8 @@ true.
 </pre>
 </div>
 </section>
-<section id="org6de0736">
-<h4 id="org6de0736"><code>append</code></h4>
+<section id="slide-org960c9c6">
+<h4 id="org960c9c6"><code>append</code></h4>
 <ul>
 <li><p>
 Die Frage <code>append(L1, L2, L3)</code> soll genau dann <code>true</code> liefern, wenn
@@ -1106,16 +1107,16 @@ false.
 </ul>
 
 </section>
-<section id="org341719c">
-<h3 id="org341719c">Negation, <code>cut</code> und <code>fail</code></h3>
-<div class="outline-text-3" id="text-org341719c">
+<section id="slide-org0d7d163">
+<h3 id="org0d7d163">Negation, <code>cut</code> und <code>fail</code></h3>
+<div class="outline-text-3" id="text-org0d7d163">
 </div>
 </section>
-<section id="org371618b">
-<h4 id="org371618b">Erzwingen von Backtracking</h4>
+<section id="slide-org8cb4b1e">
+<h4 id="org8cb4b1e">Erzwingen von Backtracking</h4>
 <ul>
 <li><p>
-Gesucht ist ein Prädikat <code>all/1</code>, dass angewendet auf eine Liste
+Gesucht ist ein Prädikat <code>all/1</code>, das angewendet auf eine Liste
 alle Elemente anzeigt:
 </p>
 <div class="small">
@@ -1133,8 +1134,8 @@ true.
 
 </ul>
 </section>
-<section id="org093d29d">
-<h5 id="org093d29d">Erste Versuche</h5>
+<section id="slide-orgdb2c5e5">
+<h5 id="orgdb2c5e5">Erste Versuche</h5>
 <p>
 Die Verwendung des Prädikats 
 </p>
@@ -1180,8 +1181,8 @@ false.
 
 </div>
 </section>
-<section id="orga5c2a22">
-<h5 id="orga5c2a22">Verwendung von <code>fail/0</code></h5>
+<section id="slide-org5777091">
+<h5 id="org5777091">Verwendung von <code>fail/0</code></h5>
 <ul>
 <li>Das Prädikat fail/0 schlägt immer fehl.</li>
 <li>Seine Verwendung führt daher immer zu Backtracking.</li>
@@ -1222,8 +1223,8 @@ true.
 </ul>
 
 </section>
-<section id="org0fd3549">
-<h4 id="org0fd3549">Das Standardprädikat <code>!/0</code> (Cut)</h4>
+<section id="slide-org731f310">
+<h4 id="org731f310">Das Standardprädikat <code>!/0</code> (Cut)</h4>
 <p>
 (vgl. <a href="http://www.learnprolognow.org/lpnpage.php?pagetype=html&amp;pageid=lpn-htmlch10">Learn Prolog Now</a>)
 </p>
@@ -1263,8 +1264,8 @@ false.
 
 </ul>
 </section>
-<section id="org87393e8">
-<h5 id="org87393e8">Vermeidung des Backtracking</h5>
+<section id="slide-org765f6f6">
+<h5 id="org765f6f6">Vermeidung des Backtracking</h5>
 <ul>
 <li>Da die beiden Regeln von <code>max/3</code> sich gegenseitig ausschließen, wäre
 es wünschenswert, das Backtracking, für den Fall, dass die erste
@@ -1290,8 +1291,8 @@ true.
 
 </ul>
 </section>
-<section id="org8dd1b68">
-<h5 id="org8dd1b68">Wirkungsweise und Nutzen des Cut-Operators</h5>
+<section id="slide-org6c2c73c">
+<h5 id="org6c2c73c">Wirkungsweise und Nutzen des Cut-Operators</h5>
 <ul>
 <li>Wirkungsweise:
 <ul>
@@ -1316,8 +1317,8 @@ stehen, vom weiteren Backtracking ausgeschlossen.</li>
 
 </ul>
 </section>
-<section id="org1936626">
-<h5 id="org1936626">Grüne und rote Cuts</h5>
+<section id="slide-org61a66c7">
+<h5 id="org61a66c7">Grüne und rote Cuts</h5>
 <ul>
 <li>Der Cut in <code>max/3</code> ändert nichts am Ergebnis des Prädikats gegenüber
 der ersten Version ohne Cut. Einen solchen Cut nennt man grün.</li>
@@ -1347,7 +1348,7 @@ liefert.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Schreibt man das Prädikat wie folgt um
@@ -1369,14 +1370,14 @@ funktioniert wieder alles. Jetzt kann der erste Regelkopf mit
 verändern.</li>
 
 </ul>
-<blockquote nil>
+<blockquote>
 <p>
 Fazit: Mit Cuts muss man vorsichtig umgehen.
 </p>
 </blockquote>
 </section>
-<section id="org3d0046c">
-<h4 id="org3d0046c">Negation mit Cut und <code>fail</code></h4>
+<section id="slide-org81012eb">
+<h4 id="org81012eb">Negation mit Cut und <code>fail</code></h4>
 <ul>
 <li><p>
 Keine Regel ohne Ausnahme: Wir wollen festhalten, dass Karl Pizza
@@ -1407,8 +1408,8 @@ false.
 
 </ul>
 </section>
-<section id="orgba7d618">
-<h5 id="orgba7d618">Wirkungsweise und Probleme &#x2026;</h5>
+<section id="slide-orge1877bd">
+<h5 id="orge1877bd">Wirkungsweise und Probleme &#x2026;</h5>
 <ul>
 <li>Wirkungsweise der ersten Regel: 
 <ul>
@@ -1430,8 +1431,8 @@ verhindert wird.</li>
 
 </ul>
 </section>
-<section id="orgf65a4b4">
-<h5 id="orgf65a4b4">&#x2026; Abhilfe</h5>
+<section id="slide-org3d087b8">
+<h5 id="org3d087b8">&#x2026; Abhilfe</h5>
 <ul>
 <li>Die Cut-fail-Kombination stellt eine Art Negation zur Verfügung, die
 auch als <i>negation as failure</i> bezeichnet wird.</li>
@@ -1475,8 +1476,8 @@ Die Frage <code>mag(karl, X)</code> liefert jetzt auch das richtige Ergebnis:
 
 </ul>
 </section>
-<section id="orgf25c79a">
-<h5 id="orgf25c79a"><code>\+/1</code> ist keine logische Negation</h5>
+<section id="slide-orged2166e">
+<h5 id="orged2166e"><code>\+/1</code> ist keine logische Negation</h5>
 <ul>
 <li>Das <code>mag/1</code>-Prädikat ist auch in der letzten Fassung nicht
 vollständig deklarativ.</li>
@@ -1500,18 +1501,16 @@ liefert <code>mag(karl, X)</code> wieder <code>false</code>.
 </section>
 </section>
 <section>
-<section id="orgb1ef4d2">
-<h2 id="orgb1ef4d2"><h2>Literaturverzeichnis</h2>
+<section id="slide-bibliography">
+<h2 id="bibliography">Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="Bramer2013">[Bramer2013]</a> <a name="Bramer2013"></a>Max Bramer, Logic Programming with Prolog, Springer (2013).</li>
 <li><a id="Clocksin2003">[Clocksin2003]</a> <a name="Clocksin2003"></a>William Clocksin & Christopher Mellish, Programming in Prolog: Using the ISO Standard, Springer (2003).</li>
-</ul></h2>
+</ul>
 </section>
 </section>
 </div>
 </div>
-<script src="./reveal.js/lib/js/head.min.js"></script>
 <script src="./reveal.js/js/reveal.js"></script>
-
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -1519,22 +1518,22 @@ Reveal.initialize({
 
 controls: true,
 progress: true,
-history: false,
+history: true,
 center: true,
 slideNumber: 'c',
 rollingLinks: false,
 keyboard: true,
+mouseWheel: false,
+fragmentInURL: true,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
 overview: true,
 margin: 0.05,
 
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transition: Reveal.getQueryHash().transition || 'slide', // see README of reveal.js for options
 transitionSpeed: 'default',
-multiplex: {
-    secret: '', // null if client
-    id: '', // id, obtained from socket.io server
-    url: '' // Location of socket.io server
-},
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
@@ -1543,7 +1542,8 @@ dependencies: [
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
-,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
+
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }   ] , menu: {hideMissingTitles: true}});
 </script>
 </body>
 </html>
