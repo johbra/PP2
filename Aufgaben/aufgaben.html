@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-11-27 Tue 17:02 -->
+<!-- 2019-07-27 Sat 21:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aufgaben</title>
@@ -161,6 +161,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -197,7 +210,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -268,12 +281,12 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org221ce12" class="outline-2">
-<h2 id="org221ce12"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
+<div id="outline-container-orgcee7d8f" class="outline-2">
+<h2 id="orgcee7d8f"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgb25253c" class="outline-3">
-<h3 id="orgb25253c"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
+<div id="outline-container-org6584390" class="outline-3">
+<h3 id="org6584390"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Lösen Sie das SEND-MORE-MONEY-Problem aus der Vorlesung 
@@ -283,8 +296,8 @@ Beachten Sie Nebenbedingungen.
 </div>
 </div>
 
-<div id="outline-container-orgc9439f3" class="outline-3">
-<h3 id="orgc9439f3"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
+<div id="outline-container-org26466d4" class="outline-3">
+<h3 id="org26466d4"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Führen Sie für das Pkw-Motorräder-Problem aus der <a href="../Vorlesung/PP2-1-Einstieg.html#aufgabePkw">Vorlesung</a> den dort
@@ -293,8 +306,8 @@ verlangten Beweis!
 </div>
 </div>
 
-<div id="outline-container-org5ed45e3" class="outline-3">
-<h3 id="org5ed45e3"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
+<div id="outline-container-orgf9f70de" class="outline-3">
+<h3 id="orgf9f70de"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li><p>
@@ -304,8 +317,8 @@ Ganzzahlen, summiert. Z.&nbsp;B. liefert der Aufruf
 </p>
 <pre class="example">
 sum_pair_list [(2,3), (4,5)]
-
 </pre>
+
 <p>
 den Wert 14.
 </p></li>
@@ -317,8 +330,8 @@ extrahiert. Z.&nbsp;B. liefert der Aufruf
 </p>
 <pre class="example">
 sum_pair_list [(2,3), (4,5)]
-
 </pre>
+
 <p>
 den Wert <code>[2,4]</code>
 </p></li>
@@ -385,8 +398,8 @@ vorkommender Monat keinen Einfluss auf das Resultat hat.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org5af9ba3" class="outline-3">
-<h3 id="aufgabemustervergleich"><a id="org5af9ba3"></a><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
+<div id="outline-container-org88b0857" class="outline-3">
+<h3 id="aufgabemustervergleich"><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
 <div class="outline-text-3" id="text-aufgabemustervergleich">
 <ol class="org-ol">
 <li><p>
@@ -423,8 +436,8 @@ Z.&nbsp;B. liefert der Aufruf
 </p>
 <pre class="example">
 eval (Add (Constant 19, Negate (Constant 4)))
-
 </pre>
+
 <p>
 den Wert 15.
 </p></li>
@@ -440,8 +453,8 @@ vgl. <a href="AufgabePV.pdf">Prüfungsvorleistung</a></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org6dd644a" class="outline-3">
-<h3 id="org6dd644a"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
+<div id="outline-container-orgd5fea63" class="outline-3">
+<h3 id="orgd5fea63"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Überlegen Sie, wie Kreise, die durch
@@ -462,8 +475,8 @@ des Destructurings Gebrauch.
 </p>
 </div>
 </div>
-<div id="outline-container-orgca49802" class="outline-3">
-<h3 id="orgca49802"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
+<div id="outline-container-orgc747c6a" class="outline-3">
+<h3 id="orgc747c6a"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Schreiben Sie für den Datentyp <code>exp</code> (vgl. <a href="#aufgabemustervergleich">Aufgabe (Mustervergleich)</a>)
@@ -485,8 +498,8 @@ Konstanten von <code>e</code> <code>true</code> liefert.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf2319b8" class="outline-3">
-<h3 id="orgf2319b8"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung, Entcurryfizierung, partielle Anwendung)</h3>
+<div id="outline-container-org5a399a6" class="outline-3">
+<h3 id="org5a399a6"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung, Entcurryfizierung, partielle Anwendung)</h3>
 <div class="outline-text-3" id="text-1-7">
 <ol class="org-ol">
 <li><p>
@@ -549,8 +562,8 @@ Schreiben Sie zunächst eine Funktion
 </p>
 <pre class="example">
 ist_teilbar_durch = fn : int -&gt; int -&gt; bool
-
 </pre>
+
 <p>
 , die überprüft, ob ihr zweites Argument ohne Rest durch ihr
 Argument teilbar ist. 
@@ -565,13 +578,12 @@ aus, dass die Ausdrücke <code>true</code> liefern:
 <pre class="example">
 (List.filter ... [1,2,3,4,5,6,7,8,9]) = [3,6,9]
 (List.filter ... [1,2,3,4,5,6,7,8,9]) = [4,8]
-
 </pre></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgbf28bd1" class="outline-3">
-<h3 id="aufgabealternativelistenimplementierung"><a id="orgbf28bd1"></a><span class="section-number-3">1.8</span> Aufgabe (alternative Listenimplementierung)</h3>
+<div id="outline-container-org071dc56" class="outline-3">
+<h3 id="aufgabealternativelistenimplementierung"><span class="section-number-3">1.8</span> Aufgabe (alternative Listenimplementierung)</h3>
 <div class="outline-text-3" id="text-aufgabealternativelistenimplementierung">
 <p>
 Gegeben sind folgende Definitionen für <code>cns</code> und <code>fst</code>:
@@ -595,8 +607,8 @@ Resultat <code>x</code> liefert.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orga4bc852" class="outline-3">
-<h3 id="aufgabendatentypnat"><a id="orga4bc852"></a><span class="section-number-3">1.9</span> Aufgabe (Datentyp <b>Nat</b>)</h3>
+<div id="outline-container-org9aee4a6" class="outline-3">
+<h3 id="aufgabendatentypnat"><span class="section-number-3">1.9</span> Aufgabe (Datentyp <b>Nat</b>)</h3>
 <div class="outline-text-3" id="text-aufgabendatentypnat">
 <ol class="org-ol">
 <li>Schreiben Sie eine Funktion <code>repeat</code>, die eine natürliche Zahl
@@ -634,13 +646,13 @@ Schreiben Sie eine Funktion
 </ol>
 </div>
 </div>
-<div id="outline-container-orgb43d500" class="outline-3">
-<h3 id="aufgabenstreams"><a id="orgb43d500"></a><span class="section-number-3">1.10</span> Aufgabe (verzögerte Auswertung - Streams)</h3>
+<div id="outline-container-org0f9703c" class="outline-3">
+<h3 id="aufgabenstreams"><span class="section-number-3">1.10</span> Aufgabe (verzögerte Auswertung - Streams)</h3>
 <div class="outline-text-3" id="text-aufgabenstreams">
 </div>
-<div id="outline-container-org6ce5aba" class="outline-4">
-<h4 id="org6ce5aba">Streams</h4>
-<div class="outline-text-4" id="text-org6ce5aba">
+<div id="outline-container-org453963c" class="outline-4">
+<h4 id="org453963c">Streams</h4>
+<div class="outline-text-4" id="text-org453963c">
 <p>
 Ein Stream ist eine unendliche Folge von Werten. Selbstverständlich
 kann ein solche Folge nicht tatsächlich erzeugt werden - dies
@@ -779,9 +791,9 @@ Beispielanwendung:
 </div>
 </div>
 
-<div id="outline-container-org188c75b" class="outline-4">
-<h4 id="org188c75b">Aufgaben</h4>
-<div class="outline-text-4" id="text-org188c75b">
+<div id="outline-container-orge9bfcd9" class="outline-4">
+<h4 id="orge9bfcd9">Aufgaben</h4>
+<div class="outline-text-4" id="text-orge9bfcd9">
 <ol class="org-ol">
 <li><p>
 Schreiben Sie eine Funktion <code>stream-for-n-steps</code>, die einen Stream
@@ -816,8 +828,8 @@ Funktion zur Berechnung des nächsten einen Stream baut.</li>
 </div>
 </div>
 
-<div id="outline-container-org87fd543" class="outline-3">
-<h3 id="aufgabeoopversusfp"><a id="org87fd543"></a><span class="section-number-3">1.11</span> Aufgabe (OPP versus FP)</h3>
+<div id="outline-container-org9ba64e1" class="outline-3">
+<h3 id="aufgabeoopversusfp"><span class="section-number-3">1.11</span> Aufgabe (OPP versus FP)</h3>
 <div class="outline-text-3" id="text-aufgabeoopversusfp">
 <ol class="org-ol">
 <li>Implementieren die in der <a href="../Vorlesung/PP2-5-ParadigmenVergleich.html#problemarithmeischeausdruecke">Vorlesung geschilderte Aufgabenstellung</a>
@@ -837,15 +849,338 @@ Matrix eine neue Zeile hinzu.</li>
 </div>
 
 
-<div id="outline-container-orgde3fdbc" class="outline-2">
-<h2 id="orgde3fdbc"><span class="section-number-2">2</span> Teil 2 (6. Semester)</h2>
+<div id="outline-container-org2ba95af" class="outline-2">
+<h2 id="org2ba95af"><span class="section-number-2">2</span> Teil 2 (6. Semester)</h2>
 <div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org0d54f79" class="outline-3">
+<h3 id="org0d54f79"><span class="section-number-3">2.1</span> Aufgabe (Prolog - NSA)</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Gegeben ist die folgende Prolog-Datenbasis:
+</p>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #006699;">belauscht</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- kontrolliert(<span style="color: #BA36A5;">X</span>,nsa),hatTelefon(<span style="color: #BA36A5;">Y</span>),benutztTelefon(<span style="color: #BA36A5;">Y</span>).
+<span style="color: #006699;">hatTelefon</span>(mutti). 
+<span style="color: #006699;">hatTelefon</span>(makrone). 
+<span style="color: #006699;">benutztTelefon</span>(mutti). 
+<span style="color: #006699;">kontrolliert</span>(trumpf,nsa).
+<span style="color: #006699;">weiblich</span>(mutti). 
+<span style="color: #006699;">maennlich</span>(makrone). 
+<span style="color: #006699;">maennlich</span>(trumpf). 
+</pre>
+</div>
+<p>
+Wer belauscht hier wen?
+</p>
+</div>
+</div>
+<div id="outline-container-org5693518" class="outline-3">
+<h3 id="org5693518"><span class="section-number-3">2.2</span> Aufgabe (Prolog)</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li><p>
+Schreiben Sie ein Prolog-Programm, das festhält:
+</p>
+<ul class="org-ul">
+<li>ein Löwe, ein Tiger und eine Kuh sind Lebewesen;</li>
+<li>Löwe und Tiger sind Fleichfresser.<br /></li>
+</ul>
+<p>
+Anschließend testen Sie Ihr Programm durch Eingabe der folgenden
+Zielausdrücke:
+</p>
+<ul class="org-ul">
+<li>Es gibt ein Lebewesen Tiger in der Datenbank.</li>
+<li>Eine Kuh und ein Tiger sind beide Lebewesen (Konjunktion zweier Ziele).</li>
+<li>Ein Löwe ist ein Lebewesen und Fleichfresser.</li>
+<li>Ein Kuh ist ein Lebewesen und Fleichfresser.</li>
+</ul></li>
+<li><p>
+Gegeben seien die folgenden biblischen Verwandtschaftsverhältnisse:
+</p>
+<div class="org-src-container">
+<pre class="src src-prolog">   father(abraham,isaac).
+   father(haran,lot).
+   father(haran,milcah).
+   father(haran,yiscah).
+   male(isaac).
+   male(lot).
+   female(milcah).
+   female(yiscah).
+   son(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), male(<span style="color: #BA36A5;">X</span>).
+   daughter(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), female(<span style="color: #BA36A5;">X</span>).
+</pre>
+</div>
+<p>
+Fügen Sie die Prädikate <code>sister/2</code>, <code>brother/2</code> und <code>siblings/2</code>
+hinzu.
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgdf2ad76" class="outline-3">
+<h3 id="orgdf2ad76"><span class="section-number-3">2.3</span> Aufgabe (Prolog - Reisewege)</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Gegeben sei die folgende Faktenbasis über Reisemöglichkeiten:
+</p>
+<div class="org-src-container">
+<pre class="src src-prolog">   byCar(auckland,hamilton).
+   byCar(hamilton,raglan).
+   byCar(valmont,saarbruecken).
+   byCar(valmont,metz).
+
+   byTrain(metz,frankfurt).
+   byTrain(saarbruecken,frankfurt).
+   byTrain(metz,paris).
+   byTrain(saarbruecken,paris).
+
+   byPlane(frankfurt,bangkok).
+   byPlane(frankfurt,singapore).
+   byPlane(paris,losAngeles).
+   byPlane(bangkok,auckland).
+   byPlane(losAngeles,auckland).
+</pre>
+</div>
+<ol class="org-ol">
+<li><p>
+Schreiben Sie ein Prädikat <code>travel/2</code>, das ermittelt, ob es
+möglich ist, von einem Ort zu einem anderen zu reisen, indem
+der Reiseweg aus den in der Faktenbasis gegebenen Direktverbindungen verkettet
+wird. Z. B. sollte die Frage
+<code>travel(valmont,raglan).</code> als Resultat <code>true</code> liefern. 
+</p>
+
+<p>
+<b>Hinweis</b>: Es könnte hilfreich sein, ein Prädikat <code>onestep/2</code> zu definieren,
+das die Möglichkeiten zusammenfasst, welche Direktverbindungen
+aufgrund der gegebenen Fakten existieren.
+</p></li>
+
+<li><p>
+Das Prädikat <code>travel/2</code> ermöglicht zu beweisen, dass es z. B. einen Reiseweg
+von Valmont nach Raglan gibt. Für eine detaillierte Reiseplanung
+wäre es aber wünschenswert, auch zu erfahren, über welche
+Zwischenstationen die Reise führt. Schreiben Sie dafür ein
+Prädikat <code>travel/3</code>, das dann z. B. auf die Frage<br />
+<code>travel(valmont,paris, go(valmont,metz,go(metz,paris)))</code><br />
+mit <code>true</code> und auf die Frage<br />
+<code>travel(valmont,losAngeles,X).</code> <br />
+mit<br />
+<code>X = go(valmont,metz,go(metz,paris,go(paris,losAngeles)))</code> <br />
+antwortet. Hier gibt es möglicherweise Alternativen.
+</p>
+
+<p>
+<b>Hinweis</b>: Jeder Zwischenschritt auf der Reise muss registriert
+werden. Betrachten Sie zuerst den Basisfall der Rekursion
+<code>(travel(X,Y) :- onestep(X,Y).)</code> und erweitern ihn so, dass
+<code>travel</code> in seinem dritten Argument speichert, dass ein Schritt
+von <code>X</code> nach <code>Y</code> zurückgelegt wurde.
+</p>
+
+<p>
+Betrachen Sie anschließend die rekursive Regel:
+</p>
+<pre class="example">
+travel(X,Y) :- onestep(X,Z), travel(Z,Y).
+</pre>
+
+<p>
+Diese Klausel sollte eine Struktur zurückgeben, die anzeigt, dass ein Schritt
+von <code>X</code> nach <code>Z</code> zurücklegt und welcher Weg von <code>Z</code> nach <code>Y</code>
+genommen werden muss.
+</p></li>
+
+<li><p>
+Erweitern Sie das Prädikat <code>travel/3</code> so, dass auch angezeigt wird,
+mit welchem Verkehrsmittel die jeweilige Teilstrecke
+zurückgelegt wird.
+</p>
+
+<p>
+<b>Hinweis</b>: Für jede Teilstrecke muss man sich merken, welches
+Verkehrsmittel benutzt wurde. Erweitern Sie dafür die
+<code>go</code>-Struktur aus der vorangegangenen Teilaufgabe um ein
+Argument <code>Transport</code>.
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org508fcf4" class="outline-3">
+<h3 id="org508fcf4"><span class="section-number-3">2.4</span> Aufgabe (Prolog - Bauklötze)</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Gegeben ist eine Welt von Bauklötzen, wie sie in der folgenden
+Abbildung zusehen ist:
+</p>
+
+
+<div class="figure">
+<p><img src="./baukloetze.png" alt="baukloetze.png" />
+</p>
+</div>
+
+<p>
+Die folgenden Prädikate dienen zur Modellierung dieser Bauklotzwelt:
+</p>
+
+<dl class="org-dl">
+<dt><code>am_boden(K)</code></dt><dd>K liegt auf dem Boden.</dd>
+<dt><code>auf(K1, K2)</code></dt><dd>K1 liegt direkt auf K2.</dd>
+<dt><code>links_von(K1, K2)</code></dt><dd>K1 und K2 liegen auf dem Boden und K1 liegt
+direkt links von K2.</dd>
+</dl>
+
+<p>
+Bearbeiten Sie die folgenden Aufgaben:
+</p>
+<ol class="org-ol">
+<li>Formulieren Sie die Fakten, die die Bauklotzwelt aus der Abbildung
+modelliert.</li>
+<li><p>
+Unter ausschließlicher Verwendung dieser Fakten, schreiben Sie die
+folgenden Prädikate:
+</p>
+<dl class="org-dl">
+<dt><code>basis(K1, K2)</code></dt><dd>K2 ist die Basis des Turms, der K1
+enthält. Z. B. ist <i>j</i> die Basis von <i>h</i> in der Abbildung.</dd>
+<dt><code>basis_rechts(K1, K2)</code></dt><dd>K1 und K2 liegen beide auf dem Boden
+und K2 liegt rechts (nicht notwendig direkt benachbart) von K1.</dd>
+<dt><code>objekt_rechts(K1, K2)</code></dt><dd>K2 befindet sich in einem Turm auf der
+rechten Seite (nicht notwendig direkt benachbart) des Turms,
+der K1 enthält.</dd>
+</dl>
+<p>
+Die drei Prädikate müssen für jede Welt funktionieren, die mittels
+der Fakten <code>am_boden/1</code>, <code>auf/2</code> und <code>links_von/2</code>.
+</p></li>
+
+<li><p>
+Nun werden die „Bauklötze” verallgemeinert, indem verschiedene
+Arten eingeführt werden, die &#x2013; abhängig von ihrer äußeren Form &#x2013;
+aufeinander stapelbar sind oder nicht. Es gibt <i>Würfel</i>, <i>Kugeln</i>,
+<i>Pyramiden</i> und <i>Reifen</i>. Es soll ein Prädikat entwickelt werden,
+das die Frage beantwortet, ob ein Turm, gebaut aus diesen
+„Bauklötzen”, gemäß der folgenden Regeln stabil ist:
+</p>
+<ul class="org-ul">
+<li>Ein Reifen kann auf jeden Bauklotz gestapelt werden.</li>
+<li>Ein Reifen ist der einzige Bauklotz, der auf eine Pyramide
+gestapelt werden kann. In diesem Fall ragt die Spitze der
+Pyramide aber aus dem Reifen heraus, sodass auf diese
+„Konstruktion” nur ein weiterer Reifen gestapelt werden
+dürfte. Auf diesen zweiten Reifen könnte dann jedes beliebige
+Objekt gestapelt werden.</li>
+<li>Eine Kugel darf nur auf einen Reifen gestapelt werden, sie darf
+auch nicht auf dem Boden liegen.</li>
+</ul>
+
+<p>
+Bearbeiten Sie die folgenden Teilaufgaben:
+</p>
+<ol class="org-ol">
+<li value="1"><p>
+Schreiben Sie ein Prädikat, das jedem Bauklotz einen Typ gemäß
+der folgenden Tabelle zuordnet: 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Klotz</th>
+<th scope="col" class="org-left">Typ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">Pyramide</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-left">Reifen</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-left">Würfel</td>
+</tr>
+
+<tr>
+<td class="org-left">d</td>
+<td class="org-left">Kugel</td>
+</tr>
+
+<tr>
+<td class="org-left">e</td>
+<td class="org-left">Würfel</td>
+</tr>
+
+<tr>
+<td class="org-left">f</td>
+<td class="org-left">Reifen</td>
+</tr>
+
+<tr>
+<td class="org-left">g</td>
+<td class="org-left">Reifen</td>
+</tr>
+
+<tr>
+<td class="org-left">h</td>
+<td class="org-left">Kugel</td>
+</tr>
+
+<tr>
+<td class="org-left">i</td>
+<td class="org-left">Reifen</td>
+</tr>
+
+<tr>
+<td class="org-left">j</td>
+<td class="org-left">Pyramide</td>
+</tr>
+</tbody>
+</table></li>
+<li>Unter der Benutzung der Klotztypen und der Prädikate, die sich
+auf die Position der Klötze beziehen (s. o.) schreiben Sie das
+folgende Prädikat:
+<dl class="org-dl">
+<dt><code>instabil(K)</code></dt><dd>Das Objekt K kann nicht stabil auf seine
+Unterlage in der gegebenen Konfiguration
+gestapelt werden.</dd>
+</dl></li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgeed353a" class="outline-3">
+<h3 id="orgeed353a"><span class="section-number-3">2.5</span> Aufgabe (Prolog - Listenmaximum)</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Schreiben Sie ein Prädikat <code>max(List,Max)</code>, das aus einer Liste von
+Zahlen <code>List</code> die größte liefert. Benutzen Sie ein „Hilfsprädikat” mit
+akkumulierendem Parameter.
+</p>
+</div>
+</div>
+<div id="outline-container-org01509f5" class="outline-3">
+<h3 id="org01509f5"><span class="section-number-3">2.6</span> weitere folgen &#x2026;</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-11-27 Tue 17:02</p>
+<p class="date">Created: 2019-07-27 Sat 21:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
