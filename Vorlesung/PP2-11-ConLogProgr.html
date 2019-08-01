@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-06-16 Sun 22:44 -->
+<!-- 2019-08-01 Thu 22:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Constraint-logic-Programmierung</title>
@@ -281,25 +281,25 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org28b84ab" class="outline-2">
-<h2 id="org28b84ab">Ziele</h2>
-<div class="outline-text-2" id="text-org28b84ab">
+<div id="outline-container-org9611f32" class="outline-2">
+<h2 id="org9611f32">Ziele</h2>
+<div class="outline-text-2" id="text-org9611f32">
 <ul class="org-ul">
 <li>Zusammenhänge zwischen Logik- und Constraint-Programmierung verstehen</li>
 <li>Kennenlernen einer Alternative zu Prolog - miniKanren</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9a9fdd9" class="outline-2">
-<h2 id="org9a9fdd9">Constraint Logic Programming (CLP)</h2>
-<div class="outline-text-2" id="text-org9a9fdd9">
+<div id="outline-container-orgfe63f65" class="outline-2">
+<h2 id="orgfe63f65">Constraint Logic Programming (CLP)</h2>
+<div class="outline-text-2" id="text-orgfe63f65">
 <ul class="org-ul">
-<li>wichtige Quelle: <a class='org-ref-reference' href="#Carro1998">Carro1998</a></li>
+<li>wichtige Quelle: <a class="org-ref-reference" href="#/slide-bibliography">[Carro1998]</a></li>
 </ul>
 </div>
-<div id="outline-container-orgfc882c4" class="outline-3">
-<h3 id="orgfc882c4">Vorbemerkungen</h3>
-<div class="outline-text-3" id="text-orgfc882c4">
+<div id="outline-container-org918cc3d" class="outline-3">
+<h3 id="org918cc3d">Vorbemerkungen</h3>
+<div class="outline-text-3" id="text-org918cc3d">
 <ul class="org-ul">
 <li>Traditionelle Logikprogrammierung kennt nur eine Art von Constraint:
 Logische Äquivalenz über Termen</li>
@@ -348,13 +348,13 @@ Finanzwesen, Verarbeitung raumbezogener Daten (Navigation), &#x2026;</li>
 </div>
 </div>
 
-<div id="outline-container-orgad9d47c" class="outline-3">
-<h3 id="orgad9d47c">Implementierung</h3>
-<div class="outline-text-3" id="text-orgad9d47c">
+<div id="outline-container-orga6bf910" class="outline-3">
+<h3 id="orga6bf910">Implementierung</h3>
+<div class="outline-text-3" id="text-orga6bf910">
 </div>
-<div id="outline-container-orgd2c60d8" class="outline-4">
-<h4 id="orgd2c60d8">Sprachschnittstellen</h4>
-<div class="outline-text-4" id="text-orgd2c60d8">
+<div id="outline-container-orgc8d6b3a" class="outline-4">
+<h4 id="orgc8d6b3a">Sprachschnittstellen</h4>
+<div class="outline-text-4" id="text-orgc8d6b3a">
 <ul class="org-ul">
 <li>Benutzung einer Bibliothek, die Gleichungen, Variablen etc.
 implementiert, in einer Wirtssprache</li>
@@ -375,9 +375,9 @@ anderen in Beziehung gesetzt werden und unbestimmete Werte enthalten.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org9694f2c" class="outline-4">
-<h4 id="org9694f2c">Anforderungen an CP-Sprachen</h4>
-<div class="outline-text-4" id="text-org9694f2c">
+<div id="outline-container-orgf26d5a8" class="outline-4">
+<h4 id="orgf26d5a8">Anforderungen an CP-Sprachen</h4>
+<div class="outline-text-4" id="text-orgf26d5a8">
 <ul class="org-ul">
 <li>Es muss ein <i>Constraint-solver</i> zur Verfügung stehen, der Gleichungen
 löst bzw. ihre Unlösbarkeit mitteilt.</li>
@@ -389,13 +389,13 @@ Einschränkungen zu übermitteln und Lösungen entgegen zu nehmen.</li>
 </div>
 </div>
 
-<div id="outline-container-orgb9a9a45" class="outline-3">
-<h3 id="orgb9a9a45">Beispiel: Send more money</h3>
-<div class="outline-text-3" id="text-orgb9a9a45">
+<div id="outline-container-org67a7e88" class="outline-3">
+<h3 id="org67a7e88">Beispiel: Send more money</h3>
+<div class="outline-text-3" id="text-org67a7e88">
 </div>
-<div id="outline-container-org4db183b" class="outline-4">
-<h4 id="org4db183b">Mehr Geld bitte!</h4>
-<div class="outline-text-4" id="text-org4db183b">
+<div id="outline-container-org8680ba3" class="outline-4">
+<h4 id="org8680ba3">Mehr Geld bitte!</h4>
+<div class="outline-text-4" id="text-org8680ba3">
 <p>
 Sie senden einen Brief an Ihre Eltern mit dem Inhalt:
 </p>
@@ -419,9 +419,9 @@ erfüllt wird.
 </div>
 </div>
 
-<div id="outline-container-orgf02d9dc" class="outline-4">
-<h4 id="orgf02d9dc">Lösungsansatz: „Rohe Gewalt“</h4>
-<div class="outline-text-4" id="text-orgf02d9dc">
+<div id="outline-container-org1b3f44c" class="outline-4">
+<h4 id="org1b3f44c">Lösungsansatz: „Rohe Gewalt“</h4>
+<div class="outline-text-4" id="text-org1b3f44c">
 <ul class="org-ul">
 <li>Alles durchprobieren!</li>
 <li>Man braucht 8 ineinander geschachtelte Schleifen.</li>
@@ -457,9 +457,9 @@ Ziffern können das Verfahren beschleunigen (s.&nbsp;u.).</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd96797e" class="outline-3">
-<h3 id="orgd96797e">Lösungsansatz: Constraint Satisfaction</h3>
-<div class="outline-text-3" id="text-orgd96797e">
+<div id="outline-container-orga540e43" class="outline-3">
+<h3 id="orga540e43">Lösungsansatz: Constraint Satisfaction</h3>
+<div class="outline-text-3" id="text-orga540e43">
 <ul class="org-ul">
 <li>Einfaches Modell durch Spezifikation der folgenden Gleichung als Einschränkung:
 \[1000*S+100*E+10*N+D \]
@@ -475,9 +475,9 @@ schon belegt sein müssen, bevor die „Haupteinschränkung”
 geprüft werden kann.</li>
 </ul>
 </div>
-<div id="outline-container-org1e7c35e" class="outline-5">
-<h5 id="org1e7c35e">Implementierung in Prolog &#x2026;</h5>
-<div class="outline-text-5" id="text-org1e7c35e">
+<div id="outline-container-org57319ce" class="outline-5">
+<h5 id="org57319ce">Implementierung in Prolog &#x2026;</h5>
+<div class="outline-text-5" id="text-org57319ce">
 <p>
 &#x2026; unter Nutzung der <a href="http://www.swi-prolog.org/pldoc/man?section=clpfd">Constraint Logic Programming over Finite Domains Library</a>
 </p>
@@ -500,9 +500,9 @@ geprüft werden kann.</li>
 </div>
 </div>
 
-<div id="outline-container-org5add2fa" class="outline-5">
-<h5 id="org5add2fa">Implementierung in Standard-Prolog</h5>
-<div class="outline-text-5" id="text-org5add2fa">
+<div id="outline-container-org88b6ceb" class="outline-5">
+<h5 id="org88b6ceb">Implementierung in Standard-Prolog</h5>
+<div class="outline-text-5" id="text-org88b6ceb">
 <div class="org-src-container">
 <pre class="src src-prolog"><span style="color: #006699;">select</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">X</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">R</span><span style="color: #0000FF;">]</span>, <span style="color: #BA36A5;">R</span>).
 <span style="color: #006699;">select</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">Y</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">Xs</span><span style="color: #0000FF;">]</span>, <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">Y</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">Ys</span><span style="color: #0000FF;">]</span>):- select(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Xs</span>, <span style="color: #BA36A5;">Ys</span>).
@@ -525,9 +525,9 @@ geprüft werden kann.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org0491e24" class="outline-4">
-<h4 id="org0491e24">Verfeinertes CSP-Modell</h4>
-<div class="outline-text-4" id="text-org0491e24">
+<div id="outline-container-org26d3cf1" class="outline-4">
+<h4 id="org26d3cf1">Verfeinertes CSP-Modell</h4>
+<div class="outline-text-4" id="text-org26d3cf1">
 <ul class="org-ul">
 <li><p>
 Nutzung der Überträge der Addition für die Zerlegung der „großen“
@@ -553,9 +553,9 @@ der Belegungsphase früher geprüft und damit inkonsistente Belegungen
 ausgeschlossen.</li>
 </ul>
 </div>
-<div id="outline-container-org0ea49d6" class="outline-5">
-<h5 id="org0ea49d6">Implementierung in Prolog &#x2026;</h5>
-<div class="outline-text-5" id="text-org0ea49d6">
+<div id="outline-container-orgf1227b9" class="outline-5">
+<h5 id="orgf1227b9">Implementierung in Prolog &#x2026;</h5>
+<div class="outline-text-5" id="text-orgf1227b9">
 <p>
 &#x2026; unter Nutzung der <a href="http://www.swi-prolog.org/pldoc/man?section=clpfd">Constraint Logic Programming over Finite Domains Library</a>
 </p>
@@ -581,9 +581,9 @@ ausgeschlossen.</li>
 </div>
 </div>
 
-<div id="outline-container-orga219ed4" class="outline-4">
-<h4 id="orga219ed4">Implementierung in C++ (ILOG Solver)</h4>
-<div class="outline-text-4" id="text-orga219ed4">
+<div id="outline-container-org869eb53" class="outline-4">
+<h4 id="org869eb53">Implementierung in C++ (ILOG Solver)</h4>
+<div class="outline-text-4" id="text-org869eb53">
 <div class="org-src-container">
 <pre class="src src-cpp"><span style="color: #808080;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #008000;">ilsolver/ctint.h</span><span style="color: #707183;">&gt;</span>
 <span style="color: #6434A3;">CtInt</span> <span style="color: #BA36A5;">dummy</span> = CtInit<span style="color: #707183;">()</span>;
@@ -607,13 +607,13 @@ ausgeschlossen.</li>
 </div>
 </div>
 
-<div id="outline-container-org12a597e" class="outline-2">
-<h2 id="org12a597e">Exkurs: Die Prolog-Alternative miniKanren</h2>
-<div class="outline-text-2" id="text-org12a597e">
+<div id="outline-container-org3c52747" class="outline-2">
+<h2 id="org3c52747">Exkurs: Die Prolog-Alternative miniKanren</h2>
+<div class="outline-text-2" id="text-org3c52747">
 </div>
-<div id="outline-container-orgf03f35b" class="outline-3">
-<h3 id="orgf03f35b">Grundlagen</h3>
-<div class="outline-text-3" id="text-orgf03f35b">
+<div id="outline-container-orge1e0f0b" class="outline-3">
+<h3 id="orge1e0f0b">Grundlagen</h3>
+<div class="outline-text-3" id="text-orge1e0f0b">
 <ul class="org-ul">
 <li><a href="http://minikanren.org">miniKanren</a> ist eine domänenspezifische Sprache (DSL) für die
 Einbettung der Logikprogrammierung in verschiedene <a href="http://minikanren.org/#implementations">Wirtssprachen</a>.</li>
@@ -621,17 +621,17 @@ Einbettung der Logikprogrammierung in verschiedene <a href="http://minikanren.or
 <li>ursprüngliche Implementierung in Scheme</li>
 <li>miniKanren kann leicht erweitert werden, z.B. für Constraint Logic
 Programming.</li>
-<li>Buch: The Reasoned Schemer <a class='org-ref-reference' href="#danielpfriedman2018">danielpfriedman2018</a></li>
+<li>Buch: The Reasoned Schemer <a class="org-ref-reference" href="#/slide-bibliography">[danielpfriedman2018]</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org586a570" class="outline-3">
-<h3 id="org586a570">Einführung</h3>
-<div class="outline-text-3" id="text-org586a570">
+<div id="outline-container-org8c5ebc1" class="outline-3">
+<h3 id="org8c5ebc1">Einführung</h3>
+<div class="outline-text-3" id="text-org8c5ebc1">
 </div>
-<div id="outline-container-org546363b" class="outline-4">
-<h4 id="org546363b">Kernbestandteile der Sprache</h4>
-<div class="outline-text-4" id="text-org546363b">
+<div id="outline-container-org8f1a896" class="outline-4">
+<h4 id="org8f1a896">Kernbestandteile der Sprache</h4>
+<div class="outline-text-4" id="text-org8f1a896">
 <ul class="org-ul">
 <li>Die Wirtsprache (hier: Clojure) wird um drei Operationen erweitert:
 <ul class="org-ul">
@@ -661,9 +661,9 @@ schreiben, wobei <code>n</code> die Anzahl der gewünschten Resultate angibt.</l
 </ul>
 </div>
 </div>
-<div id="outline-container-org7c118a5" class="outline-4">
-<h4 id="org7c118a5">Elementare Beispiele</h4>
-<div class="outline-text-4" id="text-org7c118a5">
+<div id="outline-container-orgc619f29" class="outline-4">
+<h4 id="orgc619f29">Elementare Beispiele</h4>
+<div class="outline-text-4" id="text-orgc619f29">
 <ul class="org-ul">
 <li><p>
 Einbindung der <a href="https://github.com/clojure/core.logic">core.logic-Bibliothek</a> (<a href="https://clojure.github.io/core.logic/#clojure.core.logic.fd/!=">Dokumentation</a>), die die Einbettung von
@@ -770,9 +770,9 @@ leer sein, wenn der Ausdruck im Rumpf logisch inkonsistent ist.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb5b490a" class="outline-4">
-<h4 id="orgb5b490a">Definitionen</h4>
-<div class="outline-text-4" id="text-orgb5b490a">
+<div id="outline-container-orgf59291b" class="outline-4">
+<h4 id="orgf59291b">Definitionen</h4>
+<div class="outline-text-4" id="text-orgf59291b">
 <ul class="org-ul">
 <li>Ein <i>logischer Ausdruck</i> besteht aus einer Menge von <i>logischen
 Variablen</i> und einer Menge von <i>Regeln</i> (constraints), die die Werte
@@ -799,9 +799,9 @@ des Vektors [2 3 4] ist.
 </p></li>
 </ul>
 </div>
-<div id="outline-container-org532d673" class="outline-5">
-<h5 id="org532d673">Namenskonventionen</h5>
-<div class="outline-text-5" id="text-org532d673">
+<div id="outline-container-org43c3d83" class="outline-5">
+<h5 id="org43c3d83">Namenskonventionen</h5>
+<div class="outline-text-5" id="text-org43c3d83">
 <ul class="org-ul">
 <li>Clojure bietet mit seiner miniKanren-Einbettung core.logic die
 Möglichkeit funktionales und logisches Programmieren miteinander zu verbinden.</li>
@@ -812,9 +812,9 @@ ein Vokal angehängt.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org2e36c17" class="outline-4">
-<h4 id="org2e36c17">Logische Variablen</h4>
-<div class="outline-text-4" id="text-org2e36c17">
+<div id="outline-container-org46b6850" class="outline-4">
+<h4 id="org46b6850">Logische Variablen</h4>
+<div class="outline-text-4" id="text-org46b6850">
 <ul class="org-ul">
 <li>entsprechen weitgehend lokalen Variablen in Clojure: begrenzter
 Gültigkeitsbereich, keine Mutation</li>
@@ -856,9 +856,9 @@ werden drei lvars deklariert, die innerhalb der <code>logic
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbdf097e" class="outline-4">
-<h4 id="orgbdf097e">Regeln</h4>
-<div class="outline-text-4" id="text-orgbdf097e">
+<div id="outline-container-orge70e712" class="outline-4">
+<h4 id="orge70e712">Regeln</h4>
+<div class="outline-text-4" id="text-orge70e712">
 <ul class="org-ul">
 <li>Logische Ausdrücke schränken die Wertebereiche logischer Variablen ein.</li>
 <li>Alle Ausdrücke innerhalb der <code>run</code>-Form werden konjunktiv verknüpft.</li>
@@ -897,21 +897,21 @@ erreicht werden (goal succeeds) oder verfehlt werden (goal fails).
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf235565" class="outline-4">
-<h4 id="orgf235565">Die Operatoren</h4>
-<div class="outline-text-4" id="text-orgf235565">
+<div id="outline-container-orge1fcbf9" class="outline-4">
+<h4 id="orge1fcbf9">Die Operatoren</h4>
+<div class="outline-text-4" id="text-orge1fcbf9">
 </div>
-<div id="outline-container-org7878fec" class="outline-5">
-<h5 id="org7878fec"><code>fresh</code></h5>
-<div class="outline-text-5" id="text-org7878fec">
+<div id="outline-container-orgc8c46d5" class="outline-5">
+<h5 id="orgc8c46d5"><code>fresh</code></h5>
+<div class="outline-text-5" id="text-orgc8c46d5">
 <p>
 siehe oben
 </p>
 </div>
 </div>
-<div id="outline-container-org7a735b9" class="outline-5">
-<h5 id="org7a735b9">Die Unifikation: <code>==</code></h5>
-<div class="outline-text-5" id="text-org7a735b9">
+<div id="outline-container-orgf49211f" class="outline-5">
+<h5 id="orgf49211f">Die Unifikation: <code>==</code></h5>
+<div class="outline-text-5" id="text-orgf49211f">
 <ul class="org-ul">
 <li>Der Ausdruck <code>(== lvar1 lvar2)</code> sorgt dafür, dass die beiden lvars
 die gleiche Menge möglicher Werte besitzen. Das Ziel wird erreicht,
@@ -919,8 +919,8 @@ wenn <code>lvar1</code> in Übereinstimmung mit <code>lvar2</code> gebracht werd
 </ul>
 </div>
 <ul class="org-ul">
-<li><a id="org15a4dde"></a>Unifikation einer einzelnen Variablen mit einem Literal<br />
-<div class="outline-text-6" id="text-org15a4dde">
+<li><a id="orgc3b5db6"></a>Unifikation einer einzelnen Variablen mit einem Literal<br />
+<div class="outline-text-6" id="text-orgc3b5db6">
 <ul class="org-ul">
 <li>Für eine der Variablen kann ein Clojure Literal verwendet werden.</li>
 <li><p>
@@ -971,8 +971,8 @@ liefert (1).
 </ul>
 </div>
 </li>
-<li><a id="org8ac364b"></a>Unifikation von zwei Variablen<br />
-<div class="outline-text-6" id="text-org8ac364b">
+<li><a id="orge0a86d5"></a>Unifikation von zwei Variablen<br />
+<div class="outline-text-6" id="text-orge0a86d5">
 <ul class="org-ul">
 <li><p>
 Beispiel:
@@ -996,8 +996,8 @@ Schnittmenge gebunden werden.</li>
 </ul>
 </div>
 </li>
-<li><a id="orgfbbe3bf"></a>Die Reihenfolge der Ziele ist irrelevant &#x2026;<br />
-<div class="outline-text-6" id="text-orgfbbe3bf">
+<li><a id="orge882b24"></a>Die Reihenfolge der Ziele ist irrelevant &#x2026;<br />
+<div class="outline-text-6" id="text-orge882b24">
 <ul class="org-ul">
 <li>&#x2026; bezüglich der Bestimmung des Wertes einer <code>run</code>-Form.</li>
 <li><p>
@@ -1025,9 +1025,9 @@ liefern das gleiche Ergebnis: <code>(3)</code>.
 </li>
 </ul>
 </div>
-<div id="outline-container-orgd250262" class="outline-5">
-<h5 id="orgd250262"><code>conde</code></h5>
-<div class="outline-text-5" id="text-orgd250262">
+<div id="outline-container-org6505fb4" class="outline-5">
+<h5 id="org6505fb4"><code>conde</code></h5>
+<div class="outline-text-5" id="text-org6505fb4">
 <ul class="org-ul">
 <li><code>conde</code> ermöglicht die disjunktive Verknüpfung von Zielen.</li>
 <li><p>
@@ -1065,8 +1065,8 @@ ist vergleichbar mit
 </ul>
 </div>
 <ul class="org-ul">
-<li><a id="orgcb7e9cc"></a>Beispiele<br />
-<div class="outline-text-6" id="text-orgcb7e9cc">
+<li><a id="org6bdf888"></a>Beispiele<br />
+<div class="outline-text-6" id="text-org6bdf888">
 <div class="smaller">
 <div class="org-src-container">
 <pre class="src src-clojure">  <span style="color: #707183;">(</span>run* <span style="color: #7388D6;">[</span>q<span style="color: #7388D6;">]</span>
@@ -1159,9 +1159,9 @@ für <code>fail</code>)
 </div>
 </div>
 
-<div id="outline-container-org6eeaeef" class="outline-4">
-<h4 id="org6eeaeef">Die „Relationifizierung” einer Funktion</h4>
-<div class="outline-text-4" id="text-org6eeaeef">
+<div id="outline-container-orgb5bae37" class="outline-4">
+<h4 id="orgb5bae37">Die „Relationifizierung” einer Funktion</h4>
+<div class="outline-text-4" id="text-orgb5bae37">
 <ul class="org-ul">
 <li><p>
 Eine klassische Funktion:
@@ -1222,27 +1222,29 @@ Umwandlung in eine Relation (2. Versuch):
 </div>
 </div>
 
-<div id="outline-container-org9168781" class="outline-4">
-<h4 id="org9168781">Weitere Anwendungen</h4>
-<div class="outline-text-4" id="text-org9168781">
+<div id="outline-container-org447b414" class="outline-4">
+<h4 id="org447b414">Weitere Anwendungen</h4>
+<div class="outline-text-4" id="text-org447b414">
 <p>
-siehe <a href="file:///Users/jb/Dropbox/Programmierparadigmen/Clojure/logic-tutorial/ProPar-CoreLogicAnwndngn.html">dort</a>
+siehe <a href="PP2-11a-CoreLogicAnwndngn.html">dort</a>
 </p>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8b81531" class="outline-2">
-<h2 id="org8b81531"><h2>Literaturverzeichnis</h2>
+<div id="outline-container-org0011bfb" class="outline-2">
+<h2 id="bibliography">Literaturverzeichnis</h2>
+<div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="Carro1998">[Carro1998]</a> <a name="Carro1998"></a>Manuel Carro, An Introductory Course on Constraint Logic  Programming, (1998), zuletzt aufgerufen am 10.09.2017: <a href="https://cliplab.org/~vocal/public_info/seminar_notes/seminar_notes.html">https://cliplab.org/~vocal/public_info/seminar_notes/seminar_notes.html</a> </li>
 <li><a id="danielpfriedman2018">[danielpfriedman2018]</a> <a name="danielpfriedman2018"></a>Daniel P Friedman, The Reasoned Schemer (MIT Press) (The MIT Press), MIT Press (2018).</li>
-</ul></h2>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-06-16 Sun 22:44</p>
+<p class="date">Created: 2019-08-01 Thu 22:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
