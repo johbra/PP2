@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-06-23 Sun 14:54 -->
+<!-- 2019-08-01 Thu 19:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Constraint-solving</title>
@@ -281,9 +281,9 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org4209af4" class="outline-2">
-<h2 id="org4209af4">Ziele</h2>
-<div class="outline-text-2" id="text-org4209af4">
+<div id="outline-container-orgf5a07ff" class="outline-2">
+<h2 id="orgf5a07ff">Ziele</h2>
+<div class="outline-text-2" id="text-orgf5a07ff">
 <ul class="org-ul">
 <li>Lernen, wie man einen Constraint-solver selbst bauen kann</li>
 <li>Lernen, wie man eine Constraint-solving-Bibliothek von SWI-Prolog
@@ -291,9 +291,9 @@ nutzen kann</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org620a9a5" class="outline-2">
-<h2 id="org620a9a5">Konzept eines einfachen Constraint-solving-Systems</h2>
-<div class="outline-text-2" id="text-org620a9a5">
+<div id="outline-container-org70bcc5e" class="outline-2">
+<h2 id="org70bcc5e">Konzept eines einfachen Constraint-solving-Systems</h2>
+<div class="outline-text-2" id="text-org70bcc5e">
 <ul class="org-ul">
 <li>Unter Verwendung der so genannten <i>Regelfortpflanzung</i>.</li>
 <li>Von Regelfortpflanzung (constraint propagation) wurde erstmals im
@@ -306,9 +306,9 @@ berechnen einen Wert in Abhängigkeit von ihre Eingangsgrößen
 </ul>
 </div>
 
-<div id="outline-container-orgb3c6b9c" class="outline-3">
-<h3 id="orgb3c6b9c">Gleichungen</h3>
-<div class="outline-text-3" id="text-orgb3c6b9c">
+<div id="outline-container-org26a0ae0" class="outline-3">
+<h3 id="org26a0ae0">Gleichungen</h3>
+<div class="outline-text-3" id="text-org26a0ae0">
 <ul class="org-ul">
 <li>Aus der Zinseszinsrechnung ist die folgende Gleichung bekannt:
 \[\frac{K_{n}}{K_{0}}=(1+\frac{p}{100})^{n}\]</li>
@@ -323,9 +323,9 @@ Prozedur (Funktion) schreiben.</li>
 </div>
 </div>
 
-<div id="outline-container-org1bcd519" class="outline-3">
-<h3 id="org1bcd519">Elementare Constraints</h3>
-<div class="outline-text-3" id="text-org1bcd519">
+<div id="outline-container-orgb4086a0" class="outline-3">
+<h3 id="orgb4086a0">Elementare Constraints</h3>
+<div class="outline-text-3" id="text-orgb4086a0">
 <ul class="org-ul">
 <li>Um mit Gleichungen (Relationen) direkt umgehen zu können, führen wir
 als Elemente einer Constraint-Spracje <i>primitive constraints</i> ein.</li>
@@ -349,9 +349,9 @@ vorkommt.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd37e8bf" class="outline-3">
-<h3 id="orgd37e8bf">Beispiel: Celsius-Fahrenheit-Konverter</h3>
-<div class="outline-text-3" id="text-orgd37e8bf">
+<div id="outline-container-org0ae5cce" class="outline-3">
+<h3 id="org0ae5cce">Beispiel: Celsius-Fahrenheit-Konverter</h3>
+<div class="outline-text-3" id="text-org0ae5cce">
 <ul class="org-ul">
 <li>Zusammenhang zwischen Fahrenheit und Celsius: \[9C=5(F-32)\]</li>
 <li>Schaltbild aus Addierern, Multiplizierern und Konstanten:</li>
@@ -373,9 +373,9 @@ aus der Gleichung.</li>
 </div>
 </div>
 
-<div id="outline-container-org8196d83" class="outline-3">
-<h3 id="org8196d83">Berechnungsprozess</h3>
-<div class="outline-text-3" id="text-org8196d83">
+<div id="outline-container-orgfae9829" class="outline-3">
+<h3 id="orgfae9829">Berechnungsprozess</h3>
+<div class="outline-text-3" id="text-orgfae9829">
 <ul class="org-ul">
 <li>Ein Konnektor erhält einen Wert (wird aktiviert) durch
 <ul class="org-ul">
@@ -402,9 +402,9 @@ Wert für F bzw. C berechnet.</li>
 </div>
 </div>
 
-<div id="outline-container-org42551a3" class="outline-3">
-<h3 id="org42551a3">Der Celsius-Fahrenheit-Konverter in Clojure</h3>
-<div class="outline-text-3" id="text-org42551a3">
+<div id="outline-container-org1ee7eb0" class="outline-3">
+<h3 id="org1ee7eb0">Der Celsius-Fahrenheit-Konverter in Clojure</h3>
+<div class="outline-text-3" id="text-org1ee7eb0">
 <ul class="org-ul">
 <li>Der Fahrenheit-Celsius-Konverter als black box:</li>
 </ul>
@@ -450,9 +450,9 @@ Die Prozedur <code>celsius-fahrenheit-converter</code>
 </div>
 </div>
 
-<div id="outline-container-org0ae67b0" class="outline-3">
-<h3 id="org0ae67b0">Anbringen von Messfühlern</h3>
-<div class="outline-text-3" id="text-org0ae67b0">
+<div id="outline-container-org237760b" class="outline-3">
+<h3 id="org237760b">Anbringen von Messfühlern</h3>
+<div class="outline-text-3" id="text-org237760b">
 <ul class="org-ul">
 <li><p>
 Die Verknüpfung eines Konnektors mit einem Messfühler (probe)
@@ -510,17 +510,17 @@ berechnen, und umgekehrt.</li>
 </div>
 </div>
 
-<div id="outline-container-org05dd452" class="outline-2">
-<h2 id="org05dd452">Implementierung des Constraint-solving-Systems</h2>
-<div class="outline-text-2" id="text-org05dd452">
+<div id="outline-container-org664d1f1" class="outline-2">
+<h2 id="org664d1f1">Implementierung des Constraint-solving-Systems</h2>
+<div class="outline-text-2" id="text-org664d1f1">
 <ul class="org-ul">
 <li>&#x2026; in Clojure</li>
-<li>originale Scheme-Version stammt aus <a class='org-ref-reference' href="#Sicp1999">Sicp1999</a></li>
+<li>originale Scheme-Version stammt aus <a class="org-ref-reference" href="#/slide-bibliography">[Sicp1999]</a></li>
 </ul>
 </div>
-<div id="outline-container-org943c2d1" class="outline-3">
-<h3 id="org943c2d1">Struktur des <code>adder</code></h3>
-<div class="outline-text-3" id="text-org943c2d1">
+<div id="outline-container-orgc664fad" class="outline-3">
+<h3 id="orgc664fad">Struktur des <code>adder</code></h3>
+<div class="outline-text-3" id="text-orgc664fad">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">adder</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>a1 a2 sum<span style="color: #909183;">]</span>
@@ -559,9 +559,9 @@ Konnektoren definiert.</li>
 </div>
 </div>
 
-<div id="outline-container-orgab3c04b" class="outline-3">
-<h3 id="orgab3c04b">Basisoperationen für Konnektoren</h3>
-<div class="outline-text-3" id="text-orgab3c04b">
+<div id="outline-container-org269fd98" class="outline-3">
+<h3 id="org269fd98">Basisoperationen für Konnektoren</h3>
+<div class="outline-text-3" id="text-org269fd98">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">has-value?: connector -&gt; boolean</span>
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">sagt, ob Konnektor einen Wert hat</span>
@@ -601,9 +601,9 @@ Konnektoren definiert.</li>
 </div>
 </div>
 
-<div id="outline-container-org3ed3264" class="outline-4">
-<h4 id="org3ed3264">Lokale Hilfsfunktionen für <code>adder</code></h4>
-<div class="outline-text-4" id="text-org3ed3264">
+<div id="outline-container-org8dba6cb" class="outline-4">
+<h4 id="org8dba6cb">Lokale Hilfsfunktionen für <code>adder</code></h4>
+<div class="outline-text-4" id="text-org8dba6cb">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span>process-new-value <span style="color: #7388D6;">[]</span>
            <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">and</span> <span style="color: #709870;">(</span>has-value? a1<span style="color: #709870;">)</span> <span style="color: #709870;">(</span>has-value? a2<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
@@ -634,9 +634,9 @@ Konnektoren definiert.</li>
 </div>
 </div>
 
-<div id="outline-container-org92e93d2" class="outline-4">
-<h4 id="org92e93d2">Struktur des <code>multiplier</code></h4>
-<div class="outline-text-4" id="text-org92e93d2">
+<div id="outline-container-orgf7166df" class="outline-4">
+<h4 id="orgf7166df">Struktur des <code>multiplier</code></h4>
+<div class="outline-text-4" id="text-orgf7166df">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">multiplier</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>m1 m2 product<span style="color: #909183;">]</span>
@@ -656,9 +656,9 @@ Konnektoren definiert.</li>
 </div>
 </div>
 
-<div id="outline-container-orge55e7f8" class="outline-4">
-<h4 id="orge55e7f8">Lokale Hilfsfunktionen für <code>multiplier</code></h4>
-<div class="outline-text-4" id="text-orge55e7f8">
+<div id="outline-container-org74d6234" class="outline-4">
+<h4 id="org74d6234">Lokale Hilfsfunktionen für <code>multiplier</code></h4>
+<div class="outline-text-4" id="text-org74d6234">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span>process-new-value <span style="color: #7388D6;">[]</span>
               <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">or</span> <span style="color: #709870;">(</span><span style="color: #0000FF;">and</span> <span style="color: #907373;">(</span>has-value? m1<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>= <span style="color: #6276BA;">(</span>get-value m1<span style="color: #6276BA;">)</span> 0<span style="color: #907373;">)</span><span style="color: #709870;">)</span>
@@ -694,9 +694,9 @@ Konnektoren definiert.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd9ff680" class="outline-3">
-<h3 id="orgd9ff680">Der Konstantenerzeuger</h3>
-<div class="outline-text-3" id="text-orgd9ff680">
+<div id="outline-container-org5e62bc4" class="outline-3">
+<h3 id="org5e62bc4">Der Konstantenerzeuger</h3>
+<div class="outline-text-3" id="text-org5e62bc4">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">constant</span> 
    <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>value connector<span style="color: #909183;">]</span>
@@ -715,9 +715,9 @@ Konnektoren definiert.</li>
 </div>
 </div>
 
-<div id="outline-container-org4cec878" class="outline-3">
-<h3 id="org4cec878">Der Messfühler</h3>
-<div class="outline-text-3" id="text-org4cec878">
+<div id="outline-container-orgec80169" class="outline-3">
+<h3 id="orgec80169">Der Messfühler</h3>
+<div class="outline-text-3" id="text-orgec80169">
 <p>
 Der Messfühler gibt beim Setzen bzw. Vergessen des Wertes des mit ihm
 verbundenen Konnektors einen Text aus.
@@ -745,9 +745,9 @@ verbundenen Konnektors einen Text aus.
 </div>
 </div>
 
-<div id="outline-container-org9f693d5" class="outline-3">
-<h3 id="org9f693d5">Konnektoren</h3>
-<div class="outline-text-3" id="text-org9f693d5">
+<div id="outline-container-org183b561" class="outline-3">
+<h3 id="org183b561">Konnektoren</h3>
+<div class="outline-text-3" id="text-org183b561">
 <ul class="org-ul">
 <li><p>
 Ein Konnektor wird als Prozedur mit drei lokalen Zustandsvariablen
@@ -774,9 +774,9 @@ Wertes informiert werden müssen.</dd>
 </ul>
 </div>
 
-<div id="outline-container-org08389ba" class="outline-4">
-<h4 id="org08389ba"><code>make-connector -- set-my-value</code></h4>
-<div class="outline-text-4" id="text-org08389ba">
+<div id="outline-container-orga40e789" class="outline-4">
+<h4 id="orga40e789"><code>make-connector -- set-my-value</code></h4>
+<div class="outline-text-4" id="text-orga40e789">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span>set-my-value <span style="color: #7388D6;">[</span>newval setter<span style="color: #7388D6;">]</span>
                 <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">not</span> <span style="color: #709870;">(</span>has-value? me<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
@@ -800,9 +800,9 @@ Ausnahme des Informanten) darüber informiert.</li>
 </div>
 </div>
 
-<div id="outline-container-org006332a" class="outline-4">
-<h4 id="org006332a"><code>make-connector -- forget-my-value</code></h4>
-<div class="outline-text-4" id="text-org006332a">
+<div id="outline-container-org4b84c9b" class="outline-4">
+<h4 id="org4b84c9b"><code>make-connector -- forget-my-value</code></h4>
+<div class="outline-text-4" id="text-org4b84c9b">
 <div class="small">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span>forget-my-value <span style="color: #7388D6;">[</span>retractor<span style="color: #7388D6;">]</span>
@@ -827,9 +827,9 @@ Ausnahme des Informanten) darüber informiert.</li>
 </div>
 </div>
 
-<div id="outline-container-org03d3fc8" class="outline-4">
-<h4 id="org03d3fc8"><code>make-connector -- connect</code></h4>
-<div class="outline-text-4" id="text-org03d3fc8">
+<div id="outline-container-org570a733" class="outline-4">
+<h4 id="org570a733"><code>make-connector -- connect</code></h4>
+<div class="outline-text-4" id="text-org570a733">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span>connect <span style="color: #7388D6;">[</span>new-constraint<span style="color: #7388D6;">]</span>
                 <span style="color: #7388D6;">(</span><span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">not</span> <span style="color: #709870;">(</span>in? @constraints new-constraint <span style="color: #709870;">)</span><span style="color: #909183;">)</span>
@@ -848,9 +848,9 @@ Constraint-Element darüber informiert.</li>
 </div>
 </div>
 
-<div id="outline-container-orgfdb66ff" class="outline-4">
-<h4 id="orgfdb66ff"><code>make-connector -- me</code></h4>
-<div class="outline-text-4" id="text-orgfdb66ff">
+<div id="outline-container-orgdf12135" class="outline-4">
+<h4 id="orgdf12135"><code>make-connector -- me</code></h4>
+<div class="outline-text-4" id="text-orgdf12135">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span>me <span style="color: #7388D6;">[</span>request<span style="color: #7388D6;">]</span>
                 <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span>
@@ -869,9 +869,9 @@ Constraint-Element darüber informiert.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org16be9e1" class="outline-3">
-<h3 id="org16be9e1">Hilfsprozeduren</h3>
-<div class="outline-text-3" id="text-org16be9e1">
+<div id="outline-container-org435447d" class="outline-3">
+<h3 id="org435447d">Hilfsprozeduren</h3>
+<div class="outline-text-3" id="text-org435447d">
 <ul class="org-ul">
 <li>Es fehlen jetzt noch die Prozeduren:
 <ul class="org-ul">
@@ -882,9 +882,9 @@ Constraint-Element darüber informiert.</li>
 </ul>
 </div>
 
-<div id="outline-container-org515fa33" class="outline-4">
-<h4 id="org515fa33">Iterator <code>for-each-except</code></h4>
-<div class="outline-text-4" id="text-org515fa33">
+<div id="outline-container-org3115dea" class="outline-4">
+<h4 id="org3115dea">Iterator <code>for-each-except</code></h4>
+<div class="outline-text-4" id="text-org3115dea">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">for-each-except</span> 
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>exception procedure list<span style="color: #909183;">]</span>
@@ -906,9 +906,9 @@ mit Ausnahme des Elements <code>exception</code>.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd0dba08" class="outline-4">
-<h4 id="orgd0dba08"><code>inform-about-…</code></h4>
-<div class="outline-text-4" id="text-orgd0dba08">
+<div id="outline-container-org57d4fd1" class="outline-4">
+<h4 id="org57d4fd1"><code>inform-about-…</code></h4>
+<div class="outline-text-4" id="text-org57d4fd1">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">inform-about-value</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>constraint<span style="color: #909183;">]</span>
@@ -928,19 +928,19 @@ mit Ausnahme des Elements <code>exception</code>.</li>
 </div>
 </div>
 
-<div id="outline-container-org553848e" class="outline-2">
-<h2 id="org553848e">Constraint solving mit SWI-Prolog</h2>
-<div class="outline-text-2" id="text-org553848e">
+<div id="outline-container-org4b4563d" class="outline-2">
+<h2 id="org4b4563d">Constraint solving mit SWI-Prolog</h2>
+<div class="outline-text-2" id="text-org4b4563d">
 <p>
 Die clpr-Library erlaubt die Verwendung eines Constraint-Lösers für
   nicht-endliche Wertebereiche.
 </p>
 </div>
-<div id="outline-container-org798325c" class="outline-3">
-<h3 id="org798325c">Darlehensberechnung</h3>
-<div class="outline-text-3" id="text-org798325c">
+<div id="outline-container-org795b893" class="outline-3">
+<h3 id="org795b893">Darlehensberechnung</h3>
+<div class="outline-text-3" id="text-org795b893">
 <ul class="org-ul">
-<li>Berechnung von Annuitäten-Darlehen (Beispiel entnommen aus <a class='org-ref-reference' href="#Fruehwirth2010">Fruehwirth2010</a>)</li>
+<li>Berechnung von Annuitäten-Darlehen (Beispiel entnommen aus <a class="org-ref-reference" href="#/slide-bibliography">[Fruehwirth2010]</a>)</li>
 <li>Bedeutung der Größen:
 <dl class="org-dl">
 <dt>D:</dt><dd>Höhe des Darlehens</dd>
@@ -952,9 +952,9 @@ Die clpr-Library erlaubt die Verwendung eines Constraint-Lösers für
 </ul>
 </div>
 
-<div id="outline-container-org14e1392" class="outline-4">
-<h4 id="org14e1392">Lösung SWI-Prolog</h4>
-<div class="outline-text-4" id="text-org14e1392">
+<div id="outline-container-org3fcf997" class="outline-4">
+<h4 id="org3fcf997">Lösung SWI-Prolog</h4>
+<div class="outline-text-4" id="text-org3fcf997">
 <div class="small">
 <div class="org-src-container">
 <pre class="src src-prolog">:- <span style="color: #006FE0;">use_module</span>(library(clpr)).  
@@ -981,9 +981,9 @@ Fragen:
 </div>
 </div>
 
-<div id="outline-container-org5659c31" class="outline-3">
-<h3 id="org5659c31">Der Celsius-Fahrenheit-Konverter</h3>
-<div class="outline-text-3" id="text-org5659c31">
+<div id="outline-container-org3d931ec" class="outline-3">
+<h3 id="org3d931ec">Der Celsius-Fahrenheit-Konverter</h3>
+<div class="outline-text-3" id="text-org3d931ec">
 <div class="smaller">
 <div class="org-src-container">
 <pre class="src src-prolog">:- <span style="color: #006FE0;">use_module</span>(library(clpr)). 
@@ -1010,16 +1010,18 @@ Anwendungen:
 </div>
 </div>
 
-<div id="outline-container-org4420ed1" class="outline-2">
-<h2 id="org4420ed1"><h2>Literaturverzeichnis</h2>
+<div id="outline-container-orgc213ddc" class="outline-2">
+<h2 id="bibliography">Literaturverzeichnis</h2>
+<div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="Sicp1999">[Sicp1999]</a> <a name="Sicp1999"></a>Harold Abelson, Gerald Jay Sussman & Julie Sussman, Structure and interpretation of computer programs, The MIT Press (1999).</li>
 <li><a id="Fruehwirth2010">[Fruehwirth2010]</a> <a name="Fruehwirth2010"></a>Thom Frühwirth & Slim Abdennadher, Essentials of Constraint Programming (Cognitive Technologies), Springer (2010).</li>
-</ul></h2>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-06-23 Sun 14:54</p>
+<p class="date">Created: 2019-08-01 Thu 19:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
