@@ -33,8 +33,8 @@
 <h1 class="title">Parallelprogrammierung &#x2013; Parallele Algorithmen</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
 <section>
-<section id="slide-orgeef04c5">
-<h2 id="orgeef04c5">Ziele</h2>
+<section id="slide-orgfd47ffa">
+<h2 id="orgfd47ffa">Ziele</h2>
 <ul>
 <li>Einstieg in das Thema parallele Algorithmen gewinnen</li>
 <li>Beispiele paralleler Programme kennenlernen</li>
@@ -45,14 +45,14 @@ von Berechnungen</li>
 </section>
 </section>
 <section>
-<section id="slide-orgb351d7f">
-<h2 id="orgb351d7f">Grundlagen</h2>
+<section id="slide-org8975b31">
+<h2 id="org8975b31">Grundlagen</h2>
 </section>
-<section id="slide-org3e4f527">
-<h3 id="org3e4f527">Parallelität jenseits von Nebenläufigkeit</h3>
+<section id="slide-org94836fd">
+<h3 id="org94836fd">Parallelität jenseits von Nebenläufigkeit</h3>
 <ul>
 <li>Bisher stand die Beherrschung der Probleme, die bei nebenläufigen
-Prozessen auftreten im Vordergrund.</li>
+Prozessen auftreten, im Vordergrund.</li>
 <li>Jetzt wird der Fokus auf die Parallelprogrammierung gelegt.</li>
 <li>Gründe (teilweise schon genannt):
 <ul>
@@ -70,8 +70,8 @@ können.</li>
 <li>Parallele Algorithmen können sowohl gemeinsamen, geteilten Speicher
 oder auch verteilten Speicher nutzen.
 <ul>
-<li>Die entscheidende Frage lautet, wie müssen Programme geschrie&#x00ad;ben
-werden, damit sie parallele Algorithmen nutzen können.</li>
+<li>Die entscheidende Frage lautet: Wie müssen Programme geschrie&#x00ad;ben
+werden, damit sie parallele Algorithmen nutzen können?</li>
 <li>Unterstützung durch Werkzeuge (Bibliotheken, Compiler etc.) ist
 dabei hilfreich oder sogar notwendig.</li>
 
@@ -79,8 +79,8 @@ dabei hilfreich oder sogar notwendig.</li>
 
 </ul>
 </section>
-<section id="slide-orge3cc990">
-<h3 id="orge3cc990">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
+<section id="slide-org053079b">
+<h3 id="org053079b">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
 <p>
 (vgl. u.&nbsp;a. <a class="org-ref-reference" href="#/slide-bibliography">[Wali2016]</a>)
 </p>
@@ -98,8 +98,8 @@ zeitintensive Berechnung ist.</li>
 
 </ul>
 </section>
-<section id="slide-org52119cb">
-<h4 id="org52119cb">Clojure <code>pmap</code></h4>
+<section id="slide-org1a9acc3">
+<h4 id="org1a9acc3">Clojure <code>pmap</code></h4>
 <ul>
 <li><p>
 Mit <code>(pmap f coll)</code> wird <code>pmap</code> genauso aufgerufen wie <code>map</code>:
@@ -137,8 +137,8 @@ user&gt; (time (doall (pmap square-slowly (repeat 3 10))))
 
 </ul>
 </section>
-<section id="slide-org5426b39">
-<h5 id="org5426b39">Implementierung von pmap</h5>
+<section id="slide-org990cb5a">
+<h5 id="org990cb5a">Implementierung von pmap</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">pmap</span>
@@ -179,11 +179,11 @@ wiederverwendet werden.</li>
 
 </ul>
 </section>
-<section id="slide-org301af5f">
-<h4 id="org301af5f">Explizite Parallelisierung</h4>
+<section id="slide-orgd90f114">
+<h4 id="orgd90f114">Explizite Parallelisierung</h4>
 <ul>
 <li>Neben der Funktion <code>pmap</code>, die die Parallelisierung implizit
-vornimmt kennt Clojure noch zwei weitere Funktionen:
+vornimmt, kennt Clojure noch zwei weitere Funktionen:
 <dl>
 <dt>pvalues</dt><dd>wertet die Ausdrücke, die als Argumente übergeben
 werden, parallel aus</dd>
@@ -213,8 +213,8 @@ user&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">tim
 </section>
 </section>
 <section>
-<section id="slide-orgf0a63ca">
-<h2 id="orgf0a63ca">Parallelität und Performance</h2>
+<section id="slide-orgc4538a8">
+<h2 id="orgc4538a8">Parallelität und Performance</h2>
 <ul>
 <li>Die bisherigen Beispiele paralleler Berechnungen waren sehr einfach
 bzw. naheliegend (mapping).</li>
@@ -231,13 +231,13 @@ bzw. gibt es überhaupt eine?</li>
 
 </ul>
 </section>
-<section id="slide-org63b4e26">
-<h3 id="org63b4e26">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
-<div class="outline-text-3" id="text-org63b4e26">
+<section id="slide-orgaae512e">
+<h3 id="orgaae512e">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
+<div class="outline-text-3" id="text-orgaae512e">
 </div>
 </section>
-<section id="slide-org97ceaf5">
-<h4 id="org97ceaf5">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
+<section id="slide-org7f61328">
+<h4 id="org7f61328">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
 <div class="large">
 <div class="org-src-container">
 
@@ -307,8 +307,8 @@ bzw. gibt es überhaupt eine?</li>
 
 </div>
 </section>
-<section id="slide-org114ffdd">
-<h4 id="org114ffdd">Benutzung von der Kommandozeile</h4>
+<section id="slide-orgfb57e1d">
+<h4 id="orgfb57e1d">Benutzung von der Kommandozeile</h4>
 <div class="org-src-container">
 
 <pre  class="src src-sh">bash-3.2$ java ParallelSort
@@ -338,8 +338,8 @@ Speedup:  2.7355932203389832
 </pre>
 </div>
 </section>
-<section id="slide-orgca2a930">
-<h3 id="orgca2a930">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
+<section id="slide-org0fdf3a5">
+<h3 id="org0fdf3a5">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
 <ul>
 <li>Das Gesetz, benannt nach einem früheren IBM-Ingenieur, der später
 eine eigene Großrechnerfirma gründete, beschreibt die theoretische
@@ -360,8 +360,8 @@ Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
 
 </ul>
 </section>
-<section id="slide-org8f3d52c">
-<h4 id="org8f3d52c">Schrittweise Anwendung des Gesetzes:</h4>
+<section id="slide-orgf7f8be9">
+<h4 id="orgf7f8be9">Schrittweise Anwendung des Gesetzes:</h4>
 <ol>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M1</i>: \(RT1\)</li>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M4</i>: \(RT4\)</li>
@@ -417,8 +417,8 @@ schneller als <i>M1</i>.</li>
 
 </ul>
 </section>
-<section id="slide-org42fa28e">
-<h4 id="org42fa28e">Fazit</h4>
+<section id="slide-org681e4f4">
+<h4 id="org681e4f4">Fazit</h4>
 <ul>
 <li>Amdahls Gesetz verdeutlicht, dass naive Annahmen über mögliche
 Geschwindigkeitssteigerungen bei der Parallelisierung von
@@ -498,13 +498,13 @@ Zahlenbeispiele:
 </section>
 </section>
 <section>
-<section id="slide-org9dcab9b">
-<h2 id="org9dcab9b">Empfehlungen</h2>
-<div class="outline-text-2" id="text-org9dcab9b">
+<section id="slide-org3810f7e">
+<h2 id="org3810f7e">Empfehlungen</h2>
+<div class="outline-text-2" id="text-org3810f7e">
 </div>
 </section>
-<section id="slide-orgc499c96">
-<h3 id="orgc499c96">Parallelprogrammierung mit Scala</h3>
+<section id="slide-org0ebc764">
+<h3 id="org0ebc764">Parallelprogrammierung mit Scala</h3>
 <ul>
 <li>Coursera MOOC: <a href="https://www.coursera.org/learn/parprog1">Parallel programming (Scala)</a> (kostenlos)</li>
 <li>Themen (u.&nbsp;a.):
@@ -521,13 +521,13 @@ Zahlenbeispiele:
 
 </ul>
 </section>
-<section id="slide-orgbacfc72">
-<h3 id="orgbacfc72">Clojure</h3>
-<div class="outline-text-3" id="text-orgbacfc72">
+<section id="slide-org08a2b7b">
+<h3 id="org08a2b7b">Clojure</h3>
+<div class="outline-text-3" id="text-org08a2b7b">
 </div>
 </section>
-<section id="slide-org7f9e00c">
-<h4 id="org7f9e00c">Parallelität mit Reducers</h4>
+<section id="slide-org52d4ada">
+<h4 id="org52d4ada">Parallelität mit Reducers</h4>
 <p>
 Zum Beispiel in 
 </p>
@@ -537,8 +537,8 @@ Zum Beispiel in
 
 </ul>
 </section>
-<section id="slide-orgd2bdbc3">
-<h4 id="orgd2bdbc3">Komunikation mit core.async</h4>
+<section id="slide-orgc470a91">
+<h4 id="orgc470a91">Komunikation mit core.async</h4>
 <p>
 Zum Beispiel in 
 </p>
