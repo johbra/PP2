@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Parallelprogrammierung &#x2013; Software Transactional Memory</title>
-<meta name="author" content="(Johannes Brauer)"/>
+<meta name="author" content="Johannes Brauer"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
@@ -28,11 +28,12 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Parallelprogrammierung &#x2013; Software Transactional Memory</h1><h2 class="author">Johannes Brauer</h2><p class="date">Created: 2019-07-19 Fri 16:49</p>
+<section id="sec-title-slide">
+<h1 class="title">Parallelprogrammierung &#x2013; Software Transactional Memory</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
 <section>
-<section id="org77ec05f">
-<h2 id="org77ec05f">Ziele</h2>
+<section id="slide-org348ad59">
+<h2 id="org348ad59">Ziele</h2>
 <ul>
 <li>Ursachen von Problemen nebenläufiger Programme erkennen</li>
 <li>Verstehen des Konzepts von Software Transactional Memory am Beispiel
@@ -42,8 +43,8 @@ von Clojure</li>
 </section>
 </section>
 <section>
-<section id="org5b4c6ac">
-<h2 id="org5b4c6ac">Zustand und Identität</h2>
+<section id="slide-orge4a4d9f">
+<h2 id="orge4a4d9f">Zustand und Identität</h2>
 <ul>
 <li>Viele Gründe für das Schreiben nebenläufiger/paralleler Programme:
 <ul>
@@ -57,14 +58,14 @@ Programme reagieren.</li>
 
 </ul></li>
 <li>Nebenläufigkeit führt offensichtlich dazu, dass mehrere Aktivitäten
-auf dieselben Daten.</li>
+auf dieselben Daten zugreifen.</li>
 <li>Dies führt zu massiven Problemen in Programmiersprachen, die die
-Konzepte <i>Zustand</i> und <i>Identität</i> vermengen (vgl. <a class='org-ref-reference' href="#Hickey2011">Hickey2011</a>).</li>
+Konzepte <i>Zustand</i> und <i>Identität</i> vermengen (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Hickey2011]</a>).</li>
 
 </ul>
 </section>
-<section id="org07a05f7">
-<h3 id="org07a05f7">Unterscheidung zwischen Zustand und Identität</h3>
+<section id="slide-org72af78a">
+<h3 id="org72af78a">Unterscheidung zwischen Zustand und Identität</h3>
 <ul>
 <li>Unter einer Identität wird ein konkretes <i>Ding</i> verstanden, das &#x2013;
 einmal erschaffen &#x2013; bleibt.</li>
@@ -81,10 +82,10 @@ Zeit ändern können.
 </div>
 
 <p>
-(Abbildung entnommen aus <a class='org-ref-reference' href="#Rathore2016">Rathore2016</a>)
+(Abbildung entnommen aus <a class="org-ref-reference" href="#/slide-bibliography">[Rathore2016]</a>)
 </p>
 </section>
-<section >
+<section>
 <ul>
 <li>Auch wenn sich das Alter (Zustand) einer Person (Ding) ändert,
 bleibt das Ding, die Person, dasselbe.</li>
@@ -97,8 +98,8 @@ kann als 2020.</li>
 </ul>
 
 </section>
-<section id="org6bb4261">
-<h3 id="org6bb4261">Vermengung von Zustand und Identität</h3>
+<section id="slide-org4e60f4a">
+<h3 id="org4e60f4a">Vermengung von Zustand und Identität</h3>
 <ul>
 <li>Problem in den gängigen objektorientierten Sprachen</li>
 <li>In der objektorientierten Programmierung kennt man den Begriff der
@@ -117,8 +118,8 @@ objektorientierten Sprachen.</li>
 
 </ul>
 </section>
-<section id="org2e3e752">
-<h3 id="org2e3e752">Robert C. Martin: The failure of state</h3>
+<section id="slide-org993a196">
+<h3 id="org993a196">Robert C. Martin: The failure of state</h3>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=7Zlp9rKHGD4">Video: Functional Programming &#x2013; The Failure of State</a></li>
 <li>Ausschnitte:
@@ -137,7 +138,7 @@ Zustandsänderungen erforderlich:
 (STM)</li>
 
 </ul></li>
-<li>Nutzung von Sperren ist hoch problematisch (<a class='org-ref-reference' href="#Goetz2006">Goetz2006</a>).</li>
+<li>Nutzung von Sperren ist hoch problematisch (<a class="org-ref-reference" href="#/slide-bibliography">[Goetz2006]</a>).</li>
 <li>Programmierer können damit nicht umgehen.</li>
 
 </ul>
@@ -145,13 +146,13 @@ Zustandsänderungen erforderlich:
 </section>
 </section>
 <section>
-<section id="org736de70">
-<h2 id="org736de70">Refs und Software Transactional Memory in Clojure</h2>
-<div class="outline-text-2" id="text-org736de70">
+<section id="slide-orgb1d712c">
+<h2 id="orgb1d712c">Refs und Software Transactional Memory in Clojure</h2>
+<div class="outline-text-2" id="text-orgb1d712c">
 </div>
 </section>
-<section id="org94be817">
-<h3 id="org94be817">Anlegen von Verweisen (references) und Zugriff auf ihren Inhalt</h3>
+<section id="slide-org88b7851">
+<h3 id="org88b7851">Anlegen von Verweisen (references) und Zugriff auf ihren Inhalt</h3>
 <ul>
 <li>Normale Objekte in Clojure sind nicht änderbar (immutable).</li>
 <li><p>
@@ -181,7 +182,7 @@ oder
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li>Das Clojure-Konzept spiegelt die Realität wider:
 <ul>
@@ -194,8 +195,8 @@ das sich ändern kann.</li>
 
 </ul>
 </section>
-<section id="org25d34da">
-<h3 id="org25d34da">Änderungen von Verweisen</h3>
+<section id="slide-org8d8e123">
+<h3 id="org8d8e123">Änderungen von Verweisen</h3>
 <ul>
 <li>Sprachkonstrukt <code>ref-set</code></li>
 <li><p>
@@ -219,8 +220,8 @@ Zur Klammerung einer Transaktion dient das Sprachkonstrukt <code>dosync</code>:
 
 </ul>
 </section>
-<section id="org40f4630">
-<h4 id="org40f4630">Transaktionseigenschaften</h4>
+<section id="slide-orgdf87ad2">
+<h4 id="orgdf87ad2">Transaktionseigenschaften</h4>
 <ul>
 <li>Ähnlich wie Datenbanktransaktionen erlaubt STM, Lese- und
 Änderungsoperationen auf Verweisen transaktional zu behandeln.</li>
@@ -242,8 +243,8 @@ STM-Transkaktionen, die sich im Arbeitsspeicher abspielen, nicht.</li>
 
 </ul>
 </section>
-<section id="org6307fdb">
-<h5 id="org6307fdb">Beispiel</h5>
+<section id="slide-org3fcf555">
+<h5 id="org3fcf555">Beispiel</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure">user&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">aktueller-titel</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref</span> <span style="color: #008000;">"Knockin' On Heaven's Door"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
@@ -268,12 +269,12 @@ inkonsistenter Zustand von anderen Threads gesehen werden.</li>
 
 </ul>
 </section>
-<section id="org958d718">
-<h4 id="org958d718">Verwendung von <code>alter</code> für Änderungsoperationen</h4>
+<section id="slide-orgdb16bfe">
+<h4 id="orgdb16bfe">Verwendung von <code>alter</code> für Änderungsoperationen</h4>
 <ul>
 <li>Das oben gezeigte Beispiel ist besonders simpel, da die Änderungen
 unabhängig von einem früheren Zustand sind.</li>
-<li>Im folgenden Beispiel (<a class='org-ref-reference' href="#Miller2018">Miller2018</a>) einer einfachen Chat-Applikation ist das
+<li>Im folgenden Beispiel (<a class="org-ref-reference" href="#/slide-bibliography">[Miller2018]</a>) einer einfachen Chat-Applikation ist das
 anders. (Die vollständige <a href="https://media.pragprog.com/titles/shcloj3/code/src/examples/chat.clj">Clojure-Datei</a> kann daungelohdet werden.)</li>
 <li><p>
 Mit
@@ -303,7 +304,7 @@ Die Liste der Nachrichten wird dann als Verweis angelegt:
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Mit den bisher bekannten Mitteln könnte eine transnationale Funktion
@@ -328,7 +329,7 @@ Wert innerhalb der Transaktion an.</li>
 
 </ul>
 </section>
-<section >
+<section>
 <ul>
 <li><p>
 Die Funktion <code>add-message</code> unter Verwendung von <code>alter</code>:
@@ -361,8 +362,8 @@ user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #
 
 </ul>
 </section>
-<section id="orgb21c52a">
-<h3 id="orgb21c52a">Arbeitsweise von STM in Clojure</h3>
+<section id="slide-org6079de8">
+<h3 id="org6079de8">Arbeitsweise von STM in Clojure</h3>
 <ul>
 <li>Es wird eine Technik namens <i><a href="https://de.wikipedia.org/wiki/Multiversion_Concurrency_Control">Multiversion Concurrency Control</a></i>
 (MVCC) benutzt, die auch in Datenbanksystemen
@@ -385,8 +386,8 @@ die in-transaction values nach außen sichtbar. Diese
 
 </ul>
 </section>
-<section id="org177efd5">
-<h3 id="org177efd5">Clojure <code>dosync</code> vs. Java <code>synchronized</code></h3>
+<section id="slide-org8efb754">
+<h3 id="org8efb754">Clojure <code>dosync</code> vs. Java <code>synchronized</code></h3>
 <ul>
 <li>Mit <code>synchronized</code> werden implizit Sperren angefordert und
 freigegeben.</li>
@@ -404,8 +405,8 @@ bis die Sperre wieder frei ist.</li>
 
 </ul>
 </section>
-<section id="org36b2448">
-<h3 id="org36b2448">Validierungsfunktionen für Verweise</h3>
+<section id="slide-orgf77a3ae">
+<h3 id="orgf77a3ae">Validierungsfunktionen für Verweise</h3>
 <ul>
 <li>Vergleichbar mit Integritätsbedingungen in relationalen Datenbanken 
 können Verweise mit Validierungsfunktionen
@@ -445,20 +446,18 @@ user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #
 </section>
 </section>
 <section>
-<section id="orge133d77">
-<h2 id="orge133d77"><h2>Literaturverzeichnis</h2>
+<section id="slide-bibliography">
+<h2 id="bibliography">Literaturverzeichnis</h2>
 <ul class='org-ref-bib'><li><a id="Hickey2011">[Hickey2011]</a> <a name="Hickey2011"></a>Hickey, Simple Made Easy, (2011), zuletzt aufgerufen am 10. 7. 2019: <a href="https://www.infoq.com/presentations/Simple-Made-Easy/">https://www.infoq.com/presentations/Simple-Made-Easy/</a> </li>
 <li><a id="Rathore2016">[Rathore2016]</a> <a name="Rathore2016"></a>Rathore, Clojure in action, Manning (2016).</li>
 <li><a id="Goetz2006">[Goetz2006]</a> <a name="Goetz2006"></a>Goetz, Java concurrency in practice, Addison-Wesley (2006).</li>
 <li><a id="Miller2018">[Miller2018]</a> <a name="Miller2018"></a>Miller, Halloway & Bedra, Programming Clojure, Pragmatic Bookshelf (2018).</li>
-</ul></h2>
+</ul>
 </section>
 </section>
 </div>
 </div>
-<script src="./reveal.js/lib/js/head.min.js"></script>
 <script src="./reveal.js/js/reveal.js"></script>
-
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -466,22 +465,22 @@ Reveal.initialize({
 
 controls: true,
 progress: true,
-history: false,
+history: true,
 center: true,
 slideNumber: 'c',
 rollingLinks: false,
 keyboard: true,
+mouseWheel: false,
+fragmentInURL: true,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
 overview: true,
 margin: 0.05,
 
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+transition: Reveal.getQueryHash().transition || 'slide', // see README of reveal.js for options
 transitionSpeed: 'default',
-multiplex: {
-    secret: '', // null if client
-    id: '', // id, obtained from socket.io server
-    url: '' // Location of socket.io server
-},
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
@@ -490,7 +489,8 @@ dependencies: [
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
-,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true } ] , menu: {hideMissingTitles: true}});
+
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }   ] , menu: {hideMissingTitles: true}});
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-07-19 Fri 16:54 -->
+<!-- 2019-08-03 Sat 18:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelprogrammierung &#x2013; Software Transactional Memory</title>
@@ -258,9 +258,9 @@ for the JavaScript code in this tag.
 <br />
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
-<div id="outline-container-orgf5e19a7" class="outline-2">
-<h2 id="orgf5e19a7">Ziele</h2>
-<div class="outline-text-2" id="text-orgf5e19a7">
+<div id="outline-container-org51b5634" class="outline-2">
+<h2 id="org51b5634">Ziele</h2>
+<div class="outline-text-2" id="text-org51b5634">
 <ul class="org-ul">
 <li>Ursachen von Problemen nebenläufiger Programme erkennen</li>
 <li>Verstehen des Konzepts von Software Transactional Memory am Beispiel
@@ -268,9 +268,9 @@ von Clojure</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org14b3053" class="outline-2">
-<h2 id="org14b3053">Zustand und Identität</h2>
-<div class="outline-text-2" id="text-org14b3053">
+<div id="outline-container-org641e881" class="outline-2">
+<h2 id="org641e881">Zustand und Identität</h2>
+<div class="outline-text-2" id="text-org641e881">
 <ul class="org-ul">
 <li>Viele Gründe für das Schreiben nebenläufiger/paralleler Programme:
 <ul class="org-ul">
@@ -283,14 +283,14 @@ Nutzung der verfügbaren Prozessoren ermöglichen.</li>
 Programme reagieren.</li>
 </ul></li>
 <li>Nebenläufigkeit führt offensichtlich dazu, dass mehrere Aktivitäten
-auf dieselben Daten.</li>
+auf dieselben Daten zugreifen.</li>
 <li>Dies führt zu massiven Problemen in Programmiersprachen, die die
-Konzepte <i>Zustand</i> und <i>Identität</i> vermengen (vgl. <a class='org-ref-reference' href="#Hickey2011">Hickey2011</a>).</li>
+Konzepte <i>Zustand</i> und <i>Identität</i> vermengen (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Hickey2011]</a>).</li>
 </ul>
 </div>
-<div id="outline-container-org008fa57" class="outline-3">
-<h3 id="org008fa57">Unterscheidung zwischen Zustand und Identität</h3>
-<div class="outline-text-3" id="text-org008fa57">
+<div id="outline-container-org857eb77" class="outline-3">
+<h3 id="org857eb77">Unterscheidung zwischen Zustand und Identität</h3>
+<div class="outline-text-3" id="text-org857eb77">
 <ul class="org-ul">
 <li>Unter einer Identität wird ein konkretes <i>Ding</i> verstanden, das &#x2013;
 einmal erschaffen &#x2013; bleibt.</li>
@@ -306,7 +306,7 @@ Zeit ändern können.
 </div>
 
 <p>
-(Abbildung entnommen aus <a class='org-ref-reference' href="#Rathore2016">Rathore2016</a>)
+(Abbildung entnommen aus <a class="org-ref-reference" href="#/slide-bibliography">[Rathore2016]</a>)
 </p>
 <ul class="org-ul">
 <li>Auch wenn sich das Alter (Zustand) einer Person (Ding) ändert,
@@ -320,9 +320,9 @@ kann als 2020.</li>
 </div>
 </div>
 
-<div id="outline-container-org3f95bd1" class="outline-3">
-<h3 id="org3f95bd1">Vermengung von Zustand und Identität</h3>
-<div class="outline-text-3" id="text-org3f95bd1">
+<div id="outline-container-orgeee40e7" class="outline-3">
+<h3 id="orgeee40e7">Vermengung von Zustand und Identität</h3>
+<div class="outline-text-3" id="text-orgeee40e7">
 <ul class="org-ul">
 <li>Problem in den gängigen objektorientierten Sprachen</li>
 <li>In der objektorientierten Programmierung kennt man den Begriff der
@@ -340,9 +340,9 @@ objektorientierten Sprachen.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb47c7cc" class="outline-3">
-<h3 id="orgb47c7cc">Robert C. Martin: The failure of state</h3>
-<div class="outline-text-3" id="text-orgb47c7cc">
+<div id="outline-container-orgaeb419d" class="outline-3">
+<h3 id="orgaeb419d">Robert C. Martin: The failure of state</h3>
+<div class="outline-text-3" id="text-orgaeb419d">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=7Zlp9rKHGD4">Video: Functional Programming &#x2013; The Failure of State</a></li>
 <li>Ausschnitte:
@@ -359,20 +359,20 @@ Zustandsänderungen erforderlich:
 <li>Nutzung des Transaktionskonzepts - Software Transactional Memory
 (STM)</li>
 </ul></li>
-<li>Nutzung von Sperren ist hoch problematisch (<a class='org-ref-reference' href="#Goetz2006">Goetz2006</a>).</li>
+<li>Nutzung von Sperren ist hoch problematisch (<a class="org-ref-reference" href="#/slide-bibliography">[Goetz2006]</a>).</li>
 <li>Programmierer können damit nicht umgehen.</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org70a67f2" class="outline-2">
-<h2 id="org70a67f2">Refs und Software Transactional Memory in Clojure</h2>
-<div class="outline-text-2" id="text-org70a67f2">
+<div id="outline-container-org9640e3f" class="outline-2">
+<h2 id="org9640e3f">Refs und Software Transactional Memory in Clojure</h2>
+<div class="outline-text-2" id="text-org9640e3f">
 </div>
-<div id="outline-container-orged10309" class="outline-3">
-<h3 id="orged10309">Anlegen von Verweisen (references) und Zugriff auf ihren Inhalt</h3>
-<div class="outline-text-3" id="text-orged10309">
+<div id="outline-container-orgd767335" class="outline-3">
+<h3 id="orgd767335">Anlegen von Verweisen (references) und Zugriff auf ihren Inhalt</h3>
+<div class="outline-text-3" id="text-orgd767335">
 <ul class="org-ul">
 <li>Normale Objekte in Clojure sind nicht änderbar (immutable).</li>
 <li><p>
@@ -411,9 +411,9 @@ das sich ändern kann.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge4bc59e" class="outline-3">
-<h3 id="orge4bc59e">Änderungen von Verweisen</h3>
-<div class="outline-text-3" id="text-orge4bc59e">
+<div id="outline-container-orge317387" class="outline-3">
+<h3 id="orge317387">Änderungen von Verweisen</h3>
+<div class="outline-text-3" id="text-orge317387">
 <ul class="org-ul">
 <li>Sprachkonstrukt <code>ref-set</code></li>
 <li><p>
@@ -436,9 +436,9 @@ Zur Klammerung einer Transaktion dient das Sprachkonstrukt <code>dosync</code>:
 <li>Der Verweis <code>aktueller-titel</code> zeigt nun auf einen anderen Titel.</li>
 </ul>
 </div>
-<div id="outline-container-org2f412cd" class="outline-4">
-<h4 id="org2f412cd">Transaktionseigenschaften</h4>
-<div class="outline-text-4" id="text-org2f412cd">
+<div id="outline-container-orgfbe745b" class="outline-4">
+<h4 id="orgfbe745b">Transaktionseigenschaften</h4>
+<div class="outline-text-4" id="text-orgfbe745b">
 <ul class="org-ul">
 <li>Ähnlich wie Datenbanktransaktionen erlaubt STM, Lese- und
 Änderungsoperationen auf Verweisen transaktional zu behandeln.</li>
@@ -458,9 +458,9 @@ Dauerhaftigkeit (das "D" in "ACID"). Dies gilt für
 STM-Transkaktionen, die sich im Arbeitsspeicher abspielen, nicht.</li>
 </ul>
 </div>
-<div id="outline-container-org6e76b24" class="outline-5">
-<h5 id="org6e76b24">Beispiel</h5>
-<div class="outline-text-5" id="text-org6e76b24">
+<div id="outline-container-org023360d" class="outline-5">
+<h5 id="org023360d">Beispiel</h5>
+<div class="outline-text-5" id="text-org023360d">
 <div class="org-src-container">
 <pre class="src src-clojure">user&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">aktueller-titel</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">ref</span> <span style="color: #008000;">"Knockin' On Heaven's Door"</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">=&gt; #'user/aktueller-titel</span>
@@ -485,13 +485,13 @@ inkonsistenter Zustand von anderen Threads gesehen werden.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgba38601" class="outline-4">
-<h4 id="orgba38601">Verwendung von <code>alter</code> für Änderungsoperationen</h4>
-<div class="outline-text-4" id="text-orgba38601">
+<div id="outline-container-orge85a5f6" class="outline-4">
+<h4 id="orge85a5f6">Verwendung von <code>alter</code> für Änderungsoperationen</h4>
+<div class="outline-text-4" id="text-orge85a5f6">
 <ul class="org-ul">
 <li>Das oben gezeigte Beispiel ist besonders simpel, da die Änderungen
 unabhängig von einem früheren Zustand sind.</li>
-<li>Im folgenden Beispiel (<a class='org-ref-reference' href="#Miller2018">Miller2018</a>) einer einfachen Chat-Applikation ist das
+<li>Im folgenden Beispiel (<a class="org-ref-reference" href="#/slide-bibliography">[Miller2018]</a>) einer einfachen Chat-Applikation ist das
 anders. (Die vollständige <a href="https://media.pragprog.com/titles/shcloj3/code/src/examples/chat.clj">Clojure-Datei</a> kann daungelohdet werden.)</li>
 <li><p>
 Mit
@@ -521,7 +521,7 @@ Die Liste der Nachrichten wird dann als Verweis angelegt:
 </ul>
 <ul class="org-ul">
 <li><p>
-Mit den bisher bekannten Mitteln könnte eine transnationale Funktion
+Mit den bisher bekannten Mitteln könnte eine transaktionale Funktion
 zum Hinzufügen einer Nachricht so definiert werden:
 </p>
 <pre class="example">
@@ -573,9 +573,9 @@ user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #
 </div>
 </div>
 </div>
-<div id="outline-container-org2868a01" class="outline-3">
-<h3 id="org2868a01">Arbeitsweise von STM in Clojure</h3>
-<div class="outline-text-3" id="text-org2868a01">
+<div id="outline-container-org2fa2a38" class="outline-3">
+<h3 id="org2fa2a38">Arbeitsweise von STM in Clojure</h3>
+<div class="outline-text-3" id="text-org2fa2a38">
 <ul class="org-ul">
 <li>Es wird eine Technik namens <i><a href="https://de.wikipedia.org/wiki/Multiversion_Concurrency_Control">Multiversion Concurrency Control</a></i>
 (MVCC) benutzt, die auch in Datenbanksystemen
@@ -598,9 +598,9 @@ die in-transaction values nach außen sichtbar. Diese
 </ul>
 </div>
 </div>
-<div id="outline-container-org3aee2b2" class="outline-3">
-<h3 id="org3aee2b2">Clojure <code>dosync</code> vs. Java <code>synchronized</code></h3>
-<div class="outline-text-3" id="text-org3aee2b2">
+<div id="outline-container-org48831c1" class="outline-3">
+<h3 id="org48831c1">Clojure <code>dosync</code> vs. Java <code>synchronized</code></h3>
+<div class="outline-text-3" id="text-org48831c1">
 <ul class="org-ul">
 <li>Mit <code>synchronized</code> werden implizit Sperren angefordert und
 freigegeben.</li>
@@ -617,9 +617,9 @@ bis die Sperre wieder frei ist.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0dca62f" class="outline-3">
-<h3 id="org0dca62f">Validierungsfunktionen für Verweise</h3>
-<div class="outline-text-3" id="text-org0dca62f">
+<div id="outline-container-orgd3ed6c9" class="outline-3">
+<h3 id="orgd3ed6c9">Validierungsfunktionen für Verweise</h3>
+<div class="outline-text-3" id="text-orgd3ed6c9">
 <ul class="org-ul">
 <li>Vergleichbar mit Integritätsbedingungen in relationalen Datenbanken 
 können Verweise mit Validierungsfunktionen
@@ -657,18 +657,20 @@ user&gt; <span style="color: #707183;">(</span>add-message <span style="color: #
 </div>
 </div>
 
-<div id="outline-container-orgcf6a813" class="outline-2">
-<h2 id="orgcf6a813"><h2>Literaturverzeichnis</h2>
+<div id="outline-container-orgc09b2d1" class="outline-2">
+<h2 id="bibliography">Literaturverzeichnis</h2>
+<div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="Hickey2011">[Hickey2011]</a> <a name="Hickey2011"></a>Hickey, Simple Made Easy, (2011), zuletzt aufgerufen am 10. 7. 2019: <a href="https://www.infoq.com/presentations/Simple-Made-Easy/">https://www.infoq.com/presentations/Simple-Made-Easy/</a> </li>
 <li><a id="Rathore2016">[Rathore2016]</a> <a name="Rathore2016"></a>Rathore, Clojure in action, Manning (2016).</li>
 <li><a id="Goetz2006">[Goetz2006]</a> <a name="Goetz2006"></a>Goetz, Java concurrency in practice, Addison-Wesley (2006).</li>
 <li><a id="Miller2018">[Miller2018]</a> <a name="Miller2018"></a>Miller, Halloway & Bedra, Programming Clojure, Pragmatic Bookshelf (2018).</li>
-</ul></h2>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-07-19 Fri 16:54</p>
+<p class="date">Created: 2019-08-03 Sat 18:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
