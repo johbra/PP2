@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-08-01 Thu 19:24 -->
+<!-- 2019-08-05 Mon 19:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Constraint-Programmierung &#x2013; Grundlagen</title>
@@ -281,18 +281,18 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org1ff06cd" class="outline-2">
-<h2 id="org1ff06cd">Ziele</h2>
-<div class="outline-text-2" id="text-org1ff06cd">
+<div id="outline-container-orgfd5381e" class="outline-2">
+<h2 id="orgfd5381e">Ziele</h2>
+<div class="outline-text-2" id="text-orgfd5381e">
 <ul class="org-ul">
 <li>Kennenlernen grundlegender Begriffe der Constraint-Programmierung</li>
 <li>die zwei wichtigsten Lösungsverfahren in Constraint-Systemen unterscheiden können</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org51d7aa1" class="outline-2">
-<h2 id="org51d7aa1">Einstieg</h2>
-<div class="outline-text-2" id="text-org51d7aa1">
+<div id="outline-container-org0b3dd0c" class="outline-2">
+<h2 id="org0b3dd0c">Einstieg</h2>
+<div class="outline-text-2" id="text-org0b3dd0c">
 <p>
 Hier verwendete und weiterführende Literatur:
 </p>
@@ -306,9 +306,9 @@ Hier verwendete und weiterführende Literatur:
 </ul>
 </div>
 
-<div id="outline-container-org3abb4ca" class="outline-3">
-<h3 id="org3abb4ca">Begriff</h3>
-<div class="outline-text-3" id="text-org3abb4ca">
+<div id="outline-container-orgd944828" class="outline-3">
+<h3 id="orgd944828">Begriff</h3>
+<div class="outline-text-3" id="text-orgd944828">
 <ul class="org-ul">
 <li>Die Constraint-Programmierung wird meist als eine Spielart der
 logischen Programmierung angesehen.</li>
@@ -339,9 +339,9 @@ bis 9 öffnet. Wir wissen, dass \(x\)
 </div>
 </div>
 
-<div id="outline-container-orge797387" class="outline-3">
-<h3 id="orge797387">Prinzip</h3>
-<div class="outline-text-3" id="text-orge797387">
+<div id="outline-container-org2882f90" class="outline-3">
+<h3 id="org2882f90">Prinzip</h3>
+<div class="outline-text-3" id="text-org2882f90">
 <ul class="org-ul">
 <li>In der regelbasierten Programmierung wird ein ein Satz von Regeln
 (constraints) angegeben, denen die Lösung genügen muss.</li>
@@ -361,9 +361,9 @@ Lösung.</li>
 </div>
 </div>
 
-<div id="outline-container-orgae87380" class="outline-3">
-<h3 id="orgae87380">Anwendungen</h3>
-<div class="outline-text-3" id="text-orgae87380">
+<div id="outline-container-orgf558e9b" class="outline-3">
+<h3 id="orgf558e9b">Anwendungen</h3>
+<div class="outline-text-3" id="text-orgf558e9b">
 <ul class="org-ul">
 <li>Verarbeitung natürlicher Sprachen</li>
 <li>Datenbanksysteme (Konsistenzsicherung)</li>
@@ -384,9 +384,9 @@ Lösung.</li>
 </div>
 </div>
 
-<div id="outline-container-org3312aff" class="outline-3">
-<h3 id="org3312aff">Contstraints im Straßenverkehr</h3>
-<div class="outline-text-3" id="text-org3312aff">
+<div id="outline-container-org29409bf" class="outline-3">
+<h3 id="org29409bf">Contstraints im Straßenverkehr</h3>
+<div class="outline-text-3" id="text-org29409bf">
 
 <div class="figure">
 <p><img src="./Abbildungen/verkehr.png" alt="verkehr.png" width="600px" />
@@ -400,9 +400,9 @@ Lösung.</li>
 </div>
 </div>
 
-<div id="outline-container-org6c2df3a" class="outline-3">
-<h3 id="org6c2df3a">Holy Grail of programming</h3>
-<div class="outline-text-3" id="text-org6c2df3a">
+<div id="outline-container-org2496ef3" class="outline-3">
+<h3 id="org2496ef3">Holy Grail of programming</h3>
+<div class="outline-text-3" id="text-org2496ef3">
 <blockquote>
 <p>
 Constraint Programming represents one of the closest approaches computer
@@ -418,13 +418,13 @@ the problem, the computer solves it.
 </div>
 </div>
 
-<div id="outline-container-org0be86e1" class="outline-2">
-<h2 id="org0be86e1">Begriffsdefinitionen</h2>
-<div class="outline-text-2" id="text-org0be86e1">
+<div id="outline-container-orgf6126d6" class="outline-2">
+<h2 id="orgf6126d6">Begriffsdefinitionen</h2>
+<div class="outline-text-2" id="text-orgf6126d6">
 </div>
-<div id="outline-container-orgae13817" class="outline-3">
-<h3 id="orgae13817">Einschränkung (<i>constraint</i>)</h3>
-<div class="outline-text-3" id="text-orgae13817">
+<div id="outline-container-orgbd34c74" class="outline-3">
+<h3 id="orgbd34c74">Einschränkung (<i>constraint</i>)</h3>
+<div class="outline-text-3" id="text-orgbd34c74">
 <ul class="org-ul">
 <li>Eine <i>Einschränkung</i> (<i>constraint</i>) stellt eine Beziehung zwischen
 verschiedenen Unbekannten (Variablen) her. Jede Variable kann Werte
@@ -439,9 +439,9 @@ Beziehung erzwungen werden kann.</li>
 </div>
 </div>
 
-<div id="outline-container-org3f71161" class="outline-3">
-<h3 id="org3f71161">Erfüllbarkeit (<i>satisfiability</i>)</h3>
-<div class="outline-text-3" id="text-org3f71161">
+<div id="outline-container-orgbdcf73e" class="outline-3">
+<h3 id="orgbdcf73e">Erfüllbarkeit (<i>satisfiability</i>)</h3>
+<div class="outline-text-3" id="text-orgbdcf73e">
 <dl class="org-dl">
 <dt>erfüllbar:</dt><dd>Es existiert eine Lösung für die Einschränkungen.</dd>
 
@@ -472,9 +472,9 @@ Einschränkungen.</dd>
 </div>
 </div>
 
-<div id="outline-container-org50f3a0d" class="outline-3">
-<h3 id="org50f3a0d">Lösungsverfahren</h3>
-<div class="outline-text-3" id="text-org50f3a0d">
+<div id="outline-container-org6c15ffd" class="outline-3">
+<h3 id="org6c15ffd">Lösungsverfahren</h3>
+<div class="outline-text-3" id="text-org6c15ffd">
 <ul class="org-ul">
 <li>Zwei Lösungsstrategien
 <ul class="org-ul">
@@ -495,13 +495,13 @@ Integration, Taylor-Reihen etc.).</li>
 </div>
 </div>
 
-<div id="outline-container-orga424d1f" class="outline-2">
-<h2 id="orga424d1f">Constraint-satisfaction</h2>
-<div class="outline-text-2" id="text-orga424d1f">
+<div id="outline-container-org64d1314" class="outline-2">
+<h2 id="org64d1314">Constraint-satisfaction</h2>
+<div class="outline-text-2" id="text-org64d1314">
 </div>
-<div id="outline-container-orgf059c76" class="outline-3">
-<h3 id="orgf059c76">Prinzip</h3>
-<div class="outline-text-3" id="text-orgf059c76">
+<div id="outline-container-orgc4c79ad" class="outline-3">
+<h3 id="orgc4c79ad">Prinzip</h3>
+<div class="outline-text-3" id="text-orgc4c79ad">
 <ul class="org-ul">
 <li><p>
 Ein Constraint-satisfaction-Problem (CSP) wird 
@@ -526,15 +526,15 @@ Menge, so dass alle Einschränkungen erfüllt sind.
 </p>
 
 <p>
-Beispiel: \[X=2, Y=2, Z=1\]
+Beispiel: \(X=2, Y=2, Z=1\)
 </p></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc64af86" class="outline-3">
-<h3 id="orgc64af86">Systematische Suche</h3>
-<div class="outline-text-3" id="text-orgc64af86">
+<div id="outline-container-org9bdb95d" class="outline-3">
+<h3 id="org9bdb95d">Systematische Suche</h3>
+<div class="outline-text-3" id="text-org9bdb95d">
 <ul class="org-ul">
 <li>Grundsätzlich kann ein CSP durch systematisches Durchsuchen des
 Lösungsraums gelöst werden.</li>
@@ -556,9 +556,9 @@ Teillösungen zur Gesamtlösung.</li>
 </div>
 </div>
 
-<div id="outline-container-org5a7334b" class="outline-3">
-<h3 id="org5a7334b">Generate &amp; Test</h3>
-<div class="outline-text-3" id="text-org5a7334b">
+<div id="outline-container-org0ba69c8" class="outline-3">
+<h3 id="org0ba69c8">Generate &amp; Test</h3>
+<div class="outline-text-3" id="text-org0ba69c8">
 <ul class="org-ul">
 <li>Grundlegendes Verfahren zur Lösung von CSPs</li>
 
@@ -589,9 +589,9 @@ Nachteile:
 </div>
 </div>
 
-<div id="outline-container-orged177cd" class="outline-3">
-<h3 id="orged177cd">Backtracking</h3>
-<div class="outline-text-3" id="text-orged177cd">
+<div id="outline-container-org03cd904" class="outline-3">
+<h3 id="org03cd904">Backtracking</h3>
+<div class="outline-text-3" id="text-org03cd904">
 <ul class="org-ul">
 <li>Partielle Lösung wird schrittweise zur vollständigen erweitert.</li>
 <li>Algorithmus (vereinfacht):</li>
@@ -626,9 +626,9 @@ Nachteile:
 </div>
 </div>
 
-<div id="outline-container-orge7b06af" class="outline-3">
-<h3 id="orge7b06af">Anwendungsbeispiel für GT und BT</h3>
-<div class="outline-text-3" id="text-orge7b06af">
+<div id="outline-container-orge66d6dc" class="outline-3">
+<h3 id="orge66d6dc">Anwendungsbeispiel für GT und BT</h3>
+<div class="outline-text-3" id="text-orge66d6dc">
 <p>
 <b>Aufgabenstellung</b>:
  \[X=\{1,2\}, Y=\{1,2\}, Z=\{1,2\}\]
@@ -786,9 +786,9 @@ Nachteile:
 </div>
 </div>
 
-<div id="outline-container-org57530c8" class="outline-3">
-<h3 id="org57530c8">Optimierungen der systematischen Suche</h3>
-<div class="outline-text-3" id="text-org57530c8">
+<div id="outline-container-org624d5cf" class="outline-3">
+<h3 id="org624d5cf">Optimierungen der systematischen Suche</h3>
+<div class="outline-text-3" id="text-org624d5cf">
 <ul class="org-ul">
 <li>Grundidee: Entfernung von inkonsistenten Werten aus der Wertemenge
 einer Variablen</li>
@@ -838,31 +838,31 @@ Einschränkungen)</li>
 </div>
 </div>
 
-<div id="outline-container-org4f1daf7" class="outline-3">
-<h3 id="org4f1daf7">Constraint logic programming</h3>
-<div class="outline-text-3" id="text-org4f1daf7">
+<div id="outline-container-orgd49406b" class="outline-3">
+<h3 id="orgd49406b">Constraint logic programming</h3>
+<div class="outline-text-3" id="text-orgd49406b">
 <ul class="org-ul">
 <li>Bei Constraint-satisfaction-Verfahren gibt es Anknüpfungspunkte zur
 logischen Programmierung.</li>
 <li>Daher wird in diesem Zusammenhang auch häufig der Begriff
 <i>constraint logic programming</i> (CLP) benutzt.</li>
-<li>Für Beispiele der <a href="PP2-11.ConLogProgr.html">Constraint-logic-Programmierung</a> gibt es ein
+<li>Für Beispiele der <a href="PP2-11-ConLogProgr.html">Constraint-logic-Programmierung</a> gibt es ein
 eigenes Kapitel.</li>
 <li>Zuvor betrachten wird Techniken des Constraint-solvings.</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0972b93" class="outline-2">
-<h2 id="org0972b93">Constraint-solving</h2>
-<div class="outline-text-2" id="text-org0972b93">
+<div id="outline-container-org4406bd8" class="outline-2">
+<h2 id="org4406bd8">Constraint-solving</h2>
+<div class="outline-text-2" id="text-org4406bd8">
 <ul class="org-ul">
 <li><a href="PP2-10-ConSolv.html">Konstruktion eines Constraint-solvers</a></li>
 <li><a href="PP2-10-ConSolv.html">Constraint-solving mit Prolog</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7d70409" class="outline-2">
+<div id="outline-container-org86ddd6e" class="outline-2">
 <h2 id="bibliography">Literaturverzeichnis</h2>
 <div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="Fruehwirth2010">[Fruehwirth2010]</a> <a name="Fruehwirth2010"></a>Thom Frühwirth & Slim Abdennadher, Essentials of Constraint Programming (Cognitive Technologies), Springer (2010).</li>
@@ -876,7 +876,7 @@ eigenes Kapitel.</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-08-01 Thu 19:24</p>
+<p class="date">Created: 2019-08-05 Mon 19:35</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
