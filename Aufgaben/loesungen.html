@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-12-11 Tue 21:45 -->
+<!-- 2019-08-16 Fri 21:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ausgewählte Lösungen zu den Aufgaben</title>
@@ -161,6 +161,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -197,7 +210,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -268,12 +281,12 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-orgce51e78" class="outline-2">
-<h2 id="orgce51e78"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
+<div id="outline-container-org90af40a" class="outline-2">
+<h2 id="org90af40a"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org9e8c534" class="outline-3">
-<h3 id="org9e8c534"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
+<div id="outline-container-org224202f" class="outline-3">
+<h3 id="org224202f"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Lösen Sie das SEND-MORE-MONEY-Problem aus der Vorlesung 
@@ -283,8 +296,8 @@ Beachten Sie Nebenbedingungen.
 </div>
 </div>
 
-<div id="outline-container-orgfbb111a" class="outline-3">
-<h3 id="orgfbb111a"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
+<div id="outline-container-orgfa713e0" class="outline-3">
+<h3 id="orgfa713e0"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Führen Sie für das Pkw-Motorräder-Problem aus der <a href="../Vorlesung/PP2-1-Einstieg.html#aufgabePkw">Vorlesung</a> den dort
@@ -293,8 +306,8 @@ verlangten Beweis!
 </div>
 </div>
 
-<div id="outline-container-org4829990" class="outline-3">
-<h3 id="org4829990"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
+<div id="outline-container-org51d99c4" class="outline-3">
+<h3 id="org51d99c4"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li><p>
@@ -304,8 +317,8 @@ Ganzzahlen, summiert. Z.&nbsp;B. liefert der Aufruf
 </p>
 <pre class="example">
 sum_pair_list [(2,3), (4,5)]
-
 </pre>
+
 <p>
 den Wert 14.
 </p>
@@ -324,8 +337,8 @@ extrahiert. Z.&nbsp;B. liefert der Aufruf
 </p>
 <pre class="example">
 sum_pair_list [(2,3), (4,5)]
-
 </pre>
+
 <p>
 den Wert <code>[2,4]</code>
 </p>
@@ -440,8 +453,8 @@ vorkommender Monat keinen Einfluss auf das Resultat hat.</li>
 </div>
 </div>
 
-<div id="outline-container-orge37d783" class="outline-3">
-<h3 id="aufgabemustervergleich"><a id="orge37d783"></a><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
+<div id="outline-container-orgc7a78c7" class="outline-3">
+<h3 id="aufgabemustervergleich"><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
 <div class="outline-text-3" id="text-aufgabemustervergleich">
 <ol class="org-ol">
 <li><p>
@@ -478,8 +491,8 @@ Z.&nbsp;B. liefert der Aufruf
 </p>
 <pre class="example">
 eval (Add (Constant 19, Negate (Constant 4)))
-
 </pre>
+
 <p>
 den Wert 15.
 </p>
@@ -542,8 +555,8 @@ vgl. <a href="AufgabePV.pdf">Prüfungsvorleistung</a></li>
 </div>
 </div>
 
-<div id="outline-container-org8c6a4b5" class="outline-3">
-<h3 id="org8c6a4b5"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
+<div id="outline-container-org829b1a4" class="outline-3">
+<h3 id="org829b1a4"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Überlegen Sie, wie Kreise, die durch
@@ -598,8 +611,8 @@ des Destructurings Gebrauch.
 </div>
 </div>
 </div>
-<div id="outline-container-org5538c12" class="outline-3">
-<h3 id="org5538c12"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
+<div id="outline-container-orgb7a0a77" class="outline-3">
+<h3 id="orgb7a0a77"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Schreiben Sie für den Datentyp <code>exp</code> (vgl. <a href="#aufgabemustervergleich">Aufgabe (Mustervergleich)</a>)
@@ -635,8 +648,8 @@ Konstanten von <code>e</code> <code>true</code> liefert.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf2ea149" class="outline-3">
-<h3 id="orgf2ea149"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung, Entcurryfizierung, partielle Anwendung)</h3>
+<div id="outline-container-org00c20d8" class="outline-3">
+<h3 id="org00c20d8"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung, Entcurryfizierung, partielle Anwendung)</h3>
 <div class="outline-text-3" id="text-1-7">
 <ol class="org-ol">
 <li><p>
@@ -717,8 +730,8 @@ Schreiben Sie zunächst eine Funktion
 </p>
 <pre class="example">
 ist_teilbar_durch = fn : int -&gt; int -&gt; bool
-
 </pre>
+
 <p>
 , die überprüft, ob ihr zweites Argument ohne Rest durch ihr
 Argument teilbar ist. 
@@ -733,8 +746,8 @@ aus, dass die Ausdrücke <code>true</code> liefern:
 <pre class="example">
 (List.filter ... [1,2,3,4,5,6,7,8,9]) = [3,6,9]
 (List.filter ... [1,2,3,4,5,6,7,8,9]) = [4,8]
-
 </pre>
+
 <div class="org-src-container">
 <pre class="src src-sml">   <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">pr&#252;ft, ob nd durch or ohne Rest teilbar ist </span><span style="color: #8D8D84;">*)</span>
    <span style="color: #0000FF;">fun</span> <span style="color: #006699;">ist_teilbar_durch</span> or nd = <span style="color: #707183;">(</span>nd mod or<span style="color: #707183;">)</span> = 0
@@ -746,8 +759,8 @@ aus, dass die Ausdrücke <code>true</code> liefern:
 </ol>
 </div>
 </div>
-<div id="outline-container-org2b9e753" class="outline-3">
-<h3 id="aufgabealternativelistenimplementierung"><a id="org2b9e753"></a><span class="section-number-3">1.8</span> Aufgabe (alternative Listenimplementierung)</h3>
+<div id="outline-container-org2593328" class="outline-3">
+<h3 id="aufgabealternativelistenimplementierung"><span class="section-number-3">1.8</span> Aufgabe (alternative Listenimplementierung)</h3>
 <div class="outline-text-3" id="text-aufgabealternativelistenimplementierung">
 <p>
 Gegeben sind folgende Definitionen für <code>cns</code> und <code>fst</code>:
@@ -775,15 +788,15 @@ so aussieht:
 </p>
 <pre class="example">
 (fn [m] (m 3 4)) 
-
 </pre>
+
 <p>
 Demnach ist der Ausdruck <code>(fst (cns 3 4))</code> gleich
 </p>
 <pre class="example">
 (frst (fn [m] (m 3 4))).
-
 </pre>
+
 <p>
 Wertet man diesen Ausdruck gemäß Ersetzungsmodell aus, ergeben sich
 folgende äquivalente Ausdrücke:
@@ -793,7 +806,6 @@ folgende äquivalente Ausdrücke:
 ((fn [m] (m 3 4)) (fn [p q] p))
 ((fn [p q] p) 3 4)
 3
-
 </pre></li>
 <li><p>
 Fügen Sie die passende Definition von <code>rst</code> hinzu.
@@ -807,8 +819,8 @@ Fügen Sie die passende Definition von <code>rst</code> hinzu.
 </div>
 </div>
 
-<div id="outline-container-org1c2df61" class="outline-3">
-<h3 id="aufgabendatentypnat"><a id="org1c2df61"></a><span class="section-number-3">1.9</span> Aufgabe (Datentyp <b>Nat</b>)</h3>
+<div id="outline-container-org7384d11" class="outline-3">
+<h3 id="aufgabendatentypnat"><span class="section-number-3">1.9</span> Aufgabe (Datentyp <b>Nat</b>)</h3>
 <div class="outline-text-3" id="text-aufgabendatentypnat">
 <ol class="org-ol">
 <li>Schreiben Sie eine Funktion <code>repeat</code>, die eine natürliche Zahl
@@ -973,13 +985,13 @@ Schreiben Sie eine Funktion
 </div>
 </div>
 </div>
-<div id="outline-container-org9bcfa7d" class="outline-3">
-<h3 id="aufgabenstreams"><a id="org9bcfa7d"></a><span class="section-number-3">1.10</span> Aufgabe (verzögerte Auswertung - Streams)</h3>
+<div id="outline-container-org2f6fcc8" class="outline-3">
+<h3 id="aufgabenstreams"><span class="section-number-3">1.10</span> Aufgabe (verzögerte Auswertung - Streams)</h3>
 <div class="outline-text-3" id="text-aufgabenstreams">
 </div>
-<div id="outline-container-org44722fd" class="outline-4">
-<h4 id="org44722fd">Streams</h4>
-<div class="outline-text-4" id="text-org44722fd">
+<div id="outline-container-org8c6bc2e" class="outline-4">
+<h4 id="org8c6bc2e">Streams</h4>
+<div class="outline-text-4" id="text-org8c6bc2e">
 <p>
 Ein Stream ist eine unendliche Folge von Werten. Selbstverständlich
 kann ein solche Folge nicht tatsächlich erzeugt werden - dies
@@ -1118,9 +1130,9 @@ Beispielanwendung:
 </div>
 </div>
 
-<div id="outline-container-org358d8e0" class="outline-4">
-<h4 id="org358d8e0">Aufgaben</h4>
-<div class="outline-text-4" id="text-org358d8e0">
+<div id="outline-container-orgd6e3ca1" class="outline-4">
+<h4 id="orgd6e3ca1">Aufgaben</h4>
+<div class="outline-text-4" id="text-orgd6e3ca1">
 <ol class="org-ol">
 <li><p>
 Schreiben Sie eine Funktion <code>stream-for-n-steps</code>, die einen Stream
@@ -1182,10 +1194,233 @@ Funktion zur Berechnung des nächsten einen Stream baut.
 </div>
 </div>
 </div>
+
+<div id="outline-container-org369b316" class="outline-2">
+<h2 id="org369b316"><span class="section-number-2">2</span> Teil 2 (6. Semester)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org80726ea" class="outline-3">
+<h3 id="org80726ea"><span class="section-number-3">2.1</span> Aufgabe (Prolog - NSA)</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Gegeben ist die folgende Prolog-Datenbasis:
+</p>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #006699;">belauscht</span>(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- kontrolliert(<span style="color: #BA36A5;">X</span>,nsa),hatTelefon(<span style="color: #BA36A5;">Y</span>),benutztTelefon(<span style="color: #BA36A5;">Y</span>).
+<span style="color: #006699;">hatTelefon</span>(mutti). 
+<span style="color: #006699;">hatTelefon</span>(makrone). 
+<span style="color: #006699;">benutztTelefon</span>(mutti). 
+<span style="color: #006699;">kontrolliert</span>(trumpf,nsa).
+<span style="color: #006699;">weiblich</span>(mutti). 
+<span style="color: #006699;">maennlich</span>(makrone). 
+<span style="color: #006699;">maennlich</span>(trumpf). 
+</pre>
+</div>
+<p>
+Wer belauscht hier wen?
+</p>
+<pre class="example">
+belauscht(trumpf,mutti)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb8f3dba" class="outline-3">
+<h3 id="orgb8f3dba"><span class="section-number-3">2.2</span> Aufgabe (Prolog)</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li><p>
+Schreiben Sie ein Prolog-Programm, das festhält:
+</p>
+<ul class="org-ul">
+<li>ein Löwe, ein Tiger und eine Kuh sind Lebewesen;</li>
+<li>Löwe und Tiger sind Fleichfresser.<br /></li>
+</ul>
+<p>
+Anschließend testen Sie Ihr Programm durch Eingabe der folgenden
+Zielausdrücke:
+</p>
+<ul class="org-ul">
+<li>Es gibt ein Lebewesen Tiger in der Datenbank.</li>
+<li>Eine Kuh und ein Tiger sind beide Lebewesen (Konjunktion zweier Ziele).</li>
+<li>Ein Löwe ist ein Lebewesen und Fleichfresser.</li>
+<li>Ein Kuh ist ein Lebewesen und Fleichfresser.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #006699;">lebewesen</span>(loewe).
+<span style="color: #006699;">lebewesen</span>(kuh).
+<span style="color: #006699;">lebewesen</span>(tiger).
+<span style="color: #006699;">fleischfresser</span>(loewe).
+<span style="color: #006699;">fleischfresser</span>(tiger).
+
+?- <span style="color: #8D8D84; font-style: italic;">% Es gibt ein Lebewesen Tiger in der Datenbank:</span>
+<span style="color: #0000FF;">|</span>    lebewesen(<span style="color: #BA36A5;">X</span>).
+<span style="color: #BA36A5;">X</span> = loewe 
+
+?- <span style="color: #8D8D84; font-style: italic;">% Eine Kuh und ein Tiger sind beide Lebewesen:</span>
+<span style="color: #0000FF;">|</span>    lebewesen(kuh), lebewesen(tiger).
+true.
+
+?- <span style="color: #8D8D84; font-style: italic;">%Ein L&#246;we ist ein Lebewesen und Fleichfresser:</span>
+<span style="color: #0000FF;">|</span>    lebewesen(loewe), fleischfresser(loewe).
+true.
+
+ <span style="color: #8D8D84; font-style: italic;">% Eine Kuh ist ein Lebewesen und Fleichfresser:</span>
+<span style="color: #0000FF;">|</span>    lebewesen(kuh), fleischfresser(kuh).
+false.
+</pre>
+</div></li>
+<li><p>
+Gegeben seien die folgenden biblischen Verwandtschaftsverhältnisse:
+</p>
+<div class="org-src-container">
+<pre class="src src-prolog">   father(abraham,isaac).
+   father(haran,lot).
+   father(haran,milcah).
+   father(haran,yiscah).
+   male(isaac).
+   male(lot).
+   female(milcah).
+   female(yiscah).
+   son(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), male(<span style="color: #BA36A5;">X</span>).
+   daughter(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">X</span>), female(<span style="color: #BA36A5;">X</span>).
+</pre>
+</div>
+<p>
+Fügen Sie die Prädikate <code>sister/2</code>, <code>brother/2</code> und <code>siblings/2</code>
+hinzu.
+</p>
+<div class="org-src-container">
+<pre class="src src-prolog"><span style="color: #006699;">sister</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Z</span>, <span style="color: #BA36A5;">X</span>), father(<span style="color: #BA36A5;">Z</span>, <span style="color: #BA36A5;">Y</span>), female(<span style="color: #BA36A5;">X</span>), <span style="color: #BA36A5;">X</span> \= <span style="color: #BA36A5;">Y</span>.
+<span style="color: #006699;">brother</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Z</span>, <span style="color: #BA36A5;">X</span>), father(<span style="color: #BA36A5;">Z</span>, <span style="color: #BA36A5;">Y</span>), male(<span style="color: #BA36A5;">X</span>), <span style="color: #BA36A5;">X</span> \= <span style="color: #BA36A5;">Y</span>.
+<span style="color: #006699;">siblings</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #BA36A5;">Y</span>) :- father(<span style="color: #BA36A5;">Z</span>, <span style="color: #BA36A5;">X</span>), father(<span style="color: #BA36A5;">Z</span>, <span style="color: #BA36A5;">Y</span>), <span style="color: #BA36A5;">X</span> \= <span style="color: #BA36A5;">Y</span>.
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgcb9799c" class="outline-3">
+<h3 id="orgcb9799c"><span class="section-number-3">2.3</span> Aufgabe (Prolog - Reisewege)</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Gegeben sei die folgende Faktenbasis über Reisemöglichkeiten:
+</p>
+<div class="org-src-container">
+<pre class="src src-prolog">   byCar(auckland,hamilton).
+   byCar(hamilton,raglan).
+   byCar(valmont,saarbruecken).
+   byCar(valmont,metz).
+
+   byTrain(metz,frankfurt).
+   byTrain(saarbruecken,frankfurt).
+   byTrain(metz,paris).
+   byTrain(saarbruecken,paris).
+
+   byPlane(frankfurt,bangkok).
+   byPlane(frankfurt,singapore).
+   byPlane(paris,losAngeles).
+   byPlane(bangkok,auckland).
+   byPlane(losAngeles,auckland).
+</pre>
+</div>
+<ol class="org-ol">
+<li><p>
+Schreiben Sie ein Prädikat <code>travel/2</code>, das ermittelt, ob es
+möglich ist, von einem Ort zu einem anderen zu reisen, indem
+der Reiseweg aus den in der Faktenbasis gegebenen Direktverbindungen verkettet
+wird. Z. B. sollte die Frage
+<code>travel(valmont,raglan).</code> als Resultat <code>true</code> liefern. 
+</p>
+
+<p>
+<b>Hinweis</b>: Es könnte hilfreich sein, ein Prädikat <code>onestep/2</code> zu definieren,
+das die Möglichkeiten zusammenfasst, welche Direktverbindungen
+aufgrund der gegebenen Fakten existieren.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-prolog">      travel(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).
+      travel(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Z</span>),
+                     travel(<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">Y</span>).
+
+      onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- byCar(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).
+      onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- byTrain(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).
+      onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>) :- byPlane(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).
+</pre>
+</div></li>
+
+<li><p>
+Das Prädikat <code>travel/2</code> ermöglicht zu beweisen, dass es z. B. einen Reiseweg
+von Valmont nach Raglan gibt. Für eine detaillierte Reiseplanung
+wäre es aber wünschenswert, auch zu erfahren, über welche
+Zwischenstationen die Reise führt. Schreiben Sie dafür ein
+Prädikat <code>travel/3</code>, das dann z. B. auf die Frage<br />
+<code>travel(valmont,paris, go(valmont,metz,go(metz,paris)))</code><br />
+mit <code>true</code> und auf die Frage<br />
+<code>travel(valmont,losAngeles,X).</code> <br />
+mit<br />
+<code>X = go(valmont,metz,go(metz,paris,go(paris,losAngeles)))</code> <br />
+antwortet. Hier gibt es möglicherweise Alternativen.
+</p>
+
+<p>
+<b>Hinweis</b>: Jeder Zwischenschritt auf der Reise muss registriert
+werden. Betrachten Sie zuerst den Basisfall der Rekursion
+<code>(travel(X,Y) :- onestep(X,Y).)</code> und erweitern ihn so, dass
+<code>travel</code> in seinem dritten Argument speichert, dass ein Schritt
+von <code>X</code> nach <code>Y</code> zurückgelegt wurde.
+</p>
+
+<p>
+Betrachen Sie anschließend die rekursive Regel:
+</p>
+<pre class="example">
+travel(X,Y) :- onestep(X,Z), travel(Z,Y).
+</pre>
+
+<p>
+Diese Klausel sollte eine Struktur zurückgeben, die anzeigt, dass ein Schritt
+von <code>X</code> nach <code>Z</code> zurücklegt und welcher Weg von <code>Z</code> nach <code>Y</code>
+genommen werden muss.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-prolog">      travel(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,go(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>)) :- onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).
+      travel(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,go(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">Path</span>)) :- onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Z</span>), 
+                                  travel(<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Path</span>).
+</pre>
+</div></li>
+
+<li><p>
+Erweitern Sie das Prädikat <code>travel/3</code> so, dass auch angezeigt wird,
+mit welchem Verkehrsmittel die jeweilige Teilstrecke
+zurückgelegt wird.
+</p>
+
+<p>
+<b>Hinweis</b>: Für jede Teilstrecke muss man sich merken, welches
+Verkehrsmittel benutzt wurde. Erweitern Sie dafür die
+<code>go</code>-Struktur aus der vorangegangenen Teilaufgabe um ein
+Argument <code>Transport</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-prolog">      travel(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,go(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Transport</span>)) :- onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Transport</span>).
+      travel(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,go(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">Transport</span>,<span style="color: #BA36A5;">Path</span>)) :- onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">Transport</span>),
+              travel(<span style="color: #BA36A5;">Z</span>,<span style="color: #BA36A5;">Y</span>,<span style="color: #BA36A5;">Path</span>).
+
+      onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,byCar) :- byCar(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).
+      onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,byTrain) :- byTrain(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).
+      onestep(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>,byPlane) :- byPlane(<span style="color: #BA36A5;">X</span>,<span style="color: #BA36A5;">Y</span>).      
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-12-11 Tue 21:45</p>
+<p class="date">Created: 2019-08-16 Fri 21:56</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
