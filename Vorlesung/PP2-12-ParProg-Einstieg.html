@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-08-03 Sat 00:29 -->
+<!-- 2019-09-05 Thu 16:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelprogrammierung &#x2013; Einstieg</title>
@@ -281,9 +281,9 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org842d4d7" class="outline-2">
-<h2 id="org842d4d7">Ziele</h2>
-<div class="outline-text-2" id="text-org842d4d7">
+<div id="outline-container-org8d8bdde" class="outline-2">
+<h2 id="org8d8bdde">Ziele</h2>
+<div class="outline-text-2" id="text-org8d8bdde">
 <ul class="org-ul">
 <li>Kennenlernen der Grundbegriffe der Parallelprogrammierung</li>
 <li>Unterscheiden lernen zwischen Nebenläufigkeit und Parallelität</li>
@@ -292,13 +292,13 @@ Parallelprogrammierung durch Hardware und Software</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4734d8c" class="outline-2">
-<h2 id="org4734d8c">Warum Parallelprogrammierung?</h2>
-<div class="outline-text-2" id="text-org4734d8c">
+<div id="outline-container-org8ef48d4" class="outline-2">
+<h2 id="org8ef48d4">Warum Parallelprogrammierung?</h2>
+<div class="outline-text-2" id="text-org8ef48d4">
 </div>
-<div id="outline-container-org41e5d04" class="outline-3">
-<h3 id="org41e5d04">Technische Gründe</h3>
-<div class="outline-text-3" id="text-org41e5d04">
+<div id="outline-container-orgc6b2572" class="outline-3">
+<h3 id="orgc6b2572">Technische Gründe</h3>
+<div class="outline-text-3" id="text-orgc6b2572">
 <ul class="org-ul">
 <li>Erhöhung der Rechenleistung durch Erhöhung der Taktfrequenzen stösst
 technisch an Grenzen.</li>
@@ -313,9 +313,9 @@ technisch an Grenzen.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd264b31" class="outline-3">
-<h3 id="orgd264b31">Computer im Wandel der Jahrzehnte</h3>
-<div class="outline-text-3" id="text-orgd264b31">
+<div id="outline-container-org97a13ee" class="outline-3">
+<h3 id="org97a13ee">Computer im Wandel der Jahrzehnte</h3>
+<div class="outline-text-3" id="text-org97a13ee">
 
 <div class="figure">
 <p><img src="./Abbildungen/computervon60Jahrenundjetzt.jpg" alt="computervon60Jahrenundjetzt.jpg" width="400px" />
@@ -340,9 +340,9 @@ Faktor \(10^{22}\) verglichen mit der Technologie vor 60 Jahren.</li>
 Welche Fortschritte gibt es in dieser Zeit in der Software?
 </p>
 </div>
-<div id="outline-container-org05bccca" class="outline-4">
-<h4 id="org05bccca">Geschichte der Rechensysteme</h4>
-<div class="outline-text-4" id="text-org05bccca">
+<div id="outline-container-org7440bfc" class="outline-4">
+<h4 id="org7440bfc">Geschichte der Rechensysteme</h4>
+<div class="outline-text-4" id="text-org7440bfc">
 <p>
 (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Bengel2015]</a>)
 </p>
@@ -395,9 +395,9 @@ dessen Aufgaben</li>
 </dl>
 </div>
 </div>
-<div id="outline-container-org736fc1f" class="outline-4">
-<h4 id="org736fc1f">Geschichte der Technologie von Prozessoren und Speicherchips</h4>
-<div class="outline-text-4" id="text-org736fc1f">
+<div id="outline-container-org4a9ebab" class="outline-4">
+<h4 id="org4a9ebab">Geschichte der Technologie von Prozessoren und Speicherchips</h4>
+<div class="outline-text-4" id="text-org4a9ebab">
 <ul class="org-ul">
 <li>Mooresches Gesetz von 1965: Verdoppelung der Anzahl der Transistoren
 auf einem Chip ca. alle 18 Monate &#x2013; gilt noch heute</li>
@@ -427,13 +427,13 @@ auf einem Chip ca. alle 18 Monate &#x2013; gilt noch heute</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbf09938" class="outline-2">
-<h2 id="orgbf09938">Worüber reden wir?</h2>
-<div class="outline-text-2" id="text-orgbf09938">
+<div id="outline-container-orgc0dcc4f" class="outline-2">
+<h2 id="orgc0dcc4f">Worüber reden wir?</h2>
+<div class="outline-text-2" id="text-orgc0dcc4f">
 </div>
-<div id="outline-container-org85d790f" class="outline-3">
-<h3 id="org85d790f">Nebenläufigkeit versus Parallelität</h3>
-<div class="outline-text-3" id="text-org85d790f">
+<div id="outline-container-orgd7e18b3" class="outline-3">
+<h3 id="orgd7e18b3">Nebenläufigkeit versus Parallelität</h3>
+<div class="outline-text-3" id="text-orgd7e18b3">
 <ul class="org-ul">
 <li><b>Nebenläufigkeit</b> (concurrency) = Handhabung mehrerer unabhängiger
 Aufgaben während einer Zeitspanne, z.&nbsp;B. in Anwendungen mit
@@ -456,9 +456,9 @@ ein Teilgebiet der Algorithmik dar und ist hier nur Randthema.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org978428c" class="outline-3">
-<h3 id="org978428c">Parallelität in der Nebenläufigkeit</h3>
-<div class="outline-text-3" id="text-org978428c">
+<div id="outline-container-org74f458c" class="outline-3">
+<h3 id="org74f458c">Parallelität in der Nebenläufigkeit</h3>
+<div class="outline-text-3" id="text-org74f458c">
 <ul class="org-ul">
 <li>Die Bearbeitung nebenläufiger, also in der gleichen Zeitspanne
 ablaufender Aufgaben kann auf zwei Arten erfolgen:
@@ -523,9 +523,9 @@ parallel (für 4 Zeitschritte) verarbeitet.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8788f8d" class="outline-3">
-<h3 id="org8788f8d">Probleme</h3>
-<div class="outline-text-3" id="text-org8788f8d">
+<div id="outline-container-org21ae03c" class="outline-3">
+<h3 id="org21ae03c">Probleme</h3>
+<div class="outline-text-3" id="text-org21ae03c">
 <ul class="org-ul">
 <li>Das Schreiben nebenläufiger Programme gehört zu den schwierigsten
 Aufgaben, denen Programmierer begegnen.
@@ -548,17 +548,17 @@ Aufgaben, denen Programmierer begegnen.
 </div>
 </div>
 </div>
-<div id="outline-container-org5ba86c3" class="outline-2">
-<h2 id="org5ba86c3">Mehrprozessorsysteme</h2>
-<div class="outline-text-2" id="text-org5ba86c3">
+<div id="outline-container-org31f2744" class="outline-2">
+<h2 id="org31f2744">Mehrprozessorsysteme</h2>
+<div class="outline-text-2" id="text-org31f2744">
 <p>
 (Die Ausführungen in diesem Abschnitt lehnen sich an ein Vorlesungsskript von
 Uwe Neuhaus an.)
 </p>
 </div>
-<div id="outline-container-org6367ed0" class="outline-3">
-<h3 id="org6367ed0">Prinzip</h3>
-<div class="outline-text-3" id="text-org6367ed0">
+<div id="outline-container-org3c9b907" class="outline-3">
+<h3 id="org3c9b907">Prinzip</h3>
+<div class="outline-text-3" id="text-org3c9b907">
 <ul class="org-ul">
 <li>Mehrprozessorsysteme besitzen mehrere, eng gekoppelte Prozessoren</li>
 <li>Eng gekoppelt &#x2013; Prozessoren nutzen gemeinsam Hauptspeicher und
@@ -570,16 +570,16 @@ üblicherweise über den gemeinsam genutzten Speicher statt.</li>
 <li>Verbessertes Preis/Leistungsverhältnis</li>
 <li>Höhere Zuverlässigkeit
 <ul class="org-ul">
-<li>stufenweiser Leistungsverlust(gracefuldegradation)</li>
-<li>Ausfallsicherheit(fail-softsystems)</li>
+<li>stufenweiser Leistungsverlust(graceful degradation)</li>
+<li>Ausfallsicherheit(fail-soft systems)</li>
 </ul></li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0ba2042" class="outline-3">
-<h3 id="org0ba2042">Varianten</h3>
-<div class="outline-text-3" id="text-org0ba2042">
+<div id="outline-container-orgf44e5ae" class="outline-3">
+<h3 id="orgf44e5ae">Varianten</h3>
+<div class="outline-text-3" id="text-orgf44e5ae">
 <dl class="org-dl">
 <dt>Symmetric multiprocessing (SMP)</dt><dd><ul class="org-ul">
 <li>Auf jedem Prozessor läuft das identische Betriebssystem</li>
@@ -595,9 +595,9 @@ verteilt Aufgaben an die anderen (möglicherweise spezialisierten)
 </dl>
 </div>
 </div>
-<div id="outline-container-org6023503" class="outline-3">
-<h3 id="org6023503">Architektur bei symmetrischen Mehrprozessorsystemen</h3>
-<div class="outline-text-3" id="text-org6023503">
+<div id="outline-container-org6418a4c" class="outline-3">
+<h3 id="org6418a4c">Architektur bei symmetrischen Mehrprozessorsystemen</h3>
+<div class="outline-text-3" id="text-org6418a4c">
 
 <div class="figure">
 <p><img src="./Abbildungen/mehrprozessorarchitektur.png" alt="mehrprozessorarchitektur.png" width="600px" />
@@ -611,16 +611,16 @@ Flaschenhals werden.
 </div>
 </div>
 
-<div id="outline-container-orgcd1f9d7" class="outline-3">
-<h3 id="orgcd1f9d7">Rechnerarchitekturen für parallele und verteilte Systeme</h3>
-<div class="outline-text-3" id="text-orgcd1f9d7">
+<div id="outline-container-org6df6018" class="outline-3">
+<h3 id="org6df6018">Rechnerarchitekturen für parallele und verteilte Systeme</h3>
+<div class="outline-text-3" id="text-org6df6018">
 <p>
 (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Bengel2015]</a>, <a class="org-ref-reference" href="#/slide-bibliography">[Kalin2015]</a>)
 </p>
 </div>
-<div id="outline-container-org9d54d47" class="outline-4">
-<h4 id="org9d54d47">Taxonomie von parallelen Rechnerarchitekturen nach Flynn</h4>
-<div class="outline-text-4" id="text-org9d54d47">
+<div id="outline-container-orgd87b015" class="outline-4">
+<h4 id="orgd87b015">Taxonomie von parallelen Rechnerarchitekturen nach Flynn</h4>
+<div class="outline-text-4" id="text-orgd87b015">
 <p>
 (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Flynn1972]</a>)
 </p>
@@ -704,13 +704,13 @@ Prozessoren (P).</li>
 </div>
 </div>
 
-<div id="outline-container-org2045000" class="outline-4">
-<h4 id="org2045000">Ausprägungen</h4>
-<div class="outline-text-4" id="text-org2045000">
+<div id="outline-container-org3795505" class="outline-4">
+<h4 id="org3795505">Ausprägungen</h4>
+<div class="outline-text-4" id="text-org3795505">
 </div>
-<div id="outline-container-org6329897" class="outline-5">
-<h5 id="org6329897">Eng gekoppelte Multiprozessoren und Multicore-Prozessoren</h5>
-<div class="outline-text-5" id="text-org6329897">
+<div id="outline-container-orgf21408a" class="outline-5">
+<h5 id="orgf21408a">Eng gekoppelte Multiprozessoren und Multicore-Prozessoren</h5>
+<div class="outline-text-5" id="text-orgf21408a">
 <ul class="org-ul">
 <li>mehrere Prozesse können <i>echt</i> parallel ablaufen (auf
 Einprozessorsystemen hingegen nur Quasi-Parallelität)</li>
@@ -718,9 +718,9 @@ Einprozessorsystemen hingegen nur Quasi-Parallelität)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3045c72" class="outline-5">
-<h5 id="org3045c72">Vektorrechner</h5>
-<div class="outline-text-5" id="text-org3045c72">
+<div id="outline-container-orge7ff6e2" class="outline-5">
+<h5 id="orge7ff6e2">Vektorrechner</h5>
+<div class="outline-text-5" id="text-orge7ff6e2">
 <ul class="org-ul">
 <li>Ausführung einer Berechnung gleichzeitig auf vielen Daten</li>
 <li>Anordnung der Daten als Vektor bzw. Matrix</li>
@@ -731,9 +731,9 @@ Einprozessorsystemen hingegen nur Quasi-Parallelität)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org60b5030" class="outline-5">
-<h5 id="org60b5030">Allzweckberechnungen auf Grafikprozessoren (GPGPU)</h5>
-<div class="outline-text-5" id="text-org60b5030">
+<div id="outline-container-orgaf2b0fa" class="outline-5">
+<h5 id="orgaf2b0fa">Allzweckberechnungen auf Grafikprozessoren (GPGPU)</h5>
+<div class="outline-text-5" id="text-orgaf2b0fa">
 <ul class="org-ul">
 <li>ursprünglich bestehend aus beschränkt programmierbaren
 Spezialprozessoren für Fließkommaoperationen</li>
@@ -746,9 +746,9 @@ Bibliotheken wie z. B. CUDA von Nvidia</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3f35d64" class="outline-5">
-<h5 id="org3f35d64">Lose gekoppelte Multiprozessoren</h5>
-<div class="outline-text-5" id="text-org3f35d64">
+<div id="outline-container-orgc15a1bc" class="outline-5">
+<h5 id="orgc15a1bc">Lose gekoppelte Multiprozessoren</h5>
+<div class="outline-text-5" id="text-orgc15a1bc">
 <ul class="org-ul">
 <li>kein gemeinsamer Speicher</li>
 <li>Synchronisation und Kommunikation durch Nachrichtenaustausch</li>
@@ -760,9 +760,9 @@ Bibliotheken wie z. B. CUDA von Nvidia</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf7d11ef" class="outline-2">
-<h2 id="orgf7d11ef">Prozesse und Threads</h2>
-<div class="outline-text-2" id="text-orgf7d11ef">
+<div id="outline-container-org29b726c" class="outline-2">
+<h2 id="org29b726c">Prozesse und Threads</h2>
+<div class="outline-text-2" id="text-org29b726c">
 <p>
 (Die Ausführungen in diesem Abschnitt lehnen sich an ein Vorlesungsskript von
 Uwe Neuhaus an.)
@@ -787,9 +787,9 @@ Stack), Dateien, E/A-Geräte</li>
 </p>
 </div>
 </div>
-<div id="outline-container-org1dc3a23" class="outline-3">
-<h3 id="org1dc3a23">Beispiele für Multithreading</h3>
-<div class="outline-text-3" id="text-org1dc3a23">
+<div id="outline-container-org5cf0e69" class="outline-3">
+<h3 id="org5cf0e69">Beispiele für Multithreading</h3>
+<div class="outline-text-3" id="text-org5cf0e69">
 <ul class="org-ul">
 <li>Anwendungen mit graphischer Benutzeroberfläche, z.&nbsp;B. Textverarbeitung:
 <ul class="org-ul">
@@ -805,9 +805,9 @@ Stack), Dateien, E/A-Geräte</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf8705e7" class="outline-3">
-<h3 id="orgf8705e7">Vorteile von Multithreading</h3>
-<div class="outline-text-3" id="text-orgf8705e7">
+<div id="outline-container-org8f24a9f" class="outline-3">
+<h3 id="org8f24a9f">Vorteile von Multithreading</h3>
+<div class="outline-text-3" id="text-org8f24a9f">
 <dl class="org-dl">
 <dt>Kürzere Antwortzeiten</dt><dd>Bei interaktiven Anwendungen kann auch auf
 Benutzereingaben reagiert werden, während andere, langandauernde
@@ -825,9 +825,9 @@ nutzen.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgb95e985" class="outline-3">
-<h3 id="orgb95e985">Anwender- und Kernel-Threads</h3>
-<div class="outline-text-3" id="text-orgb95e985">
+<div id="outline-container-org56a57ff" class="outline-3">
+<h3 id="org56a57ff">Anwender- und Kernel-Threads</h3>
+<div class="outline-text-3" id="text-org56a57ff">
 <dl class="org-dl">
 <dt>Anwender-Threads</dt><dd>Erzeugung, Scheduling und Verwaltung der Threads
 erfolgt über spezielle Programm-Bibliotheken auf Ebene des
@@ -846,9 +846,9 @@ wartender Thread behindert die anderen Threads nicht.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org64f565f" class="outline-3">
-<h3 id="org64f565f">Multithreading-Modelle</h3>
-<div class="outline-text-3" id="text-org64f565f">
+<div id="outline-container-orgfb0a08b" class="outline-3">
+<h3 id="orgfb0a08b">Multithreading-Modelle</h3>
+<div class="outline-text-3" id="text-orgfb0a08b">
 <dl class="org-dl">
 <dt>Many-to-One-Modell</dt><dd><ul class="org-ul">
 <li>Mehrere Anwender-Threads werden auf einen Kernel-Thread abgebildet.</li>
@@ -867,9 +867,9 @@ Kernel-Thread abgebildet</li>
 </dl>
 </div>
 </div>
-<div id="outline-container-org6a9fac3" class="outline-3">
-<h3 id="org6a9fac3">Multithreading-Modelle: Many-to-One</h3>
-<div class="outline-text-3" id="text-org6a9fac3">
+<div id="outline-container-orge8348ea" class="outline-3">
+<h3 id="orge8348ea">Multithreading-Modelle: Many-to-One</h3>
+<div class="outline-text-3" id="text-orge8348ea">
 
 <div class="figure">
 <p><img src="./Abbildungen/manytoone.png" alt="manytoone.png" width="400px" />
@@ -878,9 +878,9 @@ Kernel-Thread abgebildet</li>
 </div>
 </div>
 
-<div id="outline-container-org5849807" class="outline-3">
-<h3 id="org5849807">Multithreading-Modelle: One-to-One</h3>
-<div class="outline-text-3" id="text-org5849807">
+<div id="outline-container-org03d30f6" class="outline-3">
+<h3 id="org03d30f6">Multithreading-Modelle: One-to-One</h3>
+<div class="outline-text-3" id="text-org03d30f6">
 
 <div class="figure">
 <p><img src="./Abbildungen/onetoone.png" alt="onetoone.png" width="400px" />
@@ -889,9 +889,9 @@ Kernel-Thread abgebildet</li>
 </div>
 </div>
 
-<div id="outline-container-org87fdd46" class="outline-3">
-<h3 id="org87fdd46">Multithreading-Modelle: Many-to-Many</h3>
-<div class="outline-text-3" id="text-org87fdd46">
+<div id="outline-container-orga9832d8" class="outline-3">
+<h3 id="orga9832d8">Multithreading-Modelle: Many-to-Many</h3>
+<div class="outline-text-3" id="text-orga9832d8">
 
 <div class="figure">
 <p><img src="./Abbildungen/manytomany.png" alt="manytomany.png" width="400px" />
@@ -899,9 +899,9 @@ Kernel-Thread abgebildet</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org0251483" class="outline-3">
-<h3 id="org0251483">Scheduling</h3>
-<div class="outline-text-3" id="text-org0251483">
+<div id="outline-container-org8beb75d" class="outline-3">
+<h3 id="org8beb75d">Scheduling</h3>
+<div class="outline-text-3" id="text-org8beb75d">
 <ul class="org-ul">
 <li><p>
 Scheduling in modernen Systemen: Die Zuteilung des Prozessors zu
@@ -923,16 +923,16 @@ einem Prozess bedeutet die Zuteilung des Prozessors zu einem seiner Threads.
 </div>
 </div>
 
-<div id="outline-container-org75f5c9d" class="outline-2">
-<h2 id="org75f5c9d">weitere verwendete Literatur</h2>
-<div class="outline-text-2" id="text-org75f5c9d">
+<div id="outline-container-org9ccf108" class="outline-2">
+<h2 id="org9ccf108">weitere verwendete Literatur</h2>
+<div class="outline-text-2" id="text-org9ccf108">
 <ul class="org-ul">
 <li><a class="org-ref-reference" href="#/slide-bibliography">[CACM2017]</a></li>
 <li><a class="org-ref-reference" href="#/slide-bibliography">[CACM2016]</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org96f0122" class="outline-2">
+<div id="outline-container-orge7f0a6a" class="outline-2">
 <h2 id="bibliography">Literaturverzeichnis</h2>
 <div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="Bengel2015">[Bengel2015]</a> <a name="Bengel2015"></a>Günther Bengel, Christian Baun, Marcel Kunze & Karl-Uwe Stucky, Masterkurs Parallele und Verteilte Systeme, Springer Fachmedien Wiesbaden (2015).</li>
@@ -946,7 +946,7 @@ einem Prozess bedeutet die Zuteilung des Prozessors zu einem seiner Threads.
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-08-03 Sat 00:29</p>
+<p class="date">Created: 2019-09-05 Thu 16:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

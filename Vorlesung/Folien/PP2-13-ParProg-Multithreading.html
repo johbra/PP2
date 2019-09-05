@@ -32,8 +32,8 @@
 <h1 class="title">Parallelprogrammierung &#x2013; Multithreading (in Java)</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
 <section>
-<section id="slide-orgfea3f87">
-<h2 id="orgfea3f87">Ziele</h2>
+<section id="slide-org28c7aea">
+<h2 id="org28c7aea">Ziele</h2>
 <ul>
 <li>Verständnis für mögliche Probleme nebenläufiger Programme erlangen</li>
 <li>Grundkenntnisse von Multithreading-Techniken in Java erwerben</li>
@@ -42,14 +42,14 @@
 </section>
 </section>
 <section>
-<section id="slide-org29e0b18">
-<h2 id="org29e0b18">Multithreading &#x2013; Grundlagen</h2>
+<section id="slide-org71616e0">
+<h2 id="org71616e0">Multithreading &#x2013; Grundlagen</h2>
 <p>
 Die Ausführungen in diesem Kapitel orientieren sich an <a class="org-ref-reference" href="#/slide-bibliography">[Kalin2015]</a>.
 </p>
 </section>
-<section id="slide-org5c107fc">
-<h3 id="org5c107fc">Überblick</h3>
+<section id="slide-org811a3cd">
+<h3 id="org811a3cd">Überblick</h3>
 <ul>
 <li>Vorteile von Multithreading gegenüber Multiprocessing:
 <ul>
@@ -75,8 +75,8 @@ der Programmierer selbst zuständig.</li>
 
 </ul>
 </section>
-<section id="slide-org5418deb">
-<h4 id="org5418deb">Handhabung von Threads durch Betriebssysteme</h4>
+<section id="slide-orgd6853c6">
+<h4 id="orgd6853c6">Handhabung von Threads durch Betriebssysteme</h4>
 <ul>
 <li>Manche Systeme (z.&nbsp;B. Linux) implementieren Threads als
 Prozesse mit gemeinsamen Adressraum.</li>
@@ -87,13 +87,13 @@ desselben Prozesses.</li>
 
 </ul>
 </section>
-<section id="slide-orgcadf936">
-<h3 id="orgcadf936">Beispiel für einen Wettlauf in Java</h3>
-<div class="outline-text-3" id="text-orgcadf936">
+<section id="slide-orga7b14b7">
+<h3 id="orga7b14b7">Beispiel für einen Wettlauf in Java</h3>
+<div class="outline-text-3" id="text-orga7b14b7">
 </div>
 </section>
-<section id="slide-org2ccfb56">
-<h4 id="org2ccfb56">Benutzung von <code>RaceC</code> von der Kommandozeile:</h4>
+<section id="slide-orgaebb3f3">
+<h4 id="orgaebb3f3">Benutzung von <code>RaceC</code> von der Kommandozeile:</h4>
 <div class="org-src-container">
 
 <pre  class="src src-sh">bash-3.2$ javac RaceC.java
@@ -109,8 +109,8 @@ n<span style="color: #008000;">'s value is: -2</span>
 </pre>
 </div>
 </section>
-<section id="slide-org1c04202">
-<h4 id="org1c04202">Quellcode von  <a href="./Working-Files/Chapter-5/RaceC.java">RaceC.java</a></h4>
+<section id="slide-org2f2396d">
+<h4 id="org2f2396d">Quellcode von  <a href="./Working-Files/Chapter-5/RaceC.java">RaceC.java</a></h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #036A07;">/** To compile: javac RaceC.java</span>
@@ -142,7 +142,8 @@ n<span style="color: #008000;">'s value is: -2</span>
 <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">RaceC</span> <span style="color: #707183;">{</span>
     <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">n</span>;                            <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">a single instance on n</span>
     <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">race</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
-        n = 0;                               <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">initialize to zero before threads alter its value</span>
+        n = 0;                               <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">initialize to zero before threads </span>
+                                             <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">alter its value</span>
         <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">limit</span> = <span style="color: #D0372D;">Integer</span>.MAX_VALUE * 2L; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">four billion and change</span>
         <span style="color: #6434A3;">Thread</span> <span style="color: #BA36A5;">t1</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Thread</span><span style="color: #909183;">()</span> <span style="color: #909183;">{</span>           <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">incrementing thread</span>
                 <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">run</span><span style="color: #709870;">()</span> <span style="color: #709870;">{</span> 
@@ -165,7 +166,7 @@ n<span style="color: #008000;">'s value is: -2</span>
 <span style="color: #707183;">}</span>
 
 <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Main</span> <span style="color: #707183;">{</span>
-    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">*** main thread executes method main</span>
+    <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">main</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">String</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">args</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>      <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">*** main thread executes method main</span>
         <span style="color: #0000FF;">for</span> <span style="color: #909183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; 8; i++<span style="color: #909183;">)</span> RaceC.race<span style="color: #909183;">()</span>; 
     <span style="color: #7388D6;">}</span>
 <span style="color: #707183;">}</span>
@@ -183,8 +184,8 @@ n<span style="color: #008000;">'s value is: -2</span>
 </pre>
 </div>
 </section>
-<section id="slide-org553eeb9">
-<h3 id="org553eeb9">Analyse des Wettlaufs</h3>
+<section id="slide-org3d19d58">
+<h3 id="org3d19d58">Analyse des Wettlaufs</h3>
 <ul>
 <li><code>T1</code> and <code>T2</code> sind Threads im Prozess <code>P</code>: <code>T1</code> und <code>T2</code> haben
 Zugriff auf dieselben Speicherzellen.</li>
@@ -215,8 +216,8 @@ Platz) zwischengespeichert:
 
 </ul>
 </section>
-<section id="slide-orgb73dad3">
-<h4 id="orgb73dad3">Beispielszenario</h4>
+<section id="slide-org687a061">
+<h4 id="org687a061">Beispielszenario</h4>
 <ul>
 <li>Die Maschine besitzt mehrere Rechenkerne: <code>T1</code> und <code>T2</code> laufen auf
 unterschiedlichen Kernen.</li>
@@ -256,13 +257,13 @@ von einem Thread ausgeführt werden können.</li>
 
 </ul>
 </section>
-<section id="slide-org509d960">
-<h3 id="org509d960">Explizite Sperrverfahren</h3>
-<div class="outline-text-3" id="text-org509d960">
+<section id="slide-orgf19c51f">
+<h3 id="orgf19c51f">Explizite Sperrverfahren</h3>
+<div class="outline-text-3" id="text-orgf19c51f">
 </div>
 </section>
-<section id="slide-org592c9cc">
-<h4 id="org592c9cc">Code-Beispiele</h4>
+<section id="slide-orgb664f97">
+<h4 id="orgb664f97">Code-Beispiele</h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #8D8D84;">/* </span><span style="color: #8D8D84; font-style: italic;">Thread synchronization mechanisms: code examples */</span>
@@ -288,8 +289,8 @@ von einem Thread ausgeführt werden können.</li>
 </pre>
 </div>
 </section>
-<section id="slide-orgddba222">
-<h4 id="orgddba222">Verfahren für die Koordination von Threads</h4>
+<section id="slide-org1df51c4">
+<h4 id="org1df51c4">Verfahren für die Koordination von Threads</h4>
 <ul>
 <li>Die im Folgenden genannten Begriffe können sowohl auf Prozesse als
 auch auf Threads angewendet werden. Hier stehen die Threads im Vordergrund.</li>
@@ -322,8 +323,8 @@ erwerben und den kritischen Abschnitt betreten.</li>
 
 </ul>
 </section>
-<section id="slide-orgfd697c5">
-<h4 id="orgfd697c5">Bekannte Sperrmechanismen</h4>
+<section id="slide-org4cb6dba">
+<h4 id="org4cb6dba">Bekannte Sperrmechanismen</h4>
 <ul>
 <li>Eine <i>Semaphore</i> begrenzt die Anzahl der Threads, die gleichzeitig
 auf ein geteiltes Betriebsmittel Zugriff haben.
@@ -356,13 +357,13 @@ freigegebene Sperre unterrichtet, bereit.</li>
 
 </ul>
 </section>
-<section id="slide-org4ef3239">
-<h3 id="org4ef3239">Beispiel für eine Verklemmung (in Java)</h3>
-<div class="outline-text-3" id="text-org4ef3239">
+<section id="slide-orgfa00b95">
+<h3 id="orgfa00b95">Beispiel für eine Verklemmung (in Java)</h3>
+<div class="outline-text-3" id="text-orgfa00b95">
 </div>
 </section>
-<section id="slide-orgbfc8b68">
-<h4 id="orgbfc8b68">Benutzung von <code>Deadlock</code> von der Kommandozeile:</h4>
+<section id="slide-org1253424">
+<h4 id="org1253424">Benutzung von <code>Deadlock</code> von der Kommandozeile:</h4>
 <div class="org-src-container">
 
 <pre  class="src src-sh">bash-3.2$ javac Deadlock.java 
@@ -385,8 +386,8 @@ thread1 waiting for lock2
 </pre>
 </div>
 </section>
-<section id="slide-orga3bd6a0">
-<h4 id="orga3bd6a0">Quellcode von  <a href="./Working-Files/Chapter-5/Deadlock.java">Deadlock.java</a></h4>
+<section id="slide-org7b8e7c9">
+<h4 id="org7b8e7c9">Quellcode von  <a href="./Working-Files/Chapter-5/Deadlock.java">Deadlock.java</a></h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #036A07;">/** To compile and run from the command-line:</span>
@@ -434,8 +435,8 @@ thread1 waiting for lock2
 </div>
 
 </section>
-<section id="slide-org6a29117">
-<h3 id="org6a29117">Behandlung der Nebenläufigkeit von Threads</h3>
+<section id="slide-orgc65ae93">
+<h3 id="orgc65ae93">Behandlung der Nebenläufigkeit von Threads</h3>
 <ul>
 <li>Durch Multithreading werden dem Programmierer Aufgaben aufgebürdet,
 die beim Multiprocessing durch das Betriebssystem erledigt werden.
@@ -464,8 +465,8 @@ thread-------&gt;| 1 | 2 |        ## Liste L vor Ausführung von ADD
 
 </ul>
 </section>
-<section id="slide-org18b3173">
-<h4 id="org18b3173">Basis-Ansatz in Java</h4>
+<section id="slide-org1cd3ce1">
+<h4 id="org1cd3ce1">Basis-Ansatz in Java</h4>
 <ul>
 <li>Sicherstellen des wechselseitigen Ausschlusses durch Sperren.
 <ul>
@@ -476,8 +477,8 @@ während einer <code>ADD</code>-Operation.</li>
 
 </ul>
 </section>
-<section id="slide-org2b3c755">
-<h4 id="org2b3c755">Basis-Ansatz in Clojure</h4>
+<section id="slide-org8b839ef">
+<h4 id="org8b839ef">Basis-Ansatz in Clojure</h4>
 <ul>
 <li>Objekte im Speicher sind grundsätzlich (bis auf wenige
 wohl-definierte Ausnahmen) unveränderbar (immutable).
@@ -507,8 +508,8 @@ thread-------&gt;| 1 | 2 |        ## Liste L
 
 </ul>
 </section>
-<section id="slide-orgf14889f">
-<h4 id="orgf14889f">Basis-Ansatz in Go</h4>
+<section id="slide-orgbb44a53">
+<h4 id="orgbb44a53">Basis-Ansatz in Go</h4>
 <ul>
 <li>Es gibt nur einen Thread, der den Zugriff auf die Liste steuert.</li>
 <li>Andere Threads senden Nachrichten an diesen, z.&nbsp;B. die
@@ -531,8 +532,8 @@ thread1-------&gt;channel to T&lt;--------thread2  ## der Kanal verfügt über
 
 </ul>
 </section>
-<section id="slide-org2c09630">
-<h3 id="org2c09630">Zusammenfassung</h3>
+<section id="slide-org8f21bd5">
+<h3 id="org8f21bd5">Zusammenfassung</h3>
 <ul>
 <li>Multithreading kann eine effiziente Methode für nebenläufige
 Programme sein, da der Kontextwechsel zwischen Threads nur geringe
@@ -560,14 +561,14 @@ höherer Ebene an, um die nebenläufige Programmierung zu erleichtern.
 </section>
 </section>
 <section>
-<section id="slide-orgabc4a9d">
-<h2 id="orgabc4a9d">Multithreading &#x2013; Vertiefung</h2>
+<section id="slide-orga3ca982">
+<h2 id="orga3ca982">Multithreading &#x2013; Vertiefung</h2>
 <p>
 Die Ausführungen in diesem Kapitel orientieren sich an <a class="org-ref-reference" href="#/slide-bibliography">[Kalin2015]</a>.
 </p>
 </section>
-<section id="slide-org8c43437">
-<h3 id="org8c43437">Das Geizhals-Verschwender-Problem in Java</h3>
+<section id="slide-org6515f53">
+<h3 id="org6515f53">Das Geizhals-Verschwender-Problem in Java</h3>
 <ul>
 <li>Der Geizhals (miser) inkrementiert ein Konto um 1.</li>
 <li>Der Verschwender (spendthrift) dekrementiert dasselbe Konto um 1.</li>
@@ -576,8 +577,8 @@ Kommandozeilenargument übergeben.</li>
 
 </ul>
 </section>
-<section id="slide-orgbf47577">
-<h4 id="orgbf47577">Übersicht - drei Java-Implementierungen</h4>
+<section id="slide-org93e6655">
+<h4 id="org93e6655">Übersicht - drei Java-Implementierungen</h4>
 <pre class="example">
                            code
                             |
@@ -631,8 +632,8 @@ Verzeichnisstruktur
 
 </ul>
 </section>
-<section id="slide-org5f236fe">
-<h4 id="org5f236fe">Demo</h4>
+<section id="slide-org1fbacfa">
+<h4 id="org1fbacfa">Demo</h4>
 <div class="org-src-container">
 
 <pre  class="src src-shell">bash-3.2$ cd code
@@ -662,8 +663,8 @@ Final balance: 0
 </pre>
 </div>
 </section>
-<section id="slide-orge3f05e8">
-<h4 id="orge3f05e8">Quellcode (Version ohne Synchronisation &#x2013; acct)</h4>
+<section id="slide-org5c5ec94">
+<h4 id="org5c5ec94">Quellcode (Version ohne Synchronisation &#x2013; acct)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #0000FF;">package</span> <span style="color: #D0372D;">acct</span>;
@@ -718,8 +719,8 @@ Final balance: 0
 </pre>
 </div>
 </section>
-<section id="slide-org9f2b19f">
-<h4 id="org9f2b19f">Quellcode (Version mit <code>synchronized blocks</code> &#x2013; acct2)</h4>
+<section id="slide-orgb26937f">
+<h4 id="orgb26937f">Quellcode (Version mit <code>synchronized blocks</code> &#x2013; acct2)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #036A07;">/*** Fixing the miser/spendthrift problem with explicit thread synchronization. ***/</span>
@@ -759,8 +760,8 @@ Final balance: 0
 </pre>
 </div>
 </section>
-<section id="slide-org057941e">
-<h4 id="org057941e">Quellcode (Version mit <code>AtomicInteger</code> &#x2013; acct3)</h4>
+<section id="slide-org63e2849">
+<h4 id="org63e2849">Quellcode (Version mit <code>AtomicInteger</code> &#x2013; acct3)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #036A07;">/*** Fixing the miser/spendthrift problem with a thread-safe data type **/</span>
@@ -794,8 +795,8 @@ Final balance: 0
 </pre>
 </div>
 </section>
-<section id="slide-orgfefdce5">
-<h3 id="orgfefdce5">Thread-Synchronisation für Kooperation</h3>
+<section id="slide-orgc616202">
+<h3 id="orgc616202">Thread-Synchronisation für Kooperation</h3>
 <ul>
 <li>Bisher hauptsächlich konkurrierende Threads betrachtet.</li>
 <li>Kooperierende Threads benötigen auch Synchronisationsmechanismen</li>
@@ -858,8 +859,8 @@ anstelle einer Warteschlange:
 
 </ul>
 </section>
-<section id="slide-orga5a4461">
-<h4 id="orga5a4461">Thread-sichere Implementierung des Stapels</h4>
+<section id="slide-org720c9f4">
+<h4 id="org720c9f4">Thread-sichere Implementierung des Stapels</h4>
 <p>
 Java-Quellcode ist in <a href="./Working-Files/Chapter-6/StackTS.java">StackTS.java</a> zu finden.
 </p>
@@ -958,8 +959,8 @@ Java-Quellcode ist in <a href="./Working-Files/Chapter-6/StackTS.java">StackTS.j
 </pre>
 </div>
 </section>
-<section id="slide-org871ae09">
-<h4 id="org871ae09">Benutzung von der Kommandozeile</h4>
+<section id="slide-orgba0a3ce">
+<h4 id="orgba0a3ce">Benutzung von der Kommandozeile</h4>
 <div class="org-src-container">
 
 <pre  class="src src-shell">bash-3.2$ java MainTS
@@ -994,8 +995,8 @@ Java-Quellcode ist in <a href="./Working-Files/Chapter-6/StackTS.java">StackTS.j
 </pre>
 </div>
 </section>
-<section id="slide-org838f16b">
-<h3 id="org838f16b">Zusammenfassung: Thread-Koordination, -Kooperation</h3>
+<section id="slide-orgdf7da58">
+<h3 id="orgdf7da58">Zusammenfassung: Thread-Koordination, -Kooperation</h3>
 <ul>
 <li>Konstrukte für die Thread-Koordination reichen von expliziten Mutexs
 im Quellcode bis zu thread-sicheren Typen wie Java's <code>AtomicInteger</code>.
@@ -1018,17 +1019,17 @@ als ein Thread der Ressourcen benötigt, um eine Sperre zu erlangen.</li>
 </section>
 </section>
 <section>
-<section id="slide-org47852bb">
-<h2 id="org47852bb">Thread-Sicherheit &#x2013; Höherwertige Concurrent Types in Java</h2>
+<section id="slide-org41e2fe4">
+<h2 id="org41e2fe4">Thread-Sicherheit &#x2013; Höherwertige Concurrent Types in Java</h2>
 <p>
 Die Ausführungen in diesem Kapitel orientieren sich an <a class="org-ref-reference" href="#/slide-bibliography">[Kalin2015]</a>.
 </p>
 </section>
-<section id="slide-org9629e04">
-<h3 id="org9629e04">Überblick</h3>
+<section id="slide-org472820c">
+<h3 id="org472820c">Überblick</h3>
 </section>
-<section id="slide-org63433e4">
-<h4 id="org63433e4"><code>java.util.concurrent.atomic</code></h4>
+<section id="slide-orgcf26a8a">
+<h4 id="orgcf26a8a"><code>java.util.concurrent.atomic</code></h4>
 <ul>
 <li>Das Toolkit unterstützt thread-sichere Programmierung für Zähler
 (o.&nbsp;ä.) ohne explizite Sperren. Zu den Typen gehören:
@@ -1058,8 +1059,8 @@ Beispiel für mögliche Implementierung eines <i>atomic counter</i>:
 
 </ul>
 </section>
-<section id="slide-orgbf8d293">
-<h4 id="orgbf8d293"><code>java.util.concurrent.ConcurrentHashMap</code></h4>
+<section id="slide-org65efbe4">
+<h4 id="org65efbe4"><code>java.util.concurrent.ConcurrentHashMap</code></h4>
 <ul>
 <li>Funktioniert wie eine gewöhnliche <code>Hashtable</code> nur sehr effizient.
 <ul>
@@ -1073,16 +1074,16 @@ unterschiedliche Partitionen betroffen sind.</li>
 
 </ul>
 </section>
-<section id="slide-org959c7b3">
-<h4 id="org959c7b3"><code>java.util.concurrent.CopyOnWriteArrayList</code></h4>
+<section id="slide-orgdb2fed6">
+<h4 id="orgdb2fed6"><code>java.util.concurrent.CopyOnWriteArrayList</code></h4>
 <ul>
 <li>Funktioniert wie eine persistente Datenstruktur in Clojure,
 d.&nbsp;h. Änderungsoperationen erzeugen eine Kopie des Arrays.</li>
 
 </ul>
 </section>
-<section id="slide-org6af9a7b">
-<h4 id="org6af9a7b">Interface <code>java.util.concurrent.BlockingQueue</code></h4>
+<section id="slide-org4e378c1">
+<h4 id="org4e378c1">Interface <code>java.util.concurrent.BlockingQueue</code></h4>
 <ul>
 <li>Leseoperation wartet, falls die Warteschlange leer ist, bevor sie
 das erste Element entnimmt.</li>
@@ -1090,8 +1091,8 @@ das erste Element entnimmt.</li>
 
 </ul>
 </section>
-<section id="slide-org7020a10">
-<h4 id="org7020a10">Executors und Thread-pools</h4>
+<section id="slide-org459d15f">
+<h4 id="org459d15f">Executors und Thread-pools</h4>
 <ul>
 <li>Das <code>Executor</code>-Interface stellt eine Methode, <code>execute</code>, zur
 Verfügung, mit deren Hilfe die Thread-Erzeugung optimiert werden
@@ -1113,21 +1114,21 @@ eingespart.</li>
 
 </ul>
 </section>
-<section id="slide-org126ec42">
-<h5 id="org126ec42">Fork/Join Framework</h5>
+<section id="slide-org53ea523">
+<h5 id="org53ea523">Fork/Join Framework</h5>
 <ul>
 <li>Geeignet zur Bearbeitung rekursiver Strukturen, z.&nbsp;B. Bäume.</li>
 <li>Aufgaben werden an Workers aus einem Thread-Pool verteilt.</li>
 
 </ul>
 </section>
-<section id="slide-org55ba22d">
-<h3 id="org55ba22d">Beispiel für die Nuzung des Fork-Join-Frameworks</h3>
-<div class="outline-text-3" id="text-org55ba22d">
+<section id="slide-org274c18e">
+<h3 id="org274c18e">Beispiel für die Nuzung des Fork-Join-Frameworks</h3>
+<div class="outline-text-3" id="text-org274c18e">
 </div>
 </section>
-<section id="slide-orgbc755b1">
-<h4 id="orgbc755b1">Das Programm <code>FileSearcher</code></h4>
+<section id="slide-org5223203">
+<h4 id="org5223203">Das Programm <code>FileSearcher</code></h4>
 <ul>
 <li>Beispiel für die Zerlegung eines Problems in Teilprobleme, die auf
 Threads verteilt werden, die auf verschiedenen Prozessoren laufen.
@@ -1155,8 +1156,8 @@ parallel durchsucht werden könnte.</dd>
 
 </ul>
 </section>
-<section id="slide-org40fa3a5">
-<h4 id="org40fa3a5">Quellcode von  <a href="./Working-Files/Chapter-7/FileSearcher.java">FileSearcher.java</a></h4>
+<section id="slide-org7713a6b">
+<h4 id="org7713a6b">Quellcode von  <a href="./Working-Files/Chapter-7/FileSearcher.java">FileSearcher.java</a></h4>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #036A07;">/** javac FileSearcher.java</span>
@@ -1220,8 +1221,8 @@ parallel durchsucht werden könnte.</dd>
 </pre>
 </div>
 </section>
-<section id="slide-orgd142bd5">
-<h4 id="orgd142bd5">Demo</h4>
+<section id="slide-org6f6bc74">
+<h4 id="org6f6bc74">Demo</h4>
 <p>
 !!! live demo !!!
 </p>
@@ -1262,13 +1263,13 @@ theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 transition: Reveal.getQueryHash().transition || 'slide', // see README of reveal.js for options
 transitionSpeed: 'default',
 
-// Optional libraries used to extend on reveal.js
+// Optional libraries used to extend reveal.js
 dependencies: [
- { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
  { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
- { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
 
 ,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }   ] , menu: {hideMissingTitles: true}});
 </script>

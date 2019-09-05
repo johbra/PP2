@@ -34,8 +34,8 @@
 </section>
 
 <section>
-<section id="slide-org48f9830">
-<h2 id="org48f9830">Ziele</h2>
+<section id="slide-org5c65ca7">
+<h2 id="org5c65ca7">Ziele</h2>
 <ul>
 <li>Kennenlernen der Grundbegriffe der Parallelprogrammierung</li>
 <li>Unterscheiden lernen zwischen Nebenläufigkeit und Parallelität</li>
@@ -46,13 +46,13 @@ Parallelprogrammierung durch Hardware und Software</li>
 </section>
 </section>
 <section>
-<section id="slide-org73cf6d1">
-<h2 id="org73cf6d1">Warum Parallelprogrammierung?</h2>
-<div class="outline-text-2" id="text-org73cf6d1">
+<section id="slide-orgafa7fbd">
+<h2 id="orgafa7fbd">Warum Parallelprogrammierung?</h2>
+<div class="outline-text-2" id="text-orgafa7fbd">
 </div>
 </section>
-<section id="slide-org0cc0952">
-<h3 id="org0cc0952">Technische Gründe</h3>
+<section id="slide-org1ded9ed">
+<h3 id="org1ded9ed">Technische Gründe</h3>
 <ul>
 <li>Erhöhung der Rechenleistung durch Erhöhung der Taktfrequenzen stösst
 technisch an Grenzen.</li>
@@ -68,8 +68,8 @@ technisch an Grenzen.</li>
 
 </ul>
 </section>
-<section id="slide-org7a6c832">
-<h3 id="org7a6c832">Computer im Wandel der Jahrzehnte</h3>
+<section id="slide-org6f81f4e">
+<h3 id="org6f81f4e">Computer im Wandel der Jahrzehnte</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/computervon60Jahrenundjetzt.jpg" alt="computervon60Jahrenundjetzt.jpg" width="400px" />
@@ -98,8 +98,8 @@ Faktor \(10^{22}\) verglichen mit der Technologie vor 60 Jahren.</li>
 Welche Fortschritte gibt es in dieser Zeit in der Software?
 </p>
 </section>
-<section id="slide-org9ebd7dd">
-<h4 id="org9ebd7dd">Geschichte der Rechensysteme</h4>
+<section id="slide-org48415ac">
+<h4 id="org48415ac">Geschichte der Rechensysteme</h4>
 <p>
 (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Bengel2015]</a>)
 </p>
@@ -166,8 +166,8 @@ dessen Aufgaben</li>
 
 </dl>
 </section>
-<section id="slide-org29f944c">
-<h4 id="org29f944c">Geschichte der Technologie von Prozessoren und Speicherchips</h4>
+<section id="slide-org3c9fb1e">
+<h4 id="org3c9fb1e">Geschichte der Technologie von Prozessoren und Speicherchips</h4>
 <ul>
 <li>Mooresches Gesetz von 1965: Verdoppelung der Anzahl der Transistoren
 auf einem Chip ca. alle 18 Monate &#x2013; gilt noch heute</li>
@@ -202,13 +202,13 @@ auf einem Chip ca. alle 18 Monate &#x2013; gilt noch heute</li>
 </section>
 </section>
 <section>
-<section id="slide-org132c7ca">
-<h2 id="org132c7ca">Worüber reden wir?</h2>
-<div class="outline-text-2" id="text-org132c7ca">
+<section id="slide-org96a2101">
+<h2 id="org96a2101">Worüber reden wir?</h2>
+<div class="outline-text-2" id="text-org96a2101">
 </div>
 </section>
-<section id="slide-org796ac84">
-<h3 id="org796ac84">Nebenläufigkeit versus Parallelität</h3>
+<section id="slide-orgd6a2c15">
+<h3 id="orgd6a2c15">Nebenläufigkeit versus Parallelität</h3>
 <ul>
 <li><b>Nebenläufigkeit</b> (concurrency) = Handhabung mehrerer unabhängiger
 Aufgaben während einer Zeitspanne, z.&nbsp;B. in Anwendungen mit
@@ -233,8 +233,8 @@ ein Teilgebiet der Algorithmik dar und ist hier nur Randthema.</li>
 
 </ul>
 </section>
-<section id="slide-orgee7c6bf">
-<h3 id="orgee7c6bf">Parallelität in der Nebenläufigkeit</h3>
+<section id="slide-org03717b4">
+<h3 id="org03717b4">Parallelität in der Nebenläufigkeit</h3>
 <ul>
 <li>Die Bearbeitung nebenläufiger, also in der gleichen Zeitspanne
 ablaufender Aufgaben kann auf zwei Arten erfolgen:
@@ -308,8 +308,8 @@ parallel (für 4 Zeitschritte) verarbeitet.</li>
 
 </ul>
 </section>
-<section id="slide-org89ed3e5">
-<h3 id="org89ed3e5">Probleme</h3>
+<section id="slide-org14db497">
+<h3 id="org14db497">Probleme</h3>
 <ul>
 <li>Das Schreiben nebenläufiger Programme gehört zu den schwierigsten
 Aufgaben, denen Programmierer begegnen.
@@ -335,15 +335,15 @@ Aufgaben, denen Programmierer begegnen.
 </section>
 </section>
 <section>
-<section id="slide-orge628213">
-<h2 id="orge628213">Mehrprozessorsysteme</h2>
+<section id="slide-org17822c4">
+<h2 id="org17822c4">Mehrprozessorsysteme</h2>
 <p>
 (Die Ausführungen in diesem Abschnitt lehnen sich an ein Vorlesungsskript von
 Uwe Neuhaus an.)
 </p>
 </section>
-<section id="slide-org8d1090f">
-<h3 id="org8d1090f">Prinzip</h3>
+<section id="slide-orgb2430a6">
+<h3 id="orgb2430a6">Prinzip</h3>
 <ul>
 <li>Mehrprozessorsysteme besitzen mehrere, eng gekoppelte Prozessoren</li>
 <li>Eng gekoppelt &#x2013; Prozessoren nutzen gemeinsam Hauptspeicher und
@@ -355,8 +355,8 @@ üblicherweise über den gemeinsam genutzten Speicher statt.</li>
 <li>Verbessertes Preis/Leistungsverhältnis</li>
 <li>Höhere Zuverlässigkeit
 <ul>
-<li>stufenweiser Leistungsverlust(gracefuldegradation)</li>
-<li>Ausfallsicherheit(fail-softsystems)</li>
+<li>stufenweiser Leistungsverlust(graceful degradation)</li>
+<li>Ausfallsicherheit(fail-soft systems)</li>
 
 </ul></li>
 
@@ -364,8 +364,8 @@ üblicherweise über den gemeinsam genutzten Speicher statt.</li>
 
 </ul>
 </section>
-<section id="slide-org53fe2fe">
-<h3 id="org53fe2fe">Varianten</h3>
+<section id="slide-orgffb5387">
+<h3 id="orgffb5387">Varianten</h3>
 <dl>
 <dt>Symmetric multiprocessing (SMP)</dt><dd><ul>
 <li>Auf jedem Prozessor läuft das identische Betriebssystem</li>
@@ -383,8 +383,8 @@ verteilt Aufgaben an die anderen (möglicherweise spezialisierten)
 
 </dl>
 </section>
-<section id="slide-org24dc341">
-<h3 id="org24dc341">Architektur bei symmetrischen Mehrprozessorsystemen</h3>
+<section id="slide-org0c28e11">
+<h3 id="org0c28e11">Architektur bei symmetrischen Mehrprozessorsystemen</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/mehrprozessorarchitektur.png" alt="mehrprozessorarchitektur.png" width="600px" />
@@ -397,14 +397,14 @@ Flaschenhals werden.
 </p>
 
 </section>
-<section id="slide-org1ad2222">
-<h3 id="org1ad2222">Rechnerarchitekturen für parallele und verteilte Systeme</h3>
+<section id="slide-orge6c6066">
+<h3 id="orge6c6066">Rechnerarchitekturen für parallele und verteilte Systeme</h3>
 <p>
 (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Bengel2015]</a>, <a class="org-ref-reference" href="#/slide-bibliography">[Kalin2015]</a>)
 </p>
 </section>
-<section id="slide-orgcff49dc">
-<h4 id="orgcff49dc">Taxonomie von parallelen Rechnerarchitekturen nach Flynn</h4>
+<section id="slide-orgab2af53">
+<h4 id="orgab2af53">Taxonomie von parallelen Rechnerarchitekturen nach Flynn</h4>
 <p>
 (vgl. <a class="org-ref-reference" href="#/slide-bibliography">[Flynn1972]</a>)
 </p>
@@ -502,13 +502,13 @@ Prozessoren (P).</li>
 </pre>
 
 </section>
-<section id="slide-orgdf3162f">
-<h4 id="orgdf3162f">Ausprägungen</h4>
-<div class="outline-text-4" id="text-orgdf3162f">
+<section id="slide-orga5b0eef">
+<h4 id="orga5b0eef">Ausprägungen</h4>
+<div class="outline-text-4" id="text-orga5b0eef">
 </div>
 </section>
-<section id="slide-orgd1f86a1">
-<h5 id="orgd1f86a1">Eng gekoppelte Multiprozessoren und Multicore-Prozessoren</h5>
+<section id="slide-org80a898b">
+<h5 id="org80a898b">Eng gekoppelte Multiprozessoren und Multicore-Prozessoren</h5>
 <ul>
 <li>mehrere Prozesse können <i>echt</i> parallel ablaufen (auf
 Einprozessorsystemen hingegen nur Quasi-Parallelität)</li>
@@ -516,8 +516,8 @@ Einprozessorsystemen hingegen nur Quasi-Parallelität)</li>
 
 </ul>
 </section>
-<section id="slide-org3cc4167">
-<h5 id="org3cc4167">Vektorrechner</h5>
+<section id="slide-orgf6f1ba6">
+<h5 id="orgf6f1ba6">Vektorrechner</h5>
 <ul>
 <li>Ausführung einer Berechnung gleichzeitig auf vielen Daten</li>
 <li>Anordnung der Daten als Vektor bzw. Matrix</li>
@@ -528,8 +528,8 @@ Einprozessorsystemen hingegen nur Quasi-Parallelität)</li>
 
 </ul>
 </section>
-<section id="slide-orgd799cd8">
-<h5 id="orgd799cd8">Allzweckberechnungen auf Grafikprozessoren (GPGPU)</h5>
+<section id="slide-org738ae8b">
+<h5 id="org738ae8b">Allzweckberechnungen auf Grafikprozessoren (GPGPU)</h5>
 <ul>
 <li>ursprünglich bestehend aus beschränkt programmierbaren
 Spezialprozessoren für Fließkommaoperationen</li>
@@ -542,8 +542,8 @@ Bibliotheken wie z. B. CUDA von Nvidia</li>
 
 </ul>
 </section>
-<section id="slide-org43366f1">
-<h5 id="org43366f1">Lose gekoppelte Multiprozessoren</h5>
+<section id="slide-orge0599aa">
+<h5 id="orge0599aa">Lose gekoppelte Multiprozessoren</h5>
 <ul>
 <li>kein gemeinsamer Speicher</li>
 <li>Synchronisation und Kommunikation durch Nachrichtenaustausch</li>
@@ -554,8 +554,8 @@ Bibliotheken wie z. B. CUDA von Nvidia</li>
 </section>
 </section>
 <section>
-<section id="slide-orgeeeb12b">
-<h2 id="orgeeeb12b">Prozesse und Threads</h2>
+<section id="slide-org58904fe">
+<h2 id="org58904fe">Prozesse und Threads</h2>
 <p>
 (Die Ausführungen in diesem Abschnitt lehnen sich an ein Vorlesungsskript von
 Uwe Neuhaus an.)
@@ -585,8 +585,8 @@ Stack), Dateien, E/A-Geräte</li>
 </p>
 </div>
 </section>
-<section id="slide-org8d0b064">
-<h3 id="org8d0b064">Beispiele für Multithreading</h3>
+<section id="slide-org1e96666">
+<h3 id="org1e96666">Beispiele für Multithreading</h3>
 <ul>
 <li>Anwendungen mit graphischer Benutzeroberfläche, z.&nbsp;B. Textverarbeitung:
 <ul>
@@ -604,8 +604,8 @@ Stack), Dateien, E/A-Geräte</li>
 
 </ul>
 </section>
-<section id="slide-org6388f66">
-<h3 id="org6388f66">Vorteile von Multithreading</h3>
+<section id="slide-org674d691">
+<h3 id="org674d691">Vorteile von Multithreading</h3>
 <dl>
 <dt>Kürzere Antwortzeiten</dt><dd>Bei interaktiven Anwendungen kann auch auf
 Benutzereingaben reagiert werden, während andere, langandauernde
@@ -623,8 +623,8 @@ nutzen.</dd>
 
 </dl>
 </section>
-<section id="slide-org2cc81aa">
-<h3 id="org2cc81aa">Anwender- und Kernel-Threads</h3>
+<section id="slide-orgbb23a66">
+<h3 id="orgbb23a66">Anwender- und Kernel-Threads</h3>
 <dl>
 <dt>Anwender-Threads</dt><dd>Erzeugung, Scheduling und Verwaltung der Threads
 erfolgt über spezielle Programm-Bibliotheken auf Ebene des
@@ -645,8 +645,8 @@ wartender Thread behindert die anderen Threads nicht.</dd>
 
 </dl>
 </section>
-<section id="slide-orge6e4344">
-<h3 id="orge6e4344">Multithreading-Modelle</h3>
+<section id="slide-org5e9beac">
+<h3 id="org5e9beac">Multithreading-Modelle</h3>
 <dl>
 <dt>Many-to-One-Modell</dt><dd><ul>
 <li>Mehrere Anwender-Threads werden auf einen Kernel-Thread abgebildet.</li>
@@ -668,8 +668,8 @@ Kernel-Thread abgebildet</li>
 
 </dl>
 </section>
-<section id="slide-org5ce42f6">
-<h3 id="org5ce42f6">Multithreading-Modelle: Many-to-One</h3>
+<section id="slide-orgf7222b1">
+<h3 id="orgf7222b1">Multithreading-Modelle: Many-to-One</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/manytoone.png" alt="manytoone.png" width="400px" />
@@ -677,8 +677,8 @@ Kernel-Thread abgebildet</li>
 </div>
 
 </section>
-<section id="slide-orgeedf527">
-<h3 id="orgeedf527">Multithreading-Modelle: One-to-One</h3>
+<section id="slide-org5b43352">
+<h3 id="org5b43352">Multithreading-Modelle: One-to-One</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/onetoone.png" alt="onetoone.png" width="400px" />
@@ -686,16 +686,16 @@ Kernel-Thread abgebildet</li>
 </div>
 
 </section>
-<section id="slide-orge0b0ab1">
-<h3 id="orge0b0ab1">Multithreading-Modelle: Many-to-Many</h3>
+<section id="slide-org54d32d9">
+<h3 id="org54d32d9">Multithreading-Modelle: Many-to-Many</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/manytomany.png" alt="manytomany.png" width="400px" />
 </p>
 </div>
 </section>
-<section id="slide-orged49388">
-<h3 id="orged49388">Scheduling</h3>
+<section id="slide-org47861ff">
+<h3 id="org47861ff">Scheduling</h3>
 <ul>
 <li><p>
 Scheduling in modernen Systemen: Die Zuteilung des Prozessors zu
@@ -718,8 +718,8 @@ einem Prozess bedeutet die Zuteilung des Prozessors zu einem seiner Threads.
 </section>
 </section>
 <section>
-<section id="slide-org420f704">
-<h2 id="org420f704">weitere verwendete Literatur</h2>
+<section id="slide-org3b95119">
+<h2 id="org3b95119">weitere verwendete Literatur</h2>
 <ul>
 <li><a class="org-ref-reference" href="#/slide-bibliography">[CACM2017]</a></li>
 <li><a class="org-ref-reference" href="#/slide-bibliography">[CACM2016]</a></li>
@@ -765,13 +765,13 @@ theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 transition: Reveal.getQueryHash().transition || 'slide', // see README of reveal.js for options
 transitionSpeed: 'default',
 
-// Optional libraries used to extend on reveal.js
+// Optional libraries used to extend reveal.js
 dependencies: [
- { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
  { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
- { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
 
 ,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }   ] , menu: {hideMissingTitles: true}});
 </script>
