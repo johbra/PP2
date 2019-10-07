@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-11-01 Thu 17:00 -->
+<!-- 2019-10-07 Mon 20:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programmiersprachen &#x2013; Typsysteme</title>
@@ -161,6 +161,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -197,7 +210,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -268,9 +281,9 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-org72d5241" class="outline-2">
-<h2 id="org72d5241">Ziele</h2>
-<div class="outline-text-2" id="text-org72d5241">
+<div id="outline-container-orgc52debe" class="outline-2">
+<h2 id="orgc52debe">Ziele</h2>
+<div class="outline-text-2" id="text-orgc52debe">
 <ul class="org-ul">
 <li>Klärung wichtiger Begriffe aus der Theorie der Programmiersprachen
 <ul class="org-ul">
@@ -283,8 +296,8 @@ for the JavaScript code in this tag.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org4d1d2bc" class="outline-3">
-<h3 id="motivation"><a id="org4d1d2bc"></a>Motivation</h3>
+<div id="outline-container-orgb87fe37" class="outline-3">
+<h3 id="motivation">Motivation</h3>
 <div class="outline-text-3" id="text-motivation">
 <ul class="org-ul">
 <li>Die Verwendung der Begriffe <i>Klasse</i>, <i>Typ</i> und <i>Objekt</i> ist in der
@@ -301,14 +314,14 @@ Programmierung &#x2013; allgegenwärtig.</li>
 </div>
 </div>
 
-<div id="outline-container-org97b8f22" class="outline-2">
-<h2 id="was-ist-ein-datentyp"><a id="org97b8f22"></a>Was ist ein Datentyp?</h2>
+<div id="outline-container-org10b692a" class="outline-2">
+<h2 id="was-ist-ein-datentyp">Was ist ein Datentyp?</h2>
 <div class="outline-text-2" id="text-was-ist-ein-datentyp">
 </div>
 
-<div id="outline-container-org01a0a3a" class="outline-3">
-<h3 id="org01a0a3a">Interpretation von Bitmustern</h3>
-<div class="outline-text-3" id="text-org01a0a3a">
+<div id="outline-container-org07ef506" class="outline-3">
+<h3 id="org07ef506">Interpretation von Bitmustern</h3>
+<div class="outline-text-3" id="text-org07ef506">
 <p>
 Ein 32 Bit langes Binärwort
 \[01110100011110010111000001100101\]
@@ -344,9 +357,9 @@ Was bedeutet es?
 </p>
 </div>
 </div>
-<div id="outline-container-org0461b6a" class="outline-3">
-<h3 id="org0461b6a">Rechner arbeiten typenlos</h3>
-<div class="outline-text-3" id="text-org0461b6a">
+<div id="outline-container-orgf1c0161" class="outline-3">
+<h3 id="orgf1c0161">Rechner arbeiten typenlos</h3>
+<div class="outline-text-3" id="text-orgf1c0161">
 <ul class="org-ul">
 <li>Für die Ausführung von Programmen sind Typinformationen nicht
 erforderlich.</li>
@@ -365,9 +378,9 @@ muss also softwaretechnisch gelöst werden.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org875af6c" class="outline-3">
-<h3 id="org875af6c">Begriffsklärung</h3>
-<div class="outline-text-3" id="text-org875af6c">
+<div id="outline-container-org7d0f838" class="outline-3">
+<h3 id="org7d0f838">Begriffsklärung</h3>
+<div class="outline-text-3" id="text-org7d0f838">
 <ul class="org-ul">
 <li>Ein und dasselbe Bitmuster kann verschiedene Arten von Daten
 repräsentieren.</li>
@@ -393,9 +406,9 @@ der Frage nachgegangen werden: Wozu dienen Datentypen?</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org579a633" class="outline-3">
-<h3 id="org579a633">Das ungetypte Universum</h3>
-<div class="outline-text-3" id="text-org579a633">
+<div id="outline-container-org5d4e541" class="outline-3">
+<h3 id="org5d4e541">Das ungetypte Universum</h3>
+<div class="outline-text-3" id="text-org5d4e541">
 <ul class="org-ul">
 <li>Die Menge der Bitmuster in einem Arbeitsspeicher kann als „ungetyptes
 Universum” betrachtet werden. Man könnte auch sagen, es gibt nur
@@ -411,7 +424,7 @@ Programms führen.</li>
 <ul class="org-ul">
 <li>Ein Beispiel für ein ungetyptes Universum aus dem Bereich der
 Programmiersprachen ist die Menge der <i>symbolischen Ausdrücke</i>
-(vgl. <a class='org-ref-reference' href="#McCarthy1960">McCarthy1960</a>)</li>
+(vgl. <a class="org-ref-reference" href="#/slide-bibliography">[McCarthy1960]</a>)</li>
 <li><p>
 Eine Form von S-Ausdrücken sind Listen. Die Liste
 </p>
@@ -426,9 +439,9 @@ Anwendung einer Funktion <code>f</code> auf die Argumente 4 und 5.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9e5589a" class="outline-3">
-<h3 id="org9e5589a">Zweck der Typisierung</h3>
-<div class="outline-text-3" id="text-org9e5589a">
+<div id="outline-container-orgf6c47b9" class="outline-3">
+<h3 id="orgf6c47b9">Zweck der Typisierung</h3>
+<div class="outline-text-3" id="text-orgf6c47b9">
 <ul class="org-ul">
 <li>Ordnung in das „Chaos” der ungetypten Universen bringen.</li>
 <li>Die Anwendung unsinniger, fehlerhafter Operationen vermeiden.</li>
@@ -447,9 +460,9 @@ Typkompatibiliät im Kontext seiner Verwendung gelten.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcba8260" class="outline-3">
-<h3 id="orgcba8260">Syntaktische vs. semantische Typkompatibiliät</h3>
-<div class="outline-text-3" id="text-orgcba8260">
+<div id="outline-container-orgb13c2f4" class="outline-3">
+<h3 id="orgb13c2f4">Syntaktische vs. semantische Typkompatibiliät</h3>
+<div class="outline-text-3" id="text-orgb13c2f4">
 <ul class="org-ul">
 <li>Auch die Verwendbarkeit von größeren Software-Bausteinen, wie
 Objekten, Komponenten, Web-Services etc. kann auf die
@@ -470,15 +483,15 @@ Korrektheit von Software ist die Herstellung semantischer
 Kompatibilität unerlässlich.</li>
 </ul>
 <p>
-Anthony Simons [<a class='org-ref-reference' href="#Simons1">Simons1</a>] beschreibt, wie syntaktische
+Anthony Simons (<a class="org-ref-reference" href="#/slide-bibliography">[Simons1]</a>) beschreibt, wie syntaktische
 Inkompatibilität Ursache des Verlusts des Mars Climate Orbiter war,
 während die Ariane-5-Katastrophe auf die Nutzung einer alten,
 semantisch inkompatiblen Software-Komponente zurückzuführen war.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc638aff" class="outline-3">
-<h3 id="probleme-eines-syntaktischen-typbegriffs"><a id="orgc638aff"></a>Probleme eines „syntaktischen“ Typbegriffs</h3>
+<div id="outline-container-org2cddb32" class="outline-3">
+<h3 id="probleme-eines-syntaktischen-typbegriffs">Probleme eines „syntaktischen“ Typbegriffs</h3>
 <div class="outline-text-3" id="text-probleme-eines-syntaktischen-typbegriffs">
 <ul class="org-ul">
 <li><p>
@@ -507,9 +520,9 @@ Zwei Schnittstellen &#x2013; Worin unterscheiden sie sich?
 </ul>
 </div>
 
-<div id="outline-container-org87025b2" class="outline-4">
-<h4 id="org87025b2">Vor- und Nachteile syntaktischer Typen</h4>
-<div class="outline-text-4" id="text-org87025b2">
+<div id="outline-container-orgac5f3a4" class="outline-4">
+<h4 id="orgac5f3a4">Vor- und Nachteile syntaktischer Typen</h4>
+<div class="outline-text-4" id="text-orgac5f3a4">
 <dl class="org-dl">
 <dt>Vorteile</dt><dd><ul class="org-ul">
 <li>Unterstützung einer modularen Programmentwicklung durch die
@@ -518,7 +531,7 @@ Trennung von Schnittstelle und Implementierung</li>
 geschaffene Möglichkeit, diesen neuen Datentyp wie einen
 vordefinierten Typ verwenden zu können, ist unzweifelhaft von
 großem Nutzen (vgl. in diesem Zusammenhang auch
- <a class='org-ref-reference' href="#Sivilotti2010">Sivilotti2010</a>).</li>
+ <a class="org-ref-reference" href="#/slide-bibliography">[Sivilotti2010]</a>).</li>
 </ul></dd>
 <dt>Nachteile</dt><dd>Die Definition eines Datentyps ausschließlich über
 seine syntaktische Schnittstelle (d. h. durch seinen
@@ -534,9 +547,9 @@ Implementierung anzugeben.</li>
 </ol></dd>
 </dl>
 </div>
-<div id="outline-container-org086635c" class="outline-5">
-<h5 id="org086635c">Java-Interface für einen Typ <code>Tuple</code> &#x2026;</h5>
-<div class="outline-text-5" id="text-org086635c">
+<div id="outline-container-org99f889f" class="outline-5">
+<h5 id="org99f889f">Java-Interface für einen Typ <code>Tuple</code> &#x2026;</h5>
+<div class="outline-text-5" id="text-org99f889f">
 <p>
 &#x2026; zur Verdeutlichung des Problems
 </p>
@@ -557,9 +570,9 @@ Komponenten und einer Additionsoperation definiert:
 </div>
 </div>
 
-<div id="outline-container-orgd8e7920" class="outline-5">
-<h5 id="orgd8e7920">Implementierung von <code>Tuple</code> durch <code>Point</code></h5>
-<div class="outline-text-5" id="text-orgd8e7920">
+<div id="outline-container-org908d394" class="outline-5">
+<h5 id="org908d394">Implementierung von <code>Tuple</code> durch <code>Point</code></h5>
+<div class="outline-text-5" id="text-org908d394">
 <div class="org-src-container">
 <pre class="src src-java">       <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Point</span> <span style="color: #0000FF;">implements</span> <span style="color: #6434A3;">Tuple</span> <span style="color: #707183;">{</span>
            <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">x</span>;
@@ -581,9 +594,9 @@ Komponenten und einer Additionsoperation definiert:
 </div>
 </div>
 
-<div id="outline-container-org40321f1" class="outline-5">
-<h5 id="org40321f1">Implementierung von <code>Tuple</code> durch <code>Fraction</code></h5>
-<div class="outline-text-5" id="text-org40321f1">
+<div id="outline-container-org15f5404" class="outline-5">
+<h5 id="org15f5404">Implementierung von <code>Tuple</code> durch <code>Fraction</code></h5>
+<div class="outline-text-5" id="text-org15f5404">
 <div class="org-src-container">
 <pre class="src src-java">       <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Fraction</span> <span style="color: #0000FF;">implements</span> <span style="color: #6434A3;">Tuple</span> <span style="color: #707183;">{</span>
            <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">numer</span>;
@@ -606,9 +619,9 @@ Komponenten und einer Additionsoperation definiert:
 </div>
 </div>
 
-<div id="outline-container-org0d126de" class="outline-5">
-<h5 id="org0d126de">Bewertung der Implementierungen</h5>
-<div class="outline-text-5" id="text-org0d126de">
+<div id="outline-container-org4d2a0d7" class="outline-5">
+<h5 id="org4d2a0d7">Bewertung der Implementierungen</h5>
+<div class="outline-text-5" id="text-org4d2a0d7">
 <ul class="org-ul">
 <li>Die unterschiedliche Implementierung der Methode <code>add</code> in den
 Klassen <code>Point</code> und <code>Fraction</code> entspricht natürlich den Erwartungen
@@ -638,9 +651,9 @@ Ergebnisse.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org37c3376" class="outline-5">
-<h5 id="org37c3376">Schlussfolgerung</h5>
-<div class="outline-text-5" id="text-org37c3376">
+<div id="outline-container-org003ad66" class="outline-5">
+<h5 id="org003ad66">Schlussfolgerung</h5>
+<div class="outline-text-5" id="text-org003ad66">
 <ul class="org-ul">
 <li>An diesem Beispiel wird deutlich, dass es zumindest fragwürdig ist,
 bei der Definition eines Typs (hier durch das Interface <code>Tuple</code>), auf
@@ -664,14 +677,14 @@ ist unterschiedliches Verhalten beim Senden der gleichen Nachricht
 </div>
 </div>
 
-<div id="outline-container-org0d60e29" class="outline-2">
-<h2 id="typsysteme"><a id="org0d60e29"></a>Typsysteme</h2>
+<div id="outline-container-org1e6a3fd" class="outline-2">
+<h2 id="typsysteme">Typsysteme</h2>
 <div class="outline-text-2" id="text-typsysteme">
 </div>
 
-<div id="outline-container-orgd9aa26c" class="outline-3">
-<h3 id="orgd9aa26c">Prüfbare Redundanz</h3>
-<div class="outline-text-3" id="text-orgd9aa26c">
+<div id="outline-container-org55afe9f" class="outline-3">
+<h3 id="org55afe9f">Prüfbare Redundanz</h3>
+<div class="outline-text-3" id="text-org55afe9f">
 <ul class="org-ul">
 <li>Da die „Bewohner“ eines ungetypten Universums die für die Prüfung der
 Typkompatibiliät nötigen Informationen nicht bereitstellen können,
@@ -690,7 +703,7 @@ Bei der Deklaration von Variablen ist eine Typangabe erforderlich:
 </ol></li>
 </ul>
 <ol class="org-ol">
-<li><p>
+<li value="2"><p>
 Der Typ von Programmobjekten kann aus ihrer Notation oder ihrer
 Verwendung abgeleitet werden (Typinferenz). Der Clojure-Ausdruck
 </p>
@@ -706,9 +719,9 @@ kann geprüft werden, ob eine Verwendung von <code>pi</code> typgemäß erfolgt.
 </ol>
 </div>
 </div>
-<div id="outline-container-org418691c" class="outline-3">
-<h3 id="org418691c">Statische vs. dynamische Typisierung</h3>
-<div class="outline-text-3" id="text-org418691c">
+<div id="outline-container-orga1efc39" class="outline-3">
+<h3 id="orga1efc39">Statische vs. dynamische Typisierung</h3>
+<div class="outline-text-3" id="text-orga1efc39">
 <ul class="org-ul">
 <li>Vereinfacht gesagt:
 <dl class="org-dl">
@@ -727,9 +740,9 @@ Verteilung.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9281325" class="outline-3">
-<h3 id="org9281325">Präzisierung der Terminologie</h3>
-<div class="outline-text-3" id="text-org9281325">
+<div id="outline-container-org19e616b" class="outline-3">
+<h3 id="org19e616b">Präzisierung der Terminologie</h3>
+<div class="outline-text-3" id="text-org19e616b">
 <ul class="org-ul">
 <li>Ein <i>strenges Typsystem</i> stellt jederzeit sicher, dass auf eine
 Variable bzw. Objekt nur der typgemäße Satz von Operationen
@@ -773,9 +786,9 @@ Skalen:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4e78596" class="outline-3">
-<h3 id="org4e78596">Einordnung von Programmiersprachen</h3>
-<div class="outline-text-3" id="text-org4e78596">
+<div id="outline-container-org9b2a3a5" class="outline-3">
+<h3 id="org9b2a3a5">Einordnung von Programmiersprachen</h3>
+<div class="outline-text-3" id="text-org9b2a3a5">
 <ul class="org-ul">
 <li>Vorbemerkung: Die genannten Kategorien stellen Kontinua dar. So
 werden z.&nbsp;B. auch in Sprachen mit dynamischer Typprüfung statische
@@ -790,9 +803,9 @@ implizites Typsystem.</li>
 </div>
 </div>
 
-<div id="outline-container-orgb34b907" class="outline-3">
-<h3 id="orgb34b907">Sind strenge Typsysteme besser als schwache?</h3>
-<div class="outline-text-3" id="text-orgb34b907">
+<div id="outline-container-org542c27f" class="outline-3">
+<h3 id="org542c27f">Sind strenge Typsysteme besser als schwache?</h3>
+<div class="outline-text-3" id="text-org542c27f">
 <ul class="org-ul">
 <li>Die Attribute <i>streng</i> und <i>schwach</i> stellen keine Qualitätsmerkmale
 dar.</li>
@@ -806,9 +819,9 @@ eines strengen Typsystems aufzugeben.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org761abae" class="outline-3">
-<h3 id="org761abae">Sind statische Typsysteme besser als dynamische?</h3>
-<div class="outline-text-3" id="text-org761abae">
+<div id="outline-container-org4e64db4" class="outline-3">
+<h3 id="org4e64db4">Sind statische Typsysteme besser als dynamische?</h3>
+<div class="outline-text-3" id="text-org4e64db4">
 <ul class="org-ul">
 <li>Statische Typsysteme haben den Vorteil, dass bestimmte Fehler bereits
 vor Ablauf des Programms gefunden werden.</li>
@@ -838,9 +851,9 @@ eine Typverletzung darstellt.
 </ul>
 </div>
 </div>
-<div id="outline-container-org8f21681" class="outline-3">
-<h3 id="org8f21681">Sind implizite Typsysteme besser als explizite?</h3>
-<div class="outline-text-3" id="text-org8f21681">
+<div id="outline-container-org04542c6" class="outline-3">
+<h3 id="org04542c6">Sind implizite Typsysteme besser als explizite?</h3>
+<div class="outline-text-3" id="text-org04542c6">
 <ul class="org-ul">
 <li>Implizite Typsysteme befreien den Programmierer davon, redundante
 Typinformationen dem Programm hinzuzufügen.</li>
@@ -856,23 +869,23 @@ für den Programmierer infrage gestellt.</li>
 
 <p>
 Für eine eingehendere Betrachtung des Themas „Typsysteme“ vgl. Kapitel
-5 in <a class='org-ref-reference' href="#Bra09">Bra09</a>.
+5 in <a class="org-ref-reference" href="#/slide-bibliography">[Bra09]</a>.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org32c63e4" class="outline-2">
-<h2 id="org32c63e4">Funktionale Programmiersprachen</h2>
-<div class="outline-text-2" id="text-org32c63e4">
+<div id="outline-container-org1d441b2" class="outline-2">
+<h2 id="org1d441b2">Funktionale Programmiersprachen</h2>
+<div class="outline-text-2" id="text-org1d441b2">
 </div>
-<div id="outline-container-orgb6f6d51" class="outline-3">
-<h3 id="orgb6f6d51">Clojure</h3>
-<div class="outline-text-3" id="text-orgb6f6d51">
+<div id="outline-container-org3129e99" class="outline-3">
+<h3 id="org3129e99">Clojure</h3>
+<div class="outline-text-3" id="text-org3129e99">
 </div>
-<div id="outline-container-org55d9f8e" class="outline-4">
-<h4 id="org55d9f8e">Eigenschaften von Clojure</h4>
-<div class="outline-text-4" id="text-org55d9f8e">
+<div id="outline-container-org0e5c37b" class="outline-4">
+<h4 id="org0e5c37b">Eigenschaften von Clojure</h4>
+<div class="outline-text-4" id="text-org0e5c37b">
 <p>
 Clojure &#x2026;
 </p>
@@ -886,9 +899,9 @@ objektorientiert, &#x2026;).</li>
 </div>
 </div>
 
-<div id="outline-container-orgc05fdb3" class="outline-4">
-<h4 id="orgc05fdb3">Web-Seiten zu Clojure</h4>
-<div class="outline-text-4" id="text-orgc05fdb3">
+<div id="outline-container-org036faf6" class="outline-4">
+<h4 id="org036faf6">Web-Seiten zu Clojure</h4>
+<div class="outline-text-4" id="text-org036faf6">
 <ul class="org-ul">
 <li><a href="http://clojure.org">Hauptseite</a></li>
 <li><a href="http://clojure.org/features">Features</a></li>
@@ -901,21 +914,20 @@ objektorientiert, &#x2026;).</li>
 <li><a href="http://groups.google.com/group/clojure">Google Gruppe</a></li>
 <li>Tutorials
 <ul class="org-ul">
-<li><a href="http://dev.clojure.org/display/doc/Getting+Started">Getting Started</a></li>
+<li><a href="https://clojure.org/guides/getting_started">Getting Started</a></li>
 <li><a href="https://learnxinyminutes.com/docs/clojure/">Learn Clojure in 5 minutes</a></li>
 <li><a href="http://www.braveclojure.com">CLOJURE for the BRAVE and TRUE</a></li>
-<li><a href="http://www.moxleystratton.com/blog/2008/05/01/clojure-tutorial-for-the-non-lisp-programmer/">Clojure Tutorial For the Non-Lisp Programmer</a></li>
 <li><a href="http://java.ociweb.com/mark/clojure/article.html">Clojure - Functional Programming for the JVM</a></li>
 </ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgde75fd6" class="outline-4">
-<h4 id="orgde75fd6">Benutzung von Clojure</h4>
-<div class="outline-text-4" id="text-orgde75fd6">
+<div id="outline-container-org2bc87d1" class="outline-4">
+<h4 id="org2bc87d1">Benutzung von Clojure</h4>
+<div class="outline-text-4" id="text-org2bc87d1">
 <ul class="org-ul">
-<li><a href="http://try-clojure.org/">Try Clojure</a> (???)</li>
+<li><a href="https://repl.it/languages/clojure">Online Clojure IDE</a></li>
 <li>Command line tool: <code>clj</code></li>
 <li>Clooj - editor and IDE written entirely in Clojure itself
 <ul class="org-ul">
@@ -931,9 +943,9 @@ objektorientiert, &#x2026;).</li>
 </div>
 </div>
 
-<div id="outline-container-org0d263e5" class="outline-4">
-<h4 id="org0d263e5">Die Read-Eval-Print-Loop</h4>
-<div class="outline-text-4" id="text-org0d263e5">
+<div id="outline-container-org70a6f57" class="outline-4">
+<h4 id="org70a6f57">Die Read-Eval-Print-Loop</h4>
+<div class="outline-text-4" id="text-org70a6f57">
 <p>
 Funktioniert wie in Racket (Interaktionsfenster in DrRacket)
 </p>
@@ -950,9 +962,9 @@ Funktioniert wie in Racket (Interaktionsfenster in DrRacket)
 </div>
 </div>
 
-<div id="outline-container-org02b1d02" class="outline-4">
-<h4 id="org02b1d02">Beispiele</h4>
-<div class="outline-text-4" id="text-org02b1d02">
+<div id="outline-container-org5e825ca" class="outline-4">
+<h4 id="org5e825ca">Beispiele</h4>
+<div class="outline-text-4" id="text-org5e825ca">
 <p>
 Clojure
 </p>
@@ -1017,13 +1029,13 @@ Racket
 </div>
 </div>
 
-<div id="outline-container-org7a7309f" class="outline-3">
-<h3 id="org7a7309f">Standard ML</h3>
-<div class="outline-text-3" id="text-org7a7309f">
+<div id="outline-container-orgaef0fe7" class="outline-3">
+<h3 id="orgaef0fe7">Standard ML</h3>
+<div class="outline-text-3" id="text-orgaef0fe7">
 </div>
-<div id="outline-container-org052ba73" class="outline-4">
-<h4 id="org052ba73">Eigenschaften von ML</h4>
-<div class="outline-text-4" id="text-org052ba73">
+<div id="outline-container-org46bb2c6" class="outline-4">
+<h4 id="org46bb2c6">Eigenschaften von ML</h4>
+<div class="outline-text-4" id="text-org46bb2c6">
 <p>
 ML &#x2026;
 </p>
@@ -1038,13 +1050,13 @@ expliziten Fallunterscheidungen.</li>
 </ul>
 
 <p>
-Wird benutzen Standard ML.
+Wir benutzen Standard ML.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc9ddf0f" class="outline-4">
-<h4 id="orgc9ddf0f">Web-Seiten zu ML (SML)</h4>
-<div class="outline-text-4" id="text-orgc9ddf0f">
+<div id="outline-container-org7ae4210" class="outline-4">
+<h4 id="org7ae4210">Web-Seiten zu ML (SML)</h4>
+<div class="outline-text-4" id="text-org7ae4210">
 <ul class="org-ul">
 <li><a href="http://sml-family.org">Standard ML Family GitHub Project</a></li>
 <li><a href="https://www.smlnj.org">Standard ML of New Jersey</a></li>
@@ -1061,18 +1073,18 @@ Wird benutzen Standard ML.
 </ul>
 </div>
 </div>
-<div id="outline-container-orge88571b" class="outline-4">
-<h4 id="orge88571b">Benutzung von SML</h4>
-<div class="outline-text-4" id="text-orge88571b">
+<div id="outline-container-org0e3c9b5" class="outline-4">
+<h4 id="org0e3c9b5">Benutzung von SML</h4>
+<div class="outline-text-4" id="text-org0e3c9b5">
 <ul class="org-ul">
 <li>Online-Interpreter <a href="https://sosml.github.io">SOSML</a></li>
 <li><a href="https://courses.cs.washington.edu/courses/cse341/13wi/sml_emacs.pdf">Using SML and Emacs</a> oder <a href="https://cs.wellesley.edu/~cs251/spring18/tools/smlnj.html">SML/NJ and Emacs SML Mode</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb20a7f7" class="outline-4">
-<h4 id="orgb20a7f7">Beispiele</h4>
-<div class="outline-text-4" id="text-orgb20a7f7">
+<div id="outline-container-org61b2ab1" class="outline-4">
+<h4 id="org61b2ab1">Beispiele</h4>
+<div class="outline-text-4" id="text-org61b2ab1">
 <p>
 SML
 </p>
@@ -1137,13 +1149,13 @@ Racket
 </div>
 </div>
 
-<div id="outline-container-org3a435f1" class="outline-3">
-<h3 id="org3a435f1">SML &#x2013; Kurzanleitung</h3>
-<div class="outline-text-3" id="text-org3a435f1">
+<div id="outline-container-org85a1860" class="outline-3">
+<h3 id="org85a1860">SML &#x2013; Kurzanleitung</h3>
+<div class="outline-text-3" id="text-org85a1860">
 </div>
-<div id="outline-container-orgb30d104" class="outline-4">
-<h4 id="orgb30d104">Nutzung des Interpreters</h4>
-<div class="outline-text-4" id="text-orgb30d104">
+<div id="outline-container-orgb05f3aa" class="outline-4">
+<h4 id="orgb05f3aa">Nutzung des Interpreters</h4>
+<div class="outline-text-4" id="text-orgb05f3aa">
 <p>
 Der SML/NJ-Interpreter wird von der Kommandozeile mit <code>sml</code> (oder
 besser: <code>rlwrap sml</code> )gestartet:
@@ -1151,8 +1163,8 @@ besser: <code>rlwrap sml</code> )gestartet:
 <pre class="example">
 Standard ML of New Jersey v110.82 [built: Tue Jan  9 20:54:24 2018]
 -
-
 </pre>
+
 <p>
 Das <code>-</code>-Zeichen ist die Eingabeaufforderung. Hier können ML-Ausdrücke
 eingegeben werden:
@@ -1172,17 +1184,17 @@ val it = <span style="color: #008000;">"abcxyz"</span> : string
 </div>
 </div>
 
-<div id="outline-container-orgf95acb0" class="outline-4">
-<h4 id="orgf95acb0">Einfache Deklarationen</h4>
-<div class="outline-text-4" id="text-orgf95acb0">
+<div id="outline-container-org72b4e3f" class="outline-4">
+<h4 id="org72b4e3f">Einfache Deklarationen</h4>
+<div class="outline-text-4" id="text-org72b4e3f">
 <ul class="org-ul">
 <li>Erzeugen einer Deklaration (Variablenbindung):</li>
 </ul>
 <pre class="example">
 - val x = 2*3+4;
 val x = 10 : int
-
 </pre>
+
 <ul class="org-ul">
 <li><code>x</code> steht ab jetzt für 10.</li>
 <li>Benutzung:</li>
@@ -1190,16 +1202,16 @@ val x = 10 : int
 <pre class="example">
 - val y = x*2;
 val y = 20 : int
-
 </pre>
+
 <ul class="org-ul">
 <li>globale Umgebung <code>{x = 10, y = 20}</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbc2c0da" class="outline-4">
-<h4 id="orgbc2c0da">Einfache Typen</h4>
-<div class="outline-text-4" id="text-orgbc2c0da">
+<div id="outline-container-org5574146" class="outline-4">
+<h4 id="org5574146">Einfache Typen</h4>
+<div class="outline-text-4" id="text-org5574146">
 <p>
 • Neben ganzen Zahlen (<code>int</code>):
 </p>
@@ -1221,9 +1233,9 @@ val y = 20 : int
 </pre>
 </div>
 </div>
-<div id="outline-container-org7450eba" class="outline-5">
-<h5 id="org7450eba">Typen besitzen spezifische Operationen:</h5>
-<div class="outline-text-5" id="text-org7450eba">
+<div id="outline-container-orgaa548a3" class="outline-5">
+<h5 id="orgaa548a3">Typen besitzen spezifische Operationen:</h5>
+<div class="outline-text-5" id="text-orgaa548a3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1281,9 +1293,9 @@ stdIn:1.2-17.1 Error: operator <span style="color: #0000FF;">and</span> <span st
 </div>
 </div>
 
-<div id="outline-container-org3609f45" class="outline-4">
-<h4 id="org3609f45">Funktionen</h4>
-<div class="outline-text-4" id="text-org3609f45">
+<div id="outline-container-org6629708" class="outline-4">
+<h4 id="org6629708">Funktionen</h4>
+<div class="outline-text-4" id="text-org6629708">
 <ul class="org-ul">
 <li>Lambda-Ausdrücke:</li>
 </ul>
@@ -1342,16 +1354,15 @@ stdIn:1.2-17.1 Error: operator <span style="color: #0000FF;">and</span> <span st
 <li>Das ist die gebräuchlichere Variante.</li>
 </ul>
 </div>
-<div id="outline-container-org93d38a3" class="outline-5">
-<h5 id="org93d38a3">Funktionen verallgemeinert (vorläufig)</h5>
-<div class="outline-text-5" id="text-org93d38a3">
+<div id="outline-container-org3730206" class="outline-5">
+<h5 id="org3730206">Funktionen verallgemeinert (vorläufig)</h5>
+<div class="outline-text-5" id="text-org3730206">
 <ul class="org-ul">
 <li><p>
 Die vorläufige Syntax für eine Funktionsdeklaration:
 </p>
 <pre class="example">
 fun x0 (x1 : t1, ..., xn : tn) = e 
-
 </pre></li>
 <li>Bindung einer Funktion mit 
 <ul class="org-ul">
@@ -1369,8 +1380,8 @@ Die Syntax eines Funktionstyps (die Signatur einer Funktion):
 </p>
 <pre class="example">
 “parameter types” -&gt; “result type”
-
 </pre>
+
 <p>
 wobei die Parametertypen durch <code>*</code> voneinander getrennt werden.
 </p></li>
@@ -1394,24 +1405,24 @@ Beispiel:
 </ul>
 </div>
 </div>
-<div id="outline-container-org06412b2" class="outline-5">
-<h5 id="org06412b2">Funktionsaufrufe</h5>
-<div class="outline-text-5" id="text-org06412b2">
+<div id="outline-container-org1901727" class="outline-5">
+<h5 id="org1901727">Funktionsaufrufe</h5>
+<div class="outline-text-5" id="text-org1901727">
 <ul class="org-ul">
 <li><p>
 Syntax
 </p>
 <pre class="example">
 e0 (e1,...,en)
-
 </pre>
+
 <p>
 Runde Klammern sind nur bei mehr als einem Argument erforderlich.
 </p></li>
 <li>Typregeln:
 <ul class="org-ul">
 <li><code>e0</code> muss einen Typ der Form <code>t1*...*tn-&gt;t</code> haben, wobei gilt:
-für alle 1 ≤ i ≤ n, ei hat Type ti.</li>
+für alle 1 ≤ i ≤ n, ei hat Typ ti.</li>
 <li>Der Aufruf selbst hat den Typ <code>t</code>.</li>
 </ul></li>
 </ul>
@@ -1437,17 +1448,17 @@ für alle 1 ≤ i ≤ n, ei hat Type ti.</li>
 </div>
 </div>
 
-<div id="outline-container-orgfa4510b" class="outline-4">
-<h4 id="orgfa4510b">Lokale Definitionen</h4>
-<div class="outline-text-4" id="text-orgfa4510b">
+<div id="outline-container-org703f171" class="outline-4">
+<h4 id="org703f171">Lokale Definitionen</h4>
+<div class="outline-text-4" id="text-org703f171">
 <ul class="org-ul">
 <li><p>
 Syntax:
 </p>
 <pre class="example">
 let b1 b2 ... bn in e end
-
 </pre>
+
 <p>
 mit <code>bi</code> ist Bindung, <code>e</code> ist Ausdruck
 </p></li>
@@ -1465,9 +1476,9 @@ Beispiel:
 </ul>
 </div>
 </div>
-<div id="outline-container-org3c78c75" class="outline-4">
-<h4 id="org3c78c75">Optionale Werte (SML Options)</h4>
-<div class="outline-text-4" id="text-org3c78c75">
+<div id="outline-container-orgb99ed72" class="outline-4">
+<h4 id="orgb99ed72">Optionale Werte (SML Options)</h4>
+<div class="outline-text-4" id="text-orgb99ed72">
 <ul class="org-ul">
 <li>Unter optionalen Werten (Options) versteht man solche, die existieren können
 aber nicht müssen:
@@ -1481,8 +1492,8 @@ Der Typ der Funktion
 <pre class="example">
 fun divide (x,y) = x div y                          
 val divide = fn : int * int -&gt; int
-
 </pre>
+
 <p>
 ist eigentlich „gelogen”. Warum?
 </p></li>
@@ -1491,16 +1502,16 @@ Die Funktion
 </p>
 <pre class="example">
 fun divide (x, y) = if y = 0 then NONE else SOME (x div y)
-
 </pre>
+
 <p>
 erzeugt niemals eine Exception.
 </p></li>
 </ul>
 </div>
-<div id="outline-container-org2d54c5f" class="outline-5">
-<h5 id="org2d54c5f">Anwendungsbeispiel</h5>
-<div class="outline-text-5" id="text-org2d54c5f">
+<div id="outline-container-orgda7341f" class="outline-5">
+<h5 id="orgda7341f">Anwendungsbeispiel</h5>
+<div class="outline-text-5" id="text-orgda7341f">
 <ul class="org-ul">
 <li><p>
 Die folgende Funktion erzeugt eine Exception für leere Listen:
@@ -1559,8 +1570,8 @@ uncaught <span style="color: #0000FF;">exception</span> Option
 </div>
 </div>
 </div>
-<div id="outline-container-orgd5dcd49" class="outline-4">
-<h4 id="zusammengesetzte-typen-tupel"><a id="orgd5dcd49"></a>Zusammengesetzte Typen: Tupel</h4>
+<div id="outline-container-org6754715" class="outline-4">
+<h4 id="zusammengesetzte-typen-tupel">Zusammengesetzte Typen: Tupel</h4>
 <div class="outline-text-4" id="text-zusammengesetzte-typen-tupel">
 <ul class="org-ul">
 <li>Paare und n-Tupel:</li>
@@ -1595,9 +1606,9 @@ uncaught <span style="color: #0000FF;">exception</span> Option
 </div>
 </div>
 </div>
-<div id="outline-container-orga457150" class="outline-4">
-<h4 id="orga457150">Funktionen über Tupel</h4>
-<div class="outline-text-4" id="text-orga457150">
+<div id="outline-container-org2d7bee4" class="outline-4">
+<h4 id="org2d7bee4">Funktionen über Tupel</h4>
+<div class="outline-text-4" id="text-org2d7bee4">
 <blockquote>
 <p>
 <b>Adhoc-Aufgabe:</b> Schreiben Sie ein Java-Programm mit einer Methode <code>div_mod</code>, die
@@ -1611,7 +1622,6 @@ Die ML-Variante:
 </p>
 <pre class="example">
 fun div_mod (x : int, y : int) =  (x div y, x mod y)
-
 </pre></li>
 </ul>
 <ul class="org-ul">
@@ -1620,14 +1630,13 @@ die Clojure-Variante
 </p>
 <pre class="example">
 (defn div_mod [[x y]] [(quot x y) (rem x y)])
-
 </pre></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfeab2e8" class="outline-4">
-<h4 id="orgfeab2e8">Zusammengesetzte Typen: Listen</h4>
-<div class="outline-text-4" id="text-orgfeab2e8">
+<div id="outline-container-org3348d2f" class="outline-4">
+<h4 id="org3348d2f">Zusammengesetzte Typen: Listen</h4>
+<div class="outline-text-4" id="text-org3348d2f">
 <ul class="org-ul">
 <li>Listenkonstruktion:</li>
 </ul>
@@ -1662,9 +1671,9 @@ die Clojure-Variante
 </div>
 </div>
 </div>
-<div id="outline-container-org07e1de3" class="outline-4">
-<h4 id="org07e1de3">Funktionen über Listen</h4>
-<div class="outline-text-4" id="text-org07e1de3">
+<div id="outline-container-org1cb3f07" class="outline-4">
+<h4 id="org1cb3f07">Funktionen über Listen</h4>
+<div class="outline-text-4" id="text-org1cb3f07">
 <ul class="org-ul">
 <li>Beispiele:</li>
 </ul>
@@ -1688,8 +1697,8 @@ die Clojure-Variante
 </div>
 </div>
 </div>
-<div id="outline-container-orga2c663a" class="outline-4">
-<h4 id="zusammengesetzte-typen-verbuende"><a id="orga2c663a"></a>Zusammengesetzte Typen: Verbünde (Records)</h4>
+<div id="outline-container-org09f23d2" class="outline-4">
+<h4 id="zusammengesetzte-typen-verbuende">Zusammengesetzte Typen: Verbünde (Records)</h4>
 <div class="outline-text-4" id="text-zusammengesetzte-typen-verbuende">
 <ul class="org-ul">
 <li><p>
@@ -1697,14 +1706,12 @@ Records haben die Form:
 </p>
 <pre class="example">
 {lab1=exp1,···,labn=expn}
-
 </pre></li>
 <li><p>
 Beispiel:
 </p>
 <pre class="example">
 {make = "Ford", built = 1904}
-
 </pre></li>
 <li>Records sind den Hashmaps von Clojure sehr ähnlich.</li>
 <li>Die Reihenfolge der Felder in den Records ist unerheblich.</li>
@@ -1725,9 +1732,9 @@ Zugriffsoperationen:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf0c429d" class="outline-4">
-<h4 id="orgf0c429d">Der Typ <code>unit</code></h4>
-<div class="outline-text-4" id="text-orgf0c429d">
+<div id="outline-container-orgc542b25" class="outline-4">
+<h4 id="orgc542b25">Der Typ <code>unit</code></h4>
+<div class="outline-text-4" id="text-orgc542b25">
 <ul class="org-ul">
 <li>Es gib einen eingebauten Typ <code>unit</code>.</li>
 <li>Es handelt sich um ein Alias für den Tuple-Typ <code>{}</code>.</li>
@@ -1742,18 +1749,20 @@ eigentlich keinen Wert zurückgeben, sondern nur einen Effekt haben.</li>
 </div>
 </div>
 
-<div id="outline-container-org7db1226" class="outline-2">
-<h2 id="org7db1226"><h2>Literaturverzeichnis</h2>
-<ul class='org-ref-bib'><li><a id="McCarthy1960">[McCarthy1960]</a> <a name="McCarthy1960"></a>McCarthy, Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I, <i>Commun. ACM</i>, <b>3(4)</b>, 184-195 (1960). <a href="http://doi.acm.org/10.1145/367177.367199">link</a>. <a href="http://dx.doi.org/10.1145/367177.367199">doi</a>.</li>
+<div id="outline-container-orga35627e" class="outline-2">
+<h2 id="bibliography">Literaturverzeichnis</h2>
+<div class="outline-text-2" id="text-bibliography">
+<ul class='org-ref-bib'><li><a id="Bra09">[Bra09]</a> <a name="Bra09"></a>Johannes Brauer, Typen, Objekte, Klassen - Teil 1: Grundlagen, NORDAKADEMIE Hochschule der Wirtschaft, (2009).</li>
+<li><a id="McCarthy1960">[McCarthy1960]</a> <a name="McCarthy1960"></a>McCarthy, Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I, <i>Commun. ACM</i>, <b>3(4)</b>, 184-195 (1960). <a href="http://doi.acm.org/10.1145/367177.367199">link</a>. <a href="http://dx.doi.org/10.1145/367177.367199">doi</a>.</li>
 <li><a id="Simons1">[Simons1]</a> <a name="Simons1"></a>Anthony Simons, The Theory of Classification, Part 1: Perspectives on Type Compatibility, <i>Journal of Object Technology</i>, <b>1(1)</b>, 55-61 (2002). <a href="http://www.jot.fm/issues/issue_2002_05/column5">link</a>.</li>
 <li><a id="Sivilotti2010">[Sivilotti2010]</a> <a name="Sivilotti2010"></a>Sivilotti & Lang, Interfaces first (and foremost) with Java, 515-519, in in: Proceedings of the 41st ACM technical symposium on Computer science education, edited by ACM (2010)</li>
-<li><a id="Bra09">[Bra09]</a> <a name="Bra09"></a>Johannes Brauer, Typen, Objekte, Klassen - Teil 1: Grundlagen, NORDAKADEMIE Hochschule der Wirtschaft, (2009).</li>
-</ul></h2>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-11-01 Thu 17:00</p>
+<p class="date">Created: 2019-10-07 Mon 20:52</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
