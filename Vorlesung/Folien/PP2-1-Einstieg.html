@@ -34,14 +34,14 @@
 </section>
 
 <section>
-<section id="slide-org829d9ea">
-<h2 id="org829d9ea">Beispiele</h2>
+<section id="slide-orgf574781">
+<h2 id="orgf574781">Beispiele</h2>
 <p>
 Zur Wiedererweckung von Kenntnissen aus den vergangenen Semestern
 </p>
 </section>
-<section id="slide-org415b6ee">
-<h3 id="org415b6ee">Interpretieren Sie diesen Programmcode:</h3>
+<section id="slide-orged7cf56">
+<h3 id="orged7cf56">Interpretieren Sie diesen Programmcode:</h3>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">power</span> <span style="color: #7388D6;">[</span>x y<span style="color: #7388D6;">]</span>
@@ -50,16 +50,31 @@ Zur Wiedererweckung von Kenntnissen aus den vergangenen Semestern
 </pre>
 </div>
 </section>
-<section id="slide-org208bc12">
-<h3 id="org208bc12">Aufgabe</h3>
+<section id="slide-org2944f6c">
+<h3 id="org2944f6c">Aufgabe</h3>
 <p>
 Schreiben Sie eine statische Java-Methode, die ein Array von doubles
 als Argument akzeptiert und den Durchschnitt der Zahlen liefert.
 </p>
 
 </section>
-<section id="slide-orgd31165b">
-<h3 id="orgd31165b">Lösung</h3>
+<section id="slide-org01ffdb1">
+<h3 id="org01ffdb1">Lösung</h3>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-java">  <span style="color: #0000FF;">public</span> <span style="color: #0000FF;">static</span> <span style="color: #6434A3;">double</span> <span style="color: #006699;">average</span> <span style="color: #707183;">(</span><span style="color: #6434A3;">double</span><span style="color: #7388D6;">[]</span> <span style="color: #BA36A5;">numbers</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+    <span style="color: #6434A3;">double</span> <span style="color: #BA36A5;">sum</span> = 0;
+    <span style="color: #0000FF;">for</span> <span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; numbers.<span style="color: #6434A3;">length</span>; i++<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+      sum += numbers<span style="color: #909183;">[</span>i<span style="color: #909183;">]</span>;
+    <span style="color: #7388D6;">}</span>
+    <span style="color: #0000FF;">return</span> sum / numbers.length;
+  <span style="color: #707183;">}</span>
+</pre>
+</div>
+
+</div>
+
 <p>
 versus
 </p>
@@ -76,8 +91,8 @@ versus
 </div>
 
 </section>
-<section id="slide-orgf0d871c">
-<h3 id="orgf0d871c">Frage: Was tut die Methode <code>isBlank</code>?</h3>
+<section id="slide-org417f8df">
+<h3 id="org417f8df">Frage: Was tut die Methode <code>isBlank</code>?</h3>
 <div class="org-src-container">
 
 <pre  class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">StringUtils</span> <span style="color: #707183;">{</span>
@@ -111,8 +126,8 @@ Zum Vergleich:
 </div>
 
 </section>
-<section id="slide-org2c551ce">
-<h3 id="org2c551ce">Aufgabe</h3>
+<section id="slide-org5b6228b">
+<h3 id="org5b6228b">Aufgabe</h3>
 <p>
 Gegeben ist eine Liste mit Preisen:
 </p>
@@ -132,20 +147,40 @@ Schreiben Sie Java-Code, der alle Preise größer als 20, rabattiert um
 </p>
 
 </section>
-<section id="slide-orgade00a4">
-<h3 id="orgade00a4">Lösung</h3>
-<div class="outline-text-3" id="text-orgade00a4">
+<section id="slide-orgca1814b">
+<h3 id="orgca1814b">Lösung</h3>
+<div class="outline-text-3" id="text-orgca1814b">
 </div>
 </section>
-<section id="slide-orgb8be380">
-<h4 id="orgb8be380">Java &lt; 8</h4>
+<section id="slide-org57fa5fb">
+<h4 id="org57fa5fb">Java &lt; 8</h4>
+<div class="org-src-container">
+
+<pre  class="src src-java"><span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> = <span style="color: #D0372D;">BigDecimal</span>.ZERO;
+
+<span style="color: #0000FF;">for</span><span style="color: #707183;">(</span><span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">price</span> : prices<span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
+  <span style="color: #0000FF;">if</span><span style="color: #7388D6;">(</span>price.compareTo<span style="color: #909183;">(</span>BigDecimal.valueOf<span style="color: #709870;">(</span>20<span style="color: #709870;">)</span><span style="color: #909183;">)</span> &gt; 0<span style="color: #7388D6;">)</span>
+    totalOfDiscountedPrices =
+       totalOfDiscountedPrices.add<span style="color: #7388D6;">(</span>price.multiply<span style="color: #909183;">(</span>BigDecimal.valueOf<span style="color: #709870;">(</span>0.9<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>;
+<span style="color: #707183;">}</span>
+</pre>
+</div>
 </section>
-<section id="slide-org8a6d3e7">
-<h4 id="org8a6d3e7">Java &gt;= 8</h4>
+<section id="slide-orgb29f009">
+<h4 id="orgb29f009">Java &gt;= 8</h4>
+<div class="org-src-container">
+
+<pre  class="src src-java"><span style="color: #0000FF;">final</span> <span style="color: #6434A3;">BigDecimal</span> <span style="color: #BA36A5;">totalOfDiscountedPrices</span> =
+  prices.stream<span style="color: #707183;">()</span>
+        .filter<span style="color: #707183;">(</span>price -&gt; price.compareTo<span style="color: #7388D6;">(</span>BigDecimal.valueOf<span style="color: #909183;">(</span>20<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span> &gt; 0<span style="color: #707183;">)</span>
+        .map<span style="color: #707183;">(</span>price -&gt; price.multiply<span style="color: #7388D6;">(</span>BigDecimal.valueOf<span style="color: #909183;">(</span>0.9<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+        .reduce<span style="color: #707183;">(</span><span style="color: #D0372D;">BigDecimal</span>.ZERO, BigDecimal::add<span style="color: #707183;">)</span>;
+</pre>
+</div>
 
 </section>
-<section id="slide-orgd034885">
-<h4 id="orgd034885">Clojure</h4>
+<section id="slide-org9682db3">
+<h4 id="org9682db3">Clojure</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">prices</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">map</span> bigdec <span style="color: #909183;">[</span>10 30 17 20 15 18 45 12<span style="color: #909183;">]</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
@@ -196,8 +231,8 @@ Wahl! Beachten Sie die Nebenbedingungen.
 </p>
 
 </section>
-<section id="slide-orgb8472a4">
-<h3 id="orgb8472a4">Lösungsansatz: „Rohe Gewalt“</h3>
+<section id="slide-org7a5a913">
+<h3 id="org7a5a913">Lösungsansatz: „Rohe Gewalt“</h3>
 <ul>
 <li>Alles durchprobieren!</li>
 <li>Man braucht 8 ineinander geschachtelte Schleifen.</li>
@@ -220,6 +255,24 @@ Ziffern können das Verfahren beschleunigen (s.&nbsp;u.).</li>
 <li>Lösung z.&nbsp;B. in Clojure:</li>
 
 </ul>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">for</span> <span style="color: #7388D6;">[</span>s <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 1 10<span style="color: #909183;">)</span>
+      e <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      n <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      d <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      m <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 1 2<span style="color: #909183;">)</span>
+      o <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      r <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      y <span style="color: #909183;">(</span><span style="color: #006FE0;">range</span> 0 10<span style="color: #909183;">)</span>
+      <span style="color: #D0372D;">:let</span> <span style="color: #909183;">[</span>z <span style="color: #709870;">[</span>s e n d m o r y<span style="color: #709870;">]</span><span style="color: #909183;">]</span>
+      <span style="color: #D0372D;">:when</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">and</span> <span style="color: #709870;">(</span><span style="color: #006FE0;">distinct?</span> s e n d m o r y<span style="color: #709870;">)</span>
+                 <span style="color: #709870;">(</span>= <span style="color: #907373;">(</span>+ <span style="color: #6276BA;">(</span>* 1000 s<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 100 e<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 10 n<span style="color: #6276BA;">)</span> d
+                       <span style="color: #6276BA;">(</span>* 1000 m<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 100 o<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 10 r<span style="color: #6276BA;">)</span> e<span style="color: #907373;">)</span>
+                    <span style="color: #907373;">(</span>+ <span style="color: #6276BA;">(</span>* m 10000<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 1000 o<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 100 n<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>* 10 e<span style="color: #6276BA;">)</span> y<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">]</span>
+  z<span style="color: #707183;">)</span>
+</pre>
+</div>
 </section>
 <section>
 <p>
@@ -232,8 +285,8 @@ Resultat:
  10652
 </pre>
 </section>
-<section id="slide-org12d626c">
-<h3 id="org12d626c">Lösungsansatz: Constraint Satisfaction</h3>
+<section id="slide-org024f7bc">
+<h3 id="org024f7bc">Lösungsansatz: Constraint Satisfaction</h3>
 <ul>
 <li>Einfaches Modell durch Spezifikation der folgenden Gleichung als Einschränkung:
 \[1000*S+100*E+10*N+D \]
@@ -251,8 +304,8 @@ geprüft werden kann.</li>
 </ul>
 
 </section>
-<section id="slide-org7ac5934">
-<h3 id="org7ac5934">Verfeinertes CSP-Modell</h3>
+<section id="slide-org8950647">
+<h3 id="org8950647">Verfeinertes CSP-Modell</h3>
 <ul>
 <li><p>
 Nutzung der Überträge der Addition für die Zerlegung der „großen“
@@ -288,8 +341,8 @@ ausgesondert.</li>
 </section>
 </section>
 <section>
-<section id="slide-org6d4adbf">
-<h2 id="org6d4adbf">Ziele</h2>
+<section id="slide-org3423988">
+<h2 id="org3423988">Ziele</h2>
 <ul>
 <li><p>
 Antworten auf die Fragen:
@@ -310,13 +363,13 @@ Hier ein paar <a href="https://arsnova.eu/mobile/#id/27514154">Testfragen</a> zu
 </section>
 </section>
 <section>
-<section id="slide-orgd3e5993">
-<h2 id="orgd3e5993">Software-Technik &#x2013; eine unreife Technologie?</h2>
-<div class="outline-text-2" id="text-orgd3e5993">
+<section id="slide-org5e79f2b">
+<h2 id="org5e79f2b">Software-Technik &#x2013; eine unreife Technologie?</h2>
+<div class="outline-text-2" id="text-org5e79f2b">
 </div>
 </section>
-<section id="slide-org3995543">
-<h3 id="org3995543">Hat die Software-Technik ein Problem?</h3>
+<section id="slide-org8b8b6db">
+<h3 id="org8b8b6db">Hat die Software-Technik ein Problem?</h3>
 <p>
 fragt <a class="org-ref-reference" href="#/slide-bibliography">[AmitRathore2012]</a>
 </p>
@@ -344,8 +397,8 @@ der Akzeptanz mittelmäßiger Software!?</li>
 </ul>
 
 </section>
-<section id="slide-org19586e6">
-<h3 id="org19586e6">Viele Software-Projekte werden durch falsche Annahmen von vornherein gefährdet.</h3>
+<section id="slide-org26d610a">
+<h3 id="org26d610a">Viele Software-Projekte werden durch falsche Annahmen von vornherein gefährdet.</h3>
 <p>
 So ist es meistens falsch, anzunehmen, dass
 </p>
@@ -374,8 +427,8 @@ Entwickler besser über seine Bedürfnisse unterrichtet wäre.</li>
 </ul>
 
 </section>
-<section id="slide-org7faab26">
-<h3 id="org7faab26">Ein „berühmtes” Beispiel</h3>
+<section id="slide-org8fb7082">
+<h3 id="org8fb7082">Ein „berühmtes” Beispiel</h3>
 <p>
 <b>W. Gibbs in Scientific Armerican</b>:
 </p>
@@ -396,8 +449,8 @@ zum Fertigstellungstermin abgeben.</li>
 </ul>
 
 </section>
-<section id="slide-org7d0f62f">
-<h3 id="org7d0f62f">Thomas C. Hales bemerkt in Formal Proof</h3>
+<section id="slide-org4b3a686">
+<h3 id="org4b3a686">Thomas C. Hales bemerkt in Formal Proof</h3>
 <p>
 <a class="org-ref-reference" href="#/slide-bibliography">[Hales2008]</a>
 </p>
@@ -426,8 +479,8 @@ liability. Only those bugs should be corrected that affect profit.
 </ul>
 
 </section>
-<section id="slide-org7cefdd7">
-<h3 id="org7cefdd7">Software besteht aus Millionen Code-Zeilen</h3>
+<section id="slide-orgeb0baf0">
+<h3 id="orgeb0baf0">Software besteht aus Millionen Code-Zeilen</h3>
 <ul>
 <li>die einzige Sicht: Programmtext</li>
 <li>Baumstruktur links zeigt nicht die Abhängigkeit der Komponenten.</li>
@@ -441,8 +494,8 @@ liability. Only those bugs should be corrected that affect profit.
 </div>
 
 </section>
-<section id="slide-org637396e">
-<h3 id="org637396e">Software ist unsichtbar</h3>
+<section id="slide-orga5416bc">
+<h3 id="orga5416bc">Software ist unsichtbar</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/SwAuto.png" alt="SwAuto.png" width="600px" />
@@ -452,8 +505,8 @@ liability. Only those bugs should be corrected that affect profit.
 </section>
 </section>
 <section>
-<section id="slide-org2488caa">
-<h2 id="org2488caa">Beispiel zur Schärfung des Problembewusstseins</h2>
+<section id="slide-org492c158">
+<h2 id="org492c158">Beispiel zur Schärfung des Problembewusstseins</h2>
 <ul>
 <li>Aufgabenstellung (in Anlehnung an <a class="org-ref-reference" href="#/slide-bibliography">[KlaerenSperber2007]</a>)</li>
 
@@ -479,14 +532,30 @@ Anzahl der Fahrzeuge \(n\) formuliert werden?</li>
 </ul>
 </section>
 <section>
+<p class="fragment roll-in">
+\[\begin{aligned}
+           P + M = n \\  4P + 2M = m
+         \end{aligned}\]
+</p>
 
 </section>
-<section id="slide-org567cd5d">
-<h3 id="org567cd5d">Beispiel zur Schärfung des Problembewusstseins (2)</h3>
+<section id="slide-org06144c7">
+<h3 id="org06144c7">Beispiel zur Schärfung des Problembewusstseins (2)</h3>
 <ul>
 <li>Lösung des Gleichungssystems:</li>
 
 </ul>
+<div class="fragment roll-in">
+\begin{eqnarray*}
+       M & = & n - P \\
+     4P + 2(n-P) & = & m\\
+     4P + 2n - 2P & = & m \\
+     2P & = & m- 2n\\
+     P & = & \frac{m-2n}{2}
+      \end{eqnarray*}
+
+</div>
+
 <ul class="fragment roll-in">
 <li>Problem scheinbar gelöst. Formel könnte in ein Programm übersetzt
 werden. ABER: Was liefert die Formel für \(n=3\) und \(m=9\)?</li>
@@ -504,8 +573,8 @@ werden. ABER: Was liefert die Formel für \(n=3\) und \(m=9\)?</li>
 </ul>
 
 </section>
-<section id="slide-org95d1029">
-<h3 id="org95d1029">Beispiel zur Schärfung des Problembewusstseins (3)</h3>
+<section id="slide-org21fdc01">
+<h3 id="org21fdc01">Beispiel zur Schärfung des Problembewusstseins (3)</h3>
 <ul class="fragment roll-in">
 <li>Schlussfolgerung: \(m\) muss gerade sein.</li>
 
@@ -517,7 +586,29 @@ werden. ABER: Was liefert die Formel für \(n=3\) und \(m=9\)?</li>
 </ul>
 
 <ul class="fragment roll-in">
+<li>\[\begin{aligned}
+        P(5,2) = \frac{2-2\cdot 5}{2} = -4
+  \end{aligned}\]
+Vier PKWs „fehlen“ auf dem Parkplatz!</li>
+
+</ul>
+
+
+<ul class="fragment roll-in">
+<li>Schlussfolgerung: Die Anzahl der Räder muss mindestens doppelt so
+groß sein wie die Anzahl der Fahrzeuge.</li>
+
+</ul>
+
+<ul class="fragment roll-in">
 <li>ABER: Was liefert die Formel für \(n=2\) und \(m=10\)?</li>
+
+</ul>
+
+<ul class="fragment roll-in">
+<li>\[\begin{aligned}
+        P(2,10) = \frac{10-2\cdot 2}{2} = 3
+      \end{aligned}\]</li>
 
 </ul>
 
@@ -529,8 +620,8 @@ geben.)</li>
 </ul>
 
 </section>
-<section id="slide-org1f1e91b">
-<h3 id="org1f1e91b">Beispiel zur Schärfung des Problembewusstseins (4)</h3>
+<section id="slide-org828235d">
+<h3 id="org828235d">Beispiel zur Schärfung des Problembewusstseins (4)</h3>
 <ul>
 <li>Schlussfolgerung: Die Anzahl der Räder darf höchstens viermal so groß
 sein wie die Anzahl der Fahrzeuge.</li>
@@ -568,8 +659,8 @@ Begründen Sie, warum mit dieser Bedingung die Lösung
 </section>
 </section>
 <section>
-<section id="slide-orga02494f">
-<h2 id="orga02494f">Was ist ein Paradigma?</h2>
+<section id="slide-org4fab3cf">
+<h2 id="org4fab3cf">Was ist ein Paradigma?</h2>
 <p>
 Das Wort Paradigma leitet sich vom griechischen Wort παράδειγμα
 (parádeigma) ab, das (lt. Menge-Güthling) übersetzt <i>Beispiel</i> oder
@@ -589,13 +680,13 @@ Häufig wird das Wort im Sinne von <i>Denkmuster</i> gebraucht.
 </section>
 </section>
 <section>
-<section id="slide-orgf0ffc92">
-<h2 id="orgf0ffc92">Was ist ein Programmierparadigma?</h2>
-<div class="outline-text-2" id="text-orgf0ffc92">
+<section id="slide-org66c5932">
+<h2 id="org66c5932">Was ist ein Programmierparadigma?</h2>
+<div class="outline-text-2" id="text-org66c5932">
 </div>
 </section>
-<section id="slide-org58ac5b1">
-<h3 id="org58ac5b1">Begriffsbestimmung</h3>
+<section id="slide-orgf308782">
+<h3 id="orgf308782">Begriffsbestimmung</h3>
 <p>
 Antwort lt. <a href="https://de.wikipedia.org/wiki/Programmierparadigma">Wikipedia</a>: ein fundamentaler Programmierstil
 </p>
@@ -611,8 +702,8 @@ Erstellen von Quellcode nach bestimmten vorgegebenen Regeln.“
 </p>
 
 </section>
-<section id="slide-org101853a">
-<h3 id="org101853a">übliche Klassifikationen</h3>
+<section id="slide-orgabfcae1">
+<h3 id="orgabfcae1">übliche Klassifikationen</h3>
 <!-- This HTML table template is generated by emacs 25.3.50.1 -->
 <table border="1">
   <tr>
@@ -652,8 +743,8 @@ Problem ist.</li>
 </ul>
 
 </section>
-<section id="slide-org0affd2a">
-<h3 id="org0affd2a">Die „klassischen” Programmierparadigmen</h3>
+<section id="slide-org02000e3">
+<h3 id="org02000e3">Die „klassischen” Programmierparadigmen</h3>
 <ul>
 <li>Imperative Programmierung
 <ul>
@@ -720,14 +811,14 @@ ist.</li>
 </ul>
 
 </section>
-<section id="slide-org402ab8a">
-<h4 id="org402ab8a">Eine detailliertere Übersicht</h4>
+<section id="slide-orgdf48ff6">
+<h4 id="orgdf48ff6">Eine detailliertere Übersicht</h4>
 <p>
 <a href="./Abbildungen/paradigmsDIAGRAMeng108.pdf">The principal programming paradigms</a>
 </p>
 </section>
-<section id="slide-org50235e2">
-<h3 id="org50235e2">Prozedurorientiertes vs. objektorientiertes Denken</h3>
+<section id="slide-org8c50339">
+<h3 id="org8c50339">Prozedurorientiertes vs. objektorientiertes Denken</h3>
 <p>
 (Darstellung angelehnt an <a class="org-ref-reference" href="#/slide-bibliography">[Moessenboeck]</a>)
 </p>
@@ -751,8 +842,8 @@ Vordergrund, Daten sind „zweitrangig“.</li>
 </pre>
 
 </section>
-<section id="slide-org0286abf">
-<h4 id="org0286abf">Merkmale der prozeduralen Programmierung</h4>
+<section id="slide-orgfb8488d">
+<h4 id="orgfb8488d">Merkmale der prozeduralen Programmierung</h4>
 <ul>
 <li>in konventionellen Sprachen für jede Figurart eigene Prozedur
 erforderlich</li>
@@ -779,8 +870,8 @@ beliebige geometrische Figur:
 </ul>
 
 </section>
-<section id="slide-org43d02f4">
-<h4 id="org43d02f4">Objektorientiertes Denken &#x2026;</h4>
+<section id="slide-org93dbb91">
+<h4 id="org93dbb91">Objektorientiertes Denken &#x2026;</h4>
 <p>
 &#x2026; stellt die Daten in den Mittelpunkt der Betrachtung:
 </p>
@@ -797,8 +888,8 @@ beliebige geometrische Figur:
 </pre>
 
 </section>
-<section id="slide-org2828232">
-<h4 id="org2828232">Merkmale der Objektorientierten Programmierung:</h4>
+<section id="slide-orga388f0d">
+<h4 id="orga388f0d">Merkmale der Objektorientierten Programmierung:</h4>
 <ul>
 <li>Ein Objekt antwortet auf den Empfang einer Frage (einer Nachricht).</li>
 
@@ -810,8 +901,8 @@ ermitteln ist.</li>
 </ul>
 
 </section>
-<section id="slide-org3c9728a">
-<h3 id="org3c9728a">Die Überbrückung der „Abstraktionslücke“</h3>
+<section id="slide-orgb02ea8e">
+<h3 id="orgb02ea8e">Die Überbrückung der „Abstraktionslücke“</h3>
 
 <div class="figure">
 <p><img src="./Abbildungen/Abstraktionsluecke.png" alt="Abstraktionsluecke.png" width="650px" />
@@ -819,8 +910,8 @@ ermitteln ist.</li>
 </div>
 
 </section>
-<section id="slide-orgfbd420b">
-<h3 id="orgfbd420b">Bedeutung der Abstraktion in der Software-Technik</h3>
+<section id="slide-orgb831bed">
+<h3 id="orgb831bed">Bedeutung der Abstraktion in der Software-Technik</h3>
 <ul>
 <li>Komplexität von Softwaresystemen überfordert
 
@@ -856,8 +947,8 @@ bereitgestellten Ausdrucksmittel entscheidend
 </ul>
 
 </section>
-<section id="slide-org722953f">
-<h3 id="org722953f">Eine Bezahl-App</h3>
+<section id="slide-org9a7231b">
+<h3 id="org9a7231b">Eine Bezahl-App</h3>
 <p>
 Entwicklung beschrieben durch Wille Faler in
 <a href="http://agile.dzone.com/news/one-night-clojure-makes-scala">http://agile.dzone.com/news/one-night-clojure-makes-scala</a>
