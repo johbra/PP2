@@ -33,8 +33,8 @@
 <h1 class="title">Funktionale Programmierung: Ausgewählte Kapitel</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
 <section>
-<section id="slide-orgc41428f">
-<h2 id="orgc41428f">Ziele</h2>
+<section id="slide-org38399a7">
+<h2 id="org38399a7">Ziele</h2>
 <ul>
 <li><p>
 Verstehen der Aussage: 
@@ -52,8 +52,8 @@ Auswertung von Funktionsanwendungen.</li>
 </section>
 </section>
 <section>
-<section id="slide-orga5b4a74">
-<h2 id="orga5b4a74">Datenabstraktion</h2>
+<section id="slide-org1a8c5d0">
+<h2 id="org1a8c5d0">Datenabstraktion</h2>
 <p>
 <b>These:</b> 
 </p>
@@ -66,13 +66,13 @@ Es gibt keinen Wesensunterschied zwischen Programmen und Daten
 vgl. auch Kapitel <a href="https://johbra.github.io/EidP17/Vorlesung/EidP06-Datenabstraktion.html">Datenabstraktion</a> aus <a href="https://johbra.github.io/EidP17/">Einführung in die Programmierung</a>
 </p>
 </section>
-<section id="slide-orgdcf071e">
-<h3 id="orgdcf071e">1. Beispiel: Rechnen mit Punkten in der Ebene</h3>
-<div class="outline-text-3" id="text-orgdcf071e">
+<section id="slide-orgd1789f1">
+<h3 id="orgd1789f1">1. Beispiel: Rechnen mit Punkten in der Ebene</h3>
+<div class="outline-text-3" id="text-orgd1789f1">
 </div>
 </section>
-<section id="slide-org7085947">
-<h4 id="org7085947">Defintion von Punkten</h4>
+<section id="slide-org57f03fe">
+<h4 id="org57f03fe">Defintion von Punkten</h4>
 <ul>
 <li>Ein Punkt in der Ebene wird durch seine x- und seine y-Koordinate
 bestimmt (kartesisches Koordinatensystem).</li>
@@ -94,8 +94,8 @@ y-Koordinate eines Punkts zugänglich machen:
 
 </ul>
 </section>
-<section id="slide-orgc72de6c">
-<h4 id="orgc72de6c">Point-Funktionen</h4>
+<section id="slide-org441d5fb">
+<h4 id="org441d5fb">Point-Funktionen</h4>
 <ul>
 <li><p>
 Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
@@ -132,8 +132,8 @@ Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
 
 </ul>
 </section>
-<section id="slide-org83c1164">
-<h4 id="org83c1164">Mögliche Implementierungen von <code>points</code></h4>
+<section id="slide-org7a79a54">
+<h4 id="org7a79a54">Mögliche Implementierungen von <code>points</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">als Datenstruktur mit defrecord</span>
@@ -152,8 +152,8 @@ Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
 </pre>
 </div>
 </section>
-<section id="slide-org15ce35f">
-<h5 id="org15ce35f">Zum Vergleich die Strukturdefinition in Racket</h5>
+<section id="slide-orgcfaaca4">
+<h5 id="orgcfaaca4">Zum Vergleich die Strukturdefinition in Racket</h5>
 <pre class="example">
 Willkommen bei DrRacket, Version 6.7 [3m].
 Sprache: Zwischenstufe mit lambda; memory limit: 128 MB.
@@ -171,8 +171,8 @@ Sprache: Zwischenstufe mit lambda; memory limit: 128 MB.
 #false
 </pre>
 </section>
-<section id="slide-orgfe3fba1">
-<h4 id="orgfe3fba1">Anforderungen an die Implementierung</h4>
+<section id="slide-orgfa5ee45">
+<h4 id="orgfa5ee45">Anforderungen an die Implementierung</h4>
 <ul>
 <li>Jede Implementierung, die den folgenden beiden Gleichungen genügt,
 ist hinreichend:<br />
@@ -188,8 +188,8 @@ sondern auch elementare Daten durch Funktionen dargestellt werden können.</li>
 
 </ul>
 </section>
-<section id="slide-org9f658ef">
-<h3 id="org9f658ef">2. Beispiel: Listen</h3>
+<section id="slide-org762ad63">
+<h3 id="org762ad63">2. Beispiel: Listen</h3>
 <ul>
 <li>Lisp-Sprachen stellen üblicherweise
 <ul>
@@ -216,8 +216,8 @@ folgenden Gleichungen beschrieben werden:<br />
 (vgl. auch <a href="https://johbra.github.io/EidP17/Vorlesung/EidP07-NichtNumerischeDaten.html#outline-container-org7de79e7">Symbolische Ausdrücke</a> in Racket oder Clojure)
 </p>
 </section>
-<section id="slide-org21768ef">
-<h4 id="org21768ef">Implementierung von Listen durch Funktionen &#x2026;</h4>
+<section id="slide-org6d44a01">
+<h4 id="org6d44a01">Implementierung von Listen durch Funktionen &#x2026;</h4>
 <p>
 Um Namenskollisionen mit den existierenden Standardfunktionen zu
 vermeiden, werden im folgenden alternative Namen verwendet:
@@ -229,8 +229,8 @@ vermeiden, werden im folgenden alternative Namen verwendet:
 
 </ul>
 </section>
-<section id="slide-org741925d">
-<h5 id="org741925d">&#x2026; in Racket</h5>
+<section id="slide-org10dfdfe">
+<h5 id="org10dfdfe">&#x2026; in Racket</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">cns</span>
@@ -255,8 +255,8 @@ vermeiden, werden im folgenden alternative Namen verwendet:
 </pre>
 </div>
 </section>
-<section id="slide-org641fc23">
-<h5 id="org641fc23">Erläuterungen</h5>
+<section id="slide-orgcf039b7">
+<h5 id="orgcf039b7">Erläuterungen</h5>
 <ul>
 <li>Die Benutzung der Funktionen hat nichts mehr mit einem intuitiven
 Verständnis von <i>Daten</i> zu tun.</li>
@@ -278,8 +278,8 @@ erzeugte Funktion ist, dann liefert die Anwendung von <code>z</code> auf 0
 
 </ul>
 </section>
-<section id="slide-org8ec0c7f">
-<h5 id="org8ec0c7f">&#x2026; in Clojure</h5>
+<section id="slide-orgbb6937d">
+<h5 id="orgbb6937d">&#x2026; in Clojure</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">cns</span>
@@ -297,8 +297,8 @@ erzeugte Funktion ist, dann liefert die Anwendung von <code>z</code> auf 0
 </pre>
 </div>
 </section>
-<section id="slide-org9b57f25">
-<h5 id="org9b57f25">Benutzung</h5>
+<section id="slide-org72f41ed">
+<h5 id="org72f41ed">Benutzung</h5>
 <p>
 Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </p>
@@ -317,8 +317,8 @@ Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </pre>
 </div>
 </section>
-<section id="slide-orgd9f0bb7">
-<h5 id="orgd9f0bb7">&#x2026; in SML</h5>
+<section id="slide-org24eb10c">
+<h5 id="org24eb10c">&#x2026; in SML</h5>
 <div class="org-src-container">
 
 <pre  class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">lst</span> = F <span style="color: #0000FF;">of</span> int-&gt;lst | I <span style="color: #0000FF;">of</span> int | E
@@ -356,23 +356,23 @@ Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </pre>
 </div>
 </section>
-<section id="slide-orgf4f8d0c">
-<h4 id="orgf4f8d0c">Alternative Implementierung von Listen durch Funktionen</h4>
+<section id="slide-orgbb4dcee">
+<h4 id="orgbb4dcee">Alternative Implementierung von Listen durch Funktionen</h4>
 <p>
 siehe
 <a href="./Aufgaben/aufgaben.html#/slide-aufgabealternativelistenimplementierung">Aufgabe Alternative Listenimplementierung</a>
 </p>
 </section>
-<section id="slide-org09bafb6">
-<h3 id="org09bafb6">3. Beispiel: Natürliche Zahlen als rekursive Datenstruktur</h3>
-<div class="outline-text-3" id="text-org09bafb6">
+<section id="slide-org8c86a5a">
+<h3 id="org8c86a5a">3. Beispiel: Natürliche Zahlen als rekursive Datenstruktur</h3>
+<div class="outline-text-3" id="text-org8c86a5a">
 </div>
 </section>
 <section id="slide-datentypnat">
 <h4 id="datentypnat">Definition eines Datentyps für natürliche Zahlen</h4>
 </section>
-<section id="slide-org658e633">
-<h5 id="org658e633">Rekursive Definition der natürlichen Zahlen</h5>
+<section id="slide-org3c5aa1b">
+<h5 id="org3c5aa1b">Rekursive Definition der natürlichen Zahlen</h5>
 <ul>
 <li>Mathematisch können die natürlichen Zahlen folgendermaßen definiert
 werden:
@@ -399,8 +399,8 @@ wird hier die Konstante <code>zero</code> anstelle von \(0\) verwendet.</li>
 
 </ul>
 </section>
-<section id="slide-org26450ba">
-<h5 id="org26450ba">Clojure-Definitionen für <code>zero</code> und <code>succ</code></h5>
+<section id="slide-org06f4360">
+<h5 id="org06f4360">Clojure-Definitionen für <code>zero</code> und <code>succ</code></h5>
 <ul>
 <li><p>
 Konstanten sind u.a. dadurch gekennzeichnet, dass sie zu sich selbst
@@ -427,8 +427,8 @@ folgende Definition zu erreichen:
 </ul>
 
 </section>
-<section id="slide-org0e364b3">
-<h5 id="org0e364b3">Der abstrakte Datentyp <b>Nat</b></h5>
+<section id="slide-org379e2c8">
+<h5 id="org379e2c8">Der abstrakte Datentyp <b>Nat</b></h5>
 <ul>
 <li><p>
 Mit den Definitionen für <code>zero</code> und <code>succ</code> haben wir quasi einen
@@ -452,8 +452,8 @@ natürliche Zahlen (d.h. Exemplare von <b>Nat</b>) als Ergebnis liefern.</li>
 
 </ul>
 </section>
-<section id="slide-org3cac7a0">
-<h5 id="org3cac7a0">Anwendung des Datentyps <b>Nat</b></h5>
+<section id="slide-org8c8c3a1">
+<h5 id="org8c8c3a1">Anwendung des Datentyps <b>Nat</b></h5>
 <p>
 <b>Beispiel:</b> Zählen der Elemente einer Liste
 </p>
@@ -509,13 +509,13 @@ Anwendung von <code>countElements</code> auf die Restliste.
 
 </ul>
 </section>
-<section id="slide-org3e82ecc">
-<h4 id="org3e82ecc">Definition weiterer Operationen für <b>Nat</b></h4>
-<div class="outline-text-4" id="text-org3e82ecc">
+<section id="slide-org4951248">
+<h4 id="org4951248">Definition weiterer Operationen für <b>Nat</b></h4>
+<div class="outline-text-4" id="text-org4951248">
 </div>
 </section>
-<section id="slide-orgd79821f">
-<h5 id="orgd79821f">Die Operationen <code>pred</code> und <code>plus</code></h5>
+<section id="slide-org77e98e3">
+<h5 id="org77e98e3">Die Operationen <code>pred</code> und <code>plus</code></h5>
 <ul>
 <li>Die Operation \(succ\) ermöglicht es bisher nur (vorwärts) zu zählen.</li>
 <li>Wir definieren zwei weitere Operationen zur
@@ -543,8 +543,8 @@ und \(succ\) zunächst durch Gleichungen beschreiben.
 
 </ul>
 </section>
-<section id="slide-org77b8c36">
-<h5 id="org77b8c36">Prädikat <code>zero?</code></h5>
+<section id="slide-org69f6f78">
+<h5 id="org69f6f78">Prädikat <code>zero?</code></h5>
 <ul>
 <li><p>
 Beide Definitionen basieren auf einer Fallunterscheidung. Um sie in
@@ -576,8 +576,8 @@ Argument <code>zero</code> ist:
 
 </ul>
 </section>
-<section id="slide-org950c268">
-<h5 id="org950c268">Der abstrakte Datentyp <b>Nat</b>: <code>pred</code></h5>
+<section id="slide-org045fd4e">
+<h5 id="org045fd4e">Der abstrakte Datentyp <b>Nat</b>: <code>pred</code></h5>
 <ul>
 <li><p>
 Definieren wir nun die Funktion <code>pred</code>:
@@ -603,8 +603,8 @@ Definieren wir nun die Funktion <code>pred</code>:
 </ul>
 
 </section>
-<section id="slide-org2731806">
-<h5 id="org2731806">Der abstrakte Datentyp <b>Nat</b>: <code>plus</code></h5>
+<section id="slide-org6226c2a">
+<h5 id="org6226c2a">Der abstrakte Datentyp <b>Nat</b>: <code>plus</code></h5>
 <ul>
 <li><p>
 Die rekursive Definition von \(plus\) übertragen wir in eine rekursive
@@ -633,8 +633,8 @@ Funktion <code>plus</code>:
 </ul>
 
 </section>
-<section id="slide-orgacc3169">
-<h5 id="orgacc3169">Der Datentyp <b>Nat</b>: Zusammenfassung</h5>
+<section id="slide-orgec7333f">
+<h5 id="orgec7333f">Der Datentyp <b>Nat</b>: Zusammenfassung</h5>
 <p>
 Was haben wir gelernt?
 </p>
@@ -657,8 +657,8 @@ Zahlen festlegen zu müssen.</li>
 <a href="./Aufgaben/aufgaben.html#/slide-aufgabendatentypnat">Aufgaben zum Datentyp Nat</a>
 </p>
 </section>
-<section id="slide-org8f793ed">
-<h3 id="org8f793ed">4. Beispiel: „Church-Numerals"</h3>
+<section id="slide-orgf5764f5">
+<h3 id="orgf5764f5">4. Beispiel: „Church-Numerals"</h3>
 <ul>
 <li>Im vorangegangen Kapitel haben wir mit dem Datentyp <b>Nat</b> eine rekursive
 Definition der natürlichen Zahlen kennen gelernt, die auf den
@@ -674,13 +674,410 @@ repräsentieren kann.</li>
 </section>
 </section>
 <section>
-<section id="slide-orgf66226b">
-<h2 id="orgf66226b">Verzögerte Auswertung</h2>
-<div class="outline-text-2" id="text-orgf66226b">
+<section id="slide-org0563735">
+<h2 id="org0563735">Der metazirkuläre Interpreter</h2>
+<ul>
+<li>Der Interpreter für eine Programmiersprache ist ein Programm.</li>
+<li>In Lisp-Sprachen kann dieser Interpreter in Lisp geschrieben
+werden.</li>
+<li>Ursprung: 
+<ul>
+<li>John McCarthy: <a href="http://www-formal.stanford.edu/jmc/recursive.pdf">Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I</a> (<a class="org-ref-reference" href="#/slide-bibliography">[McCarthy1960]</a>)</li>
+<li>Scheme-Version in <a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-26.html">Abschnitt 4.1</a> in <a class="org-ref-reference" href="#/slide-bibliography">[Sicp1999]</a>)</li>
+
+</ul></li>
+<li>Als Lisp-Sprache wird im Folgenden eine Teilmenge von Clojure betrachtet.</li>
+<li>Ein Interpreter, der in derselben Sprache, die er interpretiert,
+geschrieben ist, heißt <i>metazirkulär</i>.</li>
+<li>Die Unterscheidung zwischen Programmen und Daten verschwindet
+vollends.</li>
+<li>Der metazirkuläre Interpreter ist im Grunde nichts anderes als die
+Clojure-Formulierung des Ersetzungsmodells (oder auch
+Umgebungsmodells) für die Anwendung von Funktionen.</li>
+
+</ul>
+
+</section>
+<section id="slide-orgc7a265c">
+<h3 id="orgc7a265c">Das Umgebungsmodell</h3>
+<p>
+(vgl. auch Einführung in die Programmierung)
+</p>
+<ul>
+<li>Das Umgebungsmodell betrachtet die Auswertung „normaler“ Funktionen,
+für Pseudofunktionen (auch <i>special forms</i> genannt) gelten eigene
+Regeln. Es besteht aus zwei Teilen:
+<ol>
+<li>Um eine Funktionsanwendung (auch <i>combination</i>)  der Form <br />
+<code>(operator operand1 ... operandn)</code> <br />
+auszuwerten, werte alle Teilausdrücke aus und wende anschließend
+den Wert des <code>operator</code>-Ausdrucks (Funktion) auf die Werte der
+<code>operand</code>-Ausdrücke an.</li>
+<li>Um eine Funktion auf eine Menge von Operanden anzuwenden, werte
+den Rumpf der Funktion (des <code>operator</code>) in einer neuen Umgebung
+aus. Zur Konstruktion dieser Umgebung, nimm die Umgebung der
+Funktion und ergänze diese um die Bindungen der formalen
+Parameter an die Argumente (die ausgewerteten <code>operands</code>).</li>
+
+</ol></li>
+
+</ul>
+</section>
+<section id="slide-orgb834571">
+<h4 id="orgb834571">Die Funktionen <code>eval</code> und <code>apply</code></h4>
+<ul>
+<li><p>
+Der Prozess der Funktionsanwendung wird durch das Zusammenspiel der
+Funktionen <code>eval</code> und <code>apply</code> implementiert, die sich gegenseitig
+rekursiv aufrufen:
+</p>
+
+<div class="figure">
+<p><img src="./Abbildungen/evalapply.png" alt="evalapply.png" width="600px" />
+</p>
+</div></li>
+<li>Diese Funktionen stehen als Standardfunktionen zur Verfügung.</li>
+
+</ul>
+</section>
+<section id="slide-org97709d5">
+<h5 id="org97709d5">Benutzung von <code>eval</code></h5>
+<ul>
+<li><code>eval</code> erwartet einen Clojure-Ausdruck als Argument, wertet diesen aus und gibt
+das Ergebnis der Auswertung zurück.</li>
+<li><p>
+Beispiele
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #006FE0;">eval</span> 15<span style="color: #707183;">)</span>            <span style="color: #8D8D84; font-style: italic;">;=&gt; 15</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">eval</span> '15<span style="color: #707183;">)</span>           <span style="color: #8D8D84; font-style: italic;">;=&gt; 15</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">eval</span> <span style="color: #7388D6;">(</span>+ 9 6<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>       <span style="color: #8D8D84; font-style: italic;">;=&gt; 15</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">eval</span> '<span style="color: #7388D6;">(</span>+ 9 6<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>      <span style="color: #8D8D84; font-style: italic;">;=&gt; 15</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">eval</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">list</span> '+ 9 6<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 15</span>
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section id="slide-org0b15d5a">
+<h5 id="org0b15d5a">Bau einer eigenen Repl</h5>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">ns</span> <span style="color: #6434A3;">myrepl.core</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">prompt-and-read</span> <span style="color: #7388D6;">[]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">print</span> <span style="color: #008000;">"-mr&gt; "</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">flush</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">read</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">myrepl</span> <span style="color: #7388D6;">[]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">loop</span> <span style="color: #909183;">[</span>input <span style="color: #709870;">(</span>prompt-and-read<span style="color: #709870;">)</span><span style="color: #909183;">]</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">-&gt;</span> input
+        eval
+        println<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">recur</span> <span style="color: #709870;">(</span>prompt-and-read<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #8D8D84;">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+
+bash-3.2$ lein repl
+nREPL server started on port 52010 on host 127.0.0.1 - nrepl<span style="color: #D0372D;">://127.0.0.1:52010</span>
+REPL-y 0.4.3, nREPL 0.6.0
+Clojure 1.10.0 ...
+
+myrepl.core=&gt; <span style="color: #707183;">(</span>myrepl<span style="color: #707183;">)</span>
+-mr&gt; <span style="color: #707183;">(</span>+ 4 5<span style="color: #707183;">)</span>
+9
+-mr&gt; <span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">q</span> <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>x<span style="color: #909183;">]</span> <span style="color: #909183;">(</span>* x x<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+#'<span style="color: #6434A3;">myrepl.core</span>/q
+-mr&gt; <span style="color: #707183;">(</span>q 3<span style="color: #707183;">)</span>
+9
+-mr&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">eval</span> '<span style="color: #7388D6;">(</span>- 9 6<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+3
+-mr&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">eval</span> '<span style="color: #7388D6;">(</span>myrepl<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+-mr&gt; <span style="color: #707183;">(</span>+ 4 5<span style="color: #707183;">)</span>
+9
+</pre>
 </div>
 </section>
-<section id="slide-org1b04d29">
-<h3 id="org1b04d29">Einführung</h3>
+<section id="slide-orgcee6456">
+<h5 id="orgcee6456">Benutzung von <code>apply</code></h5>
+<ul>
+<li><code>apply</code> erwartet eine Funktion <code>f</code> und eine Sequenz <code>s</code> als
+Argumente und wendet <code>f</code> auf die in <code>s</code> befindlichen Elemente an.</li>
+<li><p>
+Die folgenden Ausdruckspaare sind äquivalent:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span>+ 1 2 3<span style="color: #707183;">)</span>          <span style="color: #8D8D84; font-style: italic;">;=&gt; 6</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">apply</span> + '<span style="color: #7388D6;">(</span>1 2 3<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 6</span>
+
+<span style="color: #707183;">(</span><span style="color: #006FE0;">max</span> 4 6 1<span style="color: #707183;">)</span>          <span style="color: #8D8D84; font-style: italic;">;=&gt; 6</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">apply</span> max '<span style="color: #7388D6;">(</span>4 6 1<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 6</span>
+</pre>
+</div>
+
+</div></li>
+<li><p>
+<code>apply</code> kann benutzt werden, um eine Funktion, die beliebig viele
+Argumente akzeptiert, in eine Funktion zu verwandeln, die diese
+Argumente als Liste akzeptiert:
+</p>
+<div class="small">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">maximum</span> <span style="color: #7388D6;">[</span>lvz<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">apply</span> max lvz<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span>maximum '<span style="color: #7388D6;">(</span>3 6 5<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span> <span style="color: #8D8D84; font-style: italic;">;=&gt; 6</span>
+</pre>
+</div>
+
+</div></li>
+
+</ul>
+</section>
+<section id="slide-org50c7270">
+<h4 id="org50c7270">Die Konstruktion von <code>eval</code></h4>
+<div class="outline-text-4" id="text-org50c7270">
+</div>
+</section>
+<section id="slide-org48d3e60">
+<h5 id="org48d3e60">Die universelle Funktion („Maschine“)</h5>
+<pre class="example">
+Die „Fakultätsmaschine“ FAK:
+     +------------------------------+
+    n| (defn fak [n]                |n!
+ ---&gt;|  (cond (= n 1) 1             |---&gt; 
+     |        :else (* n (- n 1)))) |
+     +------------------------------+
+
+Die unviverselle Machine EVAL
+
+     +-------------------------+
+    6|          EVAL           |720
+ ---&gt;|                         |---&gt; 
+     +-----------+-------------+
+                 ⥣
+                 |
+                 |
+    +------------+----------+
+    |     +----------+      |
+    |    n|          |n!    |
+    | ---&gt;|   FAK    |---&gt;  |
+    |     |          |      |
+    |     +----------+      |
+    +-----------------------+
+
+</pre>
+</section>
+<section id="slide-org6f20462">
+<h5 id="org6f20462">Anforderungen</h5>
+<ul>
+<li>Elementare Ausdrücke
+<ul>
+<li>Ausdrücke, die, wie z.&nbsp;B. Zahlen, zu sich selbst ausgewertet werden</li>
+<li>Variablen, deren Werte in der Umgebung gefunden werden müssen</li>
+
+</ul></li>
+<li>Pseudofunktionen (special forms)</li>
+
+</ul>
+
+<dl>
+<dt><code>def</code></dt><dd>bindet den ausgewerteten Ausdruck (zweites Argument) an
+einen Bezeichner (erstes Argument)</dd>
+<dt><code>if</code></dt><dd>Fallunterscheidungen</dd>
+<dt><code>fn</code></dt><dd>erzeugt eine Funktion innerhalb der aktuellen Umgebung</dd>
+
+</dl>
+<ul>
+<li>Funktionsanwendung (combinations)
+<ul>
+<li>s. Umgebungsmodell</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org19d54ad">
+<h5 id="org19d54ad">Funktion <code>eval</code></h5>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">eval</span>
+  <span style="color: #7388D6;">(</span><span style="color: #909183;">[</span>sexp<span style="color: #909183;">]</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">eval</span> sexp <span style="color: #709870;">{}</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #909183;">[</span>sexp env<span style="color: #909183;">]</span>
+   <span style="color: #909183;">(</span><span style="color: #D0372D;">:result</span> <span style="color: #709870;">(</span>eval-sexp sexp env<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div>
+<ul>
+<li>Funktion akzeptiert unterschiedliche Zahl von Argumenten.</li>
+<li>Das zweite Argument ist die Umgebung (<code>env</code>), in der <code>sexp</code>
+ausgewertet wird.</li>
+<li>Die Umgebung wird als Clojure-Hashmap realisiert.
+<ul>
+<li>Beispiel: <code>{'x 5, 'f (fn [x] (* x x))}</code></li>
+
+</ul></li>
+<li>Der Rückgabewert von <code>eval-sexp</code> ist eine Hashmap der Form:<br />
+<code>{:result result :env env}</code></li>
+<li><p>
+Wir erzeugen sie mit der Funktion
+</p>
+<div class="smaller">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">-&gt;State</span> <span style="color: #7388D6;">[</span>result env<span style="color: #7388D6;">]</span> 
+   <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:result</span> result <span style="color: #D0372D;">:env</span> env<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</div></li>
+<li>Es gilt: <code>(:result {:result result :env env})</code> ist gleich <code>result</code>.</li>
+
+</ul>
+</section>
+<section id="slide-org4ff8963">
+<h5 id="org4ff8963">Funktion <code>eval-sexp</code></h5>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">eval-sexp</span> <span style="color: #7388D6;">[</span>sexp env<span style="color: #7388D6;">]</span> 
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span>
+    <span style="color: #909183;">(</span>self-evaluating? sexp<span style="color: #909183;">)</span>  <span style="color: #8D8D84; font-style: italic;">; Wenn sexp ein self-evaluating,</span>
+    <span style="color: #909183;">(</span>-&gt;State sexp env<span style="color: #909183;">)</span>       <span style="color: #8D8D84; font-style: italic;">; gib ihn zur&#252;ck, env bleibt unver&#228;ndert</span>
+
+    <span style="color: #909183;">(</span>primitive-procedure-name? sexp<span style="color: #909183;">)</span>   <span style="color: #8D8D84; font-style: italic;">; Falls es der Name einer primitiven Funktion</span>
+    <span style="color: #909183;">(</span>-&gt;State <span style="color: #709870;">(</span>primitive-procedure-map sexp<span style="color: #709870;">)</span> env<span style="color: #909183;">)</span>   <span style="color: #8D8D84; font-style: italic;">; schlage ihn im Verzeichnis nach</span>
+
+    <span style="color: #909183;">(</span><span style="color: #006FE0;">symbol?</span> sexp<span style="color: #909183;">)</span>           <span style="color: #8D8D84; font-style: italic;">; Wene es ein Symbol,</span>
+    <span style="color: #909183;">(</span>-&gt;State <span style="color: #709870;">(</span>env sexp<span style="color: #709870;">)</span> env<span style="color: #909183;">)</span>  <span style="color: #8D8D84; font-style: italic;">; schlage es in env nach, env bleibt unver&#228;ndert</span>
+
+    <span style="color: #909183;">(</span><span style="color: #006FE0;">seq?</span> sexp<span style="color: #909183;">)</span>                 <span style="color: #8D8D84; font-style: italic;">; anderfalls ist es eine Sequenz</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #709870;">[</span><span style="color: #907373;">[</span>op &amp; operands<span style="color: #907373;">]</span> sexp<span style="color: #709870;">]</span> <span style="color: #8D8D84; font-style: italic;">; Destrukturierung von operator unnd operanden</span>
+      <span style="color: #709870;">(</span><span style="color: #0000FF;">cond</span>
+        <span style="color: #907373;">(</span>= op 'def<span style="color: #907373;">)</span>                           <span style="color: #8D8D84; font-style: italic;">; eine Definition</span>
+        <span style="color: #907373;">(</span>-&gt;State 'NIL                          <span style="color: #8D8D84; font-style: italic;">; gib nil zur&#252;ck und</span>
+                 <span style="color: #6276BA;">(</span><span style="color: #0000FF;">let</span> <span style="color: #858580;">[</span><span style="color: #80A880;">[</span>name exp<span style="color: #80A880;">]</span> operands     <span style="color: #8D8D84; font-style: italic;">; Destrukt. den Namen und den Ausdruck</span>
+                       value <span style="color: #80A880;">(</span><span style="color: #006FE0;">eval</span> exp env<span style="color: #80A880;">)</span><span style="color: #858580;">]</span>   <span style="color: #8D8D84; font-style: italic;">; werte den Ausdruck aus</span>
+                   <span style="color: #858580;">(</span><span style="color: #006FE0;">assoc</span> env name value<span style="color: #858580;">)</span><span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>    <span style="color: #8D8D84; font-style: italic;">; f&#252;ge das Name-Wert-Paar env hinzu</span>
+
+        <span style="color: #907373;">(</span>= op 'if<span style="color: #907373;">)</span>                            <span style="color: #8D8D84; font-style: italic;">; fuer if</span>
+        <span style="color: #907373;">(</span>-&gt;State <span style="color: #6276BA;">(</span>eval-if sexp env<span style="color: #6276BA;">)</span> env<span style="color: #907373;">)</span>       <span style="color: #8D8D84; font-style: italic;">; werte es gem&#228;&#223; eigener Regel aus</span>
+
+        <span style="color: #907373;">(</span>= op 'fn<span style="color: #907373;">)</span>                        <span style="color: #8D8D84; font-style: italic;">; Es ist ein Lambda-Ausdruck</span>
+        <span style="color: #907373;">(</span><span style="color: #0000FF;">let</span> <span style="color: #6276BA;">[</span><span style="color: #858580;">[</span>params body<span style="color: #858580;">]</span> operands<span style="color: #6276BA;">]</span>     <span style="color: #8D8D84; font-style: italic;">; destrukt. Parameter und Rumpf aus operands</span>
+          <span style="color: #6276BA;">(</span>-&gt;State <span style="color: #858580;">(</span>-&gt;Proc params            <span style="color: #8D8D84; font-style: italic;">; Gib Proc-Map zur&#252;ck mit den Parametern</span>
+                           body              <span style="color: #8D8D84; font-style: italic;">; und dem Rumpf</span>
+                           env<span style="color: #858580;">)</span>              <span style="color: #8D8D84; font-style: italic;">; unter den akt. Umgebung </span>
+                   env<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span>                     <span style="color: #8D8D84; font-style: italic;">; ohne &#196;nderung der Umgebung</span>
+
+        <span style="color: #D0372D;">:else</span>                                <span style="color: #8D8D84; font-style: italic;">; sonst ist es ein Funktionsaufruf</span>
+        <span style="color: #907373;">(</span>-&gt;State <span style="color: #6276BA;">(</span><span style="color: #006FE0;">apply</span> <span style="color: #858580;">(</span><span style="color: #006FE0;">eval</span> op env<span style="color: #858580;">)</span>         <span style="color: #8D8D84; font-style: italic;">; apply den  Operator</span>
+                        <span style="color: #858580;">(</span><span style="color: #006FE0;">map</span> <span style="color: #80A880;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #887070;">[</span>operand<span style="color: #887070;">]</span>       <span style="color: #8D8D84; font-style: italic;">;   (m&#246;glicherweise ein primitive)</span>
+                               <span style="color: #887070;">(</span><span style="color: #006FE0;">eval</span> operand env<span style="color: #887070;">)</span><span style="color: #80A880;">)</span> <span style="color: #8D8D84; font-style: italic;">; auf die ausgewertetem Operanden</span>
+                             operands<span style="color: #858580;">)</span><span style="color: #6276BA;">)</span>
+                 env<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>                            <span style="color: #8D8D84; font-style: italic;">; Umgebung bleibt unver&#228;ndert</span>
+
+    <span style="color: #D0372D;">:else</span>
+    <span style="color: #909183;">(</span>error <span style="color: #008000;">"EVAL FAIL: "</span> sexp<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</section>
+<section id="slide-orgb827d1c">
+<h4 id="orgb827d1c">Die Konstruktion von <code>apply</code></h4>
+<ul>
+<li>Primitives (vordefinierte, „eingebaute" Funktionen) &#x2026;
+<ul>
+<li>&#x2026; werden auf ihre Argumente angewendet.</li>
+
+</ul></li>
+
+<li>Funktionen aus Lambda-Ausdrücken (<i>compound procedures</i>)
+<ul>
+<li>Werte den Rumpf in einer um die Bindungen der formalen Parameter
+an die Argumente erweiterten Umgebung aus.</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orgb437706">
+<h5 id="orgb437706">Funktion <code>apply</code></h5>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">apply</span> <span style="color: #7388D6;">[</span>proc args<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span>
+    <span style="color: #909183;">(</span>primitive-procedure? proc<span style="color: #909183;">)</span>   <span style="color: #8D8D84; font-style: italic;">; ist es eine "eingebaute" Funktion</span>
+    <span style="color: #909183;">(</span>clj-apply proc args<span style="color: #909183;">)</span>         <span style="color: #8D8D84; font-style: italic;">; wende sie (in Clojure) auf die Argumente args an</span>
+
+    <span style="color: #909183;">(</span>compound-procedure? proc<span style="color: #909183;">)</span>   <span style="color: #8D8D84; font-style: italic;">; ist es eine selbst definierte Funktion</span>
+    <span style="color: #909183;">(</span><span style="color: #006FE0;">eval</span> <span style="color: #709870;">(</span><span style="color: #D0372D;">:body</span> proc<span style="color: #709870;">)</span>           <span style="color: #8D8D84; font-style: italic;">; werte den Rumpf</span>
+          <span style="color: #709870;">(</span><span style="color: #006FE0;">merge</span>                 <span style="color: #8D8D84; font-style: italic;">; in einer neuen Umgebung hergestellt</span>
+           <span style="color: #907373;">(</span><span style="color: #D0372D;">:env</span> proc<span style="color: #907373;">)</span>           <span style="color: #8D8D84; font-style: italic;">; Erweiterung Umgebung aus der Erzeugung der Funktion</span>
+           <span style="color: #907373;">(</span><span style="color: #006FE0;">zipmap</span> <span style="color: #6276BA;">(</span><span style="color: #D0372D;">:params</span> proc<span style="color: #6276BA;">)</span> <span style="color: #8D8D84; font-style: italic;">; un die Bindungen der formalen Parameter an die</span>
+                   args<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>        <span style="color: #8D8D84; font-style: italic;">; Argumente</span>
+
+    <span style="color: #D0372D;">:else</span>
+    <span style="color: #909183;">(</span>error <span style="color: #008000;">"APPLY FAIL: "</span> proc args<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</section>
+<section id="slide-org4ea8988">
+<h4 id="org4ea8988">Ergänzungen</h4>
+<div class="outline-text-4" id="text-org4ea8988">
+</div>
+</section>
+<section id="slide-orge6bb450">
+<h5 id="orge6bb450">Hilfsfunktionen für <code>eval-sexp</code></h5>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">self-evaluating?</span> <span style="color: #7388D6;">[</span>sexp<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">or</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">number?</span> sexp<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span><span style="color: #006FE0;">true?</span> sexp<span style="color: #909183;">)</span>
+      <span style="color: #909183;">(</span><span style="color: #006FE0;">false?</span> sexp<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">eval-if</span> <span style="color: #7388D6;">[</span><span style="color: #909183;">[</span>_ pred consequent alternative<span style="color: #909183;">]</span> env<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">eval</span> pred env<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span><span style="color: #006FE0;">eval</span> consequent env<span style="color: #909183;">)</span>
+    <span style="color: #909183;">(</span><span style="color: #0000FF;">if</span> <span style="color: #709870;">(</span><span style="color: #006FE0;">nil?</span> alternative<span style="color: #709870;">)</span>
+      'NIL
+      <span style="color: #709870;">(</span><span style="color: #006FE0;">eval</span> alternative env<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">-&gt;State</span> <span style="color: #7388D6;">[</span>result env<span style="color: #7388D6;">]</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:result</span> result <span style="color: #D0372D;">:env</span> env<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">-&gt;Proc</span> <span style="color: #7388D6;">[</span>params body env<span style="color: #7388D6;">]</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:params</span> params <span style="color: #D0372D;">:body</span> body <span style="color: #D0372D;">:env</span> env<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</section>
+<section id="slide-orgccc5a92">
+<h5 id="orgccc5a92">Hilfsfunktionen für <code>apply</code></h5>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">primitive-procedure-map</span> <span style="color: #7388D6;">{</span>'+ + '- - '* * '/ /
+                              '= =
+                              'square <span style="color: #909183;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #709870;">[</span>x<span style="color: #709870;">]</span> <span style="color: #709870;">(</span>* x x<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">primitive-procedure-name?</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">set</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">keys</span> primitive-procedure-map<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">primitive-procedure?</span> <span style="color: #7388D6;">(</span><span style="color: #006FE0;">set</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">vals</span> primitive-procedure-map<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">compound-procedure?</span> map?<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org3609e73">
+<h2 id="org3609e73">Verzögerte Auswertung</h2>
+<div class="outline-text-2" id="text-org3609e73">
+</div>
+</section>
+<section id="slide-org219aa4f">
+<h3 id="org219aa4f">Einführung</h3>
 <p>
 Wo und warum gibt es hier verzögerte Auswertung?
 </p>
@@ -792,8 +1189,8 @@ werden nicht ausgewertet.</li>
 
 </ul>
 </section>
-<section id="slide-org1f86038">
-<h3 id="org1f86038">Benutzung von Delay und Force</h3>
+<section id="slide-orgae9d1e6">
+<h3 id="orgae9d1e6">Benutzung von Delay und Force</h3>
 <dl>
 <dt>Annahme:</dt><dd>Das Resultat irgendeiner aufwändigen Berechnung \(b\) wird
 als Argument einer anderen Funktion benötigt.  Abhängig
@@ -813,8 +1210,8 @@ dies aber nur genau einmal. Der berechnete Wert wird
 </dl>
 
 </section>
-<section id="slide-org9c077d7">
-<h4 id="org9c077d7">Implementierung von Delay und Force in Clojure</h4>
+<section id="slide-org157ac1f">
+<h4 id="org157ac1f">Implementierung von Delay und Force in Clojure</h4>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-delay</span>
@@ -831,8 +1228,8 @@ dies aber nur genau einmal. Der berechnete Wert wird
 </div>
 
 </section>
-<section id="slide-org469d455">
-<h5 id="org469d455">Erläuterungen</h5>
+<section id="slide-orgcc94793">
+<h5 id="orgcc94793">Erläuterungen</h5>
 <ul>
 <li>Der Funktion <code>my-delay</code> wird ein thunk <code>f</code> übergeben und als zweites
 Element eines Vektors einer mutierbaren Struktur (<code>atom</code>) abgelegt.</li>
@@ -855,8 +1252,8 @@ oder von änderbaren Daten abhängt.</li>
 </ul>
 
 </section>
-<section id="slide-org67a029f">
-<h4 id="org67a029f">Anwendung von <code>my-delay</code> und <code>my-force</code></h4>
+<section id="slide-orge2015ea">
+<h4 id="orge2015ea">Anwendung von <code>my-delay</code> und <code>my-force</code></h4>
 <p>
 Als Beispiel für eine Funktion, die die Auswertung eines ihrer
 Argumente nur unter bestimmten Bedingungen benötigt, betrachten wir
@@ -887,8 +1284,8 @@ Bei dieser Variante würde bei einem Aufruf
 die Fakultät unnötigerweise berechnet.
 </p>
 </section>
-<section id="slide-org6c8fe04">
-<h5 id="org6c8fe04">Variante von <code>my-mult</code> mit <code>y</code> als thunk</h5>
+<section id="slide-orgb62c005">
+<h5 id="orgb62c005">Variante von <code>my-mult</code> mit <code>y</code> als thunk</h5>
 <div class="small">
 <div class="org-src-container">
 
@@ -931,8 +1328,8 @@ zwischengespeichert.</li>
 
 </ul>
 </section>
-<section id="slide-orgcf1674e">
-<h5 id="orgcf1674e">Weitere Variante von <code>my-mult</code></h5>
+<section id="slide-org28d0c3d">
+<h5 id="org28d0c3d">Weitere Variante von <code>my-mult</code></h5>
 <p>
 Die folgende Version von <code>my-mult</code> erwartet anstelle eines beliebigen
 thunks ein Resultat von <code>my-delay</code> als zweites Argument. Damit wird
@@ -950,14 +1347,14 @@ der Aufruf etwas komfortabler:
 </pre>
 </div>
 </section>
-<section id="slide-org41ab4e8">
-<h3 id="org41ab4e8">Streams</h3>
+<section id="slide-orgf5188c5">
+<h3 id="orgf5188c5">Streams</h3>
 <p>
 siehe <a href="./Aufgaben/aufgaben.html#/slide-aufgabenstreams">Aufgaben zu Streams</a>
 </p>
 </section>
-<section id="slide-org968235d">
-<h3 id="org968235d">Exkurs: Lazy sequences in Clojure</h3>
+<section id="slide-org7aea5d6">
+<h3 id="org7aea5d6">Exkurs: Lazy sequences in Clojure</h3>
 <ul>
 <li>Clojure ist wie Racket und auch ML eine Sprache mit strikter
 Auswertungsstrategie.</li>
@@ -969,8 +1366,8 @@ so genannter <i>lazy sequences</i>.</li>
 
 </ul>
 </section>
-<section id="slide-org36c1fff">
-<h4 id="org36c1fff">Arbeiten mit unbegrenzten Listen</h4>
+<section id="slide-orgc9179a3">
+<h4 id="orgc9179a3">Arbeiten mit unbegrenzten Listen</h4>
 <ul>
 <li><p>
 Erzeuge die ersten n Elemente einer unendlich langen Liste von
@@ -1061,8 +1458,8 @@ weitere Beispiele:
 
 </ul>
 </section>
-<section id="slide-org3bd2642">
-<h4 id="org3bd2642">Funktionen höherer Ordnung und lazy sequences</h4>
+<section id="slide-org6265924">
+<h4 id="org6265924">Funktionen höherer Ordnung und lazy sequences</h4>
 <ul>
 <li><p>
 Die klassischen Funktionen höherer Ordnung erzeugen lazy sequences:
@@ -1166,13 +1563,13 @@ Die Ausführung der Seiteneffekte kann mit <code>doall</code> erzwungen werden:
 </section>
 </section>
 <section>
-<section id="slide-org684ce5e">
-<h2 id="org684ce5e">Funktionale Datenstrukturen</h2>
-<div class="outline-text-2" id="text-org684ce5e">
+<section id="slide-org20da132">
+<h2 id="org20da132">Funktionale Datenstrukturen</h2>
+<div class="outline-text-2" id="text-org20da132">
 </div>
 </section>
-<section id="slide-orgbd1dd7a">
-<h3 id="orgbd1dd7a">Imperative Datenstrukturen</h3>
+<section id="slide-org7671b12">
+<h3 id="org7671b12">Imperative Datenstrukturen</h3>
 <ul>
 <li>Änderungen an <i>imperativen Datenstrukturen</i> basieren auf dem Prinzip
 der Mutation.</li>
@@ -1232,8 +1629,8 @@ Ausgabe in der Shell
 
 </ul>
 </section>
-<section id="slide-orgb65539f">
-<h3 id="orgb65539f">Funktionale Datenstrukturen</h3>
+<section id="slide-org0411269">
+<h3 id="org0411269">Funktionale Datenstrukturen</h3>
 <ul>
 <li>Funktionale Datenstrukturen sind nicht änderbar.</li>
 <li><p>
@@ -1261,8 +1658,8 @@ Beispiel in Clojure
 
 </ul>
 </section>
-<section id="slide-org79142f5">
-<h4 id="org79142f5">Effiziente Implementierung</h4>
+<section id="slide-org1fff4a7">
+<h4 id="org1fff4a7">Effiziente Implementierung</h4>
 <ul>
 <li>Ideen basieren auf Okasakis Buch <i>Purely Functional Data Structures</i>
 [<a class="org-ref-reference" href="#/slide-bibliography">[Okasaki1999]</a>]</li>
@@ -1282,8 +1679,8 @@ stellen.</li>
 
 </ul>
 </section>
-<section id="slide-orgbe62d2e">
-<h4 id="orgbe62d2e">Exemplarische Darstellung für Vektoren in Clojure</h4>
+<section id="slide-org22de338">
+<h4 id="org22de338">Exemplarische Darstellung für Vektoren in Clojure</h4>
 <ul>
 <li>Verwendet werden Strukturen, die Binärbäumen ähneln.</li>
 <li>Die internen Knoten enthalten keine Daten, sondern nur Verweise auf
@@ -1324,8 +1721,8 @@ werden Pfadkopien eingesetzt.</li>
 
 </ul>
 </section>
-<section id="slide-org407c927">
-<h5 id="org407c927">Die Änderungsoperation</h5>
+<section id="slide-orgff44730">
+<h5 id="orgff44730">Die Änderungsoperation</h5>
 <ul>
 <li>Um ein Vektorelement zu ändern, verfolgt man den Pfad bis zu dem
 Element, das geändert werden soll.</li>
@@ -1362,8 +1759,8 @@ Beispiel:
 
 </ul>
 </section>
-<section id="slide-org4300d6d">
-<h5 id="org4300d6d">Anhängen eines Elements</h5>
+<section id="slide-org7d6fe2f">
+<h5 id="org7d6fe2f">Anhängen eines Elements</h5>
 <ul>
 <li>Drei Fälle sind zu unterscheiden:
 <ol>
@@ -1457,8 +1854,8 @@ wieder rosa dargestellt.</li>
 
 </div>
 </section>
-<section id="slide-org851f6f5">
-<h5 id="org851f6f5">Entfernen von Elementen</h5>
+<section id="slide-org1f9c6d7">
+<h5 id="org1f9c6d7">Entfernen von Elementen</h5>
 <ul>
 <li>Hier sind ähnliche Überlegungen wie beim Hinzufügen von Elementen
 anzustellen.</li>
@@ -1469,8 +1866,8 @@ anzustellen.</li>
 
 </ul>
 </section>
-<section id="slide-orge96afef">
-<h3 id="orge96afef">Effizeinzbetrachtung</h3>
+<section id="slide-org8c3b4e5">
+<h3 id="org8c3b4e5">Effizeinzbetrachtung</h3>
 <ul>
 <li>Die geschilderten Operationen haben für imperative Datenstrukturen
 die Laufzeitkomplexität \(O(1)\).</li>
@@ -1487,8 +1884,13 @@ nicht größer als 6.</li>
 <section>
 <section id="slide-bibliography">
 <h2 id="bibliography">Literaturverzeichnis</h2>
-<ul class='org-ref-bib'><li><a id="Okasaki1999">[Okasaki1999]</a> <a name="Okasaki1999"></a>Chris Okasaki, Purely Functional Data Structures, Cambridge University Press (1999).</li>
+<ul class='org-ref-bib'><li><a id="McCarthy1960">[McCarthy1960]</a> <a name="McCarthy1960"></a>McCarthy, Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I, <i>Commun. ACM</i>, <b>3(4)</b>, 184-195 (1960). <a href="http://doi.acm.org/10.1145/367177.367199">link</a>. <a href="http://dx.doi.org/10.1145/367177.367199">doi</a>.</li>
+<li><a id="Okasaki1999">[Okasaki1999]</a> <a name="Okasaki1999"></a>Chris Okasaki, Purely Functional Data Structures, Cambridge University Press (1999).</li>
+<li><a id="Sicp1999">[Sicp1999]</a> <a name="Sicp1999"></a>Harold Abelson, Gerald Jay Sussman & Julie Sussman, Structure and interpretation of computer programs, The MIT Press (1999).</li>
 </ul>
+<p>
+Î
+</p>
 </section>
 </section>
 </div>
