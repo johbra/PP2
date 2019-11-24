@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-11-18 Mon 17:08 -->
+<!-- 2019-11-24 Sun 20:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Funktionale Programmierung: Ausgewählte Kapitel</title>
@@ -280,9 +280,9 @@ for the JavaScript code in this tag.
 <br />
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
-<div id="outline-container-org49018d7" class="outline-2">
-<h2 id="org49018d7">Ziele</h2>
-<div class="outline-text-2" id="text-org49018d7">
+<div id="outline-container-org17be2fc" class="outline-2">
+<h2 id="org17be2fc">Ziele</h2>
+<div class="outline-text-2" id="text-org17be2fc">
 <ul class="org-ul">
 <li><p>
 Verstehen der Aussage: 
@@ -298,9 +298,9 @@ Auswertung von Funktionsanwendungen.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3953ca9" class="outline-2">
-<h2 id="org3953ca9">Datenabstraktion</h2>
-<div class="outline-text-2" id="text-org3953ca9">
+<div id="outline-container-orgc6e9ca8" class="outline-2">
+<h2 id="orgc6e9ca8">Datenabstraktion</h2>
+<div class="outline-text-2" id="text-orgc6e9ca8">
 <p>
 <b>These:</b> 
 </p>
@@ -313,13 +313,13 @@ Es gibt keinen Wesensunterschied zwischen Programmen und Daten
 vgl. auch Kapitel <a href="https://johbra.github.io/EidP17/Vorlesung/EidP06-Datenabstraktion.html">Datenabstraktion</a> aus <a href="https://johbra.github.io/EidP17/">Einführung in die Programmierung</a>
 </p>
 </div>
-<div id="outline-container-org2ade97a" class="outline-3">
-<h3 id="org2ade97a">1. Beispiel: Rechnen mit Punkten in der Ebene</h3>
-<div class="outline-text-3" id="text-org2ade97a">
+<div id="outline-container-org3972116" class="outline-3">
+<h3 id="org3972116">1. Beispiel: Rechnen mit Punkten in der Ebene</h3>
+<div class="outline-text-3" id="text-org3972116">
 </div>
-<div id="outline-container-org629d7b1" class="outline-4">
-<h4 id="org629d7b1">Defintion von Punkten</h4>
-<div class="outline-text-4" id="text-org629d7b1">
+<div id="outline-container-org1e61fd5" class="outline-4">
+<h4 id="org1e61fd5">Defintion von Punkten</h4>
+<div class="outline-text-4" id="text-org1e61fd5">
 <ul class="org-ul">
 <li>Ein Punkt in der Ebene wird durch seine x- und seine y-Koordinate
 bestimmt (kartesisches Koordinatensystem).</li>
@@ -341,9 +341,9 @@ y-Koordinate eines Punkts zugänglich machen:
 </ul>
 </div>
 </div>
-<div id="outline-container-org44df0f3" class="outline-4">
-<h4 id="org44df0f3">Point-Funktionen</h4>
-<div class="outline-text-4" id="text-org44df0f3">
+<div id="outline-container-org18cb669" class="outline-4">
+<h4 id="org18cb669">Point-Funktionen</h4>
+<div class="outline-text-4" id="text-org18cb669">
 <ul class="org-ul">
 <li><p>
 Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
@@ -375,9 +375,9 @@ Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
 </ul>
 </div>
 </div>
-<div id="outline-container-orged1c35e" class="outline-4">
-<h4 id="orged1c35e">Mögliche Implementierungen von <code>points</code></h4>
-<div class="outline-text-4" id="text-orged1c35e">
+<div id="outline-container-org52a3dca" class="outline-4">
+<h4 id="org52a3dca">Mögliche Implementierungen von <code>points</code></h4>
+<div class="outline-text-4" id="text-org52a3dca">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">als Datenstruktur mit defrecord</span>
   <span style="color: #707183;">(</span><span style="color: #0000FF;">defrecord</span> <span style="color: #6434A3;">point</span> <span style="color: #7388D6;">[</span>x y<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
@@ -395,9 +395,9 @@ Unter diesen Voraussetzungen könnten z. B. folgende Funktionen, die
 </pre>
 </div>
 </div>
-<div id="outline-container-org6a0c60e" class="outline-5">
-<h5 id="org6a0c60e">Zum Vergleich die Strukturdefinition in Racket</h5>
-<div class="outline-text-5" id="text-org6a0c60e">
+<div id="outline-container-org4da06ec" class="outline-5">
+<h5 id="org4da06ec">Zum Vergleich die Strukturdefinition in Racket</h5>
+<div class="outline-text-5" id="text-org4da06ec">
 <pre class="example">
 Willkommen bei DrRacket, Version 6.7 [3m].
 Sprache: Zwischenstufe mit lambda; memory limit: 128 MB.
@@ -417,9 +417,9 @@ Sprache: Zwischenstufe mit lambda; memory limit: 128 MB.
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa7532d" class="outline-4">
-<h4 id="orgaa7532d">Anforderungen an die Implementierung</h4>
-<div class="outline-text-4" id="text-orgaa7532d">
+<div id="outline-container-orgb53576f" class="outline-4">
+<h4 id="orgb53576f">Anforderungen an die Implementierung</h4>
+<div class="outline-text-4" id="text-orgb53576f">
 <ul class="org-ul">
 <li>Jede Implementierung, die den folgenden beiden Gleichungen genügt,
 ist hinreichend:<br />
@@ -436,9 +436,9 @@ sondern auch elementare Daten durch Funktionen dargestellt werden können.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org04175d3" class="outline-3">
-<h3 id="org04175d3">2. Beispiel: Listen</h3>
-<div class="outline-text-3" id="text-org04175d3">
+<div id="outline-container-org9e02763" class="outline-3">
+<h3 id="org9e02763">2. Beispiel: Listen</h3>
+<div class="outline-text-3" id="text-org9e02763">
 <ul class="org-ul">
 <li>Lisp-Sprachen stellen üblicherweise
 <ul class="org-ul">
@@ -462,9 +462,9 @@ folgenden Gleichungen beschrieben werden:<br />
 (vgl. auch <a href="https://johbra.github.io/EidP17/Vorlesung/EidP07-NichtNumerischeDaten.html#outline-container-org7de79e7">Symbolische Ausdrücke</a> in Racket oder Clojure)
 </p>
 </div>
-<div id="outline-container-org27cb2b6" class="outline-4">
-<h4 id="org27cb2b6">Implementierung von Listen durch Funktionen &#x2026;</h4>
-<div class="outline-text-4" id="text-org27cb2b6">
+<div id="outline-container-orgeda23c4" class="outline-4">
+<h4 id="orgeda23c4">Implementierung von Listen durch Funktionen &#x2026;</h4>
+<div class="outline-text-4" id="text-orgeda23c4">
 <p>
 Um Namenskollisionen mit den existierenden Standardfunktionen zu
 vermeiden, werden im folgenden alternative Namen verwendet:
@@ -475,9 +475,9 @@ vermeiden, werden im folgenden alternative Namen verwendet:
 <li><code>rst</code> statt <code>rest</code></li>
 </ul>
 </div>
-<div id="outline-container-orge70ea78" class="outline-5">
-<h5 id="orge70ea78">&#x2026; in Racket</h5>
-<div class="outline-text-5" id="text-orge70ea78">
+<div id="outline-container-org2188a23" class="outline-5">
+<h5 id="org2188a23">&#x2026; in Racket</h5>
+<div class="outline-text-5" id="text-org2188a23">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">define</span> <span style="color: #006699;">cns</span>
   <span style="color: #7388D6;">(</span>lambda <span style="color: #909183;">[</span>x y<span style="color: #909183;">]</span>
@@ -502,9 +502,9 @@ vermeiden, werden im folgenden alternative Namen verwendet:
 </div>
 </div>
 </div>
-<div id="outline-container-org2401c6f" class="outline-5">
-<h5 id="org2401c6f">Erläuterungen</h5>
-<div class="outline-text-5" id="text-org2401c6f">
+<div id="outline-container-org22d7106" class="outline-5">
+<h5 id="org22d7106">Erläuterungen</h5>
+<div class="outline-text-5" id="text-org22d7106">
 <ul class="org-ul">
 <li>Die Benutzung der Funktionen hat nichts mehr mit einem intuitiven
 Verständnis von <i>Daten</i> zu tun.</li>
@@ -525,9 +525,9 @@ erzeugte Funktion ist, dann liefert die Anwendung von <code>z</code> auf 0
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdd2b7dc" class="outline-5">
-<h5 id="orgdd2b7dc">&#x2026; in Clojure</h5>
-<div class="outline-text-5" id="text-orgdd2b7dc">
+<div id="outline-container-org23a2800" class="outline-5">
+<h5 id="org23a2800">&#x2026; in Clojure</h5>
+<div class="outline-text-5" id="text-org23a2800">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">cns</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>x y<span style="color: #909183;">]</span>
@@ -545,9 +545,9 @@ erzeugte Funktion ist, dann liefert die Anwendung von <code>z</code> auf 0
 </div>
 </div>
 </div>
-<div id="outline-container-orgfeb7a44" class="outline-5">
-<h5 id="orgfeb7a44">Benutzung</h5>
-<div class="outline-text-5" id="text-orgfeb7a44">
+<div id="outline-container-orgfc2a334" class="outline-5">
+<h5 id="orgfc2a334">Benutzung</h5>
+<div class="outline-text-5" id="text-orgfc2a334">
 <p>
 Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </p>
@@ -566,9 +566,9 @@ Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </div>
 </div>
 </div>
-<div id="outline-container-org0a9b3fd" class="outline-5">
-<h5 id="org0a9b3fd">&#x2026; in SML</h5>
-<div class="outline-text-5" id="text-org0a9b3fd">
+<div id="outline-container-org6212ac8" class="outline-5">
+<h5 id="org6212ac8">&#x2026; in SML</h5>
+<div class="outline-text-5" id="text-org6212ac8">
 <div class="org-src-container">
 <pre class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">lst</span> = F <span style="color: #0000FF;">of</span> int-&gt;lst | I <span style="color: #0000FF;">of</span> int | E
 <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">el</span> = <span style="color: #0000FF;">fn</span> <span style="color: #707183;">(</span>I x<span style="color: #707183;">)</span> =&gt; x 
@@ -607,9 +607,9 @@ Die Funktionen können wie die Clojure-Standardfunktionen benutzt werden:
 </div>
 </div>
 </div>
-<div id="outline-container-orge9479d6" class="outline-4">
-<h4 id="orge9479d6">Alternative Implementierung von Listen durch Funktionen</h4>
-<div class="outline-text-4" id="text-orge9479d6">
+<div id="outline-container-org89dcefa" class="outline-4">
+<h4 id="org89dcefa">Alternative Implementierung von Listen durch Funktionen</h4>
+<div class="outline-text-4" id="text-org89dcefa">
 <p>
 siehe
 <a href="./Aufgaben/aufgaben.html#aufgabealternativelistenimplementierung">Aufgabe Alternative Listenimplementierung</a>
@@ -617,17 +617,17 @@ siehe
 </div>
 </div>
 </div>
-<div id="outline-container-org019f48b" class="outline-3">
-<h3 id="org019f48b">3. Beispiel: Natürliche Zahlen als rekursive Datenstruktur</h3>
-<div class="outline-text-3" id="text-org019f48b">
+<div id="outline-container-org76de509" class="outline-3">
+<h3 id="org76de509">3. Beispiel: Natürliche Zahlen als rekursive Datenstruktur</h3>
+<div class="outline-text-3" id="text-org76de509">
 </div>
-<div id="outline-container-org3170ef4" class="outline-4">
+<div id="outline-container-orgfb6a055" class="outline-4">
 <h4 id="datentypnat">Definition eines Datentyps für natürliche Zahlen</h4>
 <div class="outline-text-4" id="text-datentypnat">
 </div>
-<div id="outline-container-orgc092b34" class="outline-5">
-<h5 id="orgc092b34">Rekursive Definition der natürlichen Zahlen</h5>
-<div class="outline-text-5" id="text-orgc092b34">
+<div id="outline-container-org22510a0" class="outline-5">
+<h5 id="org22510a0">Rekursive Definition der natürlichen Zahlen</h5>
+<div class="outline-text-5" id="text-org22510a0">
 <ul class="org-ul">
 <li>Mathematisch können die natürlichen Zahlen folgendermaßen definiert
 werden:
@@ -652,9 +652,9 @@ wird hier die Konstante <code>zero</code> anstelle von \(0\) verwendet.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdfa867a" class="outline-5">
-<h5 id="orgdfa867a">Clojure-Definitionen für <code>zero</code> und <code>succ</code></h5>
-<div class="outline-text-5" id="text-orgdfa867a">
+<div id="outline-container-org0685bcb" class="outline-5">
+<h5 id="org0685bcb">Clojure-Definitionen für <code>zero</code> und <code>succ</code></h5>
+<div class="outline-text-5" id="text-org0685bcb">
 <ul class="org-ul">
 <li><p>
 Konstanten sind u.a. dadurch gekennzeichnet, dass sie zu sich selbst
@@ -681,9 +681,9 @@ folgende Definition zu erreichen:
 </div>
 </div>
 
-<div id="outline-container-org645eeb9" class="outline-5">
-<h5 id="org645eeb9">Der abstrakte Datentyp <b>Nat</b></h5>
-<div class="outline-text-5" id="text-org645eeb9">
+<div id="outline-container-org2102d02" class="outline-5">
+<h5 id="org2102d02">Der abstrakte Datentyp <b>Nat</b></h5>
+<div class="outline-text-5" id="text-org2102d02">
 <ul class="org-ul">
 <li><p>
 Mit den Definitionen für <code>zero</code> und <code>succ</code> haben wir quasi einen
@@ -706,9 +706,9 @@ natürliche Zahlen (d.h. Exemplare von <b>Nat</b>) als Ergebnis liefern.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org49ebdce" class="outline-5">
-<h5 id="org49ebdce">Anwendung des Datentyps <b>Nat</b></h5>
-<div class="outline-text-5" id="text-org49ebdce">
+<div id="outline-container-orgcfc7d31" class="outline-5">
+<h5 id="orgcfc7d31">Anwendung des Datentyps <b>Nat</b></h5>
+<div class="outline-text-5" id="text-orgcfc7d31">
 <p>
 <b>Beispiel:</b> Zählen der Elemente einer Liste
 </p>
@@ -760,13 +760,13 @@ Anwendung von <code>countElements</code> auf die Restliste.
 </div>
 </div>
 </div>
-<div id="outline-container-org7ae1a4f" class="outline-4">
-<h4 id="org7ae1a4f">Definition weiterer Operationen für <b>Nat</b></h4>
-<div class="outline-text-4" id="text-org7ae1a4f">
+<div id="outline-container-org8e8b008" class="outline-4">
+<h4 id="org8e8b008">Definition weiterer Operationen für <b>Nat</b></h4>
+<div class="outline-text-4" id="text-org8e8b008">
 </div>
-<div id="outline-container-org5e39697" class="outline-5">
-<h5 id="org5e39697">Die Operationen <code>pred</code> und <code>plus</code></h5>
-<div class="outline-text-5" id="text-org5e39697">
+<div id="outline-container-org748c618" class="outline-5">
+<h5 id="org748c618">Die Operationen <code>pred</code> und <code>plus</code></h5>
+<div class="outline-text-5" id="text-org748c618">
 <ul class="org-ul">
 <li>Die Operation \(succ\) ermöglicht es bisher nur (vorwärts) zu zählen.</li>
 <li>Wir definieren zwei weitere Operationen zur
@@ -792,9 +792,9 @@ und \(succ\) zunächst durch Gleichungen beschreiben.
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d2be6c" class="outline-5">
-<h5 id="org2d2be6c">Prädikat <code>zero?</code></h5>
-<div class="outline-text-5" id="text-org2d2be6c">
+<div id="outline-container-org0ff9e20" class="outline-5">
+<h5 id="org0ff9e20">Prädikat <code>zero?</code></h5>
+<div class="outline-text-5" id="text-org0ff9e20">
 <ul class="org-ul">
 <li><p>
 Beide Definitionen basieren auf einer Fallunterscheidung. Um sie in
@@ -825,9 +825,9 @@ Argument <code>zero</code> ist:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2aedfe9" class="outline-5">
-<h5 id="org2aedfe9">Der abstrakte Datentyp <b>Nat</b>: <code>pred</code></h5>
-<div class="outline-text-5" id="text-org2aedfe9">
+<div id="outline-container-orgd8c7970" class="outline-5">
+<h5 id="orgd8c7970">Der abstrakte Datentyp <b>Nat</b>: <code>pred</code></h5>
+<div class="outline-text-5" id="text-orgd8c7970">
 <ul class="org-ul">
 <li><p>
 Definieren wir nun die Funktion <code>pred</code>:
@@ -852,9 +852,9 @@ Definieren wir nun die Funktion <code>pred</code>:
 </div>
 </div>
 
-<div id="outline-container-orgde70908" class="outline-5">
-<h5 id="orgde70908">Der abstrakte Datentyp <b>Nat</b>: <code>plus</code></h5>
-<div class="outline-text-5" id="text-orgde70908">
+<div id="outline-container-org087dda5" class="outline-5">
+<h5 id="org087dda5">Der abstrakte Datentyp <b>Nat</b>: <code>plus</code></h5>
+<div class="outline-text-5" id="text-org087dda5">
 <ul class="org-ul">
 <li><p>
 Die rekursive Definition von \(plus\) übertragen wir in eine rekursive
@@ -882,9 +882,9 @@ Funktion <code>plus</code>:
 </div>
 </div>
 
-<div id="outline-container-org0cd83d4" class="outline-5">
-<h5 id="org0cd83d4">Der Datentyp <b>Nat</b>: Zusammenfassung</h5>
-<div class="outline-text-5" id="text-org0cd83d4">
+<div id="outline-container-org8ffff21" class="outline-5">
+<h5 id="org8ffff21">Der Datentyp <b>Nat</b>: Zusammenfassung</h5>
+<div class="outline-text-5" id="text-org8ffff21">
 <p>
 Was haben wir gelernt?
 </p>
@@ -909,9 +909,9 @@ Zahlen festlegen zu müssen.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgded25a8" class="outline-3">
-<h3 id="orgded25a8">4. Beispiel: „Church-Numerals"</h3>
-<div class="outline-text-3" id="text-orgded25a8">
+<div id="outline-container-org1a350a7" class="outline-3">
+<h3 id="org1a350a7">4. Beispiel: „Church-Numerals"</h3>
+<div class="outline-text-3" id="text-org1a350a7">
 <ul class="org-ul">
 <li>Im vorangegangen Kapitel haben wir mit dem Datentyp <b>Nat</b> eine rekursive
 Definition der natürlichen Zahlen kennen gelernt, die auf den
@@ -926,9 +926,9 @@ repräsentieren kann.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org1ed65f2" class="outline-2">
-<h2 id="org1ed65f2">Der metazirkuläre Interpreter</h2>
-<div class="outline-text-2" id="text-org1ed65f2">
+<div id="outline-container-org1381517" class="outline-2">
+<h2 id="org1381517">Der metazirkuläre Interpreter</h2>
+<div class="outline-text-2" id="text-org1381517">
 <ul class="org-ul">
 <li>Der Interpreter für eine Programmiersprache ist ein Programm.</li>
 <li>In Lisp-Sprachen kann dieser Interpreter in Lisp geschrieben
@@ -949,9 +949,9 @@ Umgebungsmodells) für die Anwendung von Funktionen.</li>
 </ul>
 </div>
 
-<div id="outline-container-org2da7c6f" class="outline-3">
-<h3 id="org2da7c6f">Das Umgebungsmodell</h3>
-<div class="outline-text-3" id="text-org2da7c6f">
+<div id="outline-container-orgd9ae3e4" class="outline-3">
+<h3 id="orgd9ae3e4">Das Umgebungsmodell</h3>
+<div class="outline-text-3" id="text-orgd9ae3e4">
 <p>
 (vgl. auch Einführung in die Programmierung)
 </p>
@@ -973,9 +973,9 @@ Parameter an die Argumente (die ausgewerteten <code>operands</code>).</li>
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-org90e2772" class="outline-4">
-<h4 id="org90e2772">Die Funktionen <code>eval</code> und <code>apply</code></h4>
-<div class="outline-text-4" id="text-org90e2772">
+<div id="outline-container-orgc664591" class="outline-4">
+<h4 id="orgc664591">Die Funktionen <code>eval</code> und <code>apply</code></h4>
+<div class="outline-text-4" id="text-orgc664591">
 <ul class="org-ul">
 <li><p>
 Der Prozess der Funktionsanwendung wird durch das Zusammenspiel der
@@ -990,9 +990,9 @@ rekursiv aufrufen:
 <li>Diese Funktionen stehen als Standardfunktionen zur Verfügung.</li>
 </ul>
 </div>
-<div id="outline-container-org530c45e" class="outline-5">
-<h5 id="org530c45e">Benutzung von <code>eval</code></h5>
-<div class="outline-text-5" id="text-org530c45e">
+<div id="outline-container-orgc6fe65c" class="outline-5">
+<h5 id="orgc6fe65c">Benutzung von <code>eval</code></h5>
+<div class="outline-text-5" id="text-orgc6fe65c">
 <ul class="org-ul">
 <li><code>eval</code> erwartet einen Clojure-Ausdruck als Argument, wertet diesen aus und gibt
 das Ergebnis der Auswertung zurück.</li>
@@ -1010,9 +1010,9 @@ Beispiele
 </ul>
 </div>
 </div>
-<div id="outline-container-org0b3fea7" class="outline-5">
-<h5 id="org0b3fea7">Bau einer eigenen Repl</h5>
-<div class="outline-text-5" id="text-org0b3fea7">
+<div id="outline-container-org1d78a99" class="outline-5">
+<h5 id="org1d78a99">Bau einer eigenen Repl</h5>
+<div class="outline-text-5" id="text-org1d78a99">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">ns</span> <span style="color: #6434A3;">myrepl.core</span><span style="color: #707183;">)</span>
 
@@ -1050,9 +1050,9 @@ myrepl.core=&gt; <span style="color: #707183;">(</span>myrepl<span style="color:
 </div>
 </div>
 </div>
-<div id="outline-container-orgc2dd67f" class="outline-5">
-<h5 id="orgc2dd67f">Benutzung von <code>apply</code></h5>
-<div class="outline-text-5" id="text-orgc2dd67f">
+<div id="outline-container-org6fae469" class="outline-5">
+<h5 id="org6fae469">Benutzung von <code>apply</code></h5>
+<div class="outline-text-5" id="text-org6fae469">
 <ul class="org-ul">
 <li><code>apply</code> erwartet eine Funktion <code>f</code> und eine Sequenz <code>s</code> als
 Argumente und wendet <code>f</code> auf die in <code>s</code> befindlichen Elemente an.</li>
@@ -1089,13 +1089,13 @@ Argumente als Liste akzeptiert:
 </div>
 </div>
 </div>
-<div id="outline-container-org783abd4" class="outline-4">
-<h4 id="org783abd4">Die Konstruktion von <code>eval</code></h4>
-<div class="outline-text-4" id="text-org783abd4">
+<div id="outline-container-org4fe53f5" class="outline-4">
+<h4 id="org4fe53f5">Die Konstruktion von <code>eval</code></h4>
+<div class="outline-text-4" id="text-org4fe53f5">
 </div>
-<div id="outline-container-org706ce75" class="outline-5">
-<h5 id="org706ce75">Die universelle Funktion („Maschine“)</h5>
-<div class="outline-text-5" id="text-org706ce75">
+<div id="outline-container-orgb3b0d8a" class="outline-5">
+<h5 id="orgb3b0d8a">Die universelle Funktion („Maschine“)</h5>
+<div class="outline-text-5" id="text-orgb3b0d8a">
 <pre class="example">
 Die „Fakultätsmaschine“ FAK:
      +------------------------------+
@@ -1124,9 +1124,9 @@ Die unviverselle Machine EVAL
 </pre>
 </div>
 </div>
-<div id="outline-container-org327a614" class="outline-5">
-<h5 id="org327a614">Anforderungen</h5>
-<div class="outline-text-5" id="text-org327a614">
+<div id="outline-container-org6e142bd" class="outline-5">
+<h5 id="org6e142bd">Anforderungen</h5>
+<div class="outline-text-5" id="text-org6e142bd">
 <ul class="org-ul">
 <li>Elementare Ausdrücke
 <ul class="org-ul">
@@ -1147,9 +1147,9 @@ einen Bezeichner (erstes Argument)</dd>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca1981a" class="outline-5">
-<h5 id="orgca1981a">Funktion <code>eval</code></h5>
-<div class="outline-text-5" id="text-orgca1981a">
+<div id="outline-container-orgcca7f7b" class="outline-5">
+<h5 id="orgcca7f7b">Funktion <code>eval</code></h5>
+<div class="outline-text-5" id="text-orgcca7f7b">
 <div class="smaller">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">eval</span>
@@ -1185,9 +1185,9 @@ Wir erzeugen sie mit der Funktion
 </ul>
 </div>
 </div>
-<div id="outline-container-org7bf699d" class="outline-5">
-<h5 id="org7bf699d">Funktion <code>eval-sexp</code></h5>
-<div class="outline-text-5" id="text-org7bf699d">
+<div id="outline-container-org958d85c" class="outline-5">
+<h5 id="org958d85c">Funktion <code>eval-sexp</code></h5>
+<div class="outline-text-5" id="text-org958d85c">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">eval-sexp</span> <span style="color: #7388D6;">[</span>sexp env<span style="color: #7388D6;">]</span> 
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span>
@@ -1233,9 +1233,9 @@ Wir erzeugen sie mit der Funktion
 </div>
 </div>
 </div>
-<div id="outline-container-org26a9a73" class="outline-4">
-<h4 id="org26a9a73">Die Konstruktion von <code>apply</code></h4>
-<div class="outline-text-4" id="text-org26a9a73">
+<div id="outline-container-org6d46915" class="outline-4">
+<h4 id="org6d46915">Die Konstruktion von <code>apply</code></h4>
+<div class="outline-text-4" id="text-org6d46915">
 <ul class="org-ul">
 <li>Primitives (vordefinierte, „eingebaute" Funktionen) &#x2026;
 <ul class="org-ul">
@@ -1249,9 +1249,9 @@ an die Argumente erweiterten Umgebung aus.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org09eecb4" class="outline-5">
-<h5 id="org09eecb4">Funktion <code>apply</code></h5>
-<div class="outline-text-5" id="text-org09eecb4">
+<div id="outline-container-orga4c8760" class="outline-5">
+<h5 id="orga4c8760">Funktion <code>apply</code></h5>
+<div class="outline-text-5" id="text-orga4c8760">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">apply</span> <span style="color: #7388D6;">[</span>proc args<span style="color: #7388D6;">]</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">cond</span>
@@ -1272,13 +1272,13 @@ an die Argumente erweiterten Umgebung aus.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc8765eb" class="outline-4">
-<h4 id="orgc8765eb">Ergänzungen</h4>
-<div class="outline-text-4" id="text-orgc8765eb">
+<div id="outline-container-orgae76227" class="outline-4">
+<h4 id="orgae76227">Ergänzungen</h4>
+<div class="outline-text-4" id="text-orgae76227">
 </div>
-<div id="outline-container-org7b6a690" class="outline-5">
-<h5 id="org7b6a690">Hilfsfunktionen für <code>eval-sexp</code></h5>
-<div class="outline-text-5" id="text-org7b6a690">
+<div id="outline-container-org72e373b" class="outline-5">
+<h5 id="org72e373b">Hilfsfunktionen für <code>eval-sexp</code></h5>
+<div class="outline-text-5" id="text-org72e373b">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">self-evaluating?</span> <span style="color: #7388D6;">[</span>sexp<span style="color: #7388D6;">]</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">or</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">number?</span> sexp<span style="color: #909183;">)</span>
@@ -1299,9 +1299,9 @@ an die Argumente erweiterten Umgebung aus.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf25e188" class="outline-5">
-<h5 id="orgf25e188">Hilfsfunktionen für <code>apply</code></h5>
-<div class="outline-text-5" id="text-orgf25e188">
+<div id="outline-container-org309312c" class="outline-5">
+<h5 id="org309312c">Hilfsfunktionen für <code>apply</code></h5>
+<div class="outline-text-5" id="text-org309312c">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">primitive-procedure-map</span> <span style="color: #7388D6;">{</span>'+ + '- - '* * '/ /
                               '= =
@@ -1319,13 +1319,13 @@ an die Argumente erweiterten Umgebung aus.</li>
 </div>
 </div>
 
-<div id="outline-container-orgbcb1e85" class="outline-2">
-<h2 id="orgbcb1e85">Verzögerte Auswertung</h2>
-<div class="outline-text-2" id="text-orgbcb1e85">
+<div id="outline-container-orgc63ead4" class="outline-2">
+<h2 id="orgc63ead4">Verzögerte Auswertung</h2>
+<div class="outline-text-2" id="text-orgc63ead4">
 </div>
-<div id="outline-container-orgcbdfe3e" class="outline-3">
-<h3 id="orgcbdfe3e">Einführung</h3>
-<div class="outline-text-3" id="text-orgcbdfe3e">
+<div id="outline-container-orgc0c8c4a" class="outline-3">
+<h3 id="orgc0c8c4a">Einführung</h3>
+<div class="outline-text-3" id="text-orgc0c8c4a">
 <p>
 Wo und warum gibt es hier verzögerte Auswertung?
 </p>
@@ -1415,7 +1415,7 @@ Die <code>factorial</code>-Funktion könnte dann so aussehen:
 </div></li>
 <li>Es gibt keinen triftigen Grund, eine derartige <code>my-if</code>-Funktion zu
 schreiben.</li>
-<li>Parameterlose Funktion für die <i>verzögerte Auswertung</i> zu benutzen,
+<li>Parameterlose Funktionen für die <i>verzögerte Auswertung</i> zu benutzen,
 ist aber ein mächtiges Konzept.</li>
 <li>In der englisch-sprachigen Fachliteratur werden solche
 parameterlosen Funktionen als <i>thunks</i> bezeichnet.</li>
@@ -1425,9 +1425,9 @@ werden nicht ausgewertet.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd5e6feb" class="outline-3">
-<h3 id="orgd5e6feb">Benutzung von Delay und Force</h3>
-<div class="outline-text-3" id="text-orgd5e6feb">
+<div id="outline-container-org6458d04" class="outline-3">
+<h3 id="org6458d04">Benutzung von Delay und Force</h3>
+<div class="outline-text-3" id="text-org6458d04">
 <dl class="org-dl">
 <dt>Annahme:</dt><dd>Das Resultat irgendeiner aufwändigen Berechnung \(b\) wird
 als Argument einer anderen Funktion benötigt.  Abhängig
@@ -1446,9 +1446,9 @@ dies aber nur genau einmal. Der berechnete Wert wird
 </dl>
 </div>
 
-<div id="outline-container-org77756ff" class="outline-4">
-<h4 id="org77756ff">Implementierung von Delay und Force in Clojure</h4>
-<div class="outline-text-4" id="text-org77756ff">
+<div id="outline-container-org5f17549" class="outline-4">
+<h4 id="org5f17549">Implementierung von Delay und Force in Clojure</h4>
+<div class="outline-text-4" id="text-org5f17549">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-delay</span>
   <span style="color: #7388D6;">(</span><span style="color: #0000FF;">fn</span> <span style="color: #909183;">[</span>f<span style="color: #909183;">]</span>
@@ -1464,9 +1464,9 @@ dies aber nur genau einmal. Der berechnete Wert wird
 </div>
 </div>
 
-<div id="outline-container-orge16b6a0" class="outline-5">
-<h5 id="orge16b6a0">Erläuterungen</h5>
-<div class="outline-text-5" id="text-orge16b6a0">
+<div id="outline-container-org5e92af1" class="outline-5">
+<h5 id="org5e92af1">Erläuterungen</h5>
+<div class="outline-text-5" id="text-org5e92af1">
 <ul class="org-ul">
 <li>Der Funktion <code>my-delay</code> wird ein thunk <code>f</code> übergeben und als zweites
 Element eines Vektors einer mutierbaren Struktur (<code>atom</code>) abgelegt.</li>
@@ -1489,9 +1489,9 @@ oder von änderbaren Daten abhängt.</li>
 </div>
 </div>
 
-<div id="outline-container-orgfa40b15" class="outline-4">
-<h4 id="orgfa40b15">Anwendung von <code>my-delay</code> und <code>my-force</code></h4>
-<div class="outline-text-4" id="text-orgfa40b15">
+<div id="outline-container-orgcf5eb85" class="outline-4">
+<h4 id="orgcf5eb85">Anwendung von <code>my-delay</code> und <code>my-force</code></h4>
+<div class="outline-text-4" id="text-orgcf5eb85">
 <p>
 Als Beispiel für eine Funktion, die die Auswertung eines ihrer
 Argumente nur unter bestimmten Bedingungen benötigt, betrachten wir
@@ -1521,9 +1521,9 @@ Bei dieser Variante würde bei einem Aufruf
 die Fakultät unnötigerweise berechnet.
 </p>
 </div>
-<div id="outline-container-orge8c95bf" class="outline-5">
-<h5 id="orge8c95bf">Variante von <code>my-mult</code> mit <code>y</code> als thunk</h5>
-<div class="outline-text-5" id="text-orge8c95bf">
+<div id="outline-container-orge00871e" class="outline-5">
+<h5 id="orge00871e">Variante von <code>my-mult</code> mit <code>y</code> als thunk</h5>
+<div class="outline-text-5" id="text-orge00871e">
 <div class="small">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">def</span> <span style="color: #BA36A5;">my-mult</span>
@@ -1563,9 +1563,9 @@ zwischengespeichert.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf5a00bd" class="outline-5">
-<h5 id="orgf5a00bd">Weitere Variante von <code>my-mult</code></h5>
-<div class="outline-text-5" id="text-orgf5a00bd">
+<div id="outline-container-org3b041b7" class="outline-5">
+<h5 id="org3b041b7">Weitere Variante von <code>my-mult</code></h5>
+<div class="outline-text-5" id="text-org3b041b7">
 <p>
 Die folgende Version von <code>my-mult</code> erwartet anstelle eines beliebigen
 thunks ein Resultat von <code>my-delay</code> als zweites Argument. Damit wird
@@ -1585,17 +1585,17 @@ der Aufruf etwas komfortabler:
 </div>
 </div>
 </div>
-<div id="outline-container-org64a15ce" class="outline-3">
-<h3 id="org64a15ce">Streams</h3>
-<div class="outline-text-3" id="text-org64a15ce">
+<div id="outline-container-org0f566a6" class="outline-3">
+<h3 id="org0f566a6">Streams</h3>
+<div class="outline-text-3" id="text-org0f566a6">
 <p>
 siehe <a href="./Aufgaben/aufgaben.html#aufgabenstreams">Aufgaben zu Streams</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org21cc5fa" class="outline-3">
-<h3 id="org21cc5fa">Exkurs: Lazy sequences in Clojure</h3>
-<div class="outline-text-3" id="text-org21cc5fa">
+<div id="outline-container-orgc58be05" class="outline-3">
+<h3 id="orgc58be05">Exkurs: Lazy sequences in Clojure</h3>
+<div class="outline-text-3" id="text-orgc58be05">
 <ul class="org-ul">
 <li>Clojure ist wie Racket und auch ML eine Sprache mit strikter
 Auswertungsstrategie.</li>
@@ -1606,9 +1606,9 @@ so genannter <i>lazy sequences</i>.</li>
 <li>Dies ermöglicht das Arbeiten mit unbegrenzten Sequenzen.</li>
 </ul>
 </div>
-<div id="outline-container-org3374e72" class="outline-4">
-<h4 id="org3374e72">Arbeiten mit unbegrenzten Listen</h4>
-<div class="outline-text-4" id="text-org3374e72">
+<div id="outline-container-org469b02f" class="outline-4">
+<h4 id="org469b02f">Arbeiten mit unbegrenzten Listen</h4>
+<div class="outline-text-4" id="text-org469b02f">
 <ul class="org-ul">
 <li><p>
 Erzeuge die ersten n Elemente einer unendlich langen Liste von
@@ -1690,9 +1690,9 @@ weitere Beispiele:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6ae7b73" class="outline-4">
-<h4 id="org6ae7b73">Funktionen höherer Ordnung und lazy sequences</h4>
-<div class="outline-text-4" id="text-org6ae7b73">
+<div id="outline-container-org7002648" class="outline-4">
+<h4 id="org7002648">Funktionen höherer Ordnung und lazy sequences</h4>
+<div class="outline-text-4" id="text-org7002648">
 <ul class="org-ul">
 <li><p>
 Die klassischen Funktionen höherer Ordnung erzeugen lazy sequences:
@@ -1782,13 +1782,13 @@ Die Ausführung der Seiteneffekte kann mit <code>doall</code> erzwungen werden:
 </div>
 </div>
 </div>
-<div id="outline-container-orgc40ddc7" class="outline-2">
-<h2 id="orgc40ddc7">Funktionale Datenstrukturen</h2>
-<div class="outline-text-2" id="text-orgc40ddc7">
+<div id="outline-container-org9134472" class="outline-2">
+<h2 id="org9134472">Funktionale Datenstrukturen</h2>
+<div class="outline-text-2" id="text-org9134472">
 </div>
-<div id="outline-container-orgc6a3f2b" class="outline-3">
-<h3 id="orgc6a3f2b">Imperative Datenstrukturen</h3>
-<div class="outline-text-3" id="text-orgc6a3f2b">
+<div id="outline-container-org99123ec" class="outline-3">
+<h3 id="org99123ec">Imperative Datenstrukturen</h3>
+<div class="outline-text-3" id="text-org99123ec">
 <ul class="org-ul">
 <li>Änderungen an <i>imperativen Datenstrukturen</i> basieren auf dem Prinzip
 der Mutation.</li>
@@ -1843,9 +1843,9 @@ Ausgabe in der Shell
 </ul>
 </div>
 </div>
-<div id="outline-container-org54d9361" class="outline-3">
-<h3 id="org54d9361">Funktionale Datenstrukturen</h3>
-<div class="outline-text-3" id="text-org54d9361">
+<div id="outline-container-orgac38ab5" class="outline-3">
+<h3 id="orgac38ab5">Funktionale Datenstrukturen</h3>
+<div class="outline-text-3" id="text-orgac38ab5">
 <ul class="org-ul">
 <li>Funktionale Datenstrukturen sind nicht änderbar.</li>
 <li><p>
@@ -1871,12 +1871,12 @@ Beispiel in Clojure
 <li>Welche Frage drängt sich hier auf?</li>
 </ul>
 </div>
-<div id="outline-container-orgdd376fd" class="outline-4">
-<h4 id="orgdd376fd">Effiziente Implementierung</h4>
-<div class="outline-text-4" id="text-orgdd376fd">
+<div id="outline-container-orgfe010cc" class="outline-4">
+<h4 id="orgfe010cc">Effiziente Implementierung</h4>
+<div class="outline-text-4" id="text-orgfe010cc">
 <ul class="org-ul">
 <li>Ideen basieren auf Okasakis Buch <i>Purely Functional Data Structures</i>
-[<a class="org-ref-reference" href="#/slide-bibliography">[Okasaki1999]</a>]</li>
+<a class="org-ref-reference" href="#/slide-bibliography">[Okasaki1999]</a></li>
 <li>Jede Operation, die den Wert einer Datenstruktur ändert, erzeugt ein
 neues Exemplar von ihr.</li>
 <li>Da nach der Ausführung von Änderungsoperationen, die vorangegangen
@@ -1892,9 +1892,9 @@ stellen.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org328993b" class="outline-4">
-<h4 id="org328993b">Exemplarische Darstellung für Vektoren in Clojure</h4>
-<div class="outline-text-4" id="text-org328993b">
+<div id="outline-container-org7447c0c" class="outline-4">
+<h4 id="org7447c0c">Exemplarische Darstellung für Vektoren in Clojure</h4>
+<div class="outline-text-4" id="text-org7447c0c">
 <ul class="org-ul">
 <li>Verwendet werden Strukturen, die Binärbäumen ähneln.</li>
 <li>Die internen Knoten enthalten keine Daten, sondern nur Verweise auf
@@ -1928,9 +1928,9 @@ bis 8.</li>
 werden Pfadkopien eingesetzt.</li>
 </ul>
 </div>
-<div id="outline-container-orgc160d3d" class="outline-5">
-<h5 id="orgc160d3d">Die Änderungsoperation</h5>
-<div class="outline-text-5" id="text-orgc160d3d">
+<div id="outline-container-org1e8f1cd" class="outline-5">
+<h5 id="org1e8f1cd">Die Änderungsoperation</h5>
+<div class="outline-text-5" id="text-org1e8f1cd">
 <ul class="org-ul">
 <li>Um ein Vektorelement zu ändern, verfolgt man den Pfad bis zu dem
 Element, das geändert werden soll.</li>
@@ -1966,9 +1966,9 @@ Beispiel:
 </ul>
 </div>
 </div>
-<div id="outline-container-org5f6adfe" class="outline-5">
-<h5 id="org5f6adfe">Anhängen eines Elements</h5>
-<div class="outline-text-5" id="text-org5f6adfe">
+<div id="outline-container-org2906f4b" class="outline-5">
+<h5 id="org2906f4b">Anhängen eines Elements</h5>
+<div class="outline-text-5" id="text-org2906f4b">
 <ul class="org-ul">
 <li>Drei Fälle sind zu unterscheiden:
 <ol class="org-ol">
@@ -2051,24 +2051,24 @@ wieder rosa dargestellt.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbbbac89" class="outline-5">
-<h5 id="orgbbbac89">Entfernen von Elementen</h5>
-<div class="outline-text-5" id="text-orgbbbac89">
+<div id="outline-container-orgda200b5" class="outline-5">
+<h5 id="orgda200b5">Entfernen von Elementen</h5>
+<div class="outline-text-5" id="text-orgda200b5">
 <ul class="org-ul">
 <li>Hier sind ähnliche Überlegungen wie beim Hinzufügen von Elementen
 anzustellen.</li>
 <li>Die gezeigten Beispiel decken nur einen kleinen Bereich des Themas
 <i>funktionale Datenstrukturen</i> ab.</li>
-<li>Weitere Beispiel in <a href="https://hypirion.com/musings/understanding-persistent-vector-pt-1">Polymatheia</a>.</li>
+<li>Weitere Beispiele in <a href="https://hypirion.com/musings/understanding-persistent-vector-pt-1">Polymatheia</a>.</li>
 <li>Umfassende Darstellung in <a class="org-ref-reference" href="#/slide-bibliography">[Okasaki1999]</a>.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org2eb4517" class="outline-3">
-<h3 id="org2eb4517">Effizeinzbetrachtung</h3>
-<div class="outline-text-3" id="text-org2eb4517">
+<div id="outline-container-org1470626" class="outline-3">
+<h3 id="org1470626">Effizeinzbetrachtung</h3>
+<div class="outline-text-3" id="text-org1470626">
 <ul class="org-ul">
 <li>Die geschilderten Operationen haben für imperative Datenstrukturen
 die Laufzeitkomplexität \(O(1)\).</li>
@@ -2082,7 +2082,7 @@ nicht größer als 6.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org3c8347c" class="outline-2">
+<div id="outline-container-org1c4d638" class="outline-2">
 <h2 id="bibliography">Literaturverzeichnis</h2>
 <div class="outline-text-2" id="text-bibliography">
 <ul class='org-ref-bib'><li><a id="McCarthy1960">[McCarthy1960]</a> <a name="McCarthy1960"></a>McCarthy, Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I, <i>Commun. ACM</i>, <b>3(4)</b>, 184-195 (1960). <a href="http://doi.acm.org/10.1145/367177.367199">link</a>. <a href="http://dx.doi.org/10.1145/367177.367199">doi</a>.</li>
@@ -2094,7 +2094,7 @@ nicht größer als 6.</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-11-18 Mon 17:08</p>
+<p class="date">Created: 2019-11-24 Sun 20:42</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
