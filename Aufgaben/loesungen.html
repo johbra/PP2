@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-11-13 Wed 00:34 -->
+<!-- 2019-11-26 Tue 22:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ausgewählte Lösungen zu den Aufgaben</title>
@@ -259,12 +259,12 @@ for the JavaScript code in this tag.
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
 
-<div id="outline-container-orgeb0d5c3" class="outline-2">
-<h2 id="orgeb0d5c3"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
+<div id="outline-container-org743eaa1" class="outline-2">
+<h2 id="org743eaa1"><span class="section-number-2">1</span> Teil 1 (5. Semester)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgb0c9917" class="outline-3">
-<h3 id="orgb0c9917"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
+<div id="outline-container-org55301c1" class="outline-3">
+<h3 id="org55301c1"><span class="section-number-3">1.1</span> Aufgabe (SEND-MORE-MONEY)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Lösen Sie das SEND-MORE-MONEY-Problem aus der Vorlesung 
@@ -274,8 +274,8 @@ Beachten Sie Nebenbedingungen.
 </div>
 </div>
 
-<div id="outline-container-orga7c829a" class="outline-3">
-<h3 id="orga7c829a"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
+<div id="outline-container-org9a0d8f2" class="outline-3">
+<h3 id="org9a0d8f2"><span class="section-number-3">1.2</span> Aufgabe (Beweis Pkw-Motorräder-Problem)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Führen Sie für das Pkw-Motorräder-Problem aus der <a href="../Vorlesung/PP2-1-Einstieg.html#aufgabePkw">Vorlesung</a> den dort
@@ -284,8 +284,8 @@ verlangten Beweis!
 </div>
 </div>
 
-<div id="outline-container-orga12095f" class="outline-3">
-<h3 id="orga12095f"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
+<div id="outline-container-org38617d7" class="outline-3">
+<h3 id="org38617d7"><span class="section-number-3">1.3</span> Aufgabe (Einstieg in SML)</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li><p>
@@ -430,11 +430,320 @@ vorkommender Monat keinen Einfluss auf das Resultat hat.</li>
 </ol>
 </div>
 </div>
+
+<div id="outline-container-org5fef9ba" class="outline-3">
+<h3 id="aufgabemustervergleich"><span class="section-number-3">1.4</span> Aufgabe (Mustervergleich)</h3>
+<div class="outline-text-3" id="text-aufgabemustervergleich">
+<ol class="org-ol">
+<li><p>
+Gegeben sei die folgende Datendefintion für <b>arithmetische Ausdrücke</b>,
+bestehend aus <i>Konstanten</i>, <i>Negationen</i>, <i>Additionen</i> und <i>Multiplikationen</i>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">   <span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">exp</span> = Constant <span style="color: #0000FF;">of</span> int
+                | Negate <span style="color: #0000FF;">of</span> exp
+                | Add <span style="color: #0000FF;">of</span> exp * exp
+                | Multiply <span style="color: #0000FF;">of</span> exp * exp
+</pre>
+</div>
+<p>
+Durch diese rekursive Datendefintion werden Bäume definiert, deren
+Blätter ganze Zahlen und deren interne Knoten entweder Negationen mit
+einem Kindknoten oder Additionen bzw. Multiplikationen mit je zwei
+Kindknoten sind.
+</p>
+
+<p>
+Die folgenden SML-Funktionen akzeptieren alle einen Wert vom Typ <code>exp</code>
+als Argument.
+</p>
+
+<ol class="org-ol">
+<li><p>
+Schreiben Sie eine SML-Funktion <code>eval</code>, die den ganzzahligen Wert
+des Arguments berechnet.
+</p>
+
+<p>
+Z.&nbsp;B. liefert der Aufruf
+</p>
+<pre class="example">
+eval (Add (Constant 19, Negate (Constant 4)))
+</pre>
+
+<p>
+den Wert 15.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">eval</span> e =
+          <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+              Constant i =&gt; i
+            | Negate e1  =&gt; ~ <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span>
+            | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span> + <span style="color: #707183;">(</span>eval e2<span style="color: #707183;">)</span>
+            | Multiply<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>eval e1<span style="color: #707183;">)</span> * <span style="color: #707183;">(</span>eval e2<span style="color: #707183;">)</span>
+</pre>
+</div></li>
+<li><p>
+Schreiben Sie eine SML-Funktion <code>list_of_constants</code>, die eine Liste
+mit allen Konstanten des Ausdrucks liefert.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">list_of_constants</span> e =
+              <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+                  Constant i =&gt;  <span style="color: #707183;">[</span>i<span style="color: #707183;">]</span>
+                | Negate e =&gt;  <span style="color: #707183;">(</span>list_of_constants e<span style="color: #707183;">)</span> 
+                | Add <span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>list_of_constants e1<span style="color: #707183;">)</span> @ <span style="color: #707183;">(</span>list_of_constants e2<span style="color: #707183;">)</span>
+                | Multiply <span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; <span style="color: #707183;">(</span>list_of_constants e1<span style="color: #707183;">)</span> @ <span style="color: #707183;">(</span>list_of_constants e2<span style="color: #707183;">)</span> 
+</pre>
+</div></li>
+<li><p>
+Schreiben Sie eine SML-Funktion <code>largest_constant</code>, die die größte
+Konstante des Ausdrucks ermittelt.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">largest_constant</span> e =
+          <span style="color: #0000FF;">let</span> <span style="color: #0000FF;">fun</span> <span style="color: #006699;">max</span> <span style="color: #707183;">(</span>xs : int list<span style="color: #707183;">)</span> =
+                  <span style="color: #0000FF;">case</span> xs <span style="color: #0000FF;">of</span>
+                      x::<span style="color: #707183;">[]</span> =&gt; x 
+                    | x::xs' =&gt; <span style="color: #0000FF;">let</span> <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">tl_max</span> = max<span style="color: #707183;">(</span>xs'<span style="color: #707183;">)</span>
+                                <span style="color: #0000FF;">in</span> <span style="color: #0000FF;">if</span> x &gt; tl_max <span style="color: #0000FF;">then</span> x <span style="color: #0000FF;">else</span> tl_max
+                                <span style="color: #0000FF;">end</span>
+          <span style="color: #0000FF;">in</span>
+              max <span style="color: #707183;">(</span>list_of_constants e<span style="color: #707183;">)</span>
+          <span style="color: #0000FF;">end</span>
+</pre>
+</div></li>
+<li><p>
+Schreiben Sie eine SML-Funktion <code>number_of_adds</code>, die Anzahl der
+Additionen im Ausdruck ermittelt.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">      <span style="color: #0000FF;">fun</span> <span style="color: #006699;">number_of_adds</span> e =
+         <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+              Constant i =&gt; 0
+            | Negate e1 =&gt; number_of_adds e1
+            | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span>  =&gt; 1 + number_of_adds e1 + number_of_adds e2
+            | Multiply<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; number_of_adds e1 + number_of_adds e2
+</pre>
+</div></li>
+</ol></li>
+<li>Funktionen für ein <b>frei erfundenes Kartenspiel</b> (Solitär)
+vgl. <a href="AufgabePV.pdf">Prüfungsvorleistung</a></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org373593c" class="outline-3">
+<h3 id="org373593c"><span class="section-number-3">1.5</span> Aufgabe (Destructuring in Clojure)</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Überlegen Sie, wie Kreise, die durch
+</p>
+<ul class="org-ul">
+<li>die Koordinaten des Mittelpunkts und</li>
+<li>den Radius</li>
+</ul>
+<p>
+und die Punkte durch Clojure-Maps dargestellt werden können.
+</p>
+
+<p>
+Schreiben Sie anschließend eine Funktion, die prüft, ob ein Punkt
+innerhalb eines Kreises liegt. Machen Sie dabei für die Argumente
+der Funktion (sowie etwaiger Hilfsfunktionen) von den Möglichkeiten
+des Destructurings Gebrauch.
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">ns</span> <span style="color: #6434A3;">circle</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">use</span> 'clojure.test<span style="color: #707183;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Erzeugung von Hashmaps f&#252;r Punkte und Kreise</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">make-point</span> <span style="color: #7388D6;">[</span>x y<span style="color: #7388D6;">]</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:x</span> x <span style="color: #D0372D;">:y</span> y<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">make-circle</span> <span style="color: #7388D6;">[</span>center radius<span style="color: #7388D6;">]</span> <span style="color: #7388D6;">{</span><span style="color: #D0372D;">:center</span> center <span style="color: #D0372D;">:radius</span> radius<span style="color: #7388D6;">}</span><span style="color: #707183;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">berechnet den Abstand zwischen zwei &#252;bergebenen Punkten im Zweidimensionalen</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">point-distance</span>
+  <span style="color: #7388D6;">[</span><span style="color: #909183;">{</span>x1 <span style="color: #D0372D;">:x</span> y1 <span style="color: #D0372D;">:y</span><span style="color: #909183;">}</span> <span style="color: #909183;">{</span>x2 <span style="color: #D0372D;">:x</span> y2 <span style="color: #D0372D;">:y</span><span style="color: #909183;">}</span><span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span><span style="color: #6434A3;">Math</span>/sqrt <span style="color: #909183;">(</span>+ <span style="color: #709870;">(</span><span style="color: #6434A3;">Math</span>/pow <span style="color: #907373;">(</span><span style="color: #6434A3;">Math</span>/abs <span style="color: #6276BA;">(</span>- x1 x2<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span> 2<span style="color: #709870;">)</span>
+                <span style="color: #709870;">(</span><span style="color: #6434A3;">Math</span>/pow <span style="color: #907373;">(</span><span style="color: #6434A3;">Math</span>/abs <span style="color: #6276BA;">(</span>- y1 y2<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span> 2<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">pr&#252;ft, ob ein Punkt innerhalb eines Kreises liegt, dabei werden der Kreis und</span>
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">der Punkt &#252;bergeben</span>
+<span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">in-circle?</span>
+  <span style="color: #7388D6;">[</span><span style="color: #909183;">{</span>center <span style="color: #D0372D;">:center</span> radius <span style="color: #D0372D;">:radius</span><span style="color: #909183;">}</span> point<span style="color: #7388D6;">]</span>
+  <span style="color: #7388D6;">(</span>&lt;= <span style="color: #909183;">(</span>point-distance center point<span style="color: #909183;">)</span> radius<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
+<span style="color: #707183;">(</span><span style="color: #006FE0;">deftest</span> <span style="color: #006699;">circle-test</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">is</span> <span style="color: #909183;">(</span>= <span style="color: #709870;">(</span>point-distance <span style="color: #907373;">(</span>make-point 1 1<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>make-point 1 2<span style="color: #907373;">)</span><span style="color: #709870;">)</span> 1.0<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">is</span> <span style="color: #909183;">(</span>= <span style="color: #709870;">(</span>point-distance <span style="color: #907373;">(</span>make-point 7 2<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>make-point 2 2<span style="color: #907373;">)</span><span style="color: #709870;">)</span> 5.0<span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">is</span> <span style="color: #909183;">(</span><span style="color: #0000FF;">let</span> <span style="color: #709870;">[</span>d <span style="color: #907373;">(</span>point-distance <span style="color: #6276BA;">(</span>make-point 5 5<span style="color: #6276BA;">)</span> <span style="color: #6276BA;">(</span>make-point 2 4<span style="color: #6276BA;">)</span><span style="color: #907373;">)</span><span style="color: #709870;">]</span>
+        <span style="color: #709870;">(</span><span style="color: #0000FF;">and</span> <span style="color: #907373;">(</span>&gt; d 3.16<span style="color: #907373;">)</span> <span style="color: #907373;">(</span>&lt; d 3.17<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">is</span> <span style="color: #909183;">(</span>in-circle? <span style="color: #709870;">(</span>make-circle <span style="color: #907373;">(</span>make-point 10 10<span style="color: #907373;">)</span> 2<span style="color: #709870;">)</span>
+                  <span style="color: #709870;">(</span>make-point 10 9<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">is</span> <span style="color: #909183;">(</span><span style="color: #006FE0;">not</span> <span style="color: #709870;">(</span>in-circle? <span style="color: #907373;">(</span>make-circle <span style="color: #6276BA;">(</span>make-point 7 3<span style="color: #6276BA;">)</span> 5<span style="color: #907373;">)</span>
+                       <span style="color: #907373;">(</span>make-point 2 2<span style="color: #907373;">)</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span>
+  <span style="color: #7388D6;">(</span><span style="color: #006FE0;">is</span> <span style="color: #909183;">(</span>in-circle? <span style="color: #709870;">(</span>make-circle <span style="color: #907373;">(</span>make-point 9 2<span style="color: #907373;">)</span> 7<span style="color: #709870;">)</span>
+                  <span style="color: #709870;">(</span>make-point 8 4<span style="color: #709870;">)</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #707183;">(</span><span style="color: #006FE0;">run-tests</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org60c39c3" class="outline-3">
+<h3 id="org60c39c3"><span class="section-number-3">1.6</span> Aufgabe (Anwendung von FHO auf eigene Datenstrukturen)</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Schreiben Sie für den Datentyp <code>exp</code> (vgl. <a href="#aufgabemustervergleich">Aufgabe (Mustervergleich)</a>)
+eine Funktion <code>all_odd</code>, die prüft, ob alle Konstanten eines
+Ausdrucks ungerade sind.
+</p>
+
+<p>
+Gehen Sie wie folgt vor:
+</p>
+<ul class="org-ul">
+<li>Schreiben Sie eine Funktion höherer Ordnung <code>true_for_all_constants</code>, die ein
+Prädikat (Funktion mit booleschem Resultat) <code>p</code> und einen Ausdruck
+<code>e</code> vom Typ <code>exp</code> als Argumente akzeptiert, und als Resultat 
+genau dann <code>true</code> liefert, wenn die Anwendung von <code>p</code> auf alle
+Konstanten von <code>e</code> <code>true</code> liefert.</li>
+<li>Schreiben Sie dann die Funktion <code>all_odd</code> unter Verwendung von
+<code>true_for_all_constants</code>.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sml"><span style="color: #0000FF;">datatype</span> <span style="font-weight: bold;">exp</span> = Constant <span style="color: #0000FF;">of</span> int | Negate <span style="color: #0000FF;">of</span> exp | Add <span style="color: #0000FF;">of</span> exp * exp | Multiply <span style="color: #0000FF;">of</span> exp * exp
+<span style="color: #0000FF;">fun</span> <span style="color: #006699;">is_odd</span> v =
+    <span style="color: #707183;">(</span>v mod 2 &lt;&gt; 0<span style="color: #707183;">)</span>
+<span style="color: #0000FF;">fun</span> true_of_all_constants<span style="color: #707183;">(</span>p,e<span style="color: #707183;">)</span> =
+    <span style="color: #0000FF;">case</span> e <span style="color: #0000FF;">of</span>
+        Constant i =&gt; p i
+      | Negate e1 =&gt; true_of_all_constants<span style="color: #707183;">(</span>p,e1<span style="color: #707183;">)</span>
+      | Add<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span>  =&gt; true_of_all_constants<span style="color: #707183;">(</span>p,e1<span style="color: #707183;">)</span> 
+                       <span style="color: #0000FF;">andalso</span> true_of_all_constants<span style="color: #707183;">(</span>p,e2<span style="color: #707183;">)</span>
+      | Multiply<span style="color: #707183;">(</span>e1,e2<span style="color: #707183;">)</span> =&gt; true_of_all_constants<span style="color: #707183;">(</span>p,e1<span style="color: #707183;">)</span> 
+                           <span style="color: #0000FF;">andalso</span> true_of_all_constants<span style="color: #707183;">(</span>p,e2<span style="color: #707183;">)</span>
+                                                                               
+<span style="color: #0000FF;">fun</span> <span style="color: #006699;">all_odd</span> e = true_of_all_constants<span style="color: #707183;">(</span>is_odd,e<span style="color: #707183;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3fd38e5" class="outline-3">
+<h3 id="org3fd38e5"><span class="section-number-3">1.7</span> Aufgabe (Curryfizierung, Entcurryfizierung, partielle Anwendung)</h3>
+<div class="outline-text-3" id="text-1-7">
+<ol class="org-ol">
+<li><p>
+Gelegentlich liegen die Argumente curryfizierter Funktionen nicht in
+der gewünschten Reihenfolge vor. Manchmal liegt eine
+curryfizierte Funktion vor, die man lieber mit Tupel aufrufen möchte,
+und umgekehrt.
+</p>
+
+<p>
+Machen Sie sich klar, wie die folgenden Funktionen mit diesen
+Problemen umgehen.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sml">   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">other_curry1</span> f = <span style="color: #0000FF;">fn</span> x =&gt; <span style="color: #0000FF;">fn</span> y =&gt; f y x
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">other_curry2</span> f x y = f y x
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">curry</span> f x y = f <span style="color: #707183;">(</span>x,y<span style="color: #707183;">)</span>
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">uncurry</span> f <span style="color: #707183;">(</span>x,y<span style="color: #707183;">)</span> = f x y
+</pre>
+</div>
+
+<p>
+Anmerkung: Wenn Sie die Typen dieser Funktionen betrachten
+</p>
+<pre class="example">
+   val other_curry1 = fn : ('a -&gt; 'b -&gt; 'c) -&gt; 'b -&gt; 'a -&gt; 'c
+   val other_curry2 = fn : ('a -&gt; 'b -&gt; 'c) -&gt; 'b -&gt; 'a -&gt; 'c
+   val curry = fn : ('a * 'b -&gt; 'c) -&gt; 'a -&gt; 'b -&gt; 'c
+   val uncurry = fn : ('a -&gt; 'b -&gt; 'c) -&gt; 'a * 'b -&gt; 'c
+</pre>
+<p>
+und darin <code>-&gt;</code> als Implikation und <code>*</code> als Konjunktion interpretieren,
+werden Sie feststellen, dass die Typen der Funktionen allesamt
+Tautologien sind.
+</p></li>
+<li><p>
+Welche Funktionen sind das Resultat der partiellen Anwendung der
+folgenden curryfizierten Funktionen:
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">plus</span> i j : int = i+j;
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">lesser</span> a b : real = <span style="color: #0000FF;">if</span> a&lt;b <span style="color: #0000FF;">then</span> a <span style="color: #0000FF;">else</span> b; 
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">pair</span> x y = <span style="color: #707183;">(</span>x,y<span style="color: #707183;">)</span>;
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">equals</span> x y = <span style="color: #707183;">(</span>x=y<span style="color: #707183;">)</span>; 
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>(plus i)</code> ist die Funktion, die <code>i</code> auf ihr Argument addiert.</li>
+<li><code>(lesser a)</code> ist eine „begrenzte“ Identitätsfunktion: das
+Resultat ist das Argument, solange es nicht größer als <code>a</code> ist.</li>
+<li><code>(pair x)</code> ist die Funktion, die <code>x</code> mit ihrem Argument zu einem
+Tupel (Paar) verbindet.</li>
+<li><code>(equals x)</code> ist die Funktion, die <code>x</code> erkennt: Sie liefert true,
+wenn sie auf x angewendet wird.</li>
+</ul></li>
+<li><p>
+Gibt es einen praktischen Unterschied zwischen den beiden
+Deklarationen der Funktion <code>f</code>. Die Funktion <code>g</code> und <code>h</code> seien
+gegeben.
+</p>
+<div class="org-src-container">
+<pre class="src src-sml">   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">f</span> x y = h <span style="color: #707183;">(</span>g x<span style="color: #707183;">)</span> y; 
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">f</span> x = h <span style="color: #707183;">(</span>g x<span style="color: #707183;">)</span>;
+</pre>
+</div>
+<p>
+Wenn <code>(f x)</code> auf viele verschiedene Werte von <code>y</code> angewendet wird,
+ist die zweite Variante effizienter. Durch Bindung von <code>(f x)</code> an
+eine Variable (z.&nbsp;B. <code>val e = f 3</code>) wird der Ausdruck 
+<code>h(g 3)</code> genau einmal ausgewertet. Der Ausdruck <code>e y</code> kann dann
+beliebig oft auswertet werden, ohne dass <code>h(g 3)</code> erneut auswertet
+wird.
+</p></li>
+<li><p>
+Schreiben Sie zunächst eine Funktion 
+</p>
+<pre class="example">
+ist_teilbar_durch = fn : int -&gt; int -&gt; bool
+</pre>
+
+<p>
+, die überprüft, ob ihr zweites Argument ohne Rest durch ihr
+Argument teilbar ist. 
+</p>
+
+<p>
+Benutzen Sie anschließend die Funktion <code>List.filter</code>, um eine Liste
+von ganzen Zahlen hinsichtlich ihrer Teilbarkeit durch eine
+bestimmte Zahl zu filtern. Füllen Sie den folgenden Lückentext so
+aus, dass die Ausdrücke <code>true</code> liefern:
+</p>
+<pre class="example">
+(List.filter ... [1,2,3,4,5,6,7,8,9]) = [3,6,9]
+(List.filter ... [1,2,3,4,5,6,7,8,9]) = [4,8]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-sml">   <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-style: italic;">pr&#252;ft, ob nd durch or ohne Rest teilbar ist </span><span style="color: #8D8D84;">*)</span>
+   <span style="color: #0000FF;">fun</span> <span style="color: #006699;">ist_teilbar_durch</span> or nd = <span style="color: #707183;">(</span>nd mod or<span style="color: #707183;">)</span> = 0
+
+   <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">l1</span> = <span style="color: #707183;">(</span>List.filter <span style="color: #7388D6;">(</span>ist_teilbar_durch 3<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">[</span>1,2,3,4,5,6,7,8,9<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span> = <span style="color: #707183;">[</span>3,6,9<span style="color: #707183;">]</span>
+   <span style="color: #0000FF;">val</span> <span style="color: #BA36A5;">l2</span> = <span style="color: #707183;">(</span>List.filter <span style="color: #7388D6;">(</span>ist_teilbar_durch 4<span style="color: #7388D6;">)</span> <span style="color: #7388D6;">[</span>1,2,3,4,5,6,7,8,9<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span> = <span style="color: #707183;">[</span>4,8<span style="color: #707183;">]</span>
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-11-13 Wed 00:34</p>
+<p class="date">Created: 2019-11-26 Tue 22:51</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
