@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2018-12-15 Sat 11:37 -->
+<!-- 2019-12-01 Sun 21:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Funktionale Konzepte in Java 8</title>
@@ -161,6 +161,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -197,7 +210,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -245,9 +258,9 @@ for the JavaScript code in this tag.
 <br />
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
-<div id="outline-container-orgb7ec201" class="outline-2">
-<h2 id="orgb7ec201">Ziele</h2>
-<div class="outline-text-2" id="text-orgb7ec201">
+<div id="outline-container-org04bd817" class="outline-2">
+<h2 id="org04bd817">Ziele</h2>
+<div class="outline-text-2" id="text-org04bd817">
 <ul class="org-ul">
 <li>Erkennen von Zusammenhängen zwischen verschiedenen
 Programmierparadigmen</li>
@@ -257,17 +270,17 @@ Programmierparadigmen</li>
 </div>
 
 
-<div id="outline-container-org511bc67" class="outline-2">
-<h2 id="org511bc67">Warum?</h2>
-<div class="outline-text-2" id="text-org511bc67">
+<div id="outline-container-orgf65896a" class="outline-2">
+<h2 id="orgf65896a">Warum?</h2>
+<div class="outline-text-2" id="text-orgf65896a">
 </div>
-<div id="outline-container-org0783be5" class="outline-3">
-<h3 id="org0783be5">Einstiegsbeispiele</h3>
-<div class="outline-text-3" id="text-org0783be5">
+<div id="outline-container-org667d468" class="outline-3">
+<h3 id="org667d468">Einstiegsbeispiele</h3>
+<div class="outline-text-3" id="text-org667d468">
 </div>
-<div id="outline-container-org115728f" class="outline-4">
-<h4 id="org115728f">Finde Hamburg</h4>
-<div class="outline-text-4" id="text-org115728f">
+<div id="outline-container-orga6cf1ad" class="outline-4">
+<h4 id="orga6cf1ad">Finde Hamburg</h4>
+<div class="outline-text-4" id="text-orga6cf1ad">
 <p>
 Statt einer imperativen Lösung
 </p>
@@ -298,9 +311,9 @@ besser
 </div>
 </div>
 </div>
-<div id="outline-container-orgd79bc4c" class="outline-4">
-<h4 id="orgd79bc4c">Aufgabe aus Teil 1:</h4>
-<div class="outline-text-4" id="text-orgd79bc4c">
+<div id="outline-container-orgecf5dd5" class="outline-4">
+<h4 id="orgecf5dd5">Aufgabe aus Teil 1:</h4>
+<div class="outline-text-4" id="text-orgecf5dd5">
 <p>
 Schreiben Sie Java-Code, der alle Preise aus einer Liste, größer
 als 20 sind, um 10% rabattiert und aufsummiert.
@@ -331,9 +344,9 @@ als 20 sind, um 10% rabattiert und aufsummiert.
 </div>
 </div>
 </div>
-<div id="outline-container-org1d4bf7a" class="outline-4">
-<h4 id="org1d4bf7a">Registrierung eines <i>event listeners</i> in <i>Swing</i></h4>
-<div class="outline-text-4" id="text-org1d4bf7a">
+<div id="outline-container-org51c700d" class="outline-4">
+<h4 id="org51c700d">Registrierung eines <i>event listeners</i> in <i>Swing</i></h4>
+<div class="outline-text-4" id="text-org51c700d">
 <ul class="org-ul">
 <li>Swing ist eine Java-Bibliothek für die Programmierung graphischer
 Benutzungsoberflächen.</li>
@@ -381,9 +394,9 @@ Abhilfe: Benutzung eines Lambda-Ausdrucks:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb022d88" class="outline-4">
-<h4 id="orgb022d88">Durchsetzung von Programmierregeln</h4>
-<div class="outline-text-4" id="text-orgb022d88">
+<div id="outline-container-org5e37c77" class="outline-4">
+<h4 id="org5e37c77">Durchsetzung von Programmierregeln</h4>
+<div class="outline-text-4" id="text-org5e37c77">
 <ul class="org-ul">
 <li>Datenbankzugriffe müssen in einem gegebenen Umfeld unter
 Einhaltung bestimmter Regeln programmiert werden; z.&nbsp;B. muss
@@ -418,29 +431,29 @@ bessere Variante:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1119a51" class="outline-4">
-<h4 id="org1119a51">Hinweise auf Literatur</h4>
-<div class="outline-text-4" id="text-org1119a51">
+<div id="outline-container-orgfe1fd1b" class="outline-4">
+<h4 id="orgfe1fd1b">Hinweise auf Literatur</h4>
+<div class="outline-text-4" id="text-orgfe1fd1b">
 <ul class="org-ul">
 <li>Java
 <ul class="org-ul">
-<li>Learning Java Functional Programming [<a class='org-ref-reference' href="#Reese2015">Reese2015</a>]</li>
-<li>Functional Programming in Java [<a class='org-ref-reference' href="#Subramaniam2014">Subramaniam2014</a>]</li>
+<li>Learning Java Functional Programming [<a class="org-ref-reference" href="#/slide-bibliography">[Reese2015]</a>]</li>
+<li>Functional Programming in Java [<a class="org-ref-reference" href="#/slide-bibliography">[Subramaniam2014]</a>]</li>
 </ul></li>
 <li>C#
 <ul class="org-ul">
-<li>Real-World Functional Programming: With Examples in F# and C# [<a class='org-ref-reference' href="#Petricek2010">Petricek2010</a>]</li>
+<li>Real-World Functional Programming: With Examples in F# and C# [<a class="org-ref-reference" href="#/slide-bibliography">[Petricek2010]</a>]</li>
 <li>Functional C#: Uncover the secrets of functional programming using
 C# and change the way you approach your applications forever
-[<a class='org-ref-reference' href="#Anggoro2016">Anggoro2016</a>]</li>
+[<a class="org-ref-reference" href="#/slide-bibliography">[Anggoro2016]</a>]</li>
 </ul></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org0f4a328" class="outline-3">
-<h3 id="org0f4a328">Erste Erkenntnisse</h3>
-<div class="outline-text-3" id="text-org0f4a328">
+<div id="outline-container-orgf5e9189" class="outline-3">
+<h3 id="orgf5e9189">Erste Erkenntnisse</h3>
+<div class="outline-text-3" id="text-orgf5e9189">
 <ul class="org-ul">
 <li>Vermeidung von expliziter Mutation: Mutation ist fehleranfällig und
 hinderlich für Parallelarbeit.<br />
@@ -473,13 +486,13 @@ werden.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org0674f1b" class="outline-2">
-<h2 id="org0674f1b">Sprachkonzepte</h2>
-<div class="outline-text-2" id="text-org0674f1b">
+<div id="outline-container-org20a852d" class="outline-2">
+<h2 id="org20a852d">Sprachkonzepte</h2>
+<div class="outline-text-2" id="text-org20a852d">
 </div>
-<div id="outline-container-org7a4d044" class="outline-3">
-<h3 id="org7a4d044">Lambda-Ausdrücke</h3>
-<div class="outline-text-3" id="text-org7a4d044">
+<div id="outline-container-orgfe85687" class="outline-3">
+<h3 id="orgfe85687">Lambda-Ausdrücke</h3>
+<div class="outline-text-3" id="text-orgfe85687">
 <ul class="org-ul">
 <li>einige Beispiele bereits gesehen</li>
 <li>Lambda-Ausdrücke sind 
@@ -491,9 +504,9 @@ werden.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgd9e3e5a" class="outline-4">
-<h4 id="orgd9e3e5a">Formen:</h4>
-<div class="outline-text-4" id="text-orgd9e3e5a">
+<div id="outline-container-org7a6fb01" class="outline-4">
+<h4 id="org7a6fb01">Formen:</h4>
+<div class="outline-text-4" id="text-org7a6fb01">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -538,18 +551,18 @@ werden.</li>
 </div>
 </div>
 
-<div id="outline-container-org85a649e" class="outline-4">
-<h4 id="org85a649e">Hinweise zur Benutzung</h4>
-<div class="outline-text-4" id="text-org85a649e">
+<div id="outline-container-org1ed6908" class="outline-4">
+<h4 id="org1ed6908">Hinweise zur Benutzung</h4>
+<div class="outline-text-4" id="text-org1ed6908">
 <p>
 siehe unten
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org878eada" class="outline-3">
-<h3 id="org878eada">Default-Methoden</h3>
-<div class="outline-text-3" id="text-org878eada">
+<div id="outline-container-org0b3dea5" class="outline-3">
+<h3 id="org0b3dea5">Default-Methoden</h3>
+<div class="outline-text-3" id="text-org0b3dea5">
 <ul class="org-ul">
 <li>Eine Default-Methode ist eine Interface-Methode mit Implementierung.</li>
 <li>kein innerer Zusammenhang zu Lambda-Ausdrücken</li>
@@ -557,9 +570,9 @@ siehe unten
 Default-Methoden zur Verfügung.</li>
 </ul>
 </div>
-<div id="outline-container-org24b60bd" class="outline-4">
-<h4 id="org24b60bd">simples Beispiel</h4>
-<div class="outline-text-4" id="text-org24b60bd">
+<div id="outline-container-org453551f" class="outline-4">
+<h4 id="org453551f">simples Beispiel</h4>
+<div class="outline-text-4" id="text-org453551f">
 <ul class="org-ul">
 <li><p>
 Definition von Default-Methoden:
@@ -604,9 +617,9 @@ ComputeImplcomputeImpl = <span style="color: #0000FF;">new</span> <span style="c
 </ul>
 </div>
 </div>
-<div id="outline-container-org621c02f" class="outline-4">
-<h4 id="org621c02f">Nutzen</h4>
-<div class="outline-text-4" id="text-org621c02f">
+<div id="outline-container-orgd641979" class="outline-4">
+<h4 id="orgd641979">Nutzen</h4>
+<div class="outline-text-4" id="text-orgd641979">
 <ul class="org-ul">
 <li>In Java 8 dürfen Interfaces statische Methoden und Default-Methoden besitzen.</li>
 <li>Hauptmotivation: Evolution von Interfaces; Interfaces aus der vor
@@ -629,9 +642,9 @@ list.forEach<span style="color: #707183;">(</span>f-&gt;System.out.println<span 
 </ul>
 </div>
 </div>
-<div id="outline-container-orge727c0b" class="outline-4">
-<h4 id="orge727c0b">Unterschied zu abstrakten Klassen</h4>
-<div class="outline-text-4" id="text-orge727c0b">
+<div id="outline-container-org226cf74" class="outline-4">
+<h4 id="org226cf74">Unterschied zu abstrakten Klassen</h4>
+<div class="outline-text-4" id="text-org226cf74">
 <ul class="org-ul">
 <li>Abstrakte Klassen können Exemplarvariablen besitzen, Interfaces nicht.</li>
 <li>Klassen können Verhalten (Default-Methoden) von mehreren Interfaces
@@ -642,9 +655,9 @@ bevorzugen, ist dank der Default-Methoden leichter zu befolgen.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org478dee3" class="outline-3">
-<h3 id="org478dee3">Funktionale Interfaces</h3>
-<div class="outline-text-3" id="text-org478dee3">
+<div id="outline-container-orga004597" class="outline-3">
+<h3 id="orga004597">Funktionale Interfaces</h3>
+<div class="outline-text-3" id="text-orga004597">
 <ul class="org-ul">
 <li>Ein funktionales Interface
 <ul class="org-ul">
@@ -656,9 +669,9 @@ bevorzugen, ist dank der Default-Methoden leichter zu befolgen.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org158bf1c" class="outline-4">
-<h4 id="org158bf1c">Beispiele vordefinierter funktionaler Interfaces</h4>
-<div class="outline-text-4" id="text-org158bf1c">
+<div id="outline-container-org46be120" class="outline-4">
+<h4 id="org46be120">Beispiele vordefinierter funktionaler Interfaces</h4>
+<div class="outline-text-4" id="text-org46be120">
 <dl class="org-dl">
 <dt><code>Consumer&lt;T&gt;</code></dt><dd><dl class="org-dl">
 <dt>Beschreibung</dt><dd>steht für eine Operation mit einem Parameter und
@@ -702,9 +715,9 @@ einem Resultat</dd>
 </div>
 </div>
 </div>
-<div id="outline-container-org172936c" class="outline-3">
-<h3 id="org172936c">Methoden- und Konstruktorverweise</h3>
-<div class="outline-text-3" id="text-org172936c">
+<div id="outline-container-orgb751a7b" class="outline-3">
+<h3 id="orgb751a7b">Methoden- und Konstruktorverweise</h3>
+<div class="outline-text-3" id="text-orgb751a7b">
 <ul class="org-ul">
 <li>&#x2026; eröffnen die Möglichkeit, an Stellen, wo Lambda-Ausdrücke
 erwartet werden, benannte Methoden oder Konstruktoren einzusetzen.</li>
@@ -741,7 +754,7 @@ Zwei Methodenverweise
 </p>
 <div class="smaller">
 <div class="org-src-container">
-<pre class="src src-java">stream.map<span style="color: #707183;">(</span>Math::sin.forEach<span style="color: #7388D6;">(</span>System.out::println<span style="color: #7388D6;">)</span>;=    
+<pre class="src src-java">stream.map<span style="color: #707183;">(</span>Math::sin.forEach<span style="color: #7388D6;">(</span>System.out::println<span style="color: #7388D6;">)</span>;
 </pre>
 </div>
 
@@ -750,9 +763,9 @@ Zwei Methodenverweise
 </ul>
 </div>
 </div>
-<div id="outline-container-org6658931" class="outline-3">
-<h3 id="org6658931">Behälter</h3>
-<div class="outline-text-3" id="text-org6658931">
+<div id="outline-container-org65c005e" class="outline-3">
+<h3 id="org65c005e">Behälter</h3>
+<div class="outline-text-3" id="text-org65c005e">
 <ul class="org-ul">
 <li>Das bekannte <code>Collection</code>-Interface wurde um Methoden erweitert, die
 <code>Stream</code>-Objekte erzeugen:
@@ -796,13 +809,13 @@ werden:
 </div>
 </div>
 
-<div id="outline-container-orga7772bd" class="outline-2">
-<h2 id="orga7772bd">Zusammenspiel der Konzepte</h2>
-<div class="outline-text-2" id="text-orga7772bd">
+<div id="outline-container-org7ab4af7" class="outline-2">
+<h2 id="org7ab4af7">Zusammenspiel der Konzepte</h2>
+<div class="outline-text-2" id="text-org7ab4af7">
 </div>
-<div id="outline-container-orga4a6544" class="outline-3">
-<h3 id="orga4a6544">Evolution der Iteration</h3>
-<div class="outline-text-3" id="text-orga4a6544">
+<div id="outline-container-orgc389cd5" class="outline-3">
+<h3 id="orgc389cd5">Evolution der Iteration</h3>
+<div class="outline-text-3" id="text-orgc389cd5">
 <ul class="org-ul">
 <li>Die Mehrzahl aller Datenverarbeitungsprozesse beinhalten die
 Iteration über Behälter.</li>
@@ -879,9 +892,9 @@ durch einen Lambda-Ausdruck und ohne explizite Typangabe:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1368d89" class="outline-3">
-<h3 id="org1368d89">Transformation von Listen</h3>
-<div class="outline-text-3" id="text-org1368d89">
+<div id="outline-container-org9913265" class="outline-3">
+<h3 id="org9913265">Transformation von Listen</h3>
+<div class="outline-text-3" id="text-org9913265">
 <ul class="org-ul">
 <li>Angenommen, die Elemente der Namensliste sollen in Großbuchstaben
 verwandelt werden.</li>
@@ -930,9 +943,9 @@ studierende.stream<span style="color: #707183;">()</span>
 </ul>
 </div>
 </div>
-<div id="outline-container-org79afb3d" class="outline-3">
-<h3 id="org79afb3d">Weiterverarbeitung von Streams als Listen</h3>
-<div class="outline-text-3" id="text-org79afb3d">
+<div id="outline-container-org567dacd" class="outline-3">
+<h3 id="org567dacd">Weiterverarbeitung von Streams als Listen</h3>
+<div class="outline-text-3" id="text-org567dacd">
 <ul class="org-ul">
 <li><p>
 Die Sequenz
@@ -966,9 +979,9 @@ Das ermöglicht z.&nbsp;B. folgende Ausgabe
 </ul>
 </div>
 </div>
-<div id="outline-container-org292e106" class="outline-3">
-<h3 id="org292e106">Wiederverwendung von Lambda-Ausdrücken</h3>
-<div class="outline-text-3" id="text-org292e106">
+<div id="outline-container-org3953599" class="outline-3">
+<h3 id="org3953599">Wiederverwendung von Lambda-Ausdrücken</h3>
+<div class="outline-text-3" id="text-org3953599">
 <ul class="org-ul">
 <li><p>
 Ein Lambda-Ausdruck kann an eine Variable vom Typ <code>Predicate&lt;T&gt;</code>
@@ -1070,9 +1083,9 @@ Benutzung der Funktion <code>startsWithLetter</code>
 </div>
 </div>
 
-<div id="outline-container-org2fc78d2" class="outline-2">
-<h2 id="org2fc78d2">Flüssige Schnittstellen mit Lambda-Ausdrücken</h2>
-<div class="outline-text-2" id="text-org2fc78d2">
+<div id="outline-container-org0e25e38" class="outline-2">
+<h2 id="org0e25e38">Flüssige Schnittstellen mit Lambda-Ausdrücken</h2>
+<div class="outline-text-2" id="text-org0e25e38">
 <ul class="org-ul">
 <li><i>Flüssige Schnittstelle</i> ist die Übersetzung des englischen
 Fachbegriffs <i>fluent interface</i>.</li>
@@ -1081,11 +1094,11 @@ Fachbegriffs <i>fluent interface</i>.</li>
 Code führt.</li>
 </ul>
 </div>
-<div id="outline-container-org258cc4a" class="outline-3">
-<h3 id="org258cc4a">Beispiel</h3>
-<div class="outline-text-3" id="text-org258cc4a">
+<div id="outline-container-org937a973" class="outline-3">
+<h3 id="org937a973">Beispiel</h3>
+<div class="outline-text-3" id="text-org937a973">
 <p>
-Das hier gezeigte Anwendungsbeispiel ist <a class='org-ref-reference' href="#Subramaniam2014">Subramaniam2014</a>
+Das hier gezeigte Anwendungsbeispiel ist <a class="org-ref-reference" href="#/slide-bibliography">[Subramaniam2014]</a>
 entnommen.
 </p>
 <ul class="org-ul">
@@ -1188,9 +1201,9 @@ Diese erzeugt ein Exemplar und übergibt es an den Block:
 </div>
 </div>
 </div>
-<div id="outline-container-org4c5fdce" class="outline-2">
-<h2 id="org4c5fdce">Fazit</h2>
-<div class="outline-text-2" id="text-org4c5fdce">
+<div id="outline-container-org72376fb" class="outline-2">
+<h2 id="org72376fb">Fazit</h2>
+<div class="outline-text-2" id="text-org72376fb">
 <ul class="org-ul">
 <li>Nicht alles verwerfen, was Sie über Objektorientierung gelernt
 haben, aber nutzen Sie die funktionalen Möglichkeiten von Java 8:
@@ -1205,18 +1218,20 @@ haben, aber nutzen Sie die funktionalen Möglichkeiten von Java 8:
 </div>
 </div>
 
-<div id="outline-container-org492576a" class="outline-2">
-<h2 id="org492576a"><h2>Literaturverzeichnis</h2>
-<ul class='org-ref-bib'><li><a id="Reese2015">[Reese2015]</a> <a name="Reese2015"></a>Richard M Reese, Learning Java Functional Programming, Packt Publishing (2015).</li>
-<li><a id="Subramaniam2014">[Subramaniam2014]</a> <a name="Subramaniam2014"></a>Venkat Subramaniam, Functional Programming in Java: Harnessing the Power Of Java 8 Lambda Expressions, Pragmatic Bookshelf (2014).</li>
+<div id="outline-container-orgbb9eb56" class="outline-2">
+<h2 id="bibliography">Literaturverzeichnis</h2>
+<div class="outline-text-2" id="text-bibliography">
+<ul class='org-ref-bib'><li><a id="Anggoro2016">[Anggoro2016]</a> <a name="Anggoro2016"></a>Wisnu Anggoro, Functional C#: Uncover the secrets of functional programming using C# and change the way you approach your applications forever, Packt Publishing (2016).</li>
 <li><a id="Petricek2010">[Petricek2010]</a> <a name="Petricek2010"></a>Tomas Petricek & Jon Skeet, Real-World Functional Programming: With Examples in F# and C#, Manning Publications (2010).</li>
-<li><a id="Anggoro2016">[Anggoro2016]</a> <a name="Anggoro2016"></a>Wisnu Anggoro, Functional C#: Uncover the secrets of functional programming using C# and change the way you approach your applications forever, Packt Publishing (2016).</li>
-</ul></h2>
+<li><a id="Reese2015">[Reese2015]</a> <a name="Reese2015"></a>Richard M Reese, Learning Java Functional Programming, Packt Publishing (2015).</li>
+<li><a id="Subramaniam2014">[Subramaniam2014]</a> <a name="Subramaniam2014"></a>Venkat Subramaniam, Functional Programming in Java: Harnessing the Power Of Java 8 Lambda Expressions, Pragmatic Bookshelf (2014).</li>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2018-12-15 Sat 11:37</p>
+<p class="date">Created: 2019-12-01 Sun 21:22</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
