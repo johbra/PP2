@@ -34,8 +34,8 @@
 </section>
 
 <section>
-<section id="slide-org4b29d8f">
-<h2 id="org4b29d8f">Ziele</h2>
+<section id="slide-org7a786e3">
+<h2 id="org7a786e3">Ziele</h2>
 <ul>
 <li>Zusammenhänge zwischen Logik- und Constraint-Programmierung verstehen</li>
 <li>Kennenlernen einer Alternative zu Prolog - miniKanren</li>
@@ -44,15 +44,15 @@
 </section>
 </section>
 <section>
-<section id="slide-org6657f28">
-<h2 id="org6657f28">Constraint Logic Programming (CLP)</h2>
+<section id="slide-org664a032">
+<h2 id="org664a032">Constraint Logic Programming (CLP)</h2>
 <ul>
 <li>wichtige Quelle: <a class="org-ref-reference" href="#/slide-bibliography">[Carro1998]</a></li>
 
 </ul>
 </section>
-<section id="slide-org04af74f">
-<h3 id="org04af74f">Vorbemerkungen</h3>
+<section id="slide-org52d93fc">
+<h3 id="org52d93fc">Vorbemerkungen</h3>
 <ul>
 <li>Traditionelle Logikprogrammierung kennt nur eine Art von Constraint:
 Logische Äquivalenz über Termen</li>
@@ -89,7 +89,7 @@ für den Benutzer, da die Sprache einen „eingebauten” Löser benutzt.</li>
 </ul>
 
 </section>
-<section>
+<section header="#555555">
 
 <ul>
 <li>Typische Anwendungsbereiche:
@@ -112,13 +112,13 @@ Finanzwesen, Verarbeitung raumbezogener Daten (Navigation), &#x2026;</li>
 </ul>
 
 </section>
-<section id="slide-org1629211">
-<h3 id="org1629211">Implementierung</h3>
-<div class="outline-text-3" id="text-org1629211">
+<section id="slide-org1d2a42c">
+<h3 id="org1d2a42c">Implementierung</h3>
+<div class="outline-text-3" id="text-org1d2a42c">
 </div>
 </section>
-<section id="slide-org9dbef01">
-<h4 id="org9dbef01">Sprachschnittstellen</h4>
+<section id="slide-org9fdfc98">
+<h4 id="org9fdfc98">Sprachschnittstellen</h4>
 <ul>
 <li>Benutzung einer Bibliothek, die Gleichungen, Variablen etc.
 implementiert, in einer Wirtssprache</li>
@@ -140,8 +140,8 @@ anderen in Beziehung gesetzt werden und unbestimmete Werte enthalten.</li>
 </p>
 </div>
 </section>
-<section id="slide-org2d051f5">
-<h4 id="org2d051f5">Anforderungen an CP-Sprachen</h4>
+<section id="slide-org1a3c39f">
+<h4 id="org1a3c39f">Anforderungen an CP-Sprachen</h4>
 <ul>
 <li>Es muss ein <i>Constraint-solver</i> zur Verfügung stehen, der Gleichungen
 löst bzw. ihre Unlösbarkeit mitteilt.</li>
@@ -152,13 +152,13 @@ Einschränkungen zu übermitteln und Lösungen entgegen zu nehmen.</li>
 </ul>
 
 </section>
-<section id="slide-orgd1b46c8">
-<h3 id="orgd1b46c8">Beispiel: Send more money</h3>
-<div class="outline-text-3" id="text-orgd1b46c8">
+<section id="slide-org4f1dc47">
+<h3 id="org4f1dc47">Beispiel: Send more money</h3>
+<div class="outline-text-3" id="text-org4f1dc47">
 </div>
 </section>
-<section id="slide-org4c7646a">
-<h4 id="org4c7646a">Mehr Geld bitte!</h4>
+<section id="slide-orgdc85597">
+<h4 id="orgdc85597">Mehr Geld bitte!</h4>
 <p>
 Sie senden einen Brief an Ihre Eltern mit dem Inhalt:
 </p>
@@ -181,8 +181,8 @@ erfüllt wird.
 </p>
 
 </section>
-<section id="slide-org78842b6">
-<h4 id="org78842b6">Lösungsansatz: „Rohe Gewalt“</h4>
+<section id="slide-org3aac2a9">
+<h4 id="org3aac2a9">Lösungsansatz: „Rohe Gewalt“</h4>
 <ul>
 <li>Alles durchprobieren!</li>
 <li>Man braucht 8 ineinander geschachtelte Schleifen.</li>
@@ -221,8 +221,8 @@ Ziffern können das Verfahren beschleunigen (s.&nbsp;u.).</li>
 </pre>
 </div>
 </section>
-<section id="slide-org2d2cc4f">
-<h3 id="org2d2cc4f">Lösungsansatz: Constraint Satisfaction</h3>
+<section id="slide-org7c4097d">
+<h3 id="org7c4097d">Lösungsansatz: Constraint Satisfaction</h3>
 <ul>
 <li>Einfaches Modell durch Spezifikation der folgenden Gleichung als Einschränkung:
 \[1000*S+100*E+10*N+D \]
@@ -239,8 +239,8 @@ geprüft werden kann.</li>
 
 </ul>
 </section>
-<section id="slide-orge7b18a4">
-<h5 id="orge7b18a4">Implementierung in Prolog &#x2026;</h5>
+<section id="slide-org71b60c5">
+<h5 id="org71b60c5">Implementierung in Prolog &#x2026;</h5>
 <p>
 &#x2026; unter Nutzung der <a href="http://www.swi-prolog.org/pldoc/man?section=clpfd">Constraint Logic Programming over Finite Domains Library</a>
 </p>
@@ -263,8 +263,8 @@ geprüft werden kann.</li>
 </div>
 
 </section>
-<section id="slide-orgbd5a57f">
-<h5 id="orgbd5a57f">Implementierung in Standard-Prolog</h5>
+<section id="slide-orgb9ea6e5">
+<h5 id="orgb9ea6e5">Implementierung in Standard-Prolog</h5>
 <div class="org-src-container">
 
 <pre  class="src src-prolog"><span style="color: #006699;">select</span>(<span style="color: #BA36A5;">X</span>, <span style="color: #0000FF;">[</span><span style="color: #BA36A5;">X</span><span style="color: #0000FF;">|</span><span style="color: #BA36A5;">R</span><span style="color: #0000FF;">]</span>, <span style="color: #BA36A5;">R</span>).
@@ -287,8 +287,8 @@ geprüft werden kann.</li>
 </pre>
 </div>
 </section>
-<section id="slide-orge82014d">
-<h4 id="orge82014d">Verfeinertes CSP-Modell</h4>
+<section id="slide-orgac71b88">
+<h4 id="orgac71b88">Verfeinertes CSP-Modell</h4>
 <ul>
 <li><p>
 Nutzung der Überträge der Addition für die Zerlegung der „großen“
@@ -321,8 +321,8 @@ ausgeschlossen.</li>
 
 </ul>
 </section>
-<section id="slide-org8451229">
-<h5 id="org8451229">Implementierung in Prolog &#x2026;</h5>
+<section id="slide-org7e57b2c">
+<h5 id="org7e57b2c">Implementierung in Prolog &#x2026;</h5>
 <p>
 &#x2026; unter Nutzung der <a href="http://www.swi-prolog.org/pldoc/man?section=clpfd">Constraint Logic Programming over Finite Domains Library</a>
 </p>
@@ -347,8 +347,8 @@ ausgeschlossen.</li>
 </div>
 
 </section>
-<section id="slide-orgd41dd36">
-<h4 id="orgd41dd36">Implementierung in C++ (ILOG Solver)</h4>
+<section id="slide-org8cb5850">
+<h4 id="org8cb5850">Implementierung in C++ (ILOG Solver)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-cpp"><span style="color: #808080;">#include</span> <span style="color: #707183;">&lt;</span><span style="color: #008000;">ilsolver/ctint.h</span><span style="color: #707183;">&gt;</span>
@@ -372,13 +372,13 @@ ausgeschlossen.</li>
 </section>
 </section>
 <section>
-<section id="slide-orgc77619e">
-<h2 id="orgc77619e">Exkurs: Die Prolog-Alternative miniKanren</h2>
-<div class="outline-text-2" id="text-orgc77619e">
+<section id="slide-orgc55a952">
+<h2 id="orgc55a952">Exkurs: Die Prolog-Alternative miniKanren</h2>
+<div class="outline-text-2" id="text-orgc55a952">
 </div>
 </section>
-<section id="slide-orgcab8a37">
-<h3 id="orgcab8a37">Grundlagen</h3>
+<section id="slide-orga168f33">
+<h3 id="orga168f33">Grundlagen</h3>
 <ul>
 <li><a href="http://minikanren.org">miniKanren</a> ist eine domänenspezifische Sprache (DSL) für die
 Einbettung der Logikprogrammierung in verschiedene <a href="http://minikanren.org/#implementations">Wirtssprachen</a>.</li>
@@ -390,13 +390,13 @@ Programming.</li>
 
 </ul>
 </section>
-<section id="slide-org96916f3">
-<h3 id="org96916f3">Einführung</h3>
-<div class="outline-text-3" id="text-org96916f3">
+<section id="slide-orga9f5025">
+<h3 id="orga9f5025">Einführung</h3>
+<div class="outline-text-3" id="text-orga9f5025">
 </div>
 </section>
-<section id="slide-orgf079db6">
-<h4 id="orgf079db6">Kernbestandteile der Sprache</h4>
+<section id="slide-org156fd26">
+<h4 id="org156fd26">Kernbestandteile der Sprache</h4>
 <ul>
 <li>Die Wirtsprache (hier: Clojure) wird um drei Operationen erweitert:
 <ul>
@@ -428,8 +428,8 @@ schreiben, wobei <code>n</code> die Anzahl der gewünschten Resultate angibt.</l
 
 </ul>
 </section>
-<section id="slide-org0ce256b">
-<h4 id="org0ce256b">Elementare Beispiele</h4>
+<section id="slide-org37aa76b">
+<h4 id="org37aa76b">Elementare Beispiele</h4>
 <ul>
 <li><p>
 Einbindung der <a href="https://github.com/clojure/core.logic">core.logic-Bibliothek</a> (<a href="https://clojure.github.io/core.logic/#clojure.core.logic.fd/!=">Dokumentation</a>), die die Einbettung von
@@ -549,8 +549,8 @@ leer sein, wenn der Ausdruck im Rumpf logisch inkonsistent ist.
 
 </ul>
 </section>
-<section id="slide-orgc7309f5">
-<h4 id="orgc7309f5">Definitionen</h4>
+<section id="slide-orgb7db069">
+<h4 id="orgb7db069">Definitionen</h4>
 <ul>
 <li>Ein <i>logischer Ausdruck</i> besteht aus einer Menge von <i>logischen
 Variablen</i> und einer Menge von <i>Regeln</i> (constraints), die die Werte
@@ -579,8 +579,8 @@ des Vektors [2 3 4] ist.
 
 </ul>
 </section>
-<section id="slide-orge3b5b8e">
-<h5 id="orge3b5b8e">Namenskonventionen</h5>
+<section id="slide-orgf7020fb">
+<h5 id="orgf7020fb">Namenskonventionen</h5>
 <ul>
 <li>Clojure bietet mit seiner miniKanren-Einbettung core.logic die
 Möglichkeit funktionales und logisches Programmieren miteinander zu verbinden.</li>
@@ -590,8 +590,8 @@ ein Vokal angehängt.</li>
 
 </ul>
 </section>
-<section id="slide-org95232de">
-<h4 id="org95232de">Logische Variablen</h4>
+<section id="slide-orgbdd3a99">
+<h4 id="orgbdd3a99">Logische Variablen</h4>
 <ul>
 <li>entsprechen weitgehend lokalen Variablen in Clojure: begrenzter
 Gültigkeitsbereich, keine Mutation</li>
@@ -637,8 +637,8 @@ werden drei lvars deklariert, die innerhalb der <code>logic
 
 </ul>
 </section>
-<section id="slide-org1e734a9">
-<h4 id="org1e734a9">Regeln</h4>
+<section id="slide-org877d10d">
+<h4 id="org877d10d">Regeln</h4>
 <ul>
 <li>Logische Ausdrücke schränken die Wertebereiche logischer Variablen ein.</li>
 <li>Alle Ausdrücke innerhalb der <code>run</code>-Form werden konjunktiv verknüpft.</li>
@@ -679,19 +679,19 @@ erreicht werden (goal succeeds) oder verfehlt werden (goal fails).
 
 </ul>
 </section>
-<section id="slide-org1a24bea">
-<h4 id="org1a24bea">Die Operatoren</h4>
-<div class="outline-text-4" id="text-org1a24bea">
+<section id="slide-org1994b31">
+<h4 id="org1994b31">Die Operatoren</h4>
+<div class="outline-text-4" id="text-org1994b31">
 </div>
 </section>
-<section id="slide-orgf382ba2">
-<h5 id="orgf382ba2"><code>fresh</code></h5>
+<section id="slide-orgdbf5b7e">
+<h5 id="orgdbf5b7e"><code>fresh</code></h5>
 <p>
 siehe oben
 </p>
 </section>
-<section id="slide-org9723556">
-<h5 id="org9723556">Die Unifikation: <code>==</code></h5>
+<section id="slide-org1d2014e">
+<h5 id="org1d2014e">Die Unifikation: <code>==</code></h5>
 <ul>
 <li>Der Ausdruck <code>(== lvar1 lvar2)</code> sorgt dafür, dass die beiden lvars
 die gleiche Menge möglicher Werte besitzen. Das Ziel wird erreicht,
@@ -699,7 +699,7 @@ wenn <code>lvar1</code> in Übereinstimmung mit <code>lvar2</code> gebracht werd
 
 </ul>
 <ul class="org-ul">
-<li><a id="org6df22ba"></a>Unifikation einer einzelnen Variablen mit einem Literal<br />
+<li><a id="org843e5af"></a>Unifikation einer einzelnen Variablen mit einem Literal<br />
 <ul>
 <li>Für eine der Variablen kann ein Clojure Literal verwendet werden.</li>
 <li><p>
@@ -757,7 +757,7 @@ liefert (1).
 </section>
 <section>
 </li>
-<li><a id="orge8b5a56"></a>Unifikation von zwei Variablen<br />
+<li><a id="org4fc4208"></a>Unifikation von zwei Variablen<br />
 <ul>
 <li><p>
 Beispiel:
@@ -784,7 +784,7 @@ Schnittmenge gebunden werden.</li>
 </section>
 <section>
 </li>
-<li><a id="orga9f0dcc"></a>Die Reihenfolge der Ziele ist irrelevant &#x2026;<br />
+<li><a id="orgd896acd"></a>Die Reihenfolge der Ziele ist irrelevant &#x2026;<br />
 <ul>
 <li>&#x2026; bezüglich der Bestimmung des Wertes einer <code>run</code>-Form.</li>
 <li><p>
@@ -813,8 +813,8 @@ liefern das gleiche Ergebnis: <code>(3)</code>.
 </li>
 </ul>
 </section>
-<section id="slide-orgd39f271">
-<h5 id="orgd39f271"><code>conde</code></h5>
+<section id="slide-orge4eb697">
+<h5 id="orge4eb697"><code>conde</code></h5>
 <ul>
 <li><code>conde</code> ermöglicht die disjunktive Verknüpfung von Zielen.</li>
 <li><p>
@@ -856,7 +856,7 @@ ist vergleichbar mit
 </section>
 <section>
 <ul class="org-ul">
-<li><a id="orgf63decd"></a>Beispiele<br />
+<li><a id="org15a2d30"></a>Beispiele<br />
 <div class="smaller">
 <div class="org-src-container">
 
@@ -955,8 +955,8 @@ für <code>fail</code>)
 </ul>
 
 </section>
-<section id="slide-orgba30731">
-<h4 id="orgba30731">Die „Relationifizierung” einer Funktion</h4>
+<section id="slide-org3050fe0">
+<h4 id="org3050fe0">Die „Relationifizierung” einer Funktion</h4>
 <ul>
 <li><p>
 Eine klassische Funktion:
@@ -1024,8 +1024,8 @@ Umwandlung in eine Relation (2. Versuch):
 </ul>
 
 </section>
-<section id="slide-org5b1236f">
-<h4 id="org5b1236f">Weitere Anwendungen</h4>
+<section id="slide-org6dd30db">
+<h4 id="org6dd30db">Weitere Anwendungen</h4>
 <p>
 siehe <a href="PP2-11a-CoreLogicAnwndngn.html">dort</a>
 </p>
