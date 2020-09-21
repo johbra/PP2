@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<!-- 2019-09-20 Fri 17:59 -->
+<!-- 2020-09-21 Mon 08:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelprogrammierung &#x2013; Parallele Algorithmen</title>
@@ -210,7 +210,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -280,9 +280,10 @@ for the JavaScript code in this tag.
 <br />
 <span class="subtitle">Programmierparadigmen</span>
 </h1>
-<div id="outline-container-orgbc13264" class="outline-2">
-<h2 id="orgbc13264">Ziele</h2>
-<div class="outline-text-2" id="text-orgbc13264">
+
+<div id="outline-container-org60acda4" class="outline-2">
+<h2 id="org60acda4">Ziele</h2>
+<div class="outline-text-2" id="text-org60acda4">
 <ul class="org-ul">
 <li>Einstieg in das Thema parallele Algorithmen gewinnen</li>
 <li>Beispiele paralleler Programme kennenlernen</li>
@@ -291,13 +292,13 @@ von Berechnungen</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org34c7ded" class="outline-2">
-<h2 id="org34c7ded">Grundlagen</h2>
-<div class="outline-text-2" id="text-org34c7ded">
+<div id="outline-container-org6153877" class="outline-2">
+<h2 id="org6153877">Grundlagen</h2>
+<div class="outline-text-2" id="text-org6153877">
 </div>
-<div id="outline-container-org7e00a62" class="outline-3">
-<h3 id="org7e00a62">Parallelität jenseits von Nebenläufigkeit</h3>
-<div class="outline-text-3" id="text-org7e00a62">
+<div id="outline-container-orgcf79dc0" class="outline-3">
+<h3 id="orgcf79dc0">Parallelität jenseits von Nebenläufigkeit</h3>
+<div class="outline-text-3" id="text-orgcf79dc0">
 <ul class="org-ul">
 <li>Bisher stand die Beherrschung der Probleme, die bei nebenläufigen
 Prozessen auftreten, im Vordergrund.</li>
@@ -324,9 +325,9 @@ dabei hilfreich oder sogar notwendig.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1d24d84" class="outline-3">
-<h3 id="org1d24d84">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
-<div class="outline-text-3" id="text-org1d24d84">
+<div id="outline-container-orgbefbce1" class="outline-3">
+<h3 id="orgbefbce1">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
+<div class="outline-text-3" id="text-orgbefbce1">
 <p>
 (vgl. u.&nbsp;a. <a class="org-ref-reference" href="#/slide-bibliography">[Wali2016]</a>)
 </p>
@@ -343,9 +344,9 @@ die auf die Elemente der Sequenz anzuwendende Funktion eine
 zeitintensive Berechnung ist.</li>
 </ul>
 </div>
-<div id="outline-container-org10d641d" class="outline-4">
-<h4 id="org10d641d">Clojure <code>pmap</code></h4>
-<div class="outline-text-4" id="text-org10d641d">
+<div id="outline-container-org559cb69" class="outline-4">
+<h4 id="org559cb69">Clojure <code>pmap</code></h4>
+<div class="outline-text-4" id="text-org559cb69">
 <ul class="org-ul">
 <li><p>
 Mit <code>(pmap f coll)</code> wird <code>pmap</code> genauso aufgerufen wie <code>map</code>:
@@ -382,9 +383,9 @@ user&gt; (time (doall (pmap square-slowly (repeat 3 10))))
 </pre></li>
 </ul>
 </div>
-<div id="outline-container-org258cbc0" class="outline-5">
-<h5 id="org258cbc0">Implementierung von pmap</h5>
-<div class="outline-text-5" id="text-org258cbc0">
+<div id="outline-container-org8c8a0aa" class="outline-5">
+<h5 id="org8c8a0aa">Implementierung von pmap</h5>
+<div class="outline-text-5" id="text-org8c8a0aa">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">pmap</span>
   <span style="color: #036A07;">"Like map, except f is applied in parallel. Semi-lazy in that the</span>
@@ -425,9 +426,9 @@ wiederverwendet werden.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org4f6f0c6" class="outline-4">
-<h4 id="org4f6f0c6">Explizite Parallelisierung</h4>
-<div class="outline-text-4" id="text-org4f6f0c6">
+<div id="outline-container-orge890b4f" class="outline-4">
+<h4 id="orge890b4f">Explizite Parallelisierung</h4>
+<div class="outline-text-4" id="text-orge890b4f">
 <ul class="org-ul">
 <li>Neben der Funktion <code>pmap</code>, die die Parallelisierung implizit
 vornimmt, kennt Clojure noch zwei weitere Funktionen:
@@ -458,9 +459,9 @@ user&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">tim
 </div>
 </div>
 </div>
-<div id="outline-container-org6bf9079" class="outline-2">
-<h2 id="org6bf9079">Parallelität und Performance</h2>
-<div class="outline-text-2" id="text-org6bf9079">
+<div id="outline-container-orgf95ff82" class="outline-2">
+<h2 id="orgf95ff82">Parallelität und Performance</h2>
+<div class="outline-text-2" id="text-orgf95ff82">
 <ul class="org-ul">
 <li>Die bisherigen Beispiele paralleler Berechnungen waren sehr einfach
 bzw. naheliegend (mapping).</li>
@@ -475,13 +476,13 @@ bzw. gibt es überhaupt eine?</li>
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-orgd9cc076" class="outline-3">
-<h3 id="orgd9cc076">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
-<div class="outline-text-3" id="text-orgd9cc076">
+<div id="outline-container-orgc587527" class="outline-3">
+<h3 id="orgc587527">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
+<div class="outline-text-3" id="text-orgc587527">
 </div>
-<div id="outline-container-org28873ef" class="outline-4">
-<h4 id="org28873ef">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
-<div class="outline-text-4" id="text-org28873ef">
+<div id="outline-container-org54ceecc" class="outline-4">
+<h4 id="org54ceecc">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
+<div class="outline-text-4" id="text-org54ceecc">
 <div class="large">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #036A07;">/** A Java program to illustrate the potential speedup of parallelism, in this</span>
@@ -501,15 +502,15 @@ bzw. gibt es überhaupt eine?</li>
         <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ParallelSort</span><span style="color: #909183;">()</span>.doIt<span style="color: #909183;">()</span>;
     <span style="color: #7388D6;">}</span>
     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">doIt</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
-        <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">arraySize</span> = 1024 * 1024 * 4;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">about 4M: 4,194,304     /** line 1 **/</span>
+        <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">arraySize</span> = 1024 * 1024 * 4;  <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">about 4M: 4,194,304  /** line 1 **/</span>
 
         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** serial sort</span>
         init<span style="color: #909183;">(</span>arraySize<span style="color: #909183;">)</span>;
-        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">serial</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">false</span><span style="color: #909183;">)</span>;                        <span style="color: #036A07;">/** line 2 **/</span>
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">serial</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">false</span><span style="color: #909183;">)</span>;                    <span style="color: #036A07;">/** line 2 **/</span>
 
         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** parallel sort</span>
         init<span style="color: #909183;">(</span>arraySize<span style="color: #909183;">)</span>;
-        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">parallel</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">true</span><span style="color: #909183;">)</span>;                       <span style="color: #036A07;">/** line 3 **/</span>
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">parallel</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">true</span><span style="color: #909183;">)</span>;                   <span style="color: #036A07;">/** line 3 **/</span>
 
         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** report</span>
         log<span style="color: #909183;">(</span><span style="color: #008000;">"Serial sort of array of size:   "</span> + arraySize<span style="color: #909183;">)</span>;
@@ -529,15 +530,15 @@ bzw. gibt es überhaupt eine?</li>
     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">init</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">size</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
         array2Sort = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">int</span><span style="color: #909183;">[</span>size<span style="color: #909183;">]</span>;
         <span style="color: #036A07;">/** parallel initialization of array elements **/</span>
-        Arrays.parallelSetAll<span style="color: #909183;">(</span>array2Sort,                                  <span style="color: #036A07;">/** line 4 **/</span> 
-                              i-&gt;<span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Random</span><span style="color: #709870;">()</span>.nextInt<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;                  <span style="color: #036A07;">/** line 5 **/</span>
+        Arrays.parallelSetAll<span style="color: #909183;">(</span>array2Sort,                              <span style="color: #036A07;">/** line 4 **/</span> 
+                              i-&gt;<span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Random</span><span style="color: #709870;">()</span>.nextInt<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;              <span style="color: #036A07;">/** line 5 **/</span>
     <span style="color: #7388D6;">}</span>
     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">long</span> <span style="color: #006699;">sortArray</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">array</span>, <span style="color: #6434A3;">boolean</span> <span style="color: #BA36A5;">parallel</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
         <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">start</span> = System.currentTimeMillis<span style="color: #909183;">()</span>;
         <span style="color: #036A07;">/** parallel version of merge-sort **/</span>
-        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>parallel<span style="color: #909183;">)</span> Arrays.parallelSort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                          <span style="color: #036A07;">/** line 6 **/</span>
+        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>parallel<span style="color: #909183;">)</span> Arrays.parallelSort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                      <span style="color: #036A07;">/** line 6 **/</span>
         <span style="color: #036A07;">/** variant of quicksort ('dual pivot') **/</span>
-        <span style="color: #0000FF;">else</span> Arrays.sort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                                           <span style="color: #036A07;">/** line 7 **/</span>
+        <span style="color: #0000FF;">else</span> Arrays.sort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                                       <span style="color: #036A07;">/** line 7 **/</span>
         <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">stop</span> = System.currentTimeMillis<span style="color: #909183;">()</span>;
         <span style="color: #0000FF;">return</span> stop - start;
     <span style="color: #7388D6;">}</span>
@@ -551,9 +552,9 @@ bzw. gibt es überhaupt eine?</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org1c8917b" class="outline-4">
-<h4 id="org1c8917b">Benutzung von der Kommandozeile</h4>
-<div class="outline-text-4" id="text-org1c8917b">
+<div id="outline-container-org704398c" class="outline-4">
+<h4 id="org704398c">Benutzung von der Kommandozeile</h4>
+<div class="outline-text-4" id="text-org704398c">
 <div class="org-src-container">
 <pre class="src src-sh">bash-3.2$ java ParallelSort
 Serial sort of array of size:   4194304
@@ -584,9 +585,9 @@ Speedup:  2.7355932203389832
 </div>
 </div>
 </div>
-<div id="outline-container-org2a388a0" class="outline-3">
-<h3 id="org2a388a0">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
-<div class="outline-text-3" id="text-org2a388a0">
+<div id="outline-container-org27b3a57" class="outline-3">
+<h3 id="org27b3a57">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
+<div class="outline-text-3" id="text-org27b3a57">
 <ul class="org-ul">
 <li>Das Gesetz, benannt nach einem früheren IBM-Ingenieur, der später
 eine eigene Großrechnerfirma gründete, beschreibt die theoretische
@@ -604,9 +605,9 @@ Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org7407429" class="outline-4">
-<h4 id="org7407429">Schrittweise Anwendung des Gesetzes:</h4>
-<div class="outline-text-4" id="text-org7407429">
+<div id="outline-container-orgf6bd17d" class="outline-4">
+<h4 id="orgf6bd17d">Schrittweise Anwendung des Gesetzes:</h4>
+<div class="outline-text-4" id="text-orgf6bd17d">
 <ol class="org-ol">
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M1</i>: \(RT1\)</li>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M4</i>: \(RT4\)</li>
@@ -614,7 +615,7 @@ Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
 <ul class="org-ul">
 <li>Wenn \(\frac{RT1}{RT4} = 1\), keine Geschwindigkeitssteigerung</li>
 <li>Wenn \(\frac{RT1}{RT4} < 1\), Verlangsamung</li>
-<li>If \(\frac{RT1}{RT4} > 1\), Geschwindigkeitssteigerung.</li>
+<li>Wenn \(\frac{RT1}{RT4} > 1\), Geschwindigkeitssteigerung.</li>
 </ul></li>
 <li>Normalisiere der Einfachheit halber \(RT1\) zu 1 Zeiteinheit.</li>
 <li>Spalte \(RT4\) in zwei Teile auf: 
@@ -653,9 +654,9 @@ schneller als <i>M1</i>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcc906a5" class="outline-4">
-<h4 id="orgcc906a5">Fazit</h4>
-<div class="outline-text-4" id="text-orgcc906a5">
+<div id="outline-container-org2cc4634" class="outline-4">
+<h4 id="org2cc4634">Fazit</h4>
+<div class="outline-text-4" id="text-org2cc4634">
 <ul class="org-ul">
 <li>Amdahls Gesetz verdeutlicht, dass naive Annahmen über mögliche
 Geschwindigkeitssteigerungen bei der Parallelisierung von
@@ -735,13 +736,13 @@ Zahlenbeispiele:
 </div>
 </div>
 
-<div id="outline-container-org80a36ac" class="outline-2">
-<h2 id="org80a36ac">Empfehlungen</h2>
-<div class="outline-text-2" id="text-org80a36ac">
+<div id="outline-container-orgdac47c5" class="outline-2">
+<h2 id="orgdac47c5">Empfehlungen</h2>
+<div class="outline-text-2" id="text-orgdac47c5">
 </div>
-<div id="outline-container-org464ad0d" class="outline-3">
-<h3 id="org464ad0d">Parallelprogrammierung mit Scala</h3>
-<div class="outline-text-3" id="text-org464ad0d">
+<div id="outline-container-org544085d" class="outline-3">
+<h3 id="org544085d">Parallelprogrammierung mit Scala</h3>
+<div class="outline-text-3" id="text-org544085d">
 <ul class="org-ul">
 <li>Coursera MOOC: <a href="https://www.coursera.org/learn/parprog1">Parallel programming (Scala)</a> (kostenlos)</li>
 <li>Themen (u.&nbsp;a.):
@@ -757,13 +758,13 @@ Zahlenbeispiele:
 </ul>
 </div>
 </div>
-<div id="outline-container-orge25ad38" class="outline-3">
-<h3 id="orge25ad38">Clojure</h3>
-<div class="outline-text-3" id="text-orge25ad38">
+<div id="outline-container-org6bee7ee" class="outline-3">
+<h3 id="org6bee7ee">Clojure</h3>
+<div class="outline-text-3" id="text-org6bee7ee">
 </div>
-<div id="outline-container-org432eb78" class="outline-4">
-<h4 id="org432eb78">Parallelität mit Reducers</h4>
-<div class="outline-text-4" id="text-org432eb78">
+<div id="outline-container-org9379e0c" class="outline-4">
+<h4 id="org9379e0c">Parallelität mit Reducers</h4>
+<div class="outline-text-4" id="text-org9379e0c">
 <p>
 Zum Beispiel in 
 </p>
@@ -773,9 +774,9 @@ Zum Beispiel in
 </ul>
 </div>
 </div>
-<div id="outline-container-orga90abbc" class="outline-4">
-<h4 id="orga90abbc">Komunikation mit core.async</h4>
-<div class="outline-text-4" id="text-orga90abbc">
+<div id="outline-container-org0f17db9" class="outline-4">
+<h4 id="org0f17db9">Komunikation mit core.async</h4>
+<div class="outline-text-4" id="text-org0f17db9">
 <p>
 Zum Beispiel in 
 </p>
@@ -788,18 +789,18 @@ Zum Beispiel in
 </div>
 </div>
 
-<div id="outline-container-org00baa33" class="outline-2">
+<div id="outline-container-org504de41" class="outline-2">
 <h2 id="bibliography">Literaturverzeichnis</h2>
 <div class="outline-text-2" id="text-bibliography">
-<ul class='org-ref-bib'><li><a id="Wali2016">[Wali2016]</a> <a name="Wali2016"></a>Wali, Mastering Clojure : understand the philosophy of the Clojure  language and dive into its inner workings to unlock  its advanced features, methodologies, and  constructs, Packt Publishing (2016).</li>
-<li><a id="Kalin2015">[Kalin2015]</a> <a name="Kalin2015"></a>Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </li>
+<ul class='org-ref-bib'><li><a id="Wali2016">[Wali2016] Wali, Mastering Clojure : understand the philosophy of the Clojure language and dive into its inner workings to unlock its advanced features, methodologies, and constructs, Packt Publishing (2016).</a></li>
+<li><a id="Kalin2015">[Kalin2015] Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </a></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Johannes Brauer</p>
-<p class="date">Created: 2019-09-20 Fri 17:59</p>
+<p class="date">Created: 2020-09-21 Mon 08:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

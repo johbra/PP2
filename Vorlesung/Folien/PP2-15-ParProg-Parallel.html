@@ -32,9 +32,10 @@
 <section id="sec-title-slide">
 <h1 class="title">Parallelprogrammierung &#x2013; Parallele Algorithmen</h1><h3 class="subtitle">Programmierparadigmen</h3><h2 class="author">Johannes Brauer</h2><h2 class="date"></h2>
 </section>
+
 <section>
-<section id="slide-org6e1dd43">
-<h2 id="org6e1dd43">Ziele</h2>
+<section id="slide-org3990eef">
+<h2 id="org3990eef">Ziele</h2>
 <ul>
 <li>Einstieg in das Thema parallele Algorithmen gewinnen</li>
 <li>Beispiele paralleler Programme kennenlernen</li>
@@ -45,11 +46,11 @@ von Berechnungen</li>
 </section>
 </section>
 <section>
-<section id="slide-org8e30199">
-<h2 id="org8e30199">Grundlagen</h2>
+<section id="slide-org495062a">
+<h2 id="org495062a">Grundlagen</h2>
 </section>
-<section id="slide-org81e640c">
-<h3 id="org81e640c">Parallelität jenseits von Nebenläufigkeit</h3>
+<section id="slide-org7478342">
+<h3 id="org7478342">Parallelität jenseits von Nebenläufigkeit</h3>
 <ul>
 <li>Bisher stand die Beherrschung der Probleme, die bei nebenläufigen
 Prozessen auftreten, im Vordergrund.</li>
@@ -79,8 +80,8 @@ dabei hilfreich oder sogar notwendig.</li>
 
 </ul>
 </section>
-<section id="slide-orga62e3cf">
-<h3 id="orga62e3cf">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
+<section id="slide-org3b45935">
+<h3 id="org3b45935">Einstiegsbeispiel: Parallelisierung von <code>map</code></h3>
 <p>
 (vgl. u.&nbsp;a. <a class="org-ref-reference" href="#/slide-bibliography">[Wali2016]</a>)
 </p>
@@ -98,8 +99,8 @@ zeitintensive Berechnung ist.</li>
 
 </ul>
 </section>
-<section id="slide-org3ea091d">
-<h4 id="org3ea091d">Clojure <code>pmap</code></h4>
+<section id="slide-org1546bc6">
+<h4 id="org1546bc6">Clojure <code>pmap</code></h4>
 <ul>
 <li><p>
 Mit <code>(pmap f coll)</code> wird <code>pmap</code> genauso aufgerufen wie <code>map</code>:
@@ -137,8 +138,8 @@ user&gt; (time (doall (pmap square-slowly (repeat 3 10))))
 
 </ul>
 </section>
-<section id="slide-orgca83b16">
-<h5 id="orgca83b16">Implementierung von pmap</h5>
+<section id="slide-orgb1eb629">
+<h5 id="orgb1eb629">Implementierung von pmap</h5>
 <div class="org-src-container">
 
 <pre  class="src src-clojure"><span style="color: #707183;">(</span><span style="color: #0000FF;">defn</span> <span style="color: #006699;">pmap</span>
@@ -179,8 +180,8 @@ wiederverwendet werden.</li>
 
 </ul>
 </section>
-<section id="slide-org19e1000">
-<h4 id="org19e1000">Explizite Parallelisierung</h4>
+<section id="slide-org7f25f1e">
+<h4 id="org7f25f1e">Explizite Parallelisierung</h4>
 <ul>
 <li>Neben der Funktion <code>pmap</code>, die die Parallelisierung implizit
 vornimmt, kennt Clojure noch zwei weitere Funktionen:
@@ -213,8 +214,8 @@ user&gt; <span style="color: #707183;">(</span><span style="color: #006FE0;">tim
 </section>
 </section>
 <section>
-<section id="slide-org6d6d060">
-<h2 id="org6d6d060">Parallelität und Performance</h2>
+<section id="slide-org0196013">
+<h2 id="org0196013">Parallelität und Performance</h2>
 <ul>
 <li>Die bisherigen Beispiele paralleler Berechnungen waren sehr einfach
 bzw. naheliegend (mapping).</li>
@@ -231,13 +232,13 @@ bzw. gibt es überhaupt eine?</li>
 
 </ul>
 </section>
-<section id="slide-orgf1e6cb4">
-<h3 id="orgf1e6cb4">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
-<div class="outline-text-3" id="text-orgf1e6cb4">
+<section id="slide-org2115515">
+<h3 id="org2115515">Beispiel: Das Java-Programm <code>ParallelSort</code></h3>
+<div class="outline-text-3" id="text-org2115515">
 </div>
 </section>
-<section id="slide-org6776d66">
-<h4 id="org6776d66">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
+<section id="slide-org60abd7f">
+<h4 id="org60abd7f">Quellcode von  <a href="./Working-Files/Chapter-11/ParallelSort.java">ParallelSort.java</a></h4>
 <div class="large">
 <div class="org-src-container">
 
@@ -258,15 +259,15 @@ bzw. gibt es überhaupt eine?</li>
         <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">ParallelSort</span><span style="color: #909183;">()</span>.doIt<span style="color: #909183;">()</span>;
     <span style="color: #7388D6;">}</span>
     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">doIt</span><span style="color: #7388D6;">()</span> <span style="color: #7388D6;">{</span>
-        <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">arraySize</span> = 1024 * 1024 * 4;  <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">about 4M: 4,194,304     /** line 1 **/</span>
+        <span style="color: #0000FF;">final</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">arraySize</span> = 1024 * 1024 * 4;  <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">about 4M: 4,194,304  /** line 1 **/</span>
 
         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** serial sort</span>
         init<span style="color: #909183;">(</span>arraySize<span style="color: #909183;">)</span>;
-        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">serial</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">false</span><span style="color: #909183;">)</span>;                        <span style="color: #036A07;">/** line 2 **/</span>
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">serial</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">false</span><span style="color: #909183;">)</span>;                    <span style="color: #036A07;">/** line 2 **/</span>
 
         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** parallel sort</span>
         init<span style="color: #909183;">(</span>arraySize<span style="color: #909183;">)</span>;
-        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">parallel</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">true</span><span style="color: #909183;">)</span>;                       <span style="color: #036A07;">/** line 3 **/</span>
+        <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">parallel</span> = sortArray<span style="color: #909183;">(</span>array2Sort, <span style="color: #D0372D;">true</span><span style="color: #909183;">)</span>;                   <span style="color: #036A07;">/** line 3 **/</span>
 
         <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">** report</span>
         log<span style="color: #909183;">(</span><span style="color: #008000;">"Serial sort of array of size:   "</span> + arraySize<span style="color: #909183;">)</span>;
@@ -286,15 +287,15 @@ bzw. gibt es überhaupt eine?</li>
     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">init</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">size</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
         array2Sort = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">int</span><span style="color: #909183;">[</span>size<span style="color: #909183;">]</span>;
         <span style="color: #036A07;">/** parallel initialization of array elements **/</span>
-        Arrays.parallelSetAll<span style="color: #909183;">(</span>array2Sort,                                  <span style="color: #036A07;">/** line 4 **/</span> 
-                              i-&gt;<span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Random</span><span style="color: #709870;">()</span>.nextInt<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;                  <span style="color: #036A07;">/** line 5 **/</span>
+        Arrays.parallelSetAll<span style="color: #909183;">(</span>array2Sort,                              <span style="color: #036A07;">/** line 4 **/</span> 
+                              i-&gt;<span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Random</span><span style="color: #709870;">()</span>.nextInt<span style="color: #709870;">()</span><span style="color: #909183;">)</span>;              <span style="color: #036A07;">/** line 5 **/</span>
     <span style="color: #7388D6;">}</span>
     <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">long</span> <span style="color: #006699;">sortArray</span><span style="color: #7388D6;">(</span><span style="color: #6434A3;">int</span><span style="color: #909183;">[</span> <span style="color: #909183;">]</span> <span style="color: #BA36A5;">array</span>, <span style="color: #6434A3;">boolean</span> <span style="color: #BA36A5;">parallel</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
         <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">start</span> = System.currentTimeMillis<span style="color: #909183;">()</span>;
         <span style="color: #036A07;">/** parallel version of merge-sort **/</span>
-        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>parallel<span style="color: #909183;">)</span> Arrays.parallelSort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                          <span style="color: #036A07;">/** line 6 **/</span>
+        <span style="color: #0000FF;">if</span> <span style="color: #909183;">(</span>parallel<span style="color: #909183;">)</span> Arrays.parallelSort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                      <span style="color: #036A07;">/** line 6 **/</span>
         <span style="color: #036A07;">/** variant of quicksort ('dual pivot') **/</span>
-        <span style="color: #0000FF;">else</span> Arrays.sort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                                           <span style="color: #036A07;">/** line 7 **/</span>
+        <span style="color: #0000FF;">else</span> Arrays.sort<span style="color: #909183;">(</span>array<span style="color: #909183;">)</span>;                                       <span style="color: #036A07;">/** line 7 **/</span>
         <span style="color: #6434A3;">long</span> <span style="color: #BA36A5;">stop</span> = System.currentTimeMillis<span style="color: #909183;">()</span>;
         <span style="color: #0000FF;">return</span> stop - start;
     <span style="color: #7388D6;">}</span>
@@ -307,8 +308,8 @@ bzw. gibt es überhaupt eine?</li>
 
 </div>
 </section>
-<section id="slide-orge756899">
-<h4 id="orge756899">Benutzung von der Kommandozeile</h4>
+<section id="slide-orgff8f49e">
+<h4 id="orgff8f49e">Benutzung von der Kommandozeile</h4>
 <div class="org-src-container">
 
 <pre  class="src src-sh">bash-3.2$ java ParallelSort
@@ -338,8 +339,8 @@ Speedup:  2.7355932203389832
 </pre>
 </div>
 </section>
-<section id="slide-orge65e7c0">
-<h3 id="orge65e7c0">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
+<section id="slide-org7ec6b67">
+<h3 id="org7ec6b67">Amdahls Gesetz (erläutert an einem Beispiel)</h3>
 <ul>
 <li>Das Gesetz, benannt nach einem früheren IBM-Ingenieur, der später
 eine eigene Großrechnerfirma gründete, beschreibt die theoretische
@@ -360,8 +361,8 @@ Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
 
 </ul>
 </section>
-<section id="slide-org39560a8">
-<h4 id="org39560a8">Schrittweise Anwendung des Gesetzes:</h4>
+<section id="slide-org7bd632e">
+<h4 id="org7bd632e">Schrittweise Anwendung des Gesetzes:</h4>
 <ol>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M1</i>: \(RT1\)</li>
 <li>Berechne die Antwortzeit für <i>P</i> auf <i>M4</i>: \(RT4\)</li>
@@ -369,7 +370,7 @@ Vierprozessormaschine <i>M4</i> erzielt werden kann.</li>
 <ul>
 <li>Wenn \(\frac{RT1}{RT4} = 1\), keine Geschwindigkeitssteigerung</li>
 <li>Wenn \(\frac{RT1}{RT4} < 1\), Verlangsamung</li>
-<li>If \(\frac{RT1}{RT4} > 1\), Geschwindigkeitssteigerung.</li>
+<li>Wenn \(\frac{RT1}{RT4} > 1\), Geschwindigkeitssteigerung.</li>
 
 </ul></li>
 <li>Normalisiere der Einfachheit halber \(RT1\) zu 1 Zeiteinheit.</li>
@@ -417,8 +418,8 @@ schneller als <i>M1</i>.</li>
 
 </ul>
 </section>
-<section id="slide-org1cd311f">
-<h4 id="org1cd311f">Fazit</h4>
+<section id="slide-orgb5c054c">
+<h4 id="orgb5c054c">Fazit</h4>
 <ul>
 <li>Amdahls Gesetz verdeutlicht, dass naive Annahmen über mögliche
 Geschwindigkeitssteigerungen bei der Parallelisierung von
@@ -498,13 +499,13 @@ Zahlenbeispiele:
 </section>
 </section>
 <section>
-<section id="slide-orgbbf8ed4">
-<h2 id="orgbbf8ed4">Empfehlungen</h2>
-<div class="outline-text-2" id="text-orgbbf8ed4">
+<section id="slide-org66d48f8">
+<h2 id="org66d48f8">Empfehlungen</h2>
+<div class="outline-text-2" id="text-org66d48f8">
 </div>
 </section>
-<section id="slide-orga6e1029">
-<h3 id="orga6e1029">Parallelprogrammierung mit Scala</h3>
+<section id="slide-orgd153fca">
+<h3 id="orgd153fca">Parallelprogrammierung mit Scala</h3>
 <ul>
 <li>Coursera MOOC: <a href="https://www.coursera.org/learn/parprog1">Parallel programming (Scala)</a> (kostenlos)</li>
 <li>Themen (u.&nbsp;a.):
@@ -521,13 +522,13 @@ Zahlenbeispiele:
 
 </ul>
 </section>
-<section id="slide-orgd54af3e">
-<h3 id="orgd54af3e">Clojure</h3>
-<div class="outline-text-3" id="text-orgd54af3e">
+<section id="slide-org89c45bb">
+<h3 id="org89c45bb">Clojure</h3>
+<div class="outline-text-3" id="text-org89c45bb">
 </div>
 </section>
-<section id="slide-orgb3ceb93">
-<h4 id="orgb3ceb93">Parallelität mit Reducers</h4>
+<section id="slide-org8ac206b">
+<h4 id="org8ac206b">Parallelität mit Reducers</h4>
 <p>
 Zum Beispiel in 
 </p>
@@ -537,8 +538,8 @@ Zum Beispiel in
 
 </ul>
 </section>
-<section id="slide-org987569c">
-<h4 id="org987569c">Komunikation mit core.async</h4>
+<section id="slide-orgd278354">
+<h4 id="orgd278354">Komunikation mit core.async</h4>
 <p>
 Zum Beispiel in 
 </p>
@@ -553,8 +554,8 @@ Zum Beispiel in
 <section>
 <section id="slide-bibliography">
 <h2 id="bibliography">Literaturverzeichnis</h2>
-<ul class='org-ref-bib'><li><a id="Wali2016">[Wali2016]</a> <a name="Wali2016"></a>Wali, Mastering Clojure : understand the philosophy of the Clojure  language and dive into its inner workings to unlock  its advanced features, methodologies, and  constructs, Packt Publishing (2016).</li>
-<li><a id="Kalin2015">[Kalin2015]</a> <a name="Kalin2015"></a>Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </li>
+<ul class='org-ref-bib'><li><a id="Wali2016">[Wali2016] Wali, Mastering Clojure : understand the philosophy of the Clojure language and dive into its inner workings to unlock its advanced features, methodologies, and constructs, Packt Publishing (2016).</a></li>
+<li><a id="Kalin2015">[Kalin2015] Martin Kalin, Concurrent and Parallel Programming Concepts, (2015), zuletzt aufgerufen am 10.10.2017: <a href="https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/">https://www.safaribooksonline.com/library/view/concurrent-and-parallel/9781771375313/</a> </a></li>
 </ul>
 </section>
 </section>
@@ -593,7 +594,7 @@ dependencies: [
  { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
 
-,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }   ] , menu: {hideMissingTitles: true}});
+,dependencies: [ { src: 'plugin/menu/menu.js', async: true }, { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true }, { src: 'reveal.js/plugin/search/search.js', async: true }] , menu: {hideMissingTitles: true}});
 </script>
 </body>
 </html>
